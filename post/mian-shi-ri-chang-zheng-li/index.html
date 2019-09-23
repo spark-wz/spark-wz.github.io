@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>Gridea</title>
+<title>面试日常整理 | Gridea</title>
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -23,6 +23,7 @@
 
   </head>
   <body>
+  
     <nav class="navbar border fixed split-nav">
   <div class="nav-brand">
     <h3><a href="https://spark-wz.github.io">Gridea</a></h3>
@@ -76,65 +77,80 @@
   </div>
 </nav>
 
-
     <div id="top" class="row site">
       <div class="sm-12 md-8 col">
         <div class="paper">
+          <article class="article">
+            <h1>面试日常整理</h1>
+            <p class="article-meta">
+              2019-09-23
+              
+            </p>
+            
+            <div class="post-content">
+              <p><strong>hashmap的底层原理</strong><br>
+1.jdk1.8之前hashmap采用位桶(数组)+链表实现即使用链表处理冲突，统一hash值得链表都存储在一个链表中，但是当同一个通中的元素过多时，即hash值相等的元素过多时，通过可以查找值的效率就变低。<br>
+2.jdk1.8之后，hashmap采用的是位桶(数组)+链表+红黑树实现，当链表长度超过8的阈值后，将链表转换为红黑树，这样大大减少了查找时间。<br>
+<strong>spring的事务管理</strong><br>
+<em>1事务的特性(ACID)</em><br>
+原子性：最小的执行单位，不能分割。<br>
+一致性：执行数据前后，数据保持一致。<br>
+隔离性：并发访问数据库时，一个用户的事务不能被其他事务干扰，各并发事务之间数据库时相互独立的。<br>
+持久性：一个事务被提交之后，他对数据库中的改变是持久的，即使数据库发生故障也不应该发生影响。<br>
+<em>2.事务管理器</em><br>
+1.创建事务(getTransaction)<br>
+2.提交(commit)<br>
+3.回滚(rollback)<br>
+<strong>Mysql优化</strong><br>
+1.最后迫不得已看看是否硬件上存在问题。<br>
+2.开启慢查询，看看哪个查询最浪费时间。记得查询时设置SQL_NO_CACHE<br>
+(插一句话：Mysql只对&lt;,&lt;=,=,&gt;,&gt;=,between,in,以及某些时候的like使用，下划线'_','%'开始时不需要)。<br>
+3.sql优化<br>
+<em>3.1查询优化</em></p>
+<ul>
+<li>3.1.1：避免全局扫描，尽量在orderby和where的语句上使用索引。</li>
+<li>3.1.2：避免在where字句中使用mull，or，！=，&lt;&gt;,或者表达式，避免在where的左边使用运算，这样会使索引失去效力，转而使用全局扫描。</li>
+<li>3.1.3：避免在模糊查询时在关键字的前边加通配符，也会使索引失去效力。</li>
+<li>3.1.4：尽量使用exists代替in。</li>
+<li>3.1.5：不要写一些无意义查询。</li>
+<li>3.1.6：避免子查询。</li>
+<li>3.1.7：合理使用临时表，如果查询一个数据量很大的表则不需要临时表。</li>
+<li>3.1.8：避免临时表的创建和删除。</li>
+<li>3.1.9：游标的效率很差。</li>
+<li>3.1.10：索引并不是越多越好，一个表最多6个，索引太多会造成更新和插入变慢。</li>
+<li>3.1.11：服务器开启慢查询日志过滤，观察那些sql是需要优化的。<br>
+<em>3.2写入优化</em></li>
+<li>3.2.1：插入数据的时候尽量不要循环插入，使用批量插入。</li>
+<li>3.2.2：数据合并插入。</li>
+<li>3.2.3：使用事务，将多条插入语句放入一个事务中提交。</li>
+<li>3.2.4：有序插入。</li>
+<li>3.2.5：数据量大234结合使用<br>
+<em>3.3更新优化</em></li>
+<li>不要同时间操纵一大批数据，尽量分批处理。<br>
+*4bug/业务优化<br>
+对不需要操作数据库的业务进行缩减，观察是否有sql产生新的bug</li>
+</ul>
+
+            </div>
+          </article>
+        </div>
+        <div class="paper" data-aos="fade-in">
           
-  <article class="article">
-    <h2 class="article-title">
-      <a href="https://spark-wz.github.io/post/mian-shi-ri-chang-zheng-li">面试日常整理</a>
-    </h2>
-    <p class="article-meta">
-      2019-09-23
-      
-    </p>
-    <p class="text-lead">
-      
-    </p>
-    <div class="row">
-      <a href="https://spark-wz.github.io/post/mian-shi-ri-chang-zheng-li" class="readmore-link">
-        <button>
-          Read More
-        </button>
-      </a>
-    </div>
-  </article>
-
-  <article class="article">
-    <h2 class="article-title">
-      <a href="https://spark-wz.github.io/post/hello-gridea">Nginx</a>
-    </h2>
-    <p class="article-meta">
-      2018-12-12
-      
-        <a href="https://spark-wz.github.io/tag/x0D9AKioe" class="badge secondary">
-          Gridea
-        </a>
-      
-    </p>
-    <p class="text-lead">
-      
-    </p>
-    <div class="row">
-      <a href="https://spark-wz.github.io/post/hello-gridea" class="readmore-link">
-        <button>
-          Read More
-        </button>
-      </a>
-    </div>
-  </article>
-
-
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://spark-wz.github.io/post/hello-gridea">
+                <h3 class="post-title">
+                  Nginx
+                </h3>
+              </a>
+            </div>
+          
         </div>
         
-        <div class="row flex-edges">
-  
-  
-</div>
-
       </div>
-      
+
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
     <img src="https://spark-wz.github.io/images/avatar.png?v=1569249919172" class="no-responsive avatar">
@@ -192,7 +208,9 @@
   </div>
 </div>
 
+
     </div>
+
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 
 <script type="application/javascript">
