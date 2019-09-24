@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://spark-wz.github.io</id>
     <title>Gridea</title>
-    <updated>2019-09-23T14:45:28.425Z</updated>
+    <updated>2019-09-24T04:04:00.053Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://spark-wz.github.io"/>
     <link rel="self" href="https://spark-wz.github.io/atom.xml"/>
@@ -55,8 +55,21 @@
 <li>3.2.5：数据量大234结合使用<br>
 <em>3.3更新优化</em></li>
 <li>不要同时间操纵一大批数据，尽量分批处理。<br>
-*4bug/业务优化<br>
-对不需要操作数据库的业务进行缩减，观察是否有sql产生新的bug</li>
+<em>4bug/业务优化</em><br>
+对不需要操作数据库的业务进行缩减，观察是否有sql产生新的bug<br>
+<strong>JVM的原理</strong><br>
+jvm是java虚拟机，包括一套字节码指令集，一组寄存器，一个栈，一个垃圾回收，一个堆，和一个存储方法域。<br>
+<em><strong>WEB的内置对象</strong></em></li>
+<li>request</li>
+<li>response</li>
+<li>session</li>
+<li>application</li>
+<li>out</li>
+<li>pagecontext</li>
+<li>config</li>
+<li>exception<br>
+<strong>WEB的四个作用域</strong><br>
+page，requ</li>
 </ul>
 ]]></content>
     </entry>
