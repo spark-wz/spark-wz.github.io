@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>java基础面试整理 | Gridea</title>
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://spark-wz.github.io/favicon.ico?v=1570327004427">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://spark-wz.github.io/styles/main.css">
+
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+  </head>
+  <body>
+  
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://spark-wz.github.io">Gridea</a></h3>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
+        
+          <li>
+            
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/post/about" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>java基础面试整理</h1>
+            <p class="article-meta">
+              2019-10-05
+              
+            </p>
+            
+            <div class="post-content">
+              <p>java的内存空间分为四类：栈(stack)、堆(heap)、代码(code)、静态数据(data)<br>
+<strong>java堆栈</strong></p>
+<ul>
+<li>java中内存分为两种，堆内存，栈内存</li>
+<li><strong>堆</strong></li>
+<li>堆内存的话，主要用来存放数组和对象，可以当成管道，先进先出。</li>
+<li>可以动态的分配内存大小，存取速度较慢</li>
+<li>由java的自动垃圾回收器来管理</li>
+<li><strong>栈</strong></li>
+<li>栈主要是执行程序用的。比如：基本类型的变量和对象的引用变量。</li>
+<li>存取速度比堆快，仅次于寄存器，栈数据可以共享，缺点存在栈中的数据大小和生存期是确定的。</li>
+<li>栈内存可以看成一级缓存，由垃圾回收器自动回收</li>
+<li><strong>堆栈区别</strong></li>
+<li>1.堆内存用来存放由new创建的对象和数组。<br>
+2.栈内存用来存放方法或者局部变量等<br>
+3.堆是先进先出，后进后出<br>
+4.栈是后进先出，先进后出<br>
+<strong>java垃圾回收</strong><br>
+System.gc()用于调用垃圾收集器</li>
+<li>对象是否会被回收的两个经典算法：引用计数法，和可达性分析算法</li>
+<li><strong>在确定了哪些对象可以被回收之后，jvm会在什么时候进行回收</strong></li>
+<li>1会在cpu空闲的时候自动进行回收<br>
+　2在堆内存存储满了之后<br>
+　3主动调用System.gc()后尝试进行回收<br>
+<strong>如何回收</strong><br>
+算法又有四个：标记-清除算法,复制算法,标记-整理算法,分代收集算法.<br>
+<strong>java抽象类</strong><br>
+在面向对象的概念中，所有的对象都是通过类来描绘的，但是反过来，并不是所有的类都是用来描绘对象的，如果一个类中没有包含足够的信息来描绘一个具体的对象，这样的类就是抽象类。</li>
+</ul>
+<p>抽象类除了不能实例化对象之外，类的其它功能依然存在，成员变量、成员方法和构造方法的访问方式和普通类一样。</p>
+<p>由于抽象类不能实例化对象，所以抽象类必须被继承，才能被使用。也是因为这个原因，通常在设计阶段决定要不要设计抽象类。</p>
+<p>父类包含了子类集合的常见的方法，但是由于父类本身是抽象的，所以不能使用这些方法。</p>
+<p>在Java中抽象类表示的是一种继承关系，一个类只能继承一个抽象类，而一个类却可以实现多个接口。<br>
+<strong>java接口</strong><br>
+接口（英文：Interface），在JAVA编程语言中是一个抽象类型，是抽象方法的集合，接口通常以interface来声明。一个类通过继承接口的方式，从而来继承接口的抽象方法。</p>
+<p>接口并不是类，编写接口的方式和类很相似，但是它们属于不同的概念。类描述对象的属性和方法。接口则包含类要实现的方法。</p>
+<p>除非实现接口的类是抽象类，否则该类要定义接口中的所有方法。</p>
+<p>接口无法被实例化，但是可以被实现。一个实现接口的类，必须实现接口内所描述的所有方法，否则就必须声明为抽象类。另外，在 Java 中，接口类型可用来声明一个变量，他们可以成为一个空指针，或是被绑定在一个以此接口实现的对象。<br>
+<strong>抽象类和接口的区别</strong></p>
+<ol>
+<li>抽象类中的方法可以有方法体，就是能实现方法的具体功能，但是接口中的方法不行。</li>
+<li>抽象类中的成员变量可以是各种类型的，而接口中的成员变量只能是 public static final 类型的。</li>
+<li>接口中不能含有静态代码块以及静态方法(用 static 修饰的方法)，而抽象类是可以有静态代码块和静态方法。</li>
+<li>一个类只能继承一个抽象类，而一个类却可以实现多个接口。<br>
+注：JDK 1.8 以后，接口里可以有静态方法和方法体了。<br>
+<img src="https://spark-wz.github.io/post-images/1570245575166.png" alt=""><br>
+<strong>“==”和equals的区别</strong><br>
+*equals 方法（是String类从它的超类Object中继承的）被用来检测两个对象是否相等，即两个对象的内容是否相等。<br>
+<em>==用于比较引用和比较基本数据类型时具有不同的功能：<br>
+比较基本数据类型，如果两个值相同，则结果为true<br>
+而在比较引用时，如果引用指向内存中的同一对象，结果为true</em><br>
+<strong>java命名规范</strong><br>
+1、 项目名全部小写</li>
+</ol>
+<p>2、 包名全部小写</p>
+<p>3、 类名首字母大写，如果类名由多个单词组成，每个单词的首字母都要大写。</p>
+<p>如：public class MyFirstClass{}</p>
+<p>4、 变量名、方法名首字母小写，如果名称由多个单词组成，每个单词的首字母都要大写。</p>
+<p>如：int index=0;</p>
+<p>public void toString(){}</p>
+<p>5、 常量名全部大写</p>
+<p>如：public static final String GAME_COLOR=”RED”;</p>
+<p>6、所有命名规则必须遵循以下规则：</p>
+<p>1)、名称只能由字母、数字、下划线、$符号组成</p>
+<p>2)、不能以数字开头</p>
+<p>3)、名称不能使用JAVA中的关键字。</p>
+<p>4)、坚决不允许出现中文及拼音命名</p>
+
+            </div>
+          </article>
+        </div>
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://spark-wz.github.io/post/mian-shi-ri-chang-zheng-li">
+                <h3 class="post-title">
+                  面试日常整理
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
+      </div>
+
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://spark-wz.github.io/images/avatar.png?v=1570327004427" class="no-responsive avatar">
+    <div class="text-muted">温故而知新</div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://spark-wz.github.io/post/java-ji-chu-mian-shi-zheng-li">java基础面试整理</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://spark-wz.github.io/post/mian-shi-ri-chang-zheng-li">面试日常整理</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://spark-wz.github.io/post/hello-gridea">Nginx</a>
+            </li>
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://spark-wz.github.io/tag/x0D9AKioe" class="badge warning">
+          Gridea
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://spark-wz.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+
+
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+</script>
+
+
+
+
+  </body>
+</html>
