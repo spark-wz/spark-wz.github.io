@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>Nginx | Gridea</title>
+<title>面试整理 | Gridea</title>
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -81,116 +81,60 @@
       <div class="sm-12 md-8 col">
         <div class="paper">
           <article class="article">
-            <h1>Nginx</h1>
+            <h1>面试整理</h1>
             <p class="article-meta">
-              2018-12-12
-              
-                <a href="https://spark-wz.github.io/tag/x0D9AKioe" class="badge warning">
-                  Gridea
-                </a>
+              2019-10-06
               
             </p>
             
-              <img src="https://spark-wz.github.io/post-images/hello-gridea.png" alt="Nginx">
-            
             <div class="post-content">
-              <p>安装nginx需要的依赖</p>
-<h1 id="安装gcc">安装gcc</h1>
-<p>yum install -y gcc</p>
-<h1 id="安装gcc-c">安装gcc-c++</h1>
-<p>yum install -y gcc-c++</p>
-<h1 id="安装pcre-pcre-devel">安装pcre pcre-devel</h1>
-<p>yum install -y pcre pcre-devel</p>
-<h1 id="安装zlib-zlib-devel">安装zlib zlib-devel</h1>
-<p>yum install -y zlib zlib-devel</p>
-<h1 id="安装openssl-openssl-devel">安装openssl openssl-devel</h1>
-<p>yum install -y openssl openssl-devel<br>
-下载<br>
-wget http://nginx.org/download/nginx-1.16.1.tar.gz<br>
-解压缩<br>
-tar -zxvf nginx-1.16.1.tar.gz<br>
-安装</p>
-<h1 id="进入解压得到的目录">进入解压得到的目录</h1>
-<p>cd nginx-1.16.1</p>
-<h1 id="配置">配置</h1>
-<p>./configure</p>
-<h1 id="编译">编译</h1>
-<p>make</p>
-<h1 id="安装">安装</h1>
-<p>make install<br>
-启动、停止</p>
-<h1 id="进入usrlocalnginxsbin">进入/usr/local/nginx/sbin</h1>
-<p>cd /usr/local/nginx/sbin</p>
-<h1 id="启动">启动</h1>
-<p>./nginx</p>
-<h1 id="停止">停止</h1>
-<p>./nginx -s stop</p>
-<h1 id="重启">重启</h1>
-<p>./nginx -s reload</p>
-<p>使用nginx代理tomcat</p>
-<p>启动tomcat</p>
-<h1 id="在8080端口启动tomcat">在8080端口启动tomcat</h1>
-<p>cd /usr/local/apache-tomcat-8.5.45<br>
-./bin/startup.sh<br>
-配置nginx</p>
-<h1 id="进入usrlocalnginxconf">进入/usr/local/nginx/conf</h1>
-<p>cd /usr/local/nginx/conf</p>
-<h1 id="使用vim编辑nginxconf">使用vim编辑nginx.conf</h1>
-<p>vim nginx.conf<br>
-nginx.conf</p>
-<h1 id="被代理的tomcat的地址">被代理的tomcat的地址</h1>
-<p>upstream tomcat{<br>
-server  127.0.0.1:8080;<br>
-}</p>
-<p>server {<br>
-listen       80;<br>
-server_name  localhost;</p>
-<pre><code>#charset koi8-r;
-
-#access_log  logs/host.access.log  main;
-
-location / {
-    #root   html;
-    #index  index.html index.htm;
-    # 代理tomcat
-    proxy_pass http://tomcat;
-}
-</code></pre>
-<p>}</p>
-<p>nginx配置负载均衡</p>
-<p>启动tomcat的</p>
-<h1 id="将项目分别部署在8080和8081端口的tomcat">将项目分别部署在8080和8081端口的tomcat</h1>
-<p>配置nginx.conf<br>
-upstream tomcat{<br>
-# 8080服务器性能较好，权重设置为2<br>
-server  127.0.0.1:8080 weight=2;<br>
-# 8081服务器性能较弱，权重设置为1<br>
-server  127.0.0.1:8081 weight=1;<br>
-}</p>
-<pre><code>server {
-    listen       80;
-    server_name  localhost;
-
-    #charset koi8-r;
-
-    #access_log  logs/host.access.log  main;
-
-    location / {
-        #root   html;
-        #index  index.html index.htm;
-        proxy_pass http://tomcat;
-    }
-</code></pre>
-<p>}<br>
-效果<br>
-每三个请求，会有两个访问8080服务器，一个访问8081服务器</p>
-<p>启动tomcat的</p>
-<p>可以使用Nginx做反向代理和负载均衡</p>
+              <p>MVC是三个单词的缩写,分别为：<br>
+模型(Model),视图(View)和控制Controller)。<br>
+MVC模式的目的就是实现Web系统的职能分工。</p>
+<p>Model层实现系统中的业务逻辑，通常可以用JavaBean或EJB来实现。 <br>
+View层用于与用户的交互，通常用JSP来实现。</p>
+<p>Controller层是Model与View之间沟通的桥梁，它可以分派用户的请求并选择恰当的视图以用于显示，同时它也可以解释用户的输入并将它们映射为模型层可执行的操作。</p>
+<p>MVC模式的好处</p>
+<p>各施其职，互不干涉<br>
+在MVC模式中，三个层各施其职，所以如果一旦哪一层的需求发生了变化，就只需要更改相应的层中的代码而不会影响到其它层中的代码。</p>
+<p><strong>.sleep()和wait()有什么区别?</strong><br>
+答：Sleep() 是线程类的方法  wait()是object类的方法。Sleep（） 不会释放对象锁 到时自动恢复 ，wait（）会释放对象锁 进入等待此对象的等待锁定池  发出notify（）方法后 才进入等待锁定池准备对象锁的获取进入运行状态</p>
+<p>。<br>
+<strong>. sleep()和yield()有什么区别?</strong><br>
+答：sleep()方法给其他线程运行机会时不考虑线程的优先级，因此会给低优先级的线程以运行的机会；yield()方法只会给相同优先级或更高优先级的线程以运行的机会；<br>
+线程执行sleep()方法后转入阻塞（blocked）状态，而执行yield()方法后转入就绪（ready）状态；<br>
+sleep()方法声明抛出InterruptedException，而yield()方法没有声明任何异常； sleep()方法比yield()方法（跟操作系统相关）具有更好的可移植性。</p>
+<p><strong>30. 什么情况用+做字符串连接比调用StringBuffer / StringBuilder对象的append方法性能更好？</strong><br>
+答：串接后得到的字符串在静态存储区中是早已存在的，那么用+做字符串连接是优于 StringBuffer / StringBuilder的append方法的。</p>
+<p><strong>8.创建线程有几种不同的方式</strong><br>
+答：（1）继承Thread类（2）实现Runnable接口（3）应用程序可以使用Executor框架来创建线程池实现Runnable接口这种方式更受欢迎，因为这不需要继承Thread类。在应用设计中已经继承了别的对象的情况下，这需要多继承（而Java不支持多继承），只能实现接口。同时，线程池也是非常高效的，很容易实现和使用。</p>
+<p><strong>9．Java支持多继承么？</strong><br>
+答：不支持，Java不支持多继承。每个类都只能继承一个类，但是可以实现多个接口。</p>
+<p><strong>12.什么是java序列化，如何实现java序列化？</strong><br>
+答：java序列化就是将一个java对象变成字节流的形式传出去或者从一个字节流中恢复成一个java对象，需要被序列化的类必须实现Serializable接口</p>
+<p>27.列出自己常用的jdk包.</p>
+<p>解答：JDK常用的package</p>
+<p>java.lang： 这个是系统的基础类，比如String等都是这里面的，这个package是唯一一个可以不用import就可以使用的Package</p>
+<p>java.io: 这里面是所有输入输出有关的类，比如文件操作等</p>
+<p>java.net: 这里面是与网络有关的类，比如URL,URLConnection等。</p>
+<p>java.util : 这个是系统辅助类，特别是集合类Collection,List,Map等。</p>
+<p>java.sql: 这个是数据库操作的类，Connection, Statememt，ResultSet等</p>
 
             </div>
           </article>
         </div>
         <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://spark-wz.github.io/post/java-ji-chu-mian-shi-zheng-li">
+                <h3 class="post-title">
+                  java基础面试整理
+                </h3>
+              </a>
+            </div>
           
         </div>
         
@@ -254,7 +198,7 @@ server  127.0.0.1:8081 weight=1;<br>
     </div>
     <div class="row">
       
-        <a href="https://spark-wz.github.io/tag/x0D9AKioe" class="badge ">
+        <a href="https://spark-wz.github.io/tag/x0D9AKioe" class="badge warning">
           Gridea
         </a>
       
