@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://spark-wz.github.io</id>
     <title>Gridea</title>
-    <updated>2019-10-14T02:46:59.360Z</updated>
+    <updated>2019-10-14T08:29:58.057Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://spark-wz.github.io"/>
     <link rel="self" href="https://spark-wz.github.io/atom.xml"/>
@@ -42,7 +42,11 @@ docker-compose ps<br>
 <strong>停止并删除某个compose应用</strong><br>
 docker-compose down<br>
 <strong>打开文件</strong><br>
-vi命令，：wq保存退出</p>
+vi命令，：wq保存退出<br>
+<dependency><br>
+<groupId>iot.tmis.top</groupId><br>
+<artifactId>sdk-java&lt;/artifactId<br>
+</dependency></p>
 ]]></content>
     </entry>
     <entry>
