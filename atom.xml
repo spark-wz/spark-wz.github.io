@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://spark-wz.github.io</id>
     <title>Gridea</title>
-    <updated>2019-10-14T08:29:58.057Z</updated>
+    <updated>2019-10-15T07:25:48.246Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://spark-wz.github.io"/>
     <link rel="self" href="https://spark-wz.github.io/atom.xml"/>
@@ -10,6 +10,31 @@
     <logo>https://spark-wz.github.io/images/avatar.png</logo>
     <icon>https://spark-wz.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[Web service学习]]></title>
+        <id>https://spark-wz.github.io/post/web-service-xue-xi</id>
+        <link href="https://spark-wz.github.io/post/web-service-xue-xi">
+        </link>
+        <updated>2019-10-15T06:40:07.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="web-service简介">Web service简介</h2>
+<p>Web service是一个平台独立的，低耦合的，自包含的，基于可编程的web的应用程序，可使用开放的XML标准来描述，发布，发现，协调和配置这些应用程序，用于开发分布式的互操作的应用程序。</p>
+<p>Web service技术，可以使得运行在不同机器上的不同应用无需借助附加的，专门的第三方软件或者平台或者硬件，就可以相互交换数据或集成。Web service很容易部署。<br>
+<strong>Web service 三要素</strong><br>
+UDDI：是基于Web的，分布式的，为Web service提供的，信息注册中心的实施规范。<br>
+WSDL：是用机器能阅读的方式提供一个正式描述文档而基于XML的语言，用于描述Web service及其函数，参数，返回值。简单来说就是使用规则，方便人和机器进行阅读。<br>
+SOAP协议：基于HTTP，基于XML用于交换XML编码信息的轻量级协议。简单来说，就是传输协议，方便进行运输。<br>
+<strong>Web service与Socket两种通信方式的区别</strong><br>
+1.Socket是基于TCP/IP的传输层协议，<br>
+Web service是基于HTTP协议传输数据，http是基于tcp的应用层协议<br>
+Web service使用了基于http的soap协议传输数据<br>
+2.Socket接口通过流传输，不支持面向对象。<br>
+Web service支持面向对象，最终Web service讲对象序列化后进行流传输。<br>
+Web service通过soap协议进行通信，不需专门针对数据流的发送和接收进行处理，是一种跨平台的面向对象远程调用技术。<br>
+3.Socket适用于高性能大数据的传输，传输的数据需要手动处理，socket通信的接口协议需要自定义。<br>
+<strong>Web service程序</strong><br>
+1.建立java项目</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[命令]]></title>
         <id>https://spark-wz.github.io/post/duan-kou-hao</id>
@@ -64,7 +89,9 @@ vi命令，：wq保存退出<br>
         <link href="https://spark-wz.github.io/post/shi-xi-ri-chang-zheng-li">
         </link>
         <updated>2019-10-10T03:54:16.000Z</updated>
-        <content type="html"><![CDATA[<p><strong>什么是opc</strong><br>
+        <content type="html"><![CDATA[<p><strong>lora</strong><br>
+低功耗局域网无线标准（远距离无线电）。<br>
+<strong>什么是opc</strong><br>
 OPC是工业控制和生产自动化领域中使用的硬件和软件的接口标准，（通俗来说就是解决硬件之间的联系，有效的在应用和过程控制设备之间读写数据。<br>
 O代表OLE(对象链接和嵌入)，P (process过程)，C (control控制)<br>
 OPC标准采用C/S模式，OPC服务器负责向OPC客户端不断的提供数据。</p>

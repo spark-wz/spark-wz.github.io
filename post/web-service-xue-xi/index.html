@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>面试整理 | Gridea</title>
+<title>Web service学习 | Gridea</title>
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -81,44 +81,30 @@
       <div class="sm-12 md-8 col">
         <div class="paper">
           <article class="article">
-            <h1>面试整理</h1>
+            <h1>Web service学习</h1>
             <p class="article-meta">
-              2019-10-06
+              2019-10-15
               
             </p>
             
             <div class="post-content">
-              <p>MVC是三个单词的缩写,分别为：<br>
-模型(Model),视图(View)和控制Controller)。<br>
-MVC模式的目的就是实现Web系统的职能分工。</p>
-<p>Model层实现系统中的业务逻辑，通常可以用JavaBean或EJB来实现。 <br>
-View层用于与用户的交互，通常用JSP来实现。</p>
-<p>Controller层是Model与View之间沟通的桥梁，它可以分派用户的请求并选择恰当的视图以用于显示，同时它也可以解释用户的输入并将它们映射为模型层可执行的操作。</p>
-<p>MVC模式的好处</p>
-<p>各施其职，互不干涉<br>
-在MVC模式中，三个层各施其职，所以如果一旦哪一层的需求发生了变化，就只需要更改相应的层中的代码而不会影响到其它层中的代码。</p>
-<p><strong>.sleep()和wait()有什么区别?</strong><br>
-答：Sleep() 是线程类的方法  wait()是object类的方法。Sleep（） 不会释放对象锁 到时自动恢复 ，wait（）会释放对象锁 进入等待此对象的等待锁定池  发出notify（）方法后 才进入等待锁定池准备对象锁的获取进入运行状态</p>
-<p>。<br>
-<strong>. sleep()和yield()有什么区别?</strong><br>
-答：sleep()方法给其他线程运行机会时不考虑线程的优先级，因此会给低优先级的线程以运行的机会；yield()方法只会给相同优先级或更高优先级的线程以运行的机会；<br>
-线程执行sleep()方法后转入阻塞（blocked）状态，而执行yield()方法后转入就绪（ready）状态；<br>
-sleep()方法声明抛出InterruptedException，而yield()方法没有声明任何异常； sleep()方法比yield()方法（跟操作系统相关）具有更好的可移植性。</p>
-<p><strong>30. 什么情况用+做字符串连接比调用StringBuffer / StringBuilder对象的append方法性能更好？</strong><br>
-答：串接后得到的字符串在静态存储区中是早已存在的，那么用+做字符串连接是优于 StringBuffer / StringBuilder的append方法的。</p>
-<p><strong>8.创建线程有几种不同的方式</strong><br>
-答：（1）继承Thread类（2）实现Runnable接口（3）应用程序可以使用Executor框架来创建线程池实现Runnable接口这种方式更受欢迎，因为这不需要继承Thread类。在应用设计中已经继承了别的对象的情况下，这需要多继承（而Java不支持多继承），只能实现接口。同时，线程池也是非常高效的，很容易实现和使用。</p>
-<p><strong>9．Java支持多继承么？</strong><br>
-答：不支持，Java不支持多继承。每个类都只能继承一个类，但是可以实现多个接口。</p>
-<p><strong>12.什么是java序列化，如何实现java序列化？</strong><br>
-答：java序列化就是将一个java对象变成字节流的形式传出去或者从一个字节流中恢复成一个java对象，需要被序列化的类必须实现Serializable接口</p>
-<p>27.列出自己常用的jdk包.</p>
-<p>解答：JDK常用的package</p>
-<p>java.lang： 这个是系统的基础类，比如String等都是这里面的，这个package是唯一一个可以不用import就可以使用的Package</p>
-<p>java.io: 这里面是所有输入输出有关的类，比如文件操作等</p>
-<p>java.net: 这里面是与网络有关的类，比如URL,URLConnection等。</p>
-<p>java.util : 这个是系统辅助类，特别是集合类Collection,List,Map等。</p>
-<p>java.sql: 这个是数据库操作的类，Connection, Statememt，ResultSet等</p>
+              <h2 id="web-service简介">Web service简介</h2>
+<p>Web service是一个平台独立的，低耦合的，自包含的，基于可编程的web的应用程序，可使用开放的XML标准来描述，发布，发现，协调和配置这些应用程序，用于开发分布式的互操作的应用程序。</p>
+<p>Web service技术，可以使得运行在不同机器上的不同应用无需借助附加的，专门的第三方软件或者平台或者硬件，就可以相互交换数据或集成。Web service很容易部署。<br>
+<strong>Web service 三要素</strong><br>
+UDDI：是基于Web的，分布式的，为Web service提供的，信息注册中心的实施规范。<br>
+WSDL：是用机器能阅读的方式提供一个正式描述文档而基于XML的语言，用于描述Web service及其函数，参数，返回值。简单来说就是使用规则，方便人和机器进行阅读。<br>
+SOAP协议：基于HTTP，基于XML用于交换XML编码信息的轻量级协议。简单来说，就是传输协议，方便进行运输。<br>
+<strong>Web service与Socket两种通信方式的区别</strong><br>
+1.Socket是基于TCP/IP的传输层协议，<br>
+Web service是基于HTTP协议传输数据，http是基于tcp的应用层协议<br>
+Web service使用了基于http的soap协议传输数据<br>
+2.Socket接口通过流传输，不支持面向对象。<br>
+Web service支持面向对象，最终Web service讲对象序列化后进行流传输。<br>
+Web service通过soap协议进行通信，不需专门针对数据流的发送和接收进行处理，是一种跨平台的面向对象远程调用技术。<br>
+3.Socket适用于高性能大数据的传输，传输的数据需要手动处理，socket通信的接口协议需要自定义。<br>
+<strong>Web service程序</strong><br>
+1.建立java项目</p>
 
             </div>
           </article>
@@ -129,9 +115,9 @@ sleep()方法声明抛出InterruptedException，而yield()方法没有声明任�
               <div class="next">
                 下一篇
               </div>
-              <a href="https://spark-wz.github.io/post/java-ji-chu-mian-shi-zheng-li">
+              <a href="https://spark-wz.github.io/post/duan-kou-hao">
                 <h3 class="post-title">
-                  java基础面试整理
+                  命令
                 </h3>
               </a>
             </div>
@@ -222,7 +208,7 @@ sleep()方法声明抛出InterruptedException，而yield()方法没有声明任�
     </div>
     <div class="row">
       
-        <a href="https://spark-wz.github.io/tag/x0D9AKioe" class="badge secondary">
+        <a href="https://spark-wz.github.io/tag/x0D9AKioe" class="badge success">
           Gridea
         </a>
       
