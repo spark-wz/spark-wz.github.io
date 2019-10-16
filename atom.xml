@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://spark-wz.github.io</id>
     <title>Gridea</title>
-    <updated>2019-10-15T07:37:10.320Z</updated>
+    <updated>2019-10-16T06:34:35.695Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://spark-wz.github.io"/>
     <link rel="self" href="https://spark-wz.github.io/atom.xml"/>
@@ -32,7 +32,7 @@ Web service支持面向对象，最终Web service讲对象序列化后进行流�
 Web service通过soap协议进行通信，不需专门针对数据流的发送和接收进行处理，是一种跨平台的面向对象远程调用技术。<br>
 3.Socket适用于高性能大数据的传输，传输的数据需要手动处理，socket通信的接口协议需要自定义。</p>
 <h4 id="web-service程序">Web service程序</h4>
-<p>1.建立java项目<br>
+<p>1.建立java项目,至少有一个方法是公共的，因为是提供给别人各自使用的。<br>
 记得加  <strong>@WebService注解</strong></p>
 <ol>
 <li>定义自己服务器发布的地址<br>
@@ -61,6 +61,7 @@ public class MyFirstWebService {
 		System.out.println(&quot;my webservcie starting&quot;);
 	}
 	``` 
+
 	
 
 
@@ -76,6 +77,8 @@ public class MyFirstWebService {
         </link>
         <updated>2019-10-11T06:52:07.000Z</updated>
         <content type="html"><![CDATA[<p>26.151.48.150<br>
+<strong>数据库密码</strong><br>
+Geyifei212<br>
 <strong>阿里云账号</strong><br>
 root   Iot-platform<br>
 <strong>新疆油田账号</strong><br>
