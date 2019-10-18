@@ -7,7 +7,7 @@
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://spark-wz.github.io/favicon.ico?v=1571207673228">
+<link rel="shortcut icon" href="https://spark-wz.github.io/favicon.ico?v=1571383245908">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -117,10 +117,17 @@ docker-compose ps<br>
 docker-compose down<br>
 <strong>打开文件</strong><br>
 vi命令，：wq保存退出<br>
-<dependency><br>
-<groupId>iot.tmis.top</groupId><br>
-<artifactId>sdk-java&lt;/artifactId<br>
-</dependency></p>
+<strong>查看版本</strong><br>
+docker images<br>
+<strong>关掉所有的进程</strong><br>
+docker ps -a | awk '{print $1}' | xargs docker stop<br>
+docker ps -a | awk '{if (NR&gt;1){print $1}}' | xargs docker rm<br>
+<strong>加载文件</strong><br>
+docker load &lt; modbus.gz<br>
+<strong>要点</strong><br>
+文件名一致，不能带后缀<br>
+<strong>关闭防火墙</strong><br>
+systemctl stop firewalld.service</p>
 
             </div>
           </article>
@@ -144,7 +151,7 @@ vi命令，：wq保存退出<br>
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://spark-wz.github.io/images/avatar.png?v=1571207673228" class="no-responsive avatar">
+    <img src="https://spark-wz.github.io/images/avatar.png?v=1571383245908" class="no-responsive avatar">
     <div class="text-muted">温故而知新</div>
     <div class="social-container">
       
@@ -166,6 +173,18 @@ vi命令，：wq保存退出<br>
     </div>
     <div class="row">
       <ul>
+        
+          
+            <li>
+              <a href="https://spark-wz.github.io/post/tong-ling">铜陵</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://spark-wz.github.io/post/a-si-di-fen">阿斯蒂芬</a>
+            </li>
+          
         
           
             <li>
@@ -224,7 +243,7 @@ vi命令，：wq保存退出<br>
     </div>
     <div class="row">
       
-        <a href="https://spark-wz.github.io/tag/x0D9AKioe" class="badge secondary">
+        <a href="https://spark-wz.github.io/tag/x0D9AKioe" class="badge warning">
           Gridea
         </a>
       

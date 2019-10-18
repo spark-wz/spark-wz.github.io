@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://spark-wz.github.io</id>
     <title>Gridea</title>
-    <updated>2019-10-16T06:34:35.695Z</updated>
+    <updated>2019-10-18T07:20:49.798Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://spark-wz.github.io"/>
     <link rel="self" href="https://spark-wz.github.io/atom.xml"/>
@@ -10,6 +10,37 @@
     <logo>https://spark-wz.github.io/images/avatar.png</logo>
     <icon>https://spark-wz.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[铜陵]]></title>
+        <id>https://spark-wz.github.io/post/tong-ling</id>
+        <link href="https://spark-wz.github.io/post/tong-ling">
+        </link>
+        <updated>2019-10-18T00:55:08.000Z</updated>
+        <content type="html"><![CDATA[<p><strong>立罐</strong><br>
+4001 --- 4003  0#军用轻柴油<br>
+4004--4005  -10#军用柴油<br>
+4006--4007   93#车用汽油</p>
+<p><strong>三维力控密码41684</strong><br>
+<strong>要求</strong><br>
+立罐，卧罐，铁路     精简版<br>
+历史数据<br>
+集成铁路<br>
+铁路收发油 分开 负数发油 单独数据<br>
+加背景图 加链接<br>
+集成功能 铁路，公路，水路，安防</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[阿斯蒂芬]]></title>
+        <id>https://spark-wz.github.io/post/a-si-di-fen</id>
+        <link href="https://spark-wz.github.io/post/a-si-di-fen">
+        </link>
+        <updated>2019-10-16T06:42:41.000Z</updated>
+        <content type="html"><![CDATA[<p>在罐上显示液位高度<br>
+导入数据  <strong>历史数据</strong><br>
+公路搁置，二次开发</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Web service学习]]></title>
         <id>https://spark-wz.github.io/post/web-service-xue-xi</id>
@@ -105,10 +136,17 @@ docker-compose ps<br>
 docker-compose down<br>
 <strong>打开文件</strong><br>
 vi命令，：wq保存退出<br>
-<dependency><br>
-<groupId>iot.tmis.top</groupId><br>
-<artifactId>sdk-java&lt;/artifactId<br>
-</dependency></p>
+<strong>查看版本</strong><br>
+docker images<br>
+<strong>关掉所有的进程</strong><br>
+docker ps -a | awk '{print $1}' | xargs docker stop<br>
+docker ps -a | awk '{if (NR&gt;1){print $1}}' | xargs docker rm<br>
+<strong>加载文件</strong><br>
+docker load &lt; modbus.gz<br>
+<strong>要点</strong><br>
+文件名一致，不能带后缀<br>
+<strong>关闭防火墙</strong><br>
+systemctl stop firewalld.service</p>
 ]]></content>
     </entry>
     <entry>
