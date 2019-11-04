@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://spark-wz.github.io</id>
     <title>Gridea</title>
-    <updated>2019-11-02T09:21:24.049Z</updated>
+    <updated>2019-11-04T04:10:36.585Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://spark-wz.github.io"/>
     <link rel="self" href="https://spark-wz.github.io/atom.xml"/>
@@ -11,13 +11,55 @@
     <icon>https://spark-wz.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, Gridea</rights>
     <entry>
-        <title type="html"><![CDATA[数据节点]]></title>
-        <id>https://spark-wz.github.io/post/shu-ju-jie-dian</id>
-        <link href="https://spark-wz.github.io/post/shu-ju-jie-dian">
+        <title type="html"><![CDATA[生疏名词]]></title>
+        <id>https://spark-wz.github.io/post/sheng-shu-ming-ci</id>
+        <link href="https://spark-wz.github.io/post/sheng-shu-ming-ci">
         </link>
-        <updated>2019-10-20T07:25:47.000Z</updated>
-        <content type="html"><![CDATA[<p><strong>液位</strong><br>
-int16BE    2</p>
+        <updated>2019-11-04T03:52:22.000Z</updated>
+        <content type="html"><![CDATA[<p>DECIMAL 十进制的，小数的<br>
+NUMERIC数据类型使用标准、可变长度的内部格式来存储数字</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[MyBatis逆向工程笔记]]></title>
+        <id>https://spark-wz.github.io/post/mybatis-ni-xiang-gong-cheng-bi-ji</id>
+        <link href="https://spark-wz.github.io/post/mybatis-ni-xiang-gong-cheng-bi-ji">
+        </link>
+        <updated>2019-11-04T02:40:08.000Z</updated>
+        <content type="html"><![CDATA[<p><strong>1. <generatorConfiguration> 标签</strong><br>
+如果需要在业务中增加别的依赖或者驱动，使用location属性知名依赖的全路径名<br>
+<classPathEntry  location="E:\apache-maven-3.5.0\repository\com\microsoft\sqlserver\sqljdbc4\4.0\sqljdbc4-4.0.jar"/></p>
+<p><strong>context标签</strong> 用于生成一组对象的环境<br>
+<em>可用属性</em><br>
+<strong>id</strong> 必选，上下文id，用于在生成错误时候提示<br>
+<strong>defaultModelType</strong>用于指定生成对象的模式<br>
+<strong>targetRuntime</strong> MyBatis3用于生成基于MyBatis3以上的版本的内容<br>
+<img src="https://spark-wz.github.io/post-images/1572838613004.png" alt=""><br>
+<strong>数据库连接驱动类，URL，用户名，密码</strong><br>
+<jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver" connectionURL="jdbc:sqlserver://39.97.227.216:1433;DatabaseName=PCS06" userId="sa" password="Geyifei212"></jdbcConnection><br>
+<strong>java类型处理器 javaTypeResolver</strong><br>
+java类型处理器，默认使用JavaTypeResolverDefultImpl<br>
+默认会先尝试使用Integer，Long，Short来对应DECIMAL和NUMERIC数据类型<br>
+其中的property name = &quot;forceBigDecimals&quot;的取值规则如下：<br>
+true：使用BigDecimal对应的DECIMAL个NUMERIC数据类型<br>
+false：默认值<br>
+scale&gt;0,length&gt;18:使用BigDeciamal<br>
+scale=0,length[10,18]使用long<br>
+scale=0,length[5,9]使用integer<br>
+scale=0,length 小于5 使用short<br>
+<strong>javaModelGenerator标签  java模型创建器</strong><br>
+targetPackage：生成实体模型的包名和位置<br>
+targetPackage：目标项目指定路径<br>
+<em><strong>图示</strong></em><br>
+<img src="https://spark-wz.github.io/post-images/1572840104537.png" alt=""><br>
+标签内属性图示<br>
+<img src="https://spark-wz.github.io/post-images/1572840360075.png" alt=""><br>
+<strong>sqlMapGenerator 生成xml文件的包名</strong><br>
+<strong>javaClientGenerator 生成dao接口的包名和位置</strong><br>
+<strong>table标签  要生成的表</strong><br>
+table是数据库中的表名或者视图名<br>
+domainObjectName是实体类名<br>
+<img src="https://spark-wz.github.io/post-images/1572840632594.png" alt=""></p>
 ]]></content>
     </entry>
     <entry>
@@ -38,17 +80,6 @@ int16BE    2</p>
 铁路收发油 分开 负数发油 单独数据<br>
 加背景图 加链接<br>
 集成功能 铁路，公路，水路，安防</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[阿斯蒂芬]]></title>
-        <id>https://spark-wz.github.io/post/a-si-di-fen</id>
-        <link href="https://spark-wz.github.io/post/a-si-di-fen">
-        </link>
-        <updated>2019-10-16T06:42:41.000Z</updated>
-        <content type="html"><![CDATA[<p>在罐上显示液位高度<br>
-导入数据  <strong>历史数据</strong><br>
-公路搁置，二次开发</p>
 ]]></content>
     </entry>
     <entry>
@@ -167,15 +198,6 @@ geyifei212<br>
 <strong>连接阿里云账号密码</strong><br>
 Administrator<br>
 Iot-platform</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[要点技能]]></title>
-        <id>https://spark-wz.github.io/post/yao-dian-ji-neng</id>
-        <link href="https://spark-wz.github.io/post/yao-dian-ji-neng">
-        </link>
-        <updated>2019-10-10T23:52:22.000Z</updated>
-        <content type="html"><![CDATA[<hr>
 ]]></content>
     </entry>
     <entry>
@@ -407,6 +429,106 @@ page，request，session，application<br>
 默认的是rdb，默认没5分钟往内存中更新一次数据<br>
 aof可以自己自定义存储的时间，比如几秒或者每次进行增删改的操作。</li>
 </ul>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Nginx]]></title>
+        <id>https://spark-wz.github.io/post/hello-gridea</id>
+        <link href="https://spark-wz.github.io/post/hello-gridea">
+        </link>
+        <updated>2018-12-11T16:00:00.000Z</updated>
+        <content type="html"><![CDATA[<p>安装nginx需要的依赖</p>
+<h1 id="安装gcc">安装gcc</h1>
+<p>yum install -y gcc</p>
+<h1 id="安装gcc-c">安装gcc-c++</h1>
+<p>yum install -y gcc-c++</p>
+<h1 id="安装pcre-pcre-devel">安装pcre pcre-devel</h1>
+<p>yum install -y pcre pcre-devel</p>
+<h1 id="安装zlib-zlib-devel">安装zlib zlib-devel</h1>
+<p>yum install -y zlib zlib-devel</p>
+<h1 id="安装openssl-openssl-devel">安装openssl openssl-devel</h1>
+<p>yum install -y openssl openssl-devel<br>
+下载<br>
+wget http://nginx.org/download/nginx-1.16.1.tar.gz<br>
+解压缩<br>
+tar -zxvf nginx-1.16.1.tar.gz<br>
+安装</p>
+<h1 id="进入解压得到的目录">进入解压得到的目录</h1>
+<p>cd nginx-1.16.1</p>
+<h1 id="配置">配置</h1>
+<p>./configure</p>
+<h1 id="编译">编译</h1>
+<p>make</p>
+<h1 id="安装">安装</h1>
+<p>make install<br>
+启动、停止</p>
+<h1 id="进入usrlocalnginxsbin">进入/usr/local/nginx/sbin</h1>
+<p>cd /usr/local/nginx/sbin</p>
+<h1 id="启动">启动</h1>
+<p>./nginx</p>
+<h1 id="停止">停止</h1>
+<p>./nginx -s stop</p>
+<h1 id="重启">重启</h1>
+<p>./nginx -s reload</p>
+<p>使用nginx代理tomcat</p>
+<p>启动tomcat</p>
+<h1 id="在8080端口启动tomcat">在8080端口启动tomcat</h1>
+<p>cd /usr/local/apache-tomcat-8.5.45<br>
+./bin/startup.sh<br>
+配置nginx</p>
+<h1 id="进入usrlocalnginxconf">进入/usr/local/nginx/conf</h1>
+<p>cd /usr/local/nginx/conf</p>
+<h1 id="使用vim编辑nginxconf">使用vim编辑nginx.conf</h1>
+<p>vim nginx.conf<br>
+nginx.conf</p>
+<h1 id="被代理的tomcat的地址">被代理的tomcat的地址</h1>
+<p>upstream tomcat{<br>
+server  127.0.0.1:8080;<br>
+}</p>
+<p>server {<br>
+listen       80;<br>
+server_name  localhost;</p>
+<pre><code>#charset koi8-r;
+
+#access_log  logs/host.access.log  main;
+
+location / {
+    #root   html;
+    #index  index.html index.htm;
+    # 代理tomcat
+    proxy_pass http://tomcat;
+}
+</code></pre>
+<p>}</p>
+<p>nginx配置负载均衡</p>
+<p>启动tomcat的</p>
+<h1 id="将项目分别部署在8080和8081端口的tomcat">将项目分别部署在8080和8081端口的tomcat</h1>
+<p>配置nginx.conf<br>
+upstream tomcat{<br>
+# 8080服务器性能较好，权重设置为2<br>
+server  127.0.0.1:8080 weight=2;<br>
+# 8081服务器性能较弱，权重设置为1<br>
+server  127.0.0.1:8081 weight=1;<br>
+}</p>
+<pre><code>server {
+    listen       80;
+    server_name  localhost;
+
+    #charset koi8-r;
+
+    #access_log  logs/host.access.log  main;
+
+    location / {
+        #root   html;
+        #index  index.html index.htm;
+        proxy_pass http://tomcat;
+    }
+</code></pre>
+<p>}<br>
+效果<br>
+每三个请求，会有两个访问8080服务器，一个访问8081服务器</p>
+<p>启动tomcat的</p>
+<p>可以使用Nginx做反向代理和负载均衡</p>
 ]]></content>
     </entry>
 </feed>
