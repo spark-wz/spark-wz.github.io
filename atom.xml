@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://spark-wz.github.io</id>
     <title>Gridea</title>
-    <updated>2019-11-04T09:24:25.385Z</updated>
+    <updated>2019-11-12T03:39:40.328Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://spark-wz.github.io"/>
     <link rel="self" href="https://spark-wz.github.io/atom.xml"/>
@@ -10,6 +10,94 @@
     <logo>https://spark-wz.github.io/images/avatar.png</logo>
     <icon>https://spark-wz.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[铜陵项目代码学习]]></title>
+        <id>https://spark-wz.github.io/post/tong-ling-xiang-mu-dai-ma-xue-xi</id>
+        <link href="https://spark-wz.github.io/post/tong-ling-xiang-mu-dai-ma-xue-xi">
+        </link>
+        <updated>2019-11-11T01:53:39.000Z</updated>
+        <content type="html"><![CDATA[<p><strong>ThreadLocal</strong><br>
+ThreadLocal是一个线程每部的存储类，可以在既定线程内存储数据，数据存储之后，只有指定线程才会得到数据。<br>
+static final ThreadLocal<T> sThreadLocal = new ThreadLocal<T>();<br>
+sThreadLocal.set()<br>
+sThreadLocal.get()</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[部署命令]]></title>
+        <id>https://spark-wz.github.io/post/bu-shu-ming-ling</id>
+        <link href="https://spark-wz.github.io/post/bu-shu-ming-ling">
+        </link>
+        <updated>2019-11-09T02:51:56.000Z</updated>
+        <content type="html"><![CDATA[<p>cd /data/service 进入目录<br>
+mkdir tl-gasoline<br>
+cd tl-gasoline<br>
+上传jar包<br>
+nohup java -jar tl-gasoline-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod &gt;&gt; catalina.out  2&gt;&amp;1 &amp;<br>
+部署项目<br>
+tail -f -n 200 catalina.out<br>
+查看是否成功<br>
+配置nginx<br>
+<img src="https://spark-wz.github.io/post-images/1573268782670.png" alt=""><br>
+service nginx restart</p>
+<p>ps -ef | grep java</p>
+<p>kill -9 id</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[动态sql学习]]></title>
+        <id>https://spark-wz.github.io/post/dong-tai-sql-xue-xi</id>
+        <link href="https://spark-wz.github.io/post/dong-tai-sql-xue-xi">
+        </link>
+        <updated>2019-11-07T01:36:16.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="什么是动态sql动态sql有什么作用">什么是动态Sql，动态Sql有什么作用？</h2>
+<p>传统的使用JDBC的方法，相信大家在组合复杂的的SQL语句的时候，需要去拼接，稍不注意哪怕少了个空格，都会导致错误。Mybatis的动态SQL功能正是为了解决这种问题， 其通过 if, choose, when, otherwise, trim, where, set, foreach标签，可组合成非常灵活的SQL语句，从而提高开发人员的效率</p>
+<h3 id="动态sql标签">动态Sql标签</h3>
+<p><strong>if</strong><br>
+利用if实现简单的条件选择<br>
+<img src="https://spark-wz.github.io/post-images/1573093765857.png" alt=""><br>
+<strong>choose（when，otherwise）</strong><br>
+相当于java的switch语句，通常与when和otherwise搭配<br>
+<img src="https://spark-wz.github.io/post-images/1573108301437.png" alt=""><br>
+例子中当title和author都不为null的时候，那么就二选一（前者优先），如果都为null，那么就选择otherwise中的，如果title个author中只有一个不为null，那么就选择哪个不为null的。<br>
+<strong>where</strong><br>
+简化Sql语句中的where的条件判断<br>
+<strong>set</strong><br>
+解决动态更新问题<br>
+<strong>trim</strong><br>
+可以灵活的去除多余的关键字</p>
+<p><img src="https://spark-wz.github.io/post-images/1573094725608.png" alt="">假如说name和gender的值都不为null的话打印的SQL为：select * from user where    name = 'xx' and gender = 'xx'<br>
+在标记的地方是不存在第一个and的，在where语句中 prefix是前缀，prefixoverride=“AND | OR”去掉第一个and或者or。<br>
+<img src="https://spark-wz.github.io/post-images/1573094813156.png" alt=""><br>
+假如说name和gender的值都不为null的话打印的SQL为：update user set name='xx' , gender='xx'     where id='x'</p>
+<p>在标记的地方不存在逗号，而且自动加了一个set前缀和where后缀，上面三个属性的意义如下，其中prefix意义如上：</p>
+<p>suffixoverride：去掉最后一个逗号（也可以是其他的标记，就像是上面前缀中的and一样）</p>
+<p>suffix：后缀<br>
+<strong>foreach</strong><br>
+迭代一个集合，通常用于in条件</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[MyBatis的Example用法]]></title>
+        <id>https://spark-wz.github.io/post/mybatis-de-example-yong-fa</id>
+        <link href="https://spark-wz.github.io/post/mybatis-de-example-yong-fa">
+        </link>
+        <updated>2019-11-05T09:13:36.000Z</updated>
+        <content type="html"><![CDATA[<p><strong>方法功能说明</strong><br>
+int countByExample(UserExample example) thorws SQLException    按条件计数<br>
+int deleteByPrimaryKey(Integer id) thorws SQLException    按主键删除<br>
+int deleteByExample(UserExample example) thorws SQLException    按条件查询<br>
+String/Integer insert(User record) thorws SQLException    插入数据（返回值为ID）<br>
+User selectByPrimaryKey(Integer id) thorws SQLException    按主键查询<br>
+ListselectByExample(UserExample example) thorws SQLException    按条件查询<br>
+ListselectByExampleWithBLOGs(UserExample example) thorws SQLException    按条件查询（包括BLOB字段）。只有当数据表中的字段类型有为二进制的才会产生。<br>
+int updateByPrimaryKey(User record) thorws SQLException    按主键更新<br>
+int updateByPrimaryKeySelective(User record) thorws SQLException    按主键更新值不为null的字段<br>
+int updateByExample(User record, UserExample example) thorws SQLException    按条件更新<br>
+int updateByExampleSelective(User record, UserExample example) thorws SQLException    按条件更新值不为null的字段<br>
+<img src="https://spark-wz.github.io/post-images/1573009821363.png" alt=""></p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[生疏名词]]></title>
         <id>https://spark-wz.github.io/post/sheng-shu-ming-ci</id>
@@ -37,6 +125,9 @@ NUMERIC数据类型使用标准、可变长度的内部格式来存储数字</p>
 <img src="https://spark-wz.github.io/post-images/1572838613004.png" alt=""><br>
 <strong>数据库连接驱动类，URL，用户名，密码</strong><br>
 <jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver" connectionURL="jdbc:sqlserver://39.97.227.216:1433;DatabaseName=PCS06" userId="sa" password="Geyifei212"></jdbcConnection><br>
+<strong>commentGenerator标签</strong><br>
+由于Generator生成的注释都是英文，而且无法理解，所以关闭注释<br>
+<img src="https://spark-wz.github.io/post-images/1572920494055.png" alt=""><br>
 <strong>java类型处理器 javaTypeResolver</strong><br>
 java类型处理器，默认使用JavaTypeResolverDefultImpl<br>
 默认会先尝试使用Integer，Long，Short来对应DECIMAL和NUMERIC数据类型<br>
@@ -254,305 +345,6 @@ Consul面向DevOps和应用开发者友好.是他适合现代的弹性的基础�
 <strong>mqtt</strong><br>
 MQTT（Message Queuing Telemetry Transport，消息队列遥测传输协议），是一种基于发布/订阅（publish/subscribe）模式的&quot;轻量级&quot;通讯协议，该协议构建于TCP/IP协议上，由IBM在1999年发布。MQTT最大优点在于，可以以极少的代码和有限的带宽，为连接远程设备提供实时可靠的消息服务。作为一种低开销、低带宽占用的即时通讯协议，使其在物联网、小型设备、移动应用等方面有较广泛的应用。</p>
 <p>MQTT是一个基于客户端-服务器的消息发布/订阅传输协议。MQTT协议是轻量、简单、开放和易于实现的，这些特点使它适用范围非常广泛。在很多情况下，包括受限的环境中，如：机器与机器（M2M）通信和物联网（IoT）。其在，通过卫星链路通信传感器、偶尔拨号的医疗设备、智能家居、及一些小型化设备中已广泛使用。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[面试整理]]></title>
-        <id>https://spark-wz.github.io/post/mian-shi-zheng-li</id>
-        <link href="https://spark-wz.github.io/post/mian-shi-zheng-li">
-        </link>
-        <updated>2019-10-06T02:32:34.000Z</updated>
-        <content type="html"><![CDATA[<p>MVC是三个单词的缩写,分别为：<br>
-模型(Model),视图(View)和控制Controller)。<br>
-MVC模式的目的就是实现Web系统的职能分工。</p>
-<p>Model层实现系统中的业务逻辑，通常可以用JavaBean或EJB来实现。 <br>
-View层用于与用户的交互，通常用JSP来实现。</p>
-<p>Controller层是Model与View之间沟通的桥梁，它可以分派用户的请求并选择恰当的视图以用于显示，同时它也可以解释用户的输入并将它们映射为模型层可执行的操作。</p>
-<p>MVC模式的好处</p>
-<p>各施其职，互不干涉<br>
-在MVC模式中，三个层各施其职，所以如果一旦哪一层的需求发生了变化，就只需要更改相应的层中的代码而不会影响到其它层中的代码。</p>
-<p><strong>.sleep()和wait()有什么区别?</strong><br>
-答：Sleep() 是线程类的方法  wait()是object类的方法。Sleep（） 不会释放对象锁 到时自动恢复 ，wait（）会释放对象锁 进入等待此对象的等待锁定池  发出notify（）方法后 才进入等待锁定池准备对象锁的获取进入运行状态</p>
-<p>。<br>
-<strong>. sleep()和yield()有什么区别?</strong><br>
-答：sleep()方法给其他线程运行机会时不考虑线程的优先级，因此会给低优先级的线程以运行的机会；yield()方法只会给相同优先级或更高优先级的线程以运行的机会；<br>
-线程执行sleep()方法后转入阻塞（blocked）状态，而执行yield()方法后转入就绪（ready）状态；<br>
-sleep()方法声明抛出InterruptedException，而yield()方法没有声明任何异常； sleep()方法比yield()方法（跟操作系统相关）具有更好的可移植性。</p>
-<p><strong>30. 什么情况用+做字符串连接比调用StringBuffer / StringBuilder对象的append方法性能更好？</strong><br>
-答：串接后得到的字符串在静态存储区中是早已存在的，那么用+做字符串连接是优于 StringBuffer / StringBuilder的append方法的。</p>
-<p><strong>8.创建线程有几种不同的方式</strong><br>
-答：（1）继承Thread类（2）实现Runnable接口（3）应用程序可以使用Executor框架来创建线程池实现Runnable接口这种方式更受欢迎，因为这不需要继承Thread类。在应用设计中已经继承了别的对象的情况下，这需要多继承（而Java不支持多继承），只能实现接口。同时，线程池也是非常高效的，很容易实现和使用。</p>
-<p><strong>9．Java支持多继承么？</strong><br>
-答：不支持，Java不支持多继承。每个类都只能继承一个类，但是可以实现多个接口。</p>
-<p><strong>12.什么是java序列化，如何实现java序列化？</strong><br>
-答：java序列化就是将一个java对象变成字节流的形式传出去或者从一个字节流中恢复成一个java对象，需要被序列化的类必须实现Serializable接口</p>
-<p>27.列出自己常用的jdk包.</p>
-<p>解答：JDK常用的package</p>
-<p>java.lang： 这个是系统的基础类，比如String等都是这里面的，这个package是唯一一个可以不用import就可以使用的Package</p>
-<p>java.io: 这里面是所有输入输出有关的类，比如文件操作等</p>
-<p>java.net: 这里面是与网络有关的类，比如URL,URLConnection等。</p>
-<p>java.util : 这个是系统辅助类，特别是集合类Collection,List,Map等。</p>
-<p>java.sql: 这个是数据库操作的类，Connection, Statememt，ResultSet等</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[java基础面试整理]]></title>
-        <id>https://spark-wz.github.io/post/java-ji-chu-mian-shi-zheng-li</id>
-        <link href="https://spark-wz.github.io/post/java-ji-chu-mian-shi-zheng-li">
-        </link>
-        <updated>2019-10-05T02:23:16.000Z</updated>
-        <content type="html"><![CDATA[<p>java的内存空间分为四类：栈(stack)、堆(heap)、代码(code)、静态数据(data)<br>
-<strong>java堆栈</strong></p>
-<ul>
-<li>java中内存分为两种，堆内存，栈内存</li>
-<li><strong>堆</strong></li>
-<li>堆内存的话，主要用来存放数组和对象，可以当成管道，先进先出。</li>
-<li>可以动态的分配内存大小，存取速度较慢</li>
-<li>由java的自动垃圾回收器来管理</li>
-<li><strong>栈</strong></li>
-<li>栈主要是执行程序用的。比如：基本类型的变量和对象的引用变量。</li>
-<li>存取速度比堆快，仅次于寄存器，栈数据可以共享，缺点存在栈中的数据大小和生存期是确定的。</li>
-<li>栈内存可以看成一级缓存，由垃圾回收器自动回收</li>
-<li><strong>堆栈区别</strong></li>
-<li>1.堆内存用来存放由new创建的对象和数组。<br>
-2.栈内存用来存放方法或者局部变量等<br>
-3.堆是先进先出，后进后出<br>
-4.栈是后进先出，先进后出<br>
-<strong>java垃圾回收</strong><br>
-System.gc()用于调用垃圾收集器</li>
-<li>对象是否会被回收的两个经典算法：引用计数法，和可达性分析算法</li>
-<li><strong>在确定了哪些对象可以被回收之后，jvm会在什么时候进行回收</strong></li>
-<li>1会在cpu空闲的时候自动进行回收<br>
-　2在堆内存存储满了之后<br>
-　3主动调用System.gc()后尝试进行回收<br>
-<strong>如何回收</strong><br>
-算法又有四个：标记-清除算法,复制算法,标记-整理算法,分代收集算法.<br>
-<strong>java抽象类</strong><br>
-在面向对象的概念中，所有的对象都是通过类来描绘的，但是反过来，并不是所有的类都是用来描绘对象的，如果一个类中没有包含足够的信息来描绘一个具体的对象，这样的类就是抽象类。</li>
-</ul>
-<p>抽象类除了不能实例化对象之外，类的其它功能依然存在，成员变量、成员方法和构造方法的访问方式和普通类一样。</p>
-<p>由于抽象类不能实例化对象，所以抽象类必须被继承，才能被使用。也是因为这个原因，通常在设计阶段决定要不要设计抽象类。</p>
-<p>父类包含了子类集合的常见的方法，但是由于父类本身是抽象的，所以不能使用这些方法。</p>
-<p>在Java中抽象类表示的是一种继承关系，一个类只能继承一个抽象类，而一个类却可以实现多个接口。<br>
-<strong>java接口</strong><br>
-接口（英文：Interface），在JAVA编程语言中是一个抽象类型，是抽象方法的集合，接口通常以interface来声明。一个类通过继承接口的方式，从而来继承接口的抽象方法。</p>
-<p>接口并不是类，编写接口的方式和类很相似，但是它们属于不同的概念。类描述对象的属性和方法。接口则包含类要实现的方法。</p>
-<p>除非实现接口的类是抽象类，否则该类要定义接口中的所有方法。</p>
-<p>接口无法被实例化，但是可以被实现。一个实现接口的类，必须实现接口内所描述的所有方法，否则就必须声明为抽象类。另外，在 Java 中，接口类型可用来声明一个变量，他们可以成为一个空指针，或是被绑定在一个以此接口实现的对象。<br>
-<strong>抽象类和接口的区别</strong></p>
-<ol>
-<li>抽象类中的方法可以有方法体，就是能实现方法的具体功能，但是接口中的方法不行。</li>
-<li>抽象类中的成员变量可以是各种类型的，而接口中的成员变量只能是 public static final 类型的。</li>
-<li>接口中不能含有静态代码块以及静态方法(用 static 修饰的方法)，而抽象类是可以有静态代码块和静态方法。</li>
-<li>一个类只能继承一个抽象类，而一个类却可以实现多个接口。<br>
-注：JDK 1.8 以后，接口里可以有静态方法和方法体了。<br>
-<img src="https://spark-wz.github.io/post-images/1570245575166.png" alt=""><br>
-<strong>“==”和equals的区别</strong><br>
-*equals 方法（是String类从它的超类Object中继承的）被用来检测两个对象是否相等，即两个对象的内容是否相等。<br>
-<em>==用于比较引用和比较基本数据类型时具有不同的功能：<br>
-比较基本数据类型，如果两个值相同，则结果为true<br>
-而在比较引用时，如果引用指向内存中的同一对象，结果为true</em><br>
-<strong>java命名规范</strong><br>
-1、 项目名全部小写</li>
-</ol>
-<p>2、 包名全部小写</p>
-<p>3、 类名首字母大写，如果类名由多个单词组成，每个单词的首字母都要大写。</p>
-<p>如：public class MyFirstClass{}</p>
-<p>4、 变量名、方法名首字母小写，如果名称由多个单词组成，每个单词的首字母都要大写。</p>
-<p>如：int index=0;</p>
-<p>public void toString(){}</p>
-<p>5、 常量名全部大写</p>
-<p>如：public static final String GAME_COLOR=”RED”;</p>
-<p>6、所有命名规则必须遵循以下规则：</p>
-<p>1)、名称只能由字母、数字、下划线、$符号组成</p>
-<p>2)、不能以数字开头</p>
-<p>3)、名称不能使用JAVA中的关键字。</p>
-<p>4)、坚决不允许出现中文及拼音命名</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[面试日常整理]]></title>
-        <id>https://spark-wz.github.io/post/mian-shi-ri-chang-zheng-li</id>
-        <link href="https://spark-wz.github.io/post/mian-shi-ri-chang-zheng-li">
-        </link>
-        <updated>2019-09-23T13:15:15.000Z</updated>
-        <content type="html"><![CDATA[<p><strong>hashmap的底层原理</strong><br>
-1.jdk1.8之前hashmap采用位桶(数组)+链表实现即使用链表处理冲突，统一hash值得链表都存储在一个链表中，但是当同一个通中的元素过多时，即hash值相等的元素过多时，通过可以查找值的效率就变低。<br>
-2.jdk1.8之后，hashmap采用的是位桶(数组)+链表+红黑树实现，当链表长度超过8的阈值后，将链表转换为红黑树，这样大大减少了查找时间。<br>
-<strong>spring的事务管理</strong><br>
-<em>1事务的特性(ACID)</em><br>
-原子性：最小的执行单位，不能分割。<br>
-一致性：执行数据前后，数据保持一致。<br>
-隔离性：并发访问数据库时，一个用户的事务不能被其他事务干扰，各并发事务之间数据库时相互独立的。<br>
-持久性：一个事务被提交之后，他对数据库中的改变是持久的，即使数据库发生故障也不应该发生影响。<br>
-<em>2.事务管理器</em><br>
-1.创建事务(getTransaction)<br>
-2.提交(commit)<br>
-3.回滚(rollback)<br>
-<strong>Mysql优化</strong><br>
-1.最后迫不得已看看是否硬件上存在问题。<br>
-2.开启慢查询，看看哪个查询最浪费时间。记得查询时设置SQL_NO_CACHE<br>
-(插一句话：Mysql只对&lt;,&lt;=,=,&gt;,&gt;=,between,in,以及某些时候的like使用，下划线'_','%'开始时不需要)。<br>
-3.sql优化<br>
-<em>3.1查询优化</em></p>
-<ul>
-<li>3.1.1：避免全局扫描，尽量在orderby和where的语句上使用索引。</li>
-<li>3.1.2：避免在where字句中使用mull，or，！=，&lt;&gt;,或者表达式，避免在where的左边使用运算，这样会使索引失去效力，转而使用全局扫描。</li>
-<li>3.1.3：避免在模糊查询时在关键字的前边加通配符，也会使索引失去效力。</li>
-<li>3.1.4：尽量使用exists代替in。</li>
-<li>3.1.5：不要写一些无意义查询。</li>
-<li>3.1.6：避免子查询。</li>
-<li>3.1.7：合理使用临时表，如果查询一个数据量很大的表则不需要临时表。</li>
-<li>3.1.8：避免临时表的创建和删除。</li>
-<li>3.1.9：游标的效率很差。</li>
-<li>3.1.10：索引并不是越多越好，一个表最多6个，索引太多会造成更新和插入变慢。</li>
-<li>3.1.11：服务器开启慢查询日志过滤，观察那些sql是需要优化的。<br>
-<em>3.2写入优化</em></li>
-<li>3.2.1：插入数据的时候尽量不要循环插入，使用批量插入。</li>
-<li>3.2.2：数据合并插入。</li>
-<li>3.2.3：使用事务，将多条插入语句放入一个事务中提交。</li>
-<li>3.2.4：有序插入。</li>
-<li>3.2.5：数据量大234结合使用<br>
-<em>3.3更新优化</em></li>
-<li>不要同时间操纵一大批数据，尽量分批处理。<br>
-<em>4bug/业务优化</em><br>
-对不需要操作数据库的业务进行缩减，观察是否有sql产生新的bug<br>
-<strong>JVM的原理</strong><br>
-jvm是java虚拟机，包括一套字节码指令集，一组寄存器，一个栈，一个垃圾回收，一个堆，和一个存储方法域。<br>
-<em><strong>WEB的内置对象</strong></em></li>
-<li>request</li>
-<li>response</li>
-<li>session</li>
-<li>application</li>
-<li>out</li>
-<li>pagecontext</li>
-<li>config</li>
-<li>exception<br>
-<strong>WEB的四个作用域</strong><br>
-page，request，session，application<br>
-<strong>String StringBuffer StringBuilder的区别</strong></li>
-<li>1.3者在执行速度的比较上StringBuilder&gt;StringBuffer&gt;String\</li>
-<li>String字符串常量</li>
-<li>StringBuffer字符串变量</li>
-<li>StringBuilder字符串变量</li>
-<li>2.每当操作String的字符串时都是在操作新的对象。例如String s = “sddsd” ，s = s+“asd”；其实是又创建了一个对象</li>
-<li>3.StringBuilder是线程不安全的</li>
-<li>4.StringBuffer是线程安全的。</li>
-<li>5.1.如果要操作少量的数据用 = String<br>
-2.单线程操作字符串缓冲区 下操作大量数据 = StringBuilder<br>
-3.多线程操作字符串缓冲区 下操作大量数据 = StringBuffer<br>
-<strong>redis面试</strong><br>
-1.redis是一种key-value类型的分布式关系型数据库，具有高性能，持久存储，适合高并发的一些场景，一般用来做缓存，支持丰富的数据类型，适用于对读写要求高，数据处理业务复杂，安全性要求较高的系统，支持简单业务。<br>
-<em>2.redis的数据类型</em></li>
-<li>2.1：String（最简单的数据类型，最常用的用途就是存储用户信息）。</li>
-<li>2.2：hash（相当于java的hashMap，是无序的，内部结构也类似，数据加链表，但是消耗比String高）。</li>
-<li>2.3：list（相当于java的Linkedlist，增删改很快，查询很慢，可以使用list做存储商品的列表，key是该商品的id，value是商品评论信息列表）。</li>
-<li>2.4：set（相当于java的hashset，是一个无序的组合，redis利用key-value存储时，value都是相当于null，当移除最后一个set元素时，整个数据结构被回收，主要用于用户是否中奖）。</li>
-<li>2.5：zset（redis最有特色的数据结构，类似于java的sortedset，HashMap的结合体，一方面一个set保证去重，另一方面可以给set一个分数，表示其分数，内部采用《跳跃列表》的数据结构比较复杂，可以用来存储学生的成绩，并按照成绩排名）。<br>
-<strong>redis持久化</strong><br>
-默认的是rdb，默认没5分钟往内存中更新一次数据<br>
-aof可以自己自定义存储的时间，比如几秒或者每次进行增删改的操作。</li>
-</ul>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Nginx]]></title>
-        <id>https://spark-wz.github.io/post/hello-gridea</id>
-        <link href="https://spark-wz.github.io/post/hello-gridea">
-        </link>
-        <updated>2018-12-11T16:00:00.000Z</updated>
-        <content type="html"><![CDATA[<p>安装nginx需要的依赖</p>
-<h1 id="安装gcc">安装gcc</h1>
-<p>yum install -y gcc</p>
-<h1 id="安装gcc-c">安装gcc-c++</h1>
-<p>yum install -y gcc-c++</p>
-<h1 id="安装pcre-pcre-devel">安装pcre pcre-devel</h1>
-<p>yum install -y pcre pcre-devel</p>
-<h1 id="安装zlib-zlib-devel">安装zlib zlib-devel</h1>
-<p>yum install -y zlib zlib-devel</p>
-<h1 id="安装openssl-openssl-devel">安装openssl openssl-devel</h1>
-<p>yum install -y openssl openssl-devel<br>
-下载<br>
-wget http://nginx.org/download/nginx-1.16.1.tar.gz<br>
-解压缩<br>
-tar -zxvf nginx-1.16.1.tar.gz<br>
-安装</p>
-<h1 id="进入解压得到的目录">进入解压得到的目录</h1>
-<p>cd nginx-1.16.1</p>
-<h1 id="配置">配置</h1>
-<p>./configure</p>
-<h1 id="编译">编译</h1>
-<p>make</p>
-<h1 id="安装">安装</h1>
-<p>make install<br>
-启动、停止</p>
-<h1 id="进入usrlocalnginxsbin">进入/usr/local/nginx/sbin</h1>
-<p>cd /usr/local/nginx/sbin</p>
-<h1 id="启动">启动</h1>
-<p>./nginx</p>
-<h1 id="停止">停止</h1>
-<p>./nginx -s stop</p>
-<h1 id="重启">重启</h1>
-<p>./nginx -s reload</p>
-<p>使用nginx代理tomcat</p>
-<p>启动tomcat</p>
-<h1 id="在8080端口启动tomcat">在8080端口启动tomcat</h1>
-<p>cd /usr/local/apache-tomcat-8.5.45<br>
-./bin/startup.sh<br>
-配置nginx</p>
-<h1 id="进入usrlocalnginxconf">进入/usr/local/nginx/conf</h1>
-<p>cd /usr/local/nginx/conf</p>
-<h1 id="使用vim编辑nginxconf">使用vim编辑nginx.conf</h1>
-<p>vim nginx.conf<br>
-nginx.conf</p>
-<h1 id="被代理的tomcat的地址">被代理的tomcat的地址</h1>
-<p>upstream tomcat{<br>
-server  127.0.0.1:8080;<br>
-}</p>
-<p>server {<br>
-listen       80;<br>
-server_name  localhost;</p>
-<pre><code>#charset koi8-r;
-
-#access_log  logs/host.access.log  main;
-
-location / {
-    #root   html;
-    #index  index.html index.htm;
-    # 代理tomcat
-    proxy_pass http://tomcat;
-}
-</code></pre>
-<p>}</p>
-<p>nginx配置负载均衡</p>
-<p>启动tomcat的</p>
-<h1 id="将项目分别部署在8080和8081端口的tomcat">将项目分别部署在8080和8081端口的tomcat</h1>
-<p>配置nginx.conf<br>
-upstream tomcat{<br>
-# 8080服务器性能较好，权重设置为2<br>
-server  127.0.0.1:8080 weight=2;<br>
-# 8081服务器性能较弱，权重设置为1<br>
-server  127.0.0.1:8081 weight=1;<br>
-}</p>
-<pre><code>server {
-    listen       80;
-    server_name  localhost;
-
-    #charset koi8-r;
-
-    #access_log  logs/host.access.log  main;
-
-    location / {
-        #root   html;
-        #index  index.html index.htm;
-        proxy_pass http://tomcat;
-    }
-</code></pre>
-<p>}<br>
-效果<br>
-每三个请求，会有两个访问8080服务器，一个访问8081服务器</p>
-<p>启动tomcat的</p>
-<p>可以使用Nginx做反向代理和负载均衡</p>
 ]]></content>
     </entry>
 </feed>

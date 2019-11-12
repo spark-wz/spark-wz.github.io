@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>实习日常整理 | Gridea</title>
+<title>动态sql学习 | Gridea</title>
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -81,37 +81,38 @@
       <div class="sm-12 md-8 col">
         <div class="paper">
           <article class="article">
-            <h1>实习日常整理</h1>
+            <h1>动态sql学习</h1>
             <p class="article-meta">
-              2019-10-10
+              2019-11-07
               
             </p>
             
             <div class="post-content">
-              <p><strong>lora</strong><br>
-低功耗局域网无线标准（远距离无线电）。<br>
-<strong>什么是opc</strong><br>
-OPC是工业控制和生产自动化领域中使用的硬件和软件的接口标准，（通俗来说就是解决硬件之间的联系，有效的在应用和过程控制设备之间读写数据。<br>
-O代表OLE(对象链接和嵌入)，P (process过程)，C (control控制)<br>
-OPC标准采用C/S模式，OPC服务器负责向OPC客户端不断的提供数据。</p>
-<p>OPC服务器包括3类对象(Object)：服务器对象(Server)、组对象(Group)和项对象(Item)<br>
-<strong>consul</strong><br>
-服务发现 Consul的客户端可用提供一个服务,比如 api 或者mysql ,另外一些客户端可用使用Consul去发现一个指定服务的提供者.通过DNS或者HTTP应用程序可用很容易的找到他所依赖的服务.<br>
-健康检查 Consul客户端可用提供任意数量的健康检查,指定一个服务(比如:webserver是否返回了200 OK 状态码)或者使用本地节点(比如:内存使用是否大于90%). 这个信息可由operator用来监视集群的健康.被服务发现组件用来避免将流量发送到不健康的主机.<br>
-Key/Value存储 应用程序可用根据自己的需要使用Consul的层级的Key/Value存储.比如动态配置,功能标记,协调,领袖选举等等,简单的HTTP API让他更易于使用.<br>
-多数据中心 Consul支持开箱即用的多数据中心.这意味着用户不需要担心需要建立额外的抽象层让业务扩展到多个区域.<br>
-Consul面向DevOps和应用开发者友好.是他适合现代的弹性的基础设施.<br>
-<strong>TLS</strong><br>
-TLS是安全传输层协议，用于在两个通信层之间提供保密性和数据完整性。<br>
-<strong>gateWay</strong><br>
-服务发现 Consul的客户端可用提供一个服务,比如 api 或者mysql ,另外一些客户端可用使用Consul去发现一个指定服务的提供者.通过DNS或者HTTP应用程序可用很容易的找到他所依赖的服务.<br>
-健康检查 Consul客户端可用提供任意数量的健康检查,指定一个服务(比如:webserver是否返回了200 OK 状态码)或者使用本地节点(比如:内存使用是否大于90%). 这个信息可由operator用来监视集群的健康.被服务发现组件用来避免将流量发送到不健康的主机.<br>
-Key/Value存储 应用程序可用根据自己的需要使用Consul的层级的Key/Value存储.比如动态配置,功能标记,协调,领袖选举等等,简单的HTTP API让他更易于使用.<br>
-多数据中心 Consul支持开箱即用的多数据中心.这意味着用户不需要担心需要建立额外的抽象层让业务扩展到多个区域.<br>
-Consul面向DevOps和应用开发者友好.是他适合现代的弹性的基础设施.<br>
-<strong>mqtt</strong><br>
-MQTT（Message Queuing Telemetry Transport，消息队列遥测传输协议），是一种基于发布/订阅（publish/subscribe）模式的&quot;轻量级&quot;通讯协议，该协议构建于TCP/IP协议上，由IBM在1999年发布。MQTT最大优点在于，可以以极少的代码和有限的带宽，为连接远程设备提供实时可靠的消息服务。作为一种低开销、低带宽占用的即时通讯协议，使其在物联网、小型设备、移动应用等方面有较广泛的应用。</p>
-<p>MQTT是一个基于客户端-服务器的消息发布/订阅传输协议。MQTT协议是轻量、简单、开放和易于实现的，这些特点使它适用范围非常广泛。在很多情况下，包括受限的环境中，如：机器与机器（M2M）通信和物联网（IoT）。其在，通过卫星链路通信传感器、偶尔拨号的医疗设备、智能家居、及一些小型化设备中已广泛使用。</p>
+              <h2 id="什么是动态sql动态sql有什么作用">什么是动态Sql，动态Sql有什么作用？</h2>
+<p>传统的使用JDBC的方法，相信大家在组合复杂的的SQL语句的时候，需要去拼接，稍不注意哪怕少了个空格，都会导致错误。Mybatis的动态SQL功能正是为了解决这种问题， 其通过 if, choose, when, otherwise, trim, where, set, foreach标签，可组合成非常灵活的SQL语句，从而提高开发人员的效率</p>
+<h3 id="动态sql标签">动态Sql标签</h3>
+<p><strong>if</strong><br>
+利用if实现简单的条件选择<br>
+<img src="https://spark-wz.github.io/post-images/1573093765857.png" alt=""><br>
+<strong>choose（when，otherwise）</strong><br>
+相当于java的switch语句，通常与when和otherwise搭配<br>
+<img src="https://spark-wz.github.io/post-images/1573108301437.png" alt=""><br>
+例子中当title和author都不为null的时候，那么就二选一（前者优先），如果都为null，那么就选择otherwise中的，如果title个author中只有一个不为null，那么就选择哪个不为null的。<br>
+<strong>where</strong><br>
+简化Sql语句中的where的条件判断<br>
+<strong>set</strong><br>
+解决动态更新问题<br>
+<strong>trim</strong><br>
+可以灵活的去除多余的关键字</p>
+<p><img src="https://spark-wz.github.io/post-images/1573094725608.png" alt="">假如说name和gender的值都不为null的话打印的SQL为：select * from user where    name = 'xx' and gender = 'xx'<br>
+在标记的地方是不存在第一个and的，在where语句中 prefix是前缀，prefixoverride=“AND | OR”去掉第一个and或者or。<br>
+<img src="https://spark-wz.github.io/post-images/1573094813156.png" alt=""><br>
+假如说name和gender的值都不为null的话打印的SQL为：update user set name='xx' , gender='xx'     where id='x'</p>
+<p>在标记的地方不存在逗号，而且自动加了一个set前缀和where后缀，上面三个属性的意义如下，其中prefix意义如上：</p>
+<p>suffixoverride：去掉最后一个逗号（也可以是其他的标记，就像是上面前缀中的and一样）</p>
+<p>suffix：后缀<br>
+<strong>foreach</strong><br>
+迭代一个集合，通常用于in条件</p>
 
             </div>
           </article>
@@ -122,9 +123,9 @@ MQTT（Message Queuing Telemetry Transport，消息队列遥测传输协议）�
               <div class="next">
                 下一篇
               </div>
-              <a href="https://spark-wz.github.io/post/mian-shi-zheng-li">
+              <a href="https://spark-wz.github.io/post/mybatis-de-example-yong-fa">
                 <h3 class="post-title">
-                  面试整理
+                  MyBatis的Example用法
                 </h3>
               </a>
             </div>
