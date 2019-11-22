@@ -7,7 +7,7 @@
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://spark-wz.github.io/favicon.ico?v=1573437837592">
+<link rel="shortcut icon" href="https://spark-wz.github.io/favicon.ico?v=1574426244077">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -101,6 +101,63 @@ tail -f -n 200 catalina.out<br>
 service nginx restart</p>
 <p>ps -ef | grep java</p>
 <p>kill -9 id</p>
+<p><strong>linux下安装jdk</strong><br>
+1.去官网下载jdk1.8   linux版本 （电脑里面有）<br>
+2.去usr中创建java目录 ，解压   tar -zxvf jdk-8u231-linux-x64.tar.gz<br>
+3.编辑配置文件  使用vi命令 （vi /etc/profile）<br>
+4.添加配置   输入i进入编辑模式，输入shift+Q后在输入wq保存（JAVA_HOME=/usr/java/jdk1.8.0_231<br>
+CLASSPATH=<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>J</mi><mi>A</mi><mi>V</mi><msub><mi>A</mi><mi>H</mi></msub><mi>O</mi><mi>M</mi><mi>E</mi><mi mathvariant="normal">/</mi><mi>l</mi><mi>i</mi><mi>b</mi><mi mathvariant="normal">/</mi><mi>P</mi><mi>A</mi><mi>T</mi><mi>H</mi><mo>=</mo></mrow><annotation encoding="application/x-tex">JAVA_HOME/lib/
+PATH=</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.09618em;">J</span><span class="mord mathdefault">A</span><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.08125em;">H</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord">/</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">i</span><span class="mord mathdefault">b</span><span class="mord">/</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mord mathdefault">A</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span></span></span></span>PATH:$JAVA_HOME/bin<br>
+export PATH JAVA_HOME CLASSPATH）<br>
+5.执行命令，使配置文件生效（source /etc/profile）<br>
+6.查看是否生效（java -version）<br>
+7.效果<img src="https://spark-wz.github.io/post-images/1573628339167.png" alt=""><br>
+<strong>linux下安装MySql</strong><br>
+1.mysql和rpm安装包 电脑上有<br>
+2./opt/installer 目录<br>
+3.tar xvf mysql-8.0.15-1.el7.x86_64.rpm-bundle.tar<br>
+4.rpm -ivh mysql-community-common-8.0.15-1.el7.x86_64.rpm<br>
+rpm -ivh mysql-community-libs-8.0.15-1.el7.x86_64.rpm --force --nodeps<br>
+rpm -ivh mysql-community-devel-8.0.15-1.el7.x86_64.rpm --force --nodeps<br>
+rpm -ivh mysql-community-libs-compat-8.0.15-1.el7.x86_64.rpm --force --nodeps<br>
+rpm -ivh mysql-community-client-8.0.15-1.el7.x86_64.rpm --force --nodeps<br>
+rpm -ivh mysql-community-server-8.0.15-1.el7.x86_64.rpm --force --nodeps<br>
+5.systemctl status mysqld<br>
+<strong>本机虚拟机mysql账户密码</strong><br>
+root    123qweQWE<br>
+update user set authentication_string = 'Platform@123' where user = 'root';<br>
+GRANT ALL PRIVILEGES ON <em>.</em> TO 'root'@'%'IDENTIFIED BY '123@qweQWE' WITH GRANT OPTION;<br>
+GRANT ALL PRIVILEGES ON <em>.</em> TO 'root'@'%' IDENTIFIED BY '123@qweQWE' WITH GRANT OPTION;<br>
+<strong>mysql安装完后设置密码，更改root权限</strong><br>
+连接https://blog.csdn.net/csdnxufei/article/details/88800559<br>
+rpm -ev mysql-community-client-8.0.15-1.el7.x86_64 --nodeps<br>
+set password for 'root'@'192.168.1.231' = '123qweQWE';<br>
+set password='123456';<br>
+lR/;l25C)j&gt;4<br>
+GRANT ALL PRIVILEGES ON <em>.</em> TO 'root'@'%' IDENTIFIED BY '123qweQWE'<br>
+ALTER USER 'root)'@'192.168.1.231' IDENTIFIED WITH mysql_native_password BY '123456';<br>
+set global validate_password.policy=LOW;<br>
+set global validate_password.length=6;<br>
+ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '123qweQWE';<br>
+<strong>防火墙关闭 systemctl stop firewalld</strong><br>
+<strong>nginx离线安装</strong><br>
+1.下载需要的版本和rpm包（电脑里面有）<br>
+安装各种需要的依赖<br>
+https://www.jianshu.com/p/0c9ca8c1b49c<br>
+<strong>铜陵各个数据库IP  账户 密码</strong><br>
+MySql              192.168.1.231         root         123@qweQWE<br>
+SqlServer汽车   192.168.1.204         sa            123456<br>
+SqlServer码头   192.168.1.203<br>
+SqlServer铁路    192.168.1.201<br>
+E:\apache-maven-3.5.0\conf\settings.xml<br>
+E:\apache-maven-3.5.0\repository<br>
+管理员1  guanliyuan1<br>
+2<br>
+操作员1  caozuoyaun1<br>
+2<br>
+<strong>湖州linux账户</strong><br>
+root<br>
+123qwe</p>
 
             </div>
           </article>
@@ -124,7 +181,7 @@ service nginx restart</p>
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://spark-wz.github.io/images/avatar.png?v=1573437837592" class="no-responsive avatar">
+    <img src="https://spark-wz.github.io/images/avatar.png?v=1574426244077" class="no-responsive avatar">
     <div class="text-muted">温故而知新</div>
     <div class="social-container">
       
@@ -146,6 +203,12 @@ service nginx restart</p>
     </div>
     <div class="row">
       <ul>
+        
+          
+            <li>
+              <a href="https://spark-wz.github.io/post/tong-ling-qi-you">铜陵汽油</a>
+            </li>
+          
         
           
             <li>
@@ -202,10 +265,6 @@ service nginx restart</p>
           
         
           
-            <li>
-              <a href="https://spark-wz.github.io/post/shi-xi-ri-chang-zheng-li">实习日常整理</a>
-            </li>
-          
         
           
         
@@ -224,7 +283,7 @@ service nginx restart</p>
     </div>
     <div class="row">
       
-        <a href="https://spark-wz.github.io/tag/x0D9AKioe" class="badge warning">
+        <a href="https://spark-wz.github.io/tag/x0D9AKioe" class="badge secondary">
           Gridea
         </a>
       
