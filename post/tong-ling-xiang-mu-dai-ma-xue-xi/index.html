@@ -7,7 +7,7 @@
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://spark-wz.github.io/favicon.ico?v=1574738058724">
+<link rel="shortcut icon" href="https://spark-wz.github.io/favicon.ico?v=1574912602324">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -92,8 +92,40 @@
 ThreadLocal是一个线程每部的存储类，可以在既定线程内存储数据，数据存储之后，只有指定线程才会得到数据。<br>
 static final ThreadLocal<T> sThreadLocal = new ThreadLocal<T>();<br>
 sThreadLocal.set()<br>
-sThreadLocal.get()</p>
-<pre><code>**lambok**
+sThreadLocal.get()<br>
+<strong>spring动态切换多数据源解决方案</strong><br>
+1.建立一个数据源的名称常量类，建立一个获得和设置上下文环境的类，主要负责改变上下文数据源的名称，两个类可以合并。<br>
+<img src="https://spark-wz.github.io/post-images/1574906751791.png" alt=""><br>
+2.建立动态数据源类，这个类必须继承AbstractRoutingDataSource且实现方法datermineCurrentLookupKey，该方法返回一个key，一般是Object；<br>
+<img src="https://spark-wz.github.io/post-images/1574907519526.png" alt=""><br>
+3.编写spring的配置多个数据源<br>
+<img src="https://spark-wz.github.io/post-images/1574907652472.png" alt=""><br>
+<strong>config文件</strong><br>
+配置数据源<br>
+配置动态数据源<br>
+<img src="https://spark-wz.github.io/post-images/1574911348867.png" alt=""><br>
+<strong>MyBatis 逆向工程 Generator＋Example</strong><br>
+<em><strong>Generator代码生成器</strong></em><br>
+1.添加依赖和配置<br>
+<img src="https://spark-wz.github.io/post-images/1574912134286.png" alt=""><br>
+2.在generatorConfig.xml配置数据库驱动，生成实体（模型），xml文件，dao接口的包名和位置，还有对应的数据库表和实体类。<br>
+<img src="https://spark-wz.github.io/post-images/1574912327152.png" alt=""><br>
+3.在maven中启动<br>
+<img src="https://spark-wz.github.io/post-images/1574912374990.png" alt=""><br>
+<em><strong>example用法</strong></em><br>
+int countByExample(UserExample example) thorws SQLException    按条件计数<br>
+int deleteByPrimaryKey(Integer id) thorws SQLException    按主键删除<br>
+int deleteByExample(UserExample example) thorws SQLException    按条件查询<br>
+String/Integer insert(User record) thorws SQLException    插入数据（返回值为ID）<br>
+User selectByPrimaryKey(Integer id) thorws SQLException    按主键查询<br>
+ListselectByExample(UserExample example) thorws SQLException    按条件查询<br>
+ListselectByExampleWithBLOGs(UserExample example) thorws SQLException    按条件查询（包括BLOB字段）。只有当数据表中的字段类型有为二进制的才会产生。<br>
+int updateByPrimaryKey(User record) thorws SQLException    按主键更新<br>
+int updateByPrimaryKeySelective(User record) thorws SQLException    按主键更新值不为null的字段<br>
+int updateByExample(User record, UserExample example) thorws SQLException    按条件更新<br>
+int updateByExampleSelective(User record, UserExample example) thorws SQLException    按条件更新值不为null的字段<br>
+<img src="https://spark-wz.github.io/post-images/1573009821363.png" alt=""></p>
+<pre><code>*lambok**
 懒人神器，帮你自动生成get，set之类的方法
 安装方法：idea中下载lambok
 ![](https://spark-wz.github.io/post-images/1573562104882.png)
@@ -125,7 +157,7 @@ sThreadLocal.get()</p>
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://spark-wz.github.io/images/avatar.png?v=1574738058724" class="no-responsive avatar">
+    <img src="https://spark-wz.github.io/images/avatar.png?v=1574912602324" class="no-responsive avatar">
     <div class="text-muted">温故而知新</div>
     <div class="social-container">
       
@@ -150,12 +182,6 @@ sThreadLocal.get()</p>
         
           
             <li>
-              <a href="https://spark-wz.github.io/post/tong-ling-qi-you">铜陵汽油</a>
-            </li>
-          
-        
-          
-            <li>
               <a href="https://spark-wz.github.io/post/tong-ling-xiang-mu-dai-ma-xue-xi">铜陵项目代码学习</a>
             </li>
           
@@ -174,25 +200,7 @@ sThreadLocal.get()</p>
         
           
             <li>
-              <a href="https://spark-wz.github.io/post/mybatis-de-example-yong-fa">MyBatis的Example用法</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://spark-wz.github.io/post/sheng-shu-ming-ci">生疏名词</a>
-            </li>
-          
-        
-          
-            <li>
               <a href="https://spark-wz.github.io/post/mybatis-ni-xiang-gong-cheng-bi-ji">MyBatis逆向工程笔记</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://spark-wz.github.io/post/tong-ling">铜陵</a>
             </li>
           
         
@@ -209,11 +217,27 @@ sThreadLocal.get()</p>
           
         
           
-        
+            <li>
+              <a href="https://spark-wz.github.io/post/shi-xi-ri-chang-zheng-li">实习日常整理</a>
+            </li>
           
         
           
+            <li>
+              <a href="https://spark-wz.github.io/post/mian-shi-zheng-li">面试整理</a>
+            </li>
+          
         
+          
+            <li>
+              <a href="https://spark-wz.github.io/post/java-ji-chu-mian-shi-zheng-li">java基础面试整理</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://spark-wz.github.io/post/mian-shi-ri-chang-zheng-li">面试日常整理</a>
+            </li>
           
         
           
@@ -227,7 +251,7 @@ sThreadLocal.get()</p>
     </div>
     <div class="row">
       
-        <a href="https://spark-wz.github.io/tag/x0D9AKioe" class="badge secondary">
+        <a href="https://spark-wz.github.io/tag/x0D9AKioe" class="badge warning">
           Gridea
         </a>
       
