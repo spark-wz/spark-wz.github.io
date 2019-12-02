@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://spark-wz.github.io</id>
     <title>Gridea</title>
-    <updated>2019-12-02T04:17:04.882Z</updated>
+    <updated>2019-12-02T10:27:39.280Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://spark-wz.github.io"/>
     <link rel="self" href="https://spark-wz.github.io/atom.xml"/>
@@ -72,7 +72,6 @@ example.createCriteria().andGreaterThan(&quot;id&quot;,3); 厂商id&gt;3<br>
 实体类或者dto类中导入lambok
 加上data注解直接修饰所有getter变量，setter所有不为final的变量[]()
 ![](https://spark-wz.github.io/post-images/1573562183069.png) 
-
 
 快捷键：alt +7 查看类中的所有方法
 </code></pre>
