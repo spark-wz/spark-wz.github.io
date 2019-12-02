@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://spark-wz.github.io</id>
     <title>Gridea</title>
-    <updated>2019-11-28T03:43:24.481Z</updated>
+    <updated>2019-12-02T01:48:52.933Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://spark-wz.github.io"/>
     <link rel="self" href="https://spark-wz.github.io/atom.xml"/>
@@ -41,18 +41,26 @@ sThreadLocal.get()<br>
 3.在maven中启动<br>
 <img src="https://spark-wz.github.io/post-images/1574912374990.png" alt=""><br>
 <em><strong>example用法</strong></em><br>
-int countByExample(UserExample example) thorws SQLException    按条件计数<br>
 int deleteByPrimaryKey(Integer id) thorws SQLException    按主键删除<br>
 int deleteByExample(UserExample example) thorws SQLException    按条件查询<br>
 String/Integer insert(User record) thorws SQLException    插入数据（返回值为ID）<br>
 User selectByPrimaryKey(Integer id) thorws SQLException    按主键查询<br>
+updateByExample     更新所有字段<br>
+updateByExample     根据条件更新想要更新的字段<br>
+updateByPrimaryKeySelective    根据主键更新密码<br>
+updateByPrimaryKey    根据主键更新除了主键之外的<br>
 ListselectByExample(UserExample example) thorws SQLException    按条件查询<br>
 ListselectByExampleWithBLOGs(UserExample example) thorws SQLException    按条件查询（包括BLOB字段）。只有当数据表中的字段类型有为二进制的才会产生。<br>
+insert   插入数据          insertSelective      插入不为null的数据<br>
 int updateByPrimaryKey(User record) thorws SQLException    按主键更新<br>
 int updateByPrimaryKeySelective(User record) thorws SQLException    按主键更新值不为null的字段<br>
 int updateByExample(User record, UserExample example) thorws SQLException    按条件更新<br>
 int updateByExampleSelective(User record, UserExample example) thorws SQLException    按条件更新值不为null的字段<br>
-<img src="https://spark-wz.github.io/post-images/1573009821363.png" alt=""></p>
+<img src="https://spark-wz.github.io/post-images/1573009821363.png" alt=""><br>
+<strong>spring刷新数据源</strong><br>
+@Scheduled注解配合@EnableScheduling使用，计划任务执行<br>
+将service注入，配置数据源刷新时间，调用service中更新方法<br>
+<img src="https://spark-wz.github.io/post-images/1574913872984.png" alt=""></p>
 <pre><code>*lambok**
 懒人神器，帮你自动生成get，set之类的方法
 安装方法：idea中下载lambok
@@ -61,6 +69,9 @@ int updateByExampleSelective(User record, UserExample example) thorws SQLExcepti
 实体类或者dto类中导入lambok
 加上data注解直接修饰所有getter变量，setter所有不为final的变量[]()
 ![](https://spark-wz.github.io/post-images/1573562183069.png) 
+
+
+快捷键：alt +7 查看类中的所有方法
 </code></pre>
 ]]></content>
     </entry>
