@@ -7,7 +7,7 @@
 <meta name="description" content="">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://spark-wz.github.io/favicon.ico?v=1575282454219">
+<link rel="shortcut icon" href="https://spark-wz.github.io/favicon.ico?v=1575603697019">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -147,6 +147,37 @@ example.createCriteria().andGreaterThan(&quot;id&quot;,3); 厂商id&gt;3<br>
 ![](https://spark-wz.github.io/post-images/1573562183069.png) 
 
 快捷键：alt +7 查看类中的所有方法
+controller中在参数前边加@RequestBody注解，且只能加一次，
+</code></pre>
+<ol>
+<li>@PathVariable注解，绑定参数（映射url绑定的占位符）@PathVariable(value=&quot;id&quot;) String id  可以在url中直接写id<br>
+2.@RequestHeader 注解，可以把Request请求header部分的值绑定到方法的参数上。<img src="https://spark-wz.github.io/post-images/1575362303722.png" alt=""></li>
+<li></li>
+</ol>
+<p>@CookieValue 可以把Request header中关于cookie的值绑定到方法的参数上。<br>
+图片示例<br>
+4.@RequestParam   常用来处理简单类型的绑定<br>
+通过Request.getParameter() 获取的String可直接转换为简单类型的情况<br>
+<img src="https://spark-wz.github.io/post-images/1575364405727.png" alt=""></p>
+<pre><code>**Criteria用法**
+Excample.or()相当于 Example.Criteria criteria = Example.createCriteria;
+criteria.andTestIsNull();    -里面的参数必须为null
+criteria.andTestIsNotNull();     -里面的参数必须不是null
+criteria.andTestEqualTo();     String  等于  
+criteria.andTestBetween();     String1,String2 在区间
+criteria.andTestGreaterThan();   String  大于
+criteria.andTestGreaterThanOrEqualTo();   String  大于等于
+criteria.andTestIn();   String 
+criteria.andTestLessThan();   String 小于
+criteria.andTestLessThanOrEqualTo();   String  小于等于
+criteria.andTestLike();  String
+criteria.andTestNotBetween();   String 小于等于
+criteria.andTestNotEqualTo();   String
+criteria.andTestNotIn();   String 
+criteria.andTestNotLike();  String
+criteria.isValid();  return boolean   检查对象是否实例化
+criteria.notify();   线程通知
+criteria.wait();     线程等待
 </code></pre>
 
             </div>
@@ -171,7 +202,7 @@ example.createCriteria().andGreaterThan(&quot;id&quot;,3); 厂商id&gt;3<br>
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://spark-wz.github.io/images/avatar.png?v=1575282454219" class="no-responsive avatar">
+    <img src="https://spark-wz.github.io/images/avatar.png?v=1575603697019" class="no-responsive avatar">
     <div class="text-muted"></div>
     <div class="social-container">
       
