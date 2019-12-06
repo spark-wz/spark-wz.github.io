@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://spark-wz.github.io</id>
     <title>Gridea</title>
-    <updated>2019-12-06T03:45:31.986Z</updated>
+    <updated>2019-12-06T06:07:02.882Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://spark-wz.github.io"/>
     <link rel="self" href="https://spark-wz.github.io/atom.xml"/>
@@ -48,6 +48,7 @@ updateByExample     更新所有字段<br>
 updateByExample     根据条件更新想要更新的字段<br>
 updateByPrimaryKeySelective    根据主键更新密码<br>
 updateByPrimaryKey    根据主键更新除了主键之外的<br>
+setOrderByClause(&quot;ID DESC&quot;)id排序 也可以传多个参数 (&quot;<code>index</code> ASC,id ASC&quot;)<br>
 ListselectByExample(UserExample example) thorws SQLException    按条件查询<br>
 ListselectByExampleWithBLOGs(UserExample example) thorws SQLException    按条件查询（包括BLOB字段）。只有当数据表中的字段类型有为二进制的才会产生。<br>
 insert   插入数据          insertSelective      插入不为null的数据<br>
@@ -63,7 +64,8 @@ example.createCriteria().andGreaterThan(&quot;id&quot;,3); 厂商id&gt;3<br>
 <strong>spring刷新数据源</strong><br>
 @Scheduled注解配合@EnableScheduling使用，计划任务执行<br>
 将service注入，配置数据源刷新时间，调用service中更新方法<br>
-<img src="https://spark-wz.github.io/post-images/1574913872984.png" alt=""></p>
+<img src="https://spark-wz.github.io/post-images/1574913872984.png" alt=""><br>
+@Async 加上这个注解可以异步执行</p>
 <pre><code>*lambok**
 懒人神器，帮你自动生成get，set之类的方法
 安装方法：idea中下载lambok
