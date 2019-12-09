@@ -7,7 +7,7 @@
 <meta name="description" content="">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://spark-wz.github.io/favicon.ico?v=1575711242769">
+<link rel="shortcut icon" href="https://spark-wz.github.io/favicon.ico?v=1575885998483">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -165,6 +165,37 @@ page，request，session，application<br>
 默认的是rdb，默认没5分钟往内存中更新一次数据<br>
 aof可以自己自定义存储的时间，比如几秒或者每次进行增删改的操作。</li>
 </ul>
+<p>MVC是三个单词的缩写,分别为：<br>
+模型(Model),视图(View)和控制Controller)。<br>
+MVC模式的目的就是实现Web系统的职能分工。</p>
+<p>Model层实现系统中的业务逻辑，通常可以用JavaBean或EJB来实现。 <br>
+View层用于与用户的交互，通常用JSP来实现。</p>
+<p>Controller层是Model与View之间沟通的桥梁，它可以分派用户的请求并选择恰当的视图以用于显示，同时它也可以解释用户的输入并将它们映射为模型层可执行的操作。</p>
+<p>MVC模式的好处</p>
+<p>各施其职，互不干涉<br>
+在MVC模式中，三个层各施其职，所以如果一旦哪一层的需求发生了变化，就只需要更改相应的层中的代码而不会影响到其它层中的代码。</p>
+<p><strong>.sleep()和wait()有什么区别?</strong><br>
+答：Sleep() 是线程类的方法  wait()是object类的方法。Sleep（） 不会释放对象锁 到时自动恢复 ，wait（）会释放对象锁 进入等待此对象的等待锁定池  发出notify（）方法后 才进入等待锁定池准备对象锁的获取进入运行状态</p>
+<p>。<br>
+<strong>. sleep()和yield()有什么区别?</strong><br>
+答：sleep()方法给其他线程运行机会时不考虑线程的优先级，因此会给低优先级的线程以运行的机会；yield()方法只会给相同优先级或更高优先级的线程以运行的机会；<br>
+线程执行sleep()方法后转入阻塞（blocked）状态，而执行yield()方法后转入就绪（ready）状态；<br>
+sleep()方法声明抛出InterruptedException，而yield()方法没有声明任何异常； sleep()方法比yield()方法（跟操作系统相关）具有更好的可移植性。</p>
+<p><strong>30. 什么情况用+做字符串连接比调用StringBuffer / StringBuilder对象的append方法性能更好？</strong><br>
+答：串接后得到的字符串在静态存储区中是早已存在的，那么用+做字符串连接是优于 StringBuffer / StringBuilder的append方法的。</p>
+<p><strong>8.创建线程有几种不同的方式</strong><br>
+答：（1）继承Thread类（2）实现Runnable接口（3）应用程序可以使用Executor框架来创建线程池实现Runnable接口这种方式更受欢迎，因为这不需要继承Thread类。在应用设计中已经继承了别的对象的情况下，这需要多继承（而Java不支持多继承），只能实现接口。同时，线程池也是非常高效的，很容易实现和使用。</p>
+<p><strong>9．Java支持多继承么？</strong><br>
+答：不支持，Java不支持多继承。每个类都只能继承一个类，但是可以实现多个接口。</p>
+<p><strong>12.什么是java序列化，如何实现java序列化？</strong><br>
+答：java序列化就是将一个java对象变成字节流的形式传出去或者从一个字节流中恢复成一个java对象，需要被序列化的类必须实现Serializable接口</p>
+<p>27.列出自己常用的jdk包.</p>
+<p>解答：JDK常用的package</p>
+<p>java.lang： 这个是系统的基础类，比如String等都是这里面的，这个package是唯一一个可以不用import就可以使用的Package</p>
+<p>java.io: 这里面是所有输入输出有关的类，比如文件操作等</p>
+<p>java.net: 这里面是与网络有关的类，比如URL,URLConnection等。</p>
+<p>java.util : 这个是系统辅助类，特别是集合类Collection,List,Map等。</p>
+<p>java.sql: 这个是数据库操作的类，Connection, Statememt，ResultSet等</p>
 
             </div>
           </article>
@@ -188,7 +219,7 @@ aof可以自己自定义存储的时间，比如几秒或者每次进行增删�
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://spark-wz.github.io/images/avatar.png?v=1575711242769" class="no-responsive avatar">
+    <img src="https://spark-wz.github.io/images/avatar.png?v=1575885998483" class="no-responsive avatar">
     <div class="text-muted"></div>
     <div class="social-container">
       
@@ -249,18 +280,6 @@ aof可以自己自定义存储的时间，比如几秒或者每次进行增删�
         
           
             <li>
-              <a href="https://spark-wz.github.io/post/shi-xi-ri-chang-zheng-li">实习日常整理</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://spark-wz.github.io/post/mian-shi-zheng-li">面试整理</a>
-            </li>
-          
-        
-          
-            <li>
               <a href="https://spark-wz.github.io/post/java-ji-chu-mian-shi-zheng-li">java基础面试整理</a>
             </li>
           
@@ -271,6 +290,10 @@ aof可以自己自定义存储的时间，比如几秒或者每次进行增删�
             </li>
           
         
+          
+            <li>
+              <a href="https://spark-wz.github.io/post/hello-gridea">Nginx</a>
+            </li>
           
         
       </ul>
