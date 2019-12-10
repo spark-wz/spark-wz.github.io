@@ -7,7 +7,7 @@
 <meta name="description" content="">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://spark-wz.github.io/favicon.ico?v=1575947142288">
+<link rel="shortcut icon" href="https://spark-wz.github.io/favicon.ico?v=1575951819247">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -94,6 +94,10 @@
 <p><strong>if</strong><br>
 利用if实现简单的条件选择<br>
 <img src="https://spark-wz.github.io/post-images/1573093765857.png" alt=""><br>
+gt 对应  &gt;</p>
+<p>gte 对应 &gt;=</p>
+<p>lt 对应 &lt;(会报错  相关联的 &quot;test&quot; 属性值不能包含 '&lt;' 字符)</p>
+<p>lte 对应  &lt;=(会报错  相关联的 &quot;test&quot; 属性值不能包含 '&lt;' 字符)<br>
 <strong>choose（when，otherwise）</strong><br>
 相当于java的switch语句，通常与when和otherwise搭配<br>
 <img src="https://spark-wz.github.io/post-images/1573108301437.png" alt=""><br>
@@ -135,6 +139,13 @@ select sql标签内的字段 from 表;<br>
 <p><strong>MySql中的sum(if(exp1,exp2,exp3))</strong><br>
 加入exp1条件成立,返回exp2,不对返回exp3<br>
 sum(if(type=1,this_count,0))  将所有type字段等于1的this_count相加求和</p>
+<p><strong>as起别名  test as column</strong></p>
+<p><strong>MyBatis中的<![CDATA[]]></strong><br>
+如果sql中有字符被xml解析之后会被转义的话，比如，&lt; ,&lt;=,&amp; 等我们不希望被转义，就会将sql语句包在<![CDATA[  ]]>中<br>
+<strong>实例</strong><br>
+<if test="param.startTime != null and param.startTime != ''" ><br>
+<![CDATA[ and c_t >= #{param.startTime} ]]><br>
+</if></p>
 
             </div>
           </article>
@@ -158,7 +169,7 @@ sum(if(type=1,this_count,0))  将所有type字段等于1的this_count相加求�
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://spark-wz.github.io/images/avatar.png?v=1575947142288" class="no-responsive avatar">
+    <img src="https://spark-wz.github.io/images/avatar.png?v=1575951819247" class="no-responsive avatar">
     <div class="text-muted"></div>
     <div class="social-container">
       
@@ -244,7 +255,7 @@ sum(if(type=1,this_count,0))  将所有type字段等于1的this_count相加求�
     </div>
     <div class="row">
       
-        <a href="https://spark-wz.github.io/tag/x0D9AKioe" class="badge success">
+        <a href="https://spark-wz.github.io/tag/x0D9AKioe" class="badge warning">
           Gridea
         </a>
       

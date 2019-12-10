@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://spark-wz.github.io</id>
     <title>Gridea</title>
-    <updated>2019-12-10T03:05:45.239Z</updated>
+    <updated>2019-12-10T04:23:45.552Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://spark-wz.github.io"/>
     <link rel="self" href="https://spark-wz.github.io/atom.xml"/>
@@ -209,6 +209,10 @@ root<br>
 <p><strong>if</strong><br>
 利用if实现简单的条件选择<br>
 <img src="https://spark-wz.github.io/post-images/1573093765857.png" alt=""><br>
+gt 对应  &gt;</p>
+<p>gte 对应 &gt;=</p>
+<p>lt 对应 &lt;(会报错  相关联的 &quot;test&quot; 属性值不能包含 '&lt;' 字符)</p>
+<p>lte 对应  &lt;=(会报错  相关联的 &quot;test&quot; 属性值不能包含 '&lt;' 字符)<br>
 <strong>choose（when，otherwise）</strong><br>
 相当于java的switch语句，通常与when和otherwise搭配<br>
 <img src="https://spark-wz.github.io/post-images/1573108301437.png" alt=""><br>
@@ -250,6 +254,13 @@ select sql标签内的字段 from 表;<br>
 <p><strong>MySql中的sum(if(exp1,exp2,exp3))</strong><br>
 加入exp1条件成立,返回exp2,不对返回exp3<br>
 sum(if(type=1,this_count,0))  将所有type字段等于1的this_count相加求和</p>
+<p><strong>as起别名  test as column</strong></p>
+<p><strong>MyBatis中的<![CDATA[]]]]><![CDATA[></strong><br>
+如果sql中有字符被xml解析之后会被转义的话，比如，&lt; ,&lt;=,&amp; 等我们不希望被转义，就会将sql语句包在<![CDATA[  ]]]]><![CDATA[>中<br>
+<strong>实例</strong><br>
+<if test="param.startTime != null and param.startTime != ''" ><br>
+<![CDATA[ and c_t >= #{param.startTime} ]]]]><![CDATA[><br>
+</if></p>
 ]]></content>
     </entry>
     <entry>
