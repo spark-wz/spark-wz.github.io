@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://spark-wz.github.io</id>
     <title>Gridea</title>
-    <updated>2019-12-10T06:25:35.162Z</updated>
+    <updated>2019-12-10T09:20:52.514Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://spark-wz.github.io"/>
     <link rel="self" href="https://spark-wz.github.io/atom.xml"/>
@@ -117,6 +117,10 @@ new Date().getTime();
 new Date().valueOf();
 Date.parse(new Date());
 </code></pre>
+<p><strong>BigDecimal使用</strong><br>
+1.BigDecimal转Double<br>
+Double num = 123456789.98;<br>
+BigDecimal big = new BigDecimal(num + &quot;&quot;);</p>
 ]]></content>
     </entry>
     <entry>
@@ -658,106 +662,6 @@ sleep()方法声明抛出InterruptedException，而yield()方法没有声明任�
 <p>java.net: 这里面是与网络有关的类，比如URL,URLConnection等。</p>
 <p>java.util : 这个是系统辅助类，特别是集合类Collection,List,Map等。</p>
 <p>java.sql: 这个是数据库操作的类，Connection, Statememt，ResultSet等</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Nginx]]></title>
-        <id>https://spark-wz.github.io/post/hello-gridea</id>
-        <link href="https://spark-wz.github.io/post/hello-gridea">
-        </link>
-        <updated>2018-12-11T16:00:00.000Z</updated>
-        <content type="html"><![CDATA[<p>安装nginx需要的依赖</p>
-<h1 id="安装gcc">安装gcc</h1>
-<p>yum install -y gcc</p>
-<h1 id="安装gcc-c">安装gcc-c++</h1>
-<p>yum install -y gcc-c++</p>
-<h1 id="安装pcre-pcre-devel">安装pcre pcre-devel</h1>
-<p>yum install -y pcre pcre-devel</p>
-<h1 id="安装zlib-zlib-devel">安装zlib zlib-devel</h1>
-<p>yum install -y zlib zlib-devel</p>
-<h1 id="安装openssl-openssl-devel">安装openssl openssl-devel</h1>
-<p>yum install -y openssl openssl-devel<br>
-下载<br>
-wget http://nginx.org/download/nginx-1.16.1.tar.gz<br>
-解压缩<br>
-tar -zxvf nginx-1.16.1.tar.gz<br>
-安装</p>
-<h1 id="进入解压得到的目录">进入解压得到的目录</h1>
-<p>cd nginx-1.16.1</p>
-<h1 id="配置">配置</h1>
-<p>./configure</p>
-<h1 id="编译">编译</h1>
-<p>make</p>
-<h1 id="安装">安装</h1>
-<p>make install<br>
-启动、停止</p>
-<h1 id="进入usrlocalnginxsbin">进入/usr/local/nginx/sbin</h1>
-<p>cd /usr/local/nginx/sbin</p>
-<h1 id="启动">启动</h1>
-<p>./nginx</p>
-<h1 id="停止">停止</h1>
-<p>./nginx -s stop</p>
-<h1 id="重启">重启</h1>
-<p>./nginx -s reload</p>
-<p>使用nginx代理tomcat</p>
-<p>启动tomcat</p>
-<h1 id="在8080端口启动tomcat">在8080端口启动tomcat</h1>
-<p>cd /usr/local/apache-tomcat-8.5.45<br>
-./bin/startup.sh<br>
-配置nginx</p>
-<h1 id="进入usrlocalnginxconf">进入/usr/local/nginx/conf</h1>
-<p>cd /usr/local/nginx/conf</p>
-<h1 id="使用vim编辑nginxconf">使用vim编辑nginx.conf</h1>
-<p>vim nginx.conf<br>
-nginx.conf</p>
-<h1 id="被代理的tomcat的地址">被代理的tomcat的地址</h1>
-<p>upstream tomcat{<br>
-server  127.0.0.1:8080;<br>
-}</p>
-<p>server {<br>
-listen       80;<br>
-server_name  localhost;</p>
-<pre><code>#charset koi8-r;
-
-#access_log  logs/host.access.log  main;
-
-location / {
-    #root   html;
-    #index  index.html index.htm;
-    # 代理tomcat
-    proxy_pass http://tomcat;
-}
-</code></pre>
-<p>}</p>
-<p>nginx配置负载均衡</p>
-<p>启动tomcat的</p>
-<h1 id="将项目分别部署在8080和8081端口的tomcat">将项目分别部署在8080和8081端口的tomcat</h1>
-<p>配置nginx.conf<br>
-upstream tomcat{<br>
-# 8080服务器性能较好，权重设置为2<br>
-server  127.0.0.1:8080 weight=2;<br>
-# 8081服务器性能较弱，权重设置为1<br>
-server  127.0.0.1:8081 weight=1;<br>
-}</p>
-<pre><code>server {
-    listen       80;
-    server_name  localhost;
-
-    #charset koi8-r;
-
-    #access_log  logs/host.access.log  main;
-
-    location / {
-        #root   html;
-        #index  index.html index.htm;
-        proxy_pass http://tomcat;
-    }
-</code></pre>
-<p>}<br>
-效果<br>
-每三个请求，会有两个访问8080服务器，一个访问8081服务器</p>
-<p>启动tomcat的</p>
-<p>可以使用Nginx做反向代理和负载均衡</p>
 ]]></content>
     </entry>
 </feed>
