@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://spark-wz.github.io</id>
     <title>Gridea</title>
-    <updated>2019-12-09T10:07:08.709Z</updated>
+    <updated>2019-12-10T02:53:11.196Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://spark-wz.github.io"/>
     <link rel="self" href="https://spark-wz.github.io/atom.xml"/>
@@ -228,6 +228,25 @@ root<br>
 <p>suffix：后缀<br>
 <strong>foreach</strong><br>
 迭代一个集合，通常用于in条件</p>
+<p><strong>include标签和limit用法</strong> -- 湖州<br>
+<sql id = "Base_Column_List" ><br>
+id, number, type, start_time, end_time, start_count, end_count, this_count, status,<br>
+record_type, c_t, u_t, create_user, update_user, create_user_name, update_user_name<br>
+</sql><br>
+<select id = "selectLast" resultMap="BaseResultMap"><br>
+select<br>
+<include refid="Base_Column_List" /><br>
+from cz_records<br>
+where number = #{number, jdbcType=INTEFER}<br>
+<if test="status != null" ><br>
+and status = #{status,jdbcType=INTEGER}<br>
+</if><br>
+order by c_t desc limit 1<br>
+</select><br>
+<strong>上边的sql标签内的字段，通过绑定id 在下边的include字段中，通过refid传递过来整个sql语句相当于</strong><br>
+select sql标签内的字段 from 表;<br>
+<strong>limit</strong>   截取查询到的第一条;<br>
+<strong>补充</strong>    在知道结果只有一条的情况下，加limit 1可以提高效率;</p>
 ]]></content>
     </entry>
     <entry>
