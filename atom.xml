@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://spark-wz.github.io</id>
     <title>Gridea</title>
-    <updated>2019-12-10T09:20:52.514Z</updated>
+    <updated>2019-12-10T09:46:51.253Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://spark-wz.github.io"/>
     <link rel="self" href="https://spark-wz.github.io/atom.xml"/>
@@ -120,7 +120,17 @@ Date.parse(new Date());
 <p><strong>BigDecimal使用</strong><br>
 1.BigDecimal转Double<br>
 Double num = 123456789.98;<br>
-BigDecimal big = new BigDecimal(num + &quot;&quot;);</p>
+BigDecimal big = new BigDecimal(num + &quot;&quot;);<br>
+尽量用字符串的方式初始化<br>
+BigDecimal num1 = new BigDecimal(&quot;0.005&quot;);<br>
+BigDecimal num2 = new BigDecimal(&quot;0.00005&quot;);<br>
+加法 add()函数     减法subtract()函数<br>
+乘法multiply()函数    除法divide()函数    绝对值abs()函数<br>
+加法BigDecimal result = num1.add(num2);<br>
+减法BigDecimal result = num1.subtract(num2);<br>
+乘法BigDecimal result = num1.multiply(num2);<br>
+除法BigDecimal result = num1.divide(https://spark-wz.github.io/post-images/1575971121829.png)<br>
+绝对值BigDecimal result = num1.abs();</p>
 ]]></content>
     </entry>
     <entry>

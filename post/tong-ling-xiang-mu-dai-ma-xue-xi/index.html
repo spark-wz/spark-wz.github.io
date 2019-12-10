@@ -7,7 +7,7 @@
 <meta name="description" content="">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://spark-wz.github.io/favicon.ico?v=1575968947883">
+<link rel="shortcut icon" href="https://spark-wz.github.io/favicon.ico?v=1575971208255">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -193,7 +193,17 @@ Date.parse(new Date());
 <p><strong>BigDecimal使用</strong><br>
 1.BigDecimal转Double<br>
 Double num = 123456789.98;<br>
-BigDecimal big = new BigDecimal(num + &quot;&quot;);</p>
+BigDecimal big = new BigDecimal(num + &quot;&quot;);<br>
+尽量用字符串的方式初始化<br>
+BigDecimal num1 = new BigDecimal(&quot;0.005&quot;);<br>
+BigDecimal num2 = new BigDecimal(&quot;0.00005&quot;);<br>
+加法 add()函数     减法subtract()函数<br>
+乘法multiply()函数    除法divide()函数    绝对值abs()函数<br>
+加法BigDecimal result = num1.add(num2);<br>
+减法BigDecimal result = num1.subtract(num2);<br>
+乘法BigDecimal result = num1.multiply(num2);<br>
+除法BigDecimal result = num1.divide(https://spark-wz.github.io/post-images/1575971121829.png)<br>
+绝对值BigDecimal result = num1.abs();</p>
 
             </div>
           </article>
@@ -217,7 +227,7 @@ BigDecimal big = new BigDecimal(num + &quot;&quot;);</p>
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://spark-wz.github.io/images/avatar.png?v=1575968947883" class="no-responsive avatar">
+    <img src="https://spark-wz.github.io/images/avatar.png?v=1575971208255" class="no-responsive avatar">
     <div class="text-muted"></div>
     <div class="social-container">
       
