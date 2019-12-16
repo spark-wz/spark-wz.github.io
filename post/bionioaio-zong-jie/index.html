@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>标签列表 | Gridea</title>
+<title>BIO,NIO,AIO总结 | Gridea</title>
 <meta name="description" content="">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -23,6 +23,7 @@
 
   </head>
   <body>
+  
     <nav class="navbar border fixed split-nav">
   <div class="nav-brand">
     <h3><a href="https://spark-wz.github.io">Gridea</a></h3>
@@ -79,12 +80,65 @@
     <div id="top" class="row site">
       <div class="sm-12 md-8 col">
         <div class="paper">
-          <h2 class="tag-list-title">标签列表</h2>
-          <div class="row tags-container">
+          <article class="article">
+            <h1>BIO,NIO,AIO总结</h1>
+            <p class="article-meta">
+              2019-12-11
+              
+            </p>
             
-          </div>
+            <div class="post-content">
+              <p>目录:</p>
+<ol>
+<li>BIO (Blocking I/O) 同步并阻塞<br>
+1.1 传统 BIO<br>
+1.2 伪异步 IO<br>
+1.3 代码示例<br>
+1.4 总结</li>
+<li>NIO (New I/O)    同步非阻塞<br>
+2.1 NIO 简介<br>
+2.2 NIO的特性/NIO与IO区别<br>
+1)Non-blocking IO（非阻塞IO）<br>
+2)Buffer(缓冲区)<br>
+3)Channel (通道)<br>
+4)Selectors(选择器)<br>
+2.3 NIO 读数据和写数据方式<br>
+2.4 NIO核心组件简单介绍<br>
+2.5 代码示例</li>
+<li>AIO (Asynchronous I/O)   异步非阻塞</li>
+</ol>
+<p><strong>实例</strong><br>
+<strong>1. BIO (Blocking I/O)</strong><br>
+同步阻塞I/O模式，数据的读取写入必须阻塞在一个线程中等待其完成。<br>
+<strong>1.1传统BIO通信模型</strong><br>
+通常用一个独立的Acceptor负责监听客户端的连接，一般会在While(true)循环服务中调用accept()方法等待接受客户端请求的连接的方式监听请求，一旦接到请求，就可以在这之上进行读写请求，此时不能再接受其他客户端连接请求。只能等待当前连接的操作完成，但是可以通过多线程来支持多个客户端的连接。</p>
+<p>如果想让BIO通信模型能够同时处理多个请求，就必须使用多线程（主要原因是socket.accept(),socket.read(),socket.write()射击的三个方法都是同步阻塞的），也就是说他接到客户端连接请求之后为客户端创建一个新的线程进行链路处理，处理完成之后，通过输出流返回应答给客户端，线程销毁。这就是典型的 <strong>一请求一应答模型</strong>，如果连接创建之后不做任何事情的话，就会造成不必要的线程开销，但是可以通过 <strong>线程池</strong> 来改善，线程池还可以让线程的创建和回收成本更低。使用了FixedThreadPool可以有效的控制线程的最大数量，保证了系统有限的资源控制，实现了N（客户端请求数量）:M（处理客户端请求的线程数量）的伪异步I/O模型。</p>
+<p><strong>当客户端并发访问量增加后</strong><br>
+可能会导致线程堆栈溢出，创建新线程失败等问题，最终导致进程宕机或者僵死，不能对外提供服务。</p>
+<p><strong>1.2 伪异步 IO</strong></p>
+<pre><code>为了解决同步阻塞I/O面临的一个
+</code></pre>
+
+            </div>
+          </article>
         </div>
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://spark-wz.github.io/post/java">
+                <h3 class="post-title">
+                  集合常用
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
       </div>
+
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
     <img src="https://spark-wz.github.io/images/avatar.png?v=1576463202613" class="no-responsive avatar">
@@ -185,7 +239,8 @@
     Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://spark-wz.github.io/atom.xml" target="_blank">RSS</a>
   </div>
 </div>
-  
+
+
     </div>
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
