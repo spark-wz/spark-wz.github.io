@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://spark-wz.github.io</id>
     <title>Gridea</title>
-    <updated>2019-12-21T13:28:45.770Z</updated>
+    <updated>2019-12-30T06:25:52.514Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://spark-wz.github.io"/>
     <link rel="self" href="https://spark-wz.github.io/atom.xml"/>
@@ -10,19 +10,12 @@
     <icon>https://spark-wz.github.io/favicon.ico</icon>
     <rights>All rights reserved 2019, Gridea</rights>
     <entry>
-        <title type="html"><![CDATA[铜陵]]></title>
-        <id>https://spark-wz.github.io/post/tong-ling</id>
-        <link href="https://spark-wz.github.io/post/tong-ling">
+        <title type="html"><![CDATA[钥匙柜]]></title>
+        <id>https://spark-wz.github.io/post/yao-chi-ju</id>
+        <link href="https://spark-wz.github.io/post/yao-chi-ju">
         </link>
-        <updated>2019-12-21T11:12:32.000Z</updated>
-        <content type="html"><![CDATA[<p>/app/model/Report/5ddf3283456f799e8af74d54/view<br>
-/app/model/Report/list</p>
-<p>3号洞库菜单栏问题。<br>
-培训，ppt<br>
-进度条挪到罐里面<br>
-汽车零发油实时画面把油泵去掉-&gt; mark<br>
-报表管理<br>
-列表 -&gt;  液位数据</p>
+        <updated>2019-12-30T06:25:39.000Z</updated>
+        <content type="html"><![CDATA[<p>思路</p>
 ]]></content>
     </entry>
     <entry>
@@ -374,6 +367,12 @@ E:\apache-maven-3.5.0\repository<br>
 <strong>湖州linux账户</strong><br>
 root<br>
 123qwe</p>
+<p><strong>铜陵</strong><br>
+0#轻柴油<br>
+#7f7456     -10#军用柴油<br>
+#693341     93#车用汽油<br>
+#4045f9      75#航空汽油<br>
+#2638f0      95#航空汽油</p>
 ]]></content>
     </entry>
     <entry>
