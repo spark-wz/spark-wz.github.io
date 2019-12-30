@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://spark-wz.github.io</id>
     <title>Gridea</title>
-    <updated>2019-12-30T06:25:52.514Z</updated>
+    <updated>2019-12-30T08:32:05.932Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://spark-wz.github.io"/>
     <link rel="self" href="https://spark-wz.github.io/atom.xml"/>
@@ -15,7 +15,17 @@
         <link href="https://spark-wz.github.io/post/yao-chi-ju">
         </link>
         <updated>2019-12-30T06:25:39.000Z</updated>
-        <content type="html"><![CDATA[<p>思路</p>
+        <content type="html"><![CDATA[<p><strong>整体流程</strong><br>
+从钥匙柜sqlserver数据库里面取数存到mysql中,再从sqlserver中读数给前端。<br>
+两张表一张实时表,一张历史表<br>
+<strong>要点</strong></p>
+<ul>
+<li>实时数据<br>
+切换到MySQL,从MySQL中读数返给前端,根据时间排序。写一个同步方法，先切换到MySQL中,删除MySQL实时表中的数据,再切换到sqlserver，读取sqlserver中的数据,再切换到MySQL,插入   显示当前所有钥匙状态。<br>
+历史数据<br>
+同步方法中，切换到MySQL,根据时间排序查到最后一个更新的id,切换到SqlServer,按条件查询，将id大于MySQL最后一个id的记录查出(条件查询)，再切换到MySQL，查到的集合插入。</li>
+</ul>
+<p>写一个根据前端参数返回数据的方法，返回给前端。</p>
 ]]></content>
     </entry>
     <entry>
