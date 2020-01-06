@@ -2,13 +2,32 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://spark-wz.github.io</id>
     <title>Gridea</title>
-    <updated>2020-01-06T03:40:19.542Z</updated>
+    <updated>2020-01-06T08:21:59.796Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://spark-wz.github.io"/>
     <link rel="self" href="https://spark-wz.github.io/atom.xml"/>
     <logo>https://spark-wz.github.io/images/avatar.png</logo>
     <icon>https://spark-wz.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[MySQL规范]]></title>
+        <id>https://spark-wz.github.io/post/mysql-gui-fan</id>
+        <link href="https://spark-wz.github.io/post/mysql-gui-fan">
+        </link>
+        <updated>2020-01-06T06:56:25.000Z</updated>
+        <content type="html"><![CDATA[<p><strong>数据类型</strong><br>
+MySQL中小数的数据类型有float（前7）和double（前15），都是浮点类型数都只有前几位准确，不精确，decimal是精确的小数，通常用于货币，计算精确的数。<br>
+varchar类型的，如果长度不超过255都用char</p>
+<p><strong>基本字段</strong><br>
+一般表的基本字段，id、is_deleted(假删除)、c_t、u_t、create_user、update_user、create_user_name、update_user_name</p>
+<p><strong>注意事项</strong><br>
+记得写注释<br>
+记得加默认值，数字的就是0<br>
+字符串的就 EMPTY STRING<br>
+<img src="https://spark-wz.github.io/post-images/1578298913491.png" alt=""><br>
+如果字符串时null的话，去查的话就很废效率。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[钥匙柜]]></title>
         <id>https://spark-wz.github.io/post/yao-chi-ju</id>
@@ -529,66 +548,6 @@ params：count=countSql</p>
 <pre><code>**具体使用Excample**  java中的静态方法可以直接用列名点方法名调用
 普通方法需要先new；
 countByExcample：按照条件删除
-</code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Web service学习]]></title>
-        <id>https://spark-wz.github.io/post/web-service-xue-xi</id>
-        <link href="https://spark-wz.github.io/post/web-service-xue-xi">
-        </link>
-        <updated>2019-10-15T06:40:07.000Z</updated>
-        <content type="html"><![CDATA[<h4 id="web-service简介">Web service简介</h4>
-<p>Web service是一个平台独立的，低耦合的，自包含的，基于可编程的web的应用程序，可使用开放的XML标准来描述，发布，发现，协调和配置这些应用程序，用于开发分布式的互操作的应用程序。</p>
-<p>Web service技术，可以使得运行在不同机器上的不同应用无需借助附加的，专门的第三方软件或者平台或者硬件，就可以相互交换数据或集成。Web service很容易部署。</p>
-<h4 id="web-service-三要素">Web service 三要素</h4>
-<p>UDDI：是基于Web的，分布式的，为Web service提供的，信息注册中心的实施规范。<br>
-WSDL：是用机器能阅读的方式提供一个正式描述文档而基于XML的语言，用于描述Web service及其函数，参数，返回值。简单来说就是使用规则，方便人和机器进行阅读。<br>
-SOAP协议：基于HTTP，基于XML用于交换XML编码信息的轻量级协议。简单来说，就是传输协议，方便进行运输。</p>
-<h4 id="web-service与socket两种通信方式的区别">Web service与Socket两种通信方式的区别</h4>
-<p>1.Socket是基于TCP/IP的传输层协议，<br>
-Web service是基于HTTP协议传输数据，http是基于tcp的应用层协议<br>
-Web service使用了基于http的soap协议传输数据<br>
-2.Socket接口通过流传输，不支持面向对象。<br>
-Web service支持面向对象，最终Web service讲对象序列化后进行流传输。<br>
-Web service通过soap协议进行通信，不需专门针对数据流的发送和接收进行处理，是一种跨平台的面向对象远程调用技术。<br>
-3.Socket适用于高性能大数据的传输，传输的数据需要手动处理，socket通信的接口协议需要自定义。</p>
-<h4 id="web-service程序">Web service程序</h4>
-<p>1.建立java项目,至少有一个方法是公共的，因为是提供给别人各自使用的。<br>
-记得加  <strong>@WebService注解</strong></p>
-<ol>
-<li>定义自己服务器发布的地址<br>
-String address = &quot;http://localhost:9090/MyFirstWebService&quot;; //这个9090端口随便定义，只要不冲突即可</li>
-<li>通过Endpoint的publish方法进行发布<br>
-Endpoint.publish(address, new MyFirstWebService());</li>
-</ol>
-<pre><code>@WebService
-public class MyFirstWebService {
-	/**
-	 * 定义webservice服务器中的方法
-	 * @param content
-	 * @return
-	 */
-	public String testWebService(String content){
-		System.out.println(&quot;我收到了你发的信息：&quot; + content);
-		return &quot;服务器：我转发信息给你&quot;;
-	}
-	
-	public static void main(String[] args){
-		//定义自己的webservice服务器发布的地址
-		String address = &quot;http://localhost:9090/MyFirstWebService&quot;; //这个9090端口随便定义，只要不冲突即可
-		//通过该方法进行发布
-		Endpoint.publish(address, new MyFirstWebService());
-		//打印一句话，表示一下服务器进行了开启
-		System.out.println(&quot;my webservcie starting&quot;);
-	}
-	``` 
-
-	
-
-
-
-
 </code></pre>
 ]]></content>
     </entry>

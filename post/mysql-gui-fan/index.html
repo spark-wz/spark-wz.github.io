@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>记录一次本地jar包导入maven仓库踩到的坑 | Gridea</title>
+<title>MySQL规范 | Gridea</title>
 <meta name="description" content="">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -81,22 +81,24 @@
       <div class="sm-12 md-8 col">
         <div class="paper">
           <article class="article">
-            <h1>记录一次本地jar包导入maven仓库踩到的坑</h1>
+            <h1>MySQL规范</h1>
             <p class="article-meta">
-              2019-12-20
+              2020-01-06
               
             </p>
             
             <div class="post-content">
-              <p>首先将conf/repository中的setttings中的配置文件路径改成自己的路径，要不会报一个路径不对的错，如下<br>
-<img src="https://spark-wz.github.io/post-images/1576809073329.png" alt=""><br>
-改成自己的路径之后使用mvn命令直接将jar包导入自己的maven仓库，设置好依赖的3个属性。<br>
-将jar包放到lib目录下<br>
-mvn install:install-file -Dfile=E:\apache-maven-3.5.0\lib/modbus4j-2.0.7.jar -DgroupId=com.wz.package -DartifactId=modbus4j -Dversion=2.0.7 -Dpackaging=jar<br>
-其中Dfile是当前目录加jar包全称，DgroupId 可以随便起，DartifactId一般是jar包名,Dversion是版本号。</p>
-<p>mvn install:install-file -Dfile=E:\apache-maven-3.5.0\lib/serotonin-timer-2.0.6.jar -DgroupId=com.wz.package -DartifactId=serotonin-timer -Dversion=2.0.6 -Dpackaging=jar</p>
-<p>mvn install:install-file -Dfile=E:\apache-maven-3.5.0\lib/commons-logging-1.2.jar -DgroupId=com.wz.package -DartifactId=commons-logging -Dversion=1.2 -Dpackaging=jar</p>
-<p>mvn install:install-file -Dfile=E:\apache-maven-3.5.0\lib/modbus4j-2.0.2.jar -DgroupId=com.wz.package -DartifactId=modbus4j2 -Dversion=2.0.2 -Dpackaging=jar</p>
+              <p><strong>数据类型</strong><br>
+MySQL中小数的数据类型有float（前7）和double（前15），都是浮点类型数都只有前几位准确，不精确，decimal是精确的小数，通常用于货币，计算精确的数。<br>
+varchar类型的，如果长度不超过255都用char</p>
+<p><strong>基本字段</strong><br>
+一般表的基本字段，id、is_deleted(假删除)、c_t、u_t、create_user、update_user、create_user_name、update_user_name</p>
+<p><strong>注意事项</strong><br>
+记得写注释<br>
+记得加默认值，数字的就是0<br>
+字符串的就 EMPTY STRING<br>
+<img src="https://spark-wz.github.io/post-images/1578298913491.png" alt=""><br>
+如果字符串时null的话，去查的话就很废效率。</p>
 
             </div>
           </article>
@@ -107,9 +109,9 @@ mvn install:install-file -Dfile=E:\apache-maven-3.5.0\lib/modbus4j-2.0.7.jar -Dg
               <div class="next">
                 下一篇
               </div>
-              <a href="https://spark-wz.github.io/post/lambda-biao-da-shi">
+              <a href="https://spark-wz.github.io/post/yao-chi-ju">
                 <h3 class="post-title">
-                  Lambda表达式
+                  钥匙柜
                 </h3>
               </a>
             </div>
