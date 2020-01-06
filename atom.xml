@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://spark-wz.github.io</id>
     <title>Gridea</title>
-    <updated>2020-01-03T02:13:56.961Z</updated>
+    <updated>2020-01-06T03:40:19.542Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://spark-wz.github.io"/>
     <link rel="self" href="https://spark-wz.github.io/atom.xml"/>
@@ -47,8 +47,8 @@
 改成自己的路径之后使用mvn命令直接将jar包导入自己的maven仓库，设置好依赖的3个属性。<br>
 将jar包放到lib目录下<br>
 mvn install:install-file -Dfile=E:\apache-maven-3.5.0\lib/modbus4j-2.0.7.jar -DgroupId=com.wz.package -DartifactId=modbus4j -Dversion=2.0.7 -Dpackaging=jar<br>
-其中Dfile是当前目录加jar包全称，DgroupId 可以随便起，DartifactId一般是jar包名,Dversion是版本号。<br>
-mvn install:install-file -Dfile=E:\apache-maven-3.5.0\lib/serotonin-timer-2.0.6.jar -DgroupId=com.wz.package -DartifactId=serotonin-timer -Dversion=2.0.6 -Dpackaging=jar</p>
+其中Dfile是当前目录加jar包全称，DgroupId 可以随便起，DartifactId一般是jar包名,Dversion是版本号。</p>
+<p>mvn install:install-file -Dfile=E:\apache-maven-3.5.0\lib/serotonin-timer-2.0.6.jar -DgroupId=com.wz.package -DartifactId=serotonin-timer -Dversion=2.0.6 -Dpackaging=jar</p>
 <p>mvn install:install-file -Dfile=E:\apache-maven-3.5.0\lib/commons-logging-1.2.jar -DgroupId=com.wz.package -DartifactId=commons-logging -Dversion=1.2 -Dpackaging=jar</p>
 <p>mvn install:install-file -Dfile=E:\apache-maven-3.5.0\lib/modbus4j-2.0.2.jar -DgroupId=com.wz.package -DartifactId=modbus4j2 -Dversion=2.0.2 -Dpackaging=jar</p>
 ]]></content>
@@ -319,10 +319,10 @@ BigDecimal num2 = new BigDecimal(&quot;0.00005&quot;);<br>
 mkdir tl-gasoline<br>
 cd tl-gasoline<br>
 上传jar包<br>
-nohup java -jar tl-gasoline-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod &gt;&gt; catalina.out  2&gt;&amp;1 &amp;<br>
-部署项目<br>
+//部署的时候注意开发环境 dev开发，prod正式<br>
+nohup java -jar sr-gasoline-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev &gt;&gt; catalina.out  2&gt;&amp;1 &amp;<br>
+//查看日志<br>
 tail -f -n 200 catalina.out<br>
-查看是否成功<br>
 配置nginx<br>
 <img src="https://spark-wz.github.io/post-images/1573268782670.png" alt=""><br>
 service nginx restart</p>

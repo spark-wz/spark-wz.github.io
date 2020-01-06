@@ -7,7 +7,7 @@
 <meta name="description" content="">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://spark-wz.github.io/favicon.ico?v=1578017634048">
+<link rel="shortcut icon" href="https://spark-wz.github.io/favicon.ico?v=1578282016424">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -92,10 +92,10 @@
 mkdir tl-gasoline<br>
 cd tl-gasoline<br>
 上传jar包<br>
-nohup java -jar tl-gasoline-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod &gt;&gt; catalina.out  2&gt;&amp;1 &amp;<br>
-部署项目<br>
+//部署的时候注意开发环境 dev开发，prod正式<br>
+nohup java -jar sr-gasoline-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev &gt;&gt; catalina.out  2&gt;&amp;1 &amp;<br>
+//查看日志<br>
 tail -f -n 200 catalina.out<br>
-查看是否成功<br>
 配置nginx<br>
 <img src="https://spark-wz.github.io/post-images/1573268782670.png" alt=""><br>
 service nginx restart</p>
@@ -187,7 +187,7 @@ root<br>
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://spark-wz.github.io/images/avatar.png?v=1578017634048" class="no-responsive avatar">
+    <img src="https://spark-wz.github.io/images/avatar.png?v=1578282016424" class="no-responsive avatar">
     <div class="text-muted"></div>
     <div class="social-container">
       
