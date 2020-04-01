@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>Gridea</title>
+<title>Python BeautifulSoup | Gridea</title>
 <meta name="description" content="">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -23,6 +23,7 @@
 
   </head>
   <body>
+  
     <nav class="navbar border fixed split-nav">
   <div class="nav-brand">
     <h3><a href="https://spark-wz.github.io">Gridea</a></h3>
@@ -76,225 +77,56 @@
   </div>
 </nav>
 
-
     <div id="top" class="row site">
       <div class="sm-12 md-8 col">
         <div class="paper">
+          <article class="article">
+            <h1>Python BeautifulSoup</h1>
+            <p class="article-meta">
+              2020-04-01
+              
+            </p>
+            
+            <div class="post-content">
+              <p>BeautifulSoup是一个可以从html或者xml中提取数据的Python库。<br>
+BeautifulSoup最常用解析器（lxml）效率最高<br>
+soup = BeautifulSoup(rurl,'lxml')</p>
+<p><strong>根据name属性找<br>
+soup.name<br>
+soup.head 只获取head标签<br>
+soup.body.b 获取第一个b标签<br>
+通过点取属性的方式只能获得当前名字的第一个tag标签<br>
+获取所有的a标签soup.find_all()<br>
+soup.find_all('a')</strong></p>
+<p><strong>tag的.contains属性可以将tag的子节点以列表的方式输出<br>
+字符创没有.contains属性，因为没有子节点。<br>
+tag的.children可以对tag的直接子节点循环<br>
+for child in title_tag.children:<br>
+print(child)<br>
+.descendants可以对tag的所有子孙节点进行递归循环<br>
+for child in head_tag.descendants:<br>
+print(child)</strong></p>
+
+            </div>
+          </article>
+        </div>
+        <div class="paper" data-aos="fade-in">
           
-  <article class="article">
-    <h2 class="article-title">
-      <a href="https://spark-wz.github.io/post/python-beautifulsoup">Python BeautifulSoup</a>
-    </h2>
-    <p class="article-meta">
-      2020-04-01
-      
-    </p>
-    <p class="text-lead">
-      
-    </p>
-    <div class="row">
-      <a href="https://spark-wz.github.io/post/python-beautifulsoup" class="readmore-link">
-        <button>
-          Read More
-        </button>
-      </a>
-    </div>
-  </article>
-
-  <article class="article">
-    <h2 class="article-title">
-      <a href="https://spark-wz.github.io/post/mysql-gui-fan">MySQL规范</a>
-    </h2>
-    <p class="article-meta">
-      2020-01-06
-      
-    </p>
-    <p class="text-lead">
-      
-    </p>
-    <div class="row">
-      <a href="https://spark-wz.github.io/post/mysql-gui-fan" class="readmore-link">
-        <button>
-          Read More
-        </button>
-      </a>
-    </div>
-  </article>
-
-  <article class="article">
-    <h2 class="article-title">
-      <a href="https://spark-wz.github.io/post/yao-chi-ju">钥匙柜</a>
-    </h2>
-    <p class="article-meta">
-      2019-12-30
-      
-    </p>
-    <p class="text-lead">
-      
-    </p>
-    <div class="row">
-      <a href="https://spark-wz.github.io/post/yao-chi-ju" class="readmore-link">
-        <button>
-          Read More
-        </button>
-      </a>
-    </div>
-  </article>
-
-  <article class="article">
-    <h2 class="article-title">
-      <a href="https://spark-wz.github.io/post/ji-lu-yi-ci-ben-di-jar-bao-dao-ru-maven-cang-ku-cai-dao-de-keng">记录一次本地jar包导入maven仓库踩到的坑</a>
-    </h2>
-    <p class="article-meta">
-      2019-12-20
-      
-    </p>
-    <p class="text-lead">
-      
-    </p>
-    <div class="row">
-      <a href="https://spark-wz.github.io/post/ji-lu-yi-ci-ben-di-jar-bao-dao-ru-maven-cang-ku-cai-dao-de-keng" class="readmore-link">
-        <button>
-          Read More
-        </button>
-      </a>
-    </div>
-  </article>
-
-  <article class="article">
-    <h2 class="article-title">
-      <a href="https://spark-wz.github.io/post/lambda-biao-da-shi">Lambda表达式</a>
-    </h2>
-    <p class="article-meta">
-      2019-12-18
-      
-    </p>
-    <p class="text-lead">
-      
-    </p>
-    <div class="row">
-      <a href="https://spark-wz.github.io/post/lambda-biao-da-shi" class="readmore-link">
-        <button>
-          Read More
-        </button>
-      </a>
-    </div>
-  </article>
-
-  <article class="article">
-    <h2 class="article-title">
-      <a href="https://spark-wz.github.io/post/bionioaio-zong-jie">BIO,NIO,AIO总结</a>
-    </h2>
-    <p class="article-meta">
-      2019-12-11
-      
-    </p>
-    <p class="text-lead">
-      
-    </p>
-    <div class="row">
-      <a href="https://spark-wz.github.io/post/bionioaio-zong-jie" class="readmore-link">
-        <button>
-          Read More
-        </button>
-      </a>
-    </div>
-  </article>
-
-  <article class="article">
-    <h2 class="article-title">
-      <a href="https://spark-wz.github.io/post/java">集合常用</a>
-    </h2>
-    <p class="article-meta">
-      2019-12-11
-      
-    </p>
-    <p class="text-lead">
-      
-    </p>
-    <div class="row">
-      <a href="https://spark-wz.github.io/post/java" class="readmore-link">
-        <button>
-          Read More
-        </button>
-      </a>
-    </div>
-  </article>
-
-  <article class="article">
-    <h2 class="article-title">
-      <a href="https://spark-wz.github.io/post/tong-ling-xiang-mu-dai-ma-xue-xi">铜陵项目代码学习</a>
-    </h2>
-    <p class="article-meta">
-      2019-11-11
-      
-    </p>
-    <p class="text-lead">
-      
-    </p>
-    <div class="row">
-      <a href="https://spark-wz.github.io/post/tong-ling-xiang-mu-dai-ma-xue-xi" class="readmore-link">
-        <button>
-          Read More
-        </button>
-      </a>
-    </div>
-  </article>
-
-  <article class="article">
-    <h2 class="article-title">
-      <a href="https://spark-wz.github.io/post/bu-shu-ming-ling">部署命令</a>
-    </h2>
-    <p class="article-meta">
-      2019-11-09
-      
-    </p>
-    <p class="text-lead">
-      
-    </p>
-    <div class="row">
-      <a href="https://spark-wz.github.io/post/bu-shu-ming-ling" class="readmore-link">
-        <button>
-          Read More
-        </button>
-      </a>
-    </div>
-  </article>
-
-  <article class="article">
-    <h2 class="article-title">
-      <a href="https://spark-wz.github.io/post/dong-tai-sql-xue-xi">动态sql学习</a>
-    </h2>
-    <p class="article-meta">
-      2019-11-07
-      
-    </p>
-    <p class="text-lead">
-      
-    </p>
-    <div class="row">
-      <a href="https://spark-wz.github.io/post/dong-tai-sql-xue-xi" class="readmore-link">
-        <button>
-          Read More
-        </button>
-      </a>
-    </div>
-  </article>
-
-
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://spark-wz.github.io/post/mysql-gui-fan">
+                <h3 class="post-title">
+                  MySQL规范
+                </h3>
+              </a>
+            </div>
+          
         </div>
         
-        <div class="row flex-edges">
-  
-  
-    <a href="https://spark-wz.github.io/page/2/" class="paper-btn">
-      下一页
-    </a>
-  
-</div>
-
       </div>
-      
+
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
     <img src="https://spark-wz.github.io/images/avatar.png?v=1585732047514" class="no-responsive avatar">
@@ -406,7 +238,9 @@
   </div>
 </div>
 
+
     </div>
+
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 
 <script type="application/javascript">

@@ -2,13 +2,39 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://spark-wz.github.io</id>
     <title>Gridea</title>
-    <updated>2020-02-17T09:52:54.993Z</updated>
+    <updated>2020-04-01T09:07:30.694Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://spark-wz.github.io"/>
     <link rel="self" href="https://spark-wz.github.io/atom.xml"/>
     <logo>https://spark-wz.github.io/images/avatar.png</logo>
     <icon>https://spark-wz.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[Python BeautifulSoup]]></title>
+        <id>https://spark-wz.github.io/post/python-beautifulsoup</id>
+        <link href="https://spark-wz.github.io/post/python-beautifulsoup">
+        </link>
+        <updated>2020-04-01T08:42:35.000Z</updated>
+        <content type="html"><![CDATA[<p>BeautifulSoup是一个可以从html或者xml中提取数据的Python库。<br>
+BeautifulSoup最常用解析器（lxml）效率最高<br>
+soup = BeautifulSoup(rurl,'lxml')</p>
+<p><strong>根据name属性找<br>
+soup.name<br>
+soup.head 只获取head标签<br>
+soup.body.b 获取第一个b标签<br>
+通过点取属性的方式只能获得当前名字的第一个tag标签<br>
+获取所有的a标签soup.find_all()<br>
+soup.find_all('a')</strong></p>
+<p><strong>tag的.contains属性可以将tag的子节点以列表的方式输出<br>
+字符创没有.contains属性，因为没有子节点。<br>
+tag的.children可以对tag的直接子节点循环<br>
+for child in title_tag.children:<br>
+print(child)<br>
+.descendants可以对tag的所有子孙节点进行递归循环<br>
+for child in head_tag.descendants:<br>
+print(child)</strong></p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[MySQL规范]]></title>
         <id>https://spark-wz.github.io/post/mysql-gui-fan</id>
@@ -414,6 +440,7 @@ root<br>
 #2638f0      95#航空汽油</p>
 <p>netstat -ano |findstr &quot;8181&quot;<br>
 taskkill /pid 3672 /F</p>
+<p>CREATE TABLE IF NOT EXISTS test.lc (time TIMESTAMP, lc int, weight int, actualvol int);</p>
 ]]></content>
     </entry>
     <entry>
@@ -480,79 +507,6 @@ sum(if(type=1,this_count,0))  将所有type字段等于1的this_count相加求�
 <if test="param.startTime != null and param.startTime != ''" ><br>
 <![CDATA[ and c_t >= #{param.startTime} ]]]]><![CDATA[><br>
 </if></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[MyBatis逆向工程笔记]]></title>
-        <id>https://spark-wz.github.io/post/mybatis-ni-xiang-gong-cheng-bi-ji</id>
-        <link href="https://spark-wz.github.io/post/mybatis-ni-xiang-gong-cheng-bi-ji">
-        </link>
-        <updated>2019-11-04T02:40:08.000Z</updated>
-        <content type="html"><![CDATA[<p><strong>1. <generatorConfiguration> 标签</strong><br>
-如果需要在业务中增加别的依赖或者驱动，使用location属性知名依赖的全路径名<br>
-<classPathEntry  location="E:\apache-maven-3.5.0\repository\com\microsoft\sqlserver\sqljdbc4\4.0\sqljdbc4-4.0.jar"/></p>
-<p><strong>context标签</strong> 用于生成一组对象的环境<br>
-<em>可用属性</em><br>
-<strong>id</strong> 必选，上下文id，用于在生成错误时候提示<br>
-<strong>defaultModelType</strong>用于指定生成对象的模式<br>
-<strong>targetRuntime</strong> MyBatis3用于生成基于MyBatis3以上的版本的内容<br>
-<img src="https://spark-wz.github.io/post-images/1572838613004.png" alt=""><br>
-<strong>数据库连接驱动类，URL，用户名，密码</strong><br>
-<jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver" connectionURL="jdbc:sqlserver://39.97.227.216:1433;DatabaseName=PCS06" userId="sa" password="Geyifei212"></jdbcConnection><br>
-<strong>commentGenerator标签</strong><br>
-由于Generator生成的注释都是英文，而且无法理解，所以关闭注释<br>
-<img src="https://spark-wz.github.io/post-images/1572920494055.png" alt=""><br>
-<strong>java类型处理器 javaTypeResolver</strong><br>
-java类型处理器，默认使用JavaTypeResolverDefultImpl<br>
-默认会先尝试使用Integer，Long，Short来对应DECIMAL和NUMERIC数据类型<br>
-其中的property name = &quot;forceBigDecimals&quot;的取值规则如下：<br>
-true：使用BigDecimal对应的DECIMAL个NUMERIC数据类型<br>
-false：默认值<br>
-scale&gt;0,length&gt;18:使用BigDeciamal<br>
-scale=0,length[10,18]使用long<br>
-scale=0,length[5,9]使用integer<br>
-scale=0,length 小于5 使用short<br>
-<strong>javaModelGenerator标签  java模型创建器</strong><br>
-targetPackage：生成实体模型的包名和位置<br>
-targetPackage：目标项目指定路径<br>
-<em><strong>图示</strong></em><br>
-<img src="https://spark-wz.github.io/post-images/1572840104537.png" alt=""><br>
-标签内属性图示<br>
-<img src="https://spark-wz.github.io/post-images/1572840360075.png" alt=""><br>
-<strong>sqlMapGenerator 生成xml文件的包名</strong><br>
-<strong>javaClientGenerator 生成dao接口的包名和位置</strong><br>
-<strong>table标签  要生成的表</strong><br>
-table是数据库中的表名或者视图名<br>
-domainObjectName是实体类名<br>
-<img src="https://spark-wz.github.io/post-images/1572840632594.png" alt=""></p>
-<pre><code>--------------------------------------------------------------------------------
-**Spring配置文件**
-dev(开发环境)
-![](https://spark-wz.github.io/post-images/1572851359555.png)
-test(测试环境)
-prod(生产环境) 可以设置不同的端口，对应不同的开发环境
-
-
-**hikari连接池 （号称性能最好）**
-minimum-idle：池中维护的最小空闲连接数。
-auto-commit：自动提交从池中返回的链接。
-idleTimeout： 允许在池中闲置的最长时间。
-pool-name：连接池的自定义名称。
-max-lifetime：池中链接最长生命周期。
-</code></pre>
-<p>**	pagehelper分页配置**<br>
-配置数据库方言<br>
-helperDialect：mysql<br>
-配置分页的合理化数据<br>
-reasonable：true<br>
-自动分页配置<br>
-supportMethodsArguments：true<br>
-配置参数映射，从对象中根据属性名取值<br>
-params：count=countSql</p>
-<pre><code>**具体使用Excample**  java中的静态方法可以直接用列名点方法名调用
-普通方法需要先new；
-countByExcample：按照条件删除
-</code></pre>
 ]]></content>
     </entry>
 </feed>
