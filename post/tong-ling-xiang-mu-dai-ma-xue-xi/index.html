@@ -7,7 +7,7 @@
 <meta name="description" content="">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://spark-wz.github.io/favicon.ico?v=1585732047514">
+<link rel="shortcut icon" href="https://spark-wz.github.io/favicon.ico?v=1585820866477">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -95,23 +95,23 @@ sThreadLocal.set()<br>
 sThreadLocal.get()<br>
 <strong>spring动态切换多数据源解决方案</strong><br>
 1.建立一个数据源的名称常量类，建立一个获得和设置上下文环境的类，主要负责改变上下文数据源的名称，两个类可以合并。<br>
-<img src="https://spark-wz.github.io/post-images/1574906751791.png" alt=""><br>
+<img src="https://spark-wz.github.io/post-images/1574906751791.png" alt="" loading="lazy"><br>
 2.建立动态数据源类，这个类必须继承AbstractRoutingDataSource且实现方法datermineCurrentLookupKey，该方法返回一个key，一般是Object；<br>
-<img src="https://spark-wz.github.io/post-images/1574907519526.png" alt=""><br>
+<img src="https://spark-wz.github.io/post-images/1574907519526.png" alt="" loading="lazy"><br>
 3.编写spring的配置多个数据源<br>
-<img src="https://spark-wz.github.io/post-images/1574907652472.png" alt=""><br>
+<img src="https://spark-wz.github.io/post-images/1574907652472.png" alt="" loading="lazy"><br>
 <strong>config文件</strong><br>
 配置数据源<br>
 配置动态数据源<br>
-<img src="https://spark-wz.github.io/post-images/1574911348867.png" alt=""><br>
+<img src="https://spark-wz.github.io/post-images/1574911348867.png" alt="" loading="lazy"><br>
 <strong>MyBatis 逆向工程 Generator＋Example</strong><br>
 <em><strong>Generator代码生成器</strong></em><br>
 1.添加依赖和配置<br>
-<img src="https://spark-wz.github.io/post-images/1574912134286.png" alt=""><br>
+<img src="https://spark-wz.github.io/post-images/1574912134286.png" alt="" loading="lazy"><br>
 2.在generatorConfig.xml配置数据库驱动，生成实体（模型），xml文件，dao接口的包名和位置，还有对应的数据库表和实体类。<br>
-<img src="https://spark-wz.github.io/post-images/1574912327152.png" alt=""><br>
+<img src="https://spark-wz.github.io/post-images/1574912327152.png" alt="" loading="lazy"><br>
 3.在maven中启动<br>
-<img src="https://spark-wz.github.io/post-images/1574912374990.png" alt=""><br>
+<img src="https://spark-wz.github.io/post-images/1574912374990.png" alt="" loading="lazy"><br>
 <em><strong>example用法</strong></em><br>
 int deleteByPrimaryKey(Integer id) thorws SQLException    按主键删除<br>
 int deleteByExample(UserExample example) thorws SQLException    按条件查询<br>
@@ -133,11 +133,11 @@ setOrderByClause   排序    列名是条件<br>
 example.createCriteria().andEqualTo(&quot;terminalName&quot;, &quot;计量现场服务终端&quot;);<br>
 条件查询用的是属性名  终端名称是计量现场服务终端<br>
 example.createCriteria().andGreaterThan(&quot;id&quot;,3); 厂商id&gt;3<br>
-<img src="https://spark-wz.github.io/post-images/1573009821363.png" alt=""><br>
+<img src="https://spark-wz.github.io/post-images/1573009821363.png" alt="" loading="lazy"><br>
 <strong>spring刷新数据源</strong><br>
 @Scheduled注解配合@EnableScheduling使用，计划任务执行<br>
 将service注入，配置数据源刷新时间，调用service中更新方法<br>
-<img src="https://spark-wz.github.io/post-images/1574913872984.png" alt=""><br>
+<img src="https://spark-wz.github.io/post-images/1574913872984.png" alt="" loading="lazy"><br>
 @Async 加上这个注解可以异步执行</p>
 <pre><code>*lambok**
 懒人神器，帮你自动生成get，set之类的方法
@@ -153,14 +153,14 @@ controller中在参数前边加@RequestBody注解，且只能加一次，
 </code></pre>
 <ol>
 <li>@PathVariable注解，绑定参数（映射url绑定的占位符）@PathVariable(value=&quot;id&quot;) String id  可以在url中直接写id<br>
-2.@RequestHeader 注解，可以把Request请求header部分的值绑定到方法的参数上。<img src="https://spark-wz.github.io/post-images/1575362303722.png" alt=""></li>
+2.@RequestHeader 注解，可以把Request请求header部分的值绑定到方法的参数上。<img src="https://spark-wz.github.io/post-images/1575362303722.png" alt="" loading="lazy"></li>
 <li></li>
 </ol>
 <p>@CookieValue 可以把Request header中关于cookie的值绑定到方法的参数上。<br>
 图片示例<br>
 4.@RequestParam   常用来处理简单类型的绑定<br>
 通过Request.getParameter() 获取的String可直接转换为简单类型的情况<br>
-<img src="https://spark-wz.github.io/post-images/1575364405727.png" alt=""></p>
+<img src="https://spark-wz.github.io/post-images/1575364405727.png" alt="" loading="lazy"></p>
 <pre><code>**Criteria用法**
 Excample.or()相当于 Example.Criteria criteria = Example.createCriteria;
 criteria.andTestIsNull();    -里面的参数必须为null
@@ -214,7 +214,7 @@ BigDecimal num2 = new BigDecimal(&quot;0.00005&quot;);<br>
               <div class="next">
                 下一篇
               </div>
-              <a href="https://spark-wz.github.io/post/bu-shu-ming-ling">
+              <a href="https://spark-wz.github.io/post/bu-shu-ming-ling/">
                 <h3 class="post-title">
                   部署命令
                 </h3>
@@ -227,7 +227,7 @@ BigDecimal num2 = new BigDecimal(&quot;0.00005&quot;);<br>
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://spark-wz.github.io/images/avatar.png?v=1585732047514" class="no-responsive avatar">
+    <img src="https://spark-wz.github.io/images/avatar.png?v=1585820866477" class="no-responsive avatar">
     <div class="text-muted"></div>
     <div class="social-container">
       
@@ -252,62 +252,64 @@ BigDecimal num2 = new BigDecimal(&quot;0.00005&quot;);<br>
         
           
             <li>
-              <a href="https://spark-wz.github.io/post/python-beautifulsoup">Python BeautifulSoup</a>
+              <a href="https://spark-wz.github.io/post/wei-xin-xiao-cheng-xu/">微信小程序</a>
             </li>
           
         
           
             <li>
-              <a href="https://spark-wz.github.io/post/mysql-gui-fan">MySQL规范</a>
+              <a href="https://spark-wz.github.io/post/python-beautifulsoup/">Python BeautifulSoup</a>
             </li>
           
         
           
             <li>
-              <a href="https://spark-wz.github.io/post/yao-chi-ju">钥匙柜</a>
+              <a href="https://spark-wz.github.io/post/mysql-gui-fan/">MySQL规范</a>
             </li>
           
         
           
             <li>
-              <a href="https://spark-wz.github.io/post/ji-lu-yi-ci-ben-di-jar-bao-dao-ru-maven-cang-ku-cai-dao-de-keng">记录一次本地jar包导入maven仓库踩到的坑</a>
+              <a href="https://spark-wz.github.io/post/yao-chi-ju/">钥匙柜</a>
             </li>
           
         
           
             <li>
-              <a href="https://spark-wz.github.io/post/lambda-biao-da-shi">Lambda表达式</a>
+              <a href="https://spark-wz.github.io/post/ji-lu-yi-ci-ben-di-jar-bao-dao-ru-maven-cang-ku-cai-dao-de-keng/">记录一次本地jar包导入maven仓库踩到的坑</a>
             </li>
           
         
           
             <li>
-              <a href="https://spark-wz.github.io/post/bionioaio-zong-jie">BIO,NIO,AIO总结</a>
+              <a href="https://spark-wz.github.io/post/lambda-biao-da-shi/">Lambda表达式</a>
             </li>
           
         
           
             <li>
-              <a href="https://spark-wz.github.io/post/java">集合常用</a>
+              <a href="https://spark-wz.github.io/post/bionioaio-zong-jie/">BIO,NIO,AIO总结</a>
             </li>
           
         
           
             <li>
-              <a href="https://spark-wz.github.io/post/tong-ling-xiang-mu-dai-ma-xue-xi">铜陵项目代码学习</a>
+              <a href="https://spark-wz.github.io/post/java/">集合常用</a>
             </li>
           
         
           
             <li>
-              <a href="https://spark-wz.github.io/post/bu-shu-ming-ling">部署命令</a>
+              <a href="https://spark-wz.github.io/post/tong-ling-xiang-mu-dai-ma-xue-xi/">铜陵项目代码学习</a>
             </li>
           
         
           
             <li>
-              <a href="https://spark-wz.github.io/post/dong-tai-sql-xue-xi">动态sql学习</a>
+              <a href="https://spark-wz.github.io/post/bu-shu-ming-ling/">部署命令</a>
             </li>
+          
+        
           
         
           

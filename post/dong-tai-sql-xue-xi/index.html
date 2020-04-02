@@ -7,7 +7,7 @@
 <meta name="description" content="">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://spark-wz.github.io/favicon.ico?v=1585732047514">
+<link rel="shortcut icon" href="https://spark-wz.github.io/favicon.ico?v=1585820866477">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -93,14 +93,14 @@
 <h3 id="动态sql标签">动态Sql标签</h3>
 <p><strong>if</strong><br>
 利用if实现简单的条件选择<br>
-<img src="https://spark-wz.github.io/post-images/1573093765857.png" alt=""><br>
+<img src="https://spark-wz.github.io/post-images/1573093765857.png" alt="" loading="lazy"><br>
 gt 对应  &gt;</p>
 <p>gte 对应 &gt;=</p>
 <p>lt 对应 &lt;(会报错  相关联的 &quot;test&quot; 属性值不能包含 '&lt;' 字符)</p>
 <p>lte 对应  &lt;=(会报错  相关联的 &quot;test&quot; 属性值不能包含 '&lt;' 字符)<br>
 <strong>choose（when，otherwise）</strong><br>
 相当于java的switch语句，通常与when和otherwise搭配<br>
-<img src="https://spark-wz.github.io/post-images/1573108301437.png" alt=""><br>
+<img src="https://spark-wz.github.io/post-images/1573108301437.png" alt="" loading="lazy"><br>
 例子中当title和author都不为null的时候，那么就二选一（前者优先），如果都为null，那么就选择otherwise中的，如果title个author中只有一个不为null，那么就选择哪个不为null的。<br>
 <strong>where</strong><br>
 简化Sql语句中的where的条件判断<br>
@@ -108,9 +108,9 @@ gt 对应  &gt;</p>
 解决动态更新问题<br>
 <strong>trim</strong><br>
 可以灵活的去除多余的关键字</p>
-<p><img src="https://spark-wz.github.io/post-images/1573094725608.png" alt="">假如说name和gender的值都不为null的话打印的SQL为：select * from user where    name = 'xx' and gender = 'xx'<br>
+<p><img src="https://spark-wz.github.io/post-images/1573094725608.png" alt="" loading="lazy">假如说name和gender的值都不为null的话打印的SQL为：select * from user where    name = 'xx' and gender = 'xx'<br>
 在标记的地方是不存在第一个and的，在where语句中 prefix是前缀，prefixoverride=“AND | OR”去掉第一个and或者or。<br>
-<img src="https://spark-wz.github.io/post-images/1573094813156.png" alt=""><br>
+<img src="https://spark-wz.github.io/post-images/1573094813156.png" alt="" loading="lazy"><br>
 假如说name和gender的值都不为null的话打印的SQL为：update user set name='xx' , gender='xx'     where id='x'</p>
 <p>在标记的地方不存在逗号，而且自动加了一个set前缀和where后缀，上面三个属性的意义如下，其中prefix意义如上：</p>
 <p>suffixoverride：去掉最后一个逗号（也可以是其他的标记，就像是上面前缀中的and一样）</p>
@@ -156,7 +156,7 @@ sum(if(type=1,this_count,0))  将所有type字段等于1的this_count相加求�
               <div class="next">
                 下一篇
               </div>
-              <a href="https://spark-wz.github.io/post/mybatis-ni-xiang-gong-cheng-bi-ji">
+              <a href="https://spark-wz.github.io/post/mybatis-ni-xiang-gong-cheng-bi-ji/">
                 <h3 class="post-title">
                   MyBatis逆向工程笔记
                 </h3>
@@ -169,7 +169,7 @@ sum(if(type=1,this_count,0))  将所有type字段等于1的this_count相加求�
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://spark-wz.github.io/images/avatar.png?v=1585732047514" class="no-responsive avatar">
+    <img src="https://spark-wz.github.io/images/avatar.png?v=1585820866477" class="no-responsive avatar">
     <div class="text-muted"></div>
     <div class="social-container">
       
@@ -194,62 +194,64 @@ sum(if(type=1,this_count,0))  将所有type字段等于1的this_count相加求�
         
           
             <li>
-              <a href="https://spark-wz.github.io/post/python-beautifulsoup">Python BeautifulSoup</a>
+              <a href="https://spark-wz.github.io/post/wei-xin-xiao-cheng-xu/">微信小程序</a>
             </li>
           
         
           
             <li>
-              <a href="https://spark-wz.github.io/post/mysql-gui-fan">MySQL规范</a>
+              <a href="https://spark-wz.github.io/post/python-beautifulsoup/">Python BeautifulSoup</a>
             </li>
           
         
           
             <li>
-              <a href="https://spark-wz.github.io/post/yao-chi-ju">钥匙柜</a>
+              <a href="https://spark-wz.github.io/post/mysql-gui-fan/">MySQL规范</a>
             </li>
           
         
           
             <li>
-              <a href="https://spark-wz.github.io/post/ji-lu-yi-ci-ben-di-jar-bao-dao-ru-maven-cang-ku-cai-dao-de-keng">记录一次本地jar包导入maven仓库踩到的坑</a>
+              <a href="https://spark-wz.github.io/post/yao-chi-ju/">钥匙柜</a>
             </li>
           
         
           
             <li>
-              <a href="https://spark-wz.github.io/post/lambda-biao-da-shi">Lambda表达式</a>
+              <a href="https://spark-wz.github.io/post/ji-lu-yi-ci-ben-di-jar-bao-dao-ru-maven-cang-ku-cai-dao-de-keng/">记录一次本地jar包导入maven仓库踩到的坑</a>
             </li>
           
         
           
             <li>
-              <a href="https://spark-wz.github.io/post/bionioaio-zong-jie">BIO,NIO,AIO总结</a>
+              <a href="https://spark-wz.github.io/post/lambda-biao-da-shi/">Lambda表达式</a>
             </li>
           
         
           
             <li>
-              <a href="https://spark-wz.github.io/post/java">集合常用</a>
+              <a href="https://spark-wz.github.io/post/bionioaio-zong-jie/">BIO,NIO,AIO总结</a>
             </li>
           
         
           
             <li>
-              <a href="https://spark-wz.github.io/post/tong-ling-xiang-mu-dai-ma-xue-xi">铜陵项目代码学习</a>
+              <a href="https://spark-wz.github.io/post/java/">集合常用</a>
             </li>
           
         
           
             <li>
-              <a href="https://spark-wz.github.io/post/bu-shu-ming-ling">部署命令</a>
+              <a href="https://spark-wz.github.io/post/tong-ling-xiang-mu-dai-ma-xue-xi/">铜陵项目代码学习</a>
             </li>
           
         
           
             <li>
-              <a href="https://spark-wz.github.io/post/dong-tai-sql-xue-xi">动态sql学习</a>
+              <a href="https://spark-wz.github.io/post/bu-shu-ming-ling/">部署命令</a>
             </li>
+          
+        
           
         
           

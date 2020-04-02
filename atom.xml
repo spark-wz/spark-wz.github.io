@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://spark-wz.github.io</id>
     <title>Gridea</title>
-    <updated>2020-04-01T09:07:30.694Z</updated>
+    <updated>2020-04-02T09:47:48.695Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://spark-wz.github.io"/>
     <link rel="self" href="https://spark-wz.github.io/atom.xml"/>
@@ -10,9 +10,20 @@
     <icon>https://spark-wz.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Gridea</rights>
     <entry>
+        <title type="html"><![CDATA[微信小程序]]></title>
+        <id>https://spark-wz.github.io/post/wei-xin-xiao-cheng-xu/</id>
+        <link href="https://spark-wz.github.io/post/wei-xin-xiao-cheng-xu/">
+        </link>
+        <updated>2020-04-02T09:47:30.000Z</updated>
+        <content type="html"><![CDATA[<p>第一步：前端调用wx.login()函数，获取返回的code值。（每次通过wx.login()得到的code值可能不一样）</p>
+<p>第二步：传递获取到的code值到服务器端，在服务器端用小程序appid，appsecret等去请求微信服务器，获取openid和session_key。（注：每个微信账号，在每个小程序中获取到的openid是唯一的，它可以作为判断新用户和老用户的依据。）</p>
+<p>第三步：将用户openid保存到数据库，并将用户id返回到前端，放到缓存中保持登录态</p>
+]]></content>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[Python BeautifulSoup]]></title>
-        <id>https://spark-wz.github.io/post/python-beautifulsoup</id>
-        <link href="https://spark-wz.github.io/post/python-beautifulsoup">
+        <id>https://spark-wz.github.io/post/python-beautifulsoup/</id>
+        <link href="https://spark-wz.github.io/post/python-beautifulsoup/">
         </link>
         <updated>2020-04-01T08:42:35.000Z</updated>
         <content type="html"><![CDATA[<p>BeautifulSoup是一个可以从html或者xml中提取数据的Python库。<br>
@@ -33,12 +44,52 @@ print(child)<br>
 .descendants可以对tag的所有子孙节点进行递归循环<br>
 for child in head_tag.descendants:<br>
 print(child)</strong></p>
+<pre><code>**.parent 可以拿到父节点
+html的父节点是BeautifulSoup
+.parents可以递归循环所有的父类节点
+link = soup.a
+</code></pre>
+<p>link</p>
+<h1 id="a-classsister-hrefhttpexamplecomelsie-idlink1elsiea"><a class="sister" href="http://example.com/elsie" id="link1">Elsie</a></h1>
+<p>for parent in link.parents:<br>
+if parent is None:<br>
+print(parent)<br>
+else:<br>
+print(parent.name)<br>
+**</p>
+<p><strong>兄弟节点</strong><br>
+sibling_soup.prettify())输出所有兄弟节点<br>
+sibling_soup.b.next_sibling 输出后边的兄弟节点</p>
+<h1 id="ctext2c"><c>text2</c></h1>
+<p>sibling_soup.c.previous_sibling输出前边的兄弟节点</p>
+<h1 id="btext1b"><b>text1</b></h1>
+<p><strong>正则表达式</strong><br>
+re<br>
+import re<br>
+complie()返回匹配的对象，单独使用没有意义，和find_all搭配使用</p>
+<p><strong>true</strong><br>
+for tag in soup.find_all(True):<br>
+print(tag.name)</p>
+<h1 id="html">html</h1>
+<h1 id="head">head</h1>
+<h1 id="title">title</h1>
+<h1 id="body">body</h1>
+<h1 id="p">p</h1>
+<h1 id="b">b</h1>
+<h1 id="p-2">p</h1>
+<h1 id="a">a</h1>
+<h1 id="a-2">a</h1>
+<h1 id="a-3">a</h1>
+<h1 id="p-可以匹配任何值但是不会返回字符串节点">p 可以匹配任何值，但是不会返回字符串节点。</h1>
+<p><strong>id</strong><br>
+soup.find_all(id='link2')<br>
+根据id匹配</p>
 ]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[MySQL规范]]></title>
-        <id>https://spark-wz.github.io/post/mysql-gui-fan</id>
-        <link href="https://spark-wz.github.io/post/mysql-gui-fan">
+        <id>https://spark-wz.github.io/post/mysql-gui-fan/</id>
+        <link href="https://spark-wz.github.io/post/mysql-gui-fan/">
         </link>
         <updated>2020-01-06T06:56:25.000Z</updated>
         <content type="html"><![CDATA[<p><strong>数据类型</strong><br>
@@ -50,7 +101,7 @@ varchar类型的，如果长度不超过255都用char</p>
 记得写注释<br>
 记得加默认值，数字的就是0<br>
 字符串的就 EMPTY STRING<br>
-<img src="https://spark-wz.github.io/post-images/1578298913491.png" alt=""><br>
+<img src="https://spark-wz.github.io/post-images/1578298913491.png" alt="" loading="lazy"><br>
 如果字符串时null的话，去查的话就很废效率。</p>
 <p>前端传给我取钥匙或者存钥匙<br>
 把所有状态为空的钥匙柜放在实时页面</p>
@@ -58,8 +109,8 @@ varchar类型的，如果长度不超过255都用char</p>
     </entry>
     <entry>
         <title type="html"><![CDATA[钥匙柜]]></title>
-        <id>https://spark-wz.github.io/post/yao-chi-ju</id>
-        <link href="https://spark-wz.github.io/post/yao-chi-ju">
+        <id>https://spark-wz.github.io/post/yao-chi-ju/</id>
+        <link href="https://spark-wz.github.io/post/yao-chi-ju/">
         </link>
         <updated>2019-12-30T06:25:39.000Z</updated>
         <content type="html"><![CDATA[<p><strong>整体流程</strong><br>
@@ -85,12 +136,12 @@ varchar类型的，如果长度不超过255都用char</p>
     </entry>
     <entry>
         <title type="html"><![CDATA[记录一次本地jar包导入maven仓库踩到的坑]]></title>
-        <id>https://spark-wz.github.io/post/ji-lu-yi-ci-ben-di-jar-bao-dao-ru-maven-cang-ku-cai-dao-de-keng</id>
-        <link href="https://spark-wz.github.io/post/ji-lu-yi-ci-ben-di-jar-bao-dao-ru-maven-cang-ku-cai-dao-de-keng">
+        <id>https://spark-wz.github.io/post/ji-lu-yi-ci-ben-di-jar-bao-dao-ru-maven-cang-ku-cai-dao-de-keng/</id>
+        <link href="https://spark-wz.github.io/post/ji-lu-yi-ci-ben-di-jar-bao-dao-ru-maven-cang-ku-cai-dao-de-keng/">
         </link>
         <updated>2019-12-20T02:27:13.000Z</updated>
         <content type="html"><![CDATA[<p>首先将conf/repository中的setttings中的配置文件路径改成自己的路径，要不会报一个路径不对的错，如下<br>
-<img src="https://spark-wz.github.io/post-images/1576809073329.png" alt=""><br>
+<img src="https://spark-wz.github.io/post-images/1576809073329.png" alt="" loading="lazy"><br>
 改成自己的路径之后使用mvn命令直接将jar包导入自己的maven仓库，设置好依赖的3个属性。<br>
 将jar包放到lib目录下<br>
 mvn install:install-file -Dfile=E:\apache-maven-3.5.0\lib/modbus4j-2.0.7.jar -DgroupId=com.wz.package -DartifactId=modbus4j -Dversion=2.0.7 -Dpackaging=jar<br>
@@ -102,8 +153,8 @@ mvn install:install-file -Dfile=E:\apache-maven-3.5.0\lib/modbus4j-2.0.7.jar -Dg
     </entry>
     <entry>
         <title type="html"><![CDATA[Lambda表达式]]></title>
-        <id>https://spark-wz.github.io/post/lambda-biao-da-shi</id>
-        <link href="https://spark-wz.github.io/post/lambda-biao-da-shi">
+        <id>https://spark-wz.github.io/post/lambda-biao-da-shi/</id>
+        <link href="https://spark-wz.github.io/post/lambda-biao-da-shi/">
         </link>
         <updated>2019-12-18T01:38:23.000Z</updated>
         <content type="html"><![CDATA[<p><strong>简介</strong><br>
@@ -133,8 +184,8 @@ person::getAge;<br>
     </entry>
     <entry>
         <title type="html"><![CDATA[BIO,NIO,AIO总结]]></title>
-        <id>https://spark-wz.github.io/post/bionioaio-zong-jie</id>
-        <link href="https://spark-wz.github.io/post/bionioaio-zong-jie">
+        <id>https://spark-wz.github.io/post/bionioaio-zong-jie/</id>
+        <link href="https://spark-wz.github.io/post/bionioaio-zong-jie/">
         </link>
         <updated>2019-12-11T08:08:47.000Z</updated>
         <content type="html"><![CDATA[<p>目录:</p>
@@ -167,12 +218,12 @@ person::getAge;<br>
 <p><strong>1.2 伪异步 IO</strong><br>
 <strong>1.3代码示例</strong><br>
 客户端</p>
-<figure data-type="image" tabindex="1"><img src="https://spark-wz.github.io/post-images/1576489092714.png" alt=""></figure>
+<figure data-type="image" tabindex="1"><img src="https://spark-wz.github.io/post-images/1576489092714.png" alt="" loading="lazy"></figure>
 <pre><code>服务端
 
 serverSocket.accept() 接收客户端的连接请求，返回一个套接字，如果没有连接到客户端，线程处于阻塞状态，程序无法执行下去。
 </code></pre>
-<figure data-type="image" tabindex="2"><img src="https://spark-wz.github.io/post-images/1576489522129.png" alt=""></figure>
+<figure data-type="image" tabindex="2"><img src="https://spark-wz.github.io/post-images/1576489522129.png" alt="" loading="lazy"></figure>
 <p><strong>1.4小结</strong></p>
 <p>在活动连接数不是特别高（小于单机1000）的情况下，这种模型是比较不错的，可以让每一个连接专注于自己的 I/O 并且编程模型简单，也不用过多考虑系统的过载、限流等问题。线程池本身就是一个天然的漏斗，可以缓冲一些系统处理不了的连接或请求。但是，当面对十万甚至百万级连接的时候，传统的 BIO 模型是无能为力的。因此，我们需要一种更高效的 I/O 处理模型来应对更高的并发量。</p>
 <p><strong>NIO new (I/O)</strong><br>
@@ -181,14 +232,14 @@ serverSocket.accept() 接收客户端的连接请求，返回一个套接字，�
     </entry>
     <entry>
         <title type="html"><![CDATA[集合常用]]></title>
-        <id>https://spark-wz.github.io/post/java</id>
-        <link href="https://spark-wz.github.io/post/java">
+        <id>https://spark-wz.github.io/post/java/</id>
+        <link href="https://spark-wz.github.io/post/java/">
         </link>
         <updated>2019-12-11T07:14:13.000Z</updated>
         <content type="html"><![CDATA[<p><strong>java中将数组转为list</strong><br>
 String[] myArray = {&quot;Apple&quot;,&quot;Banana&quot;,&quot;Orange&quot;};<br>
 List<String> myList = Arrays.asList(myArray);<br>
-但是这个方法将数组转为集合后，集合的底层还是数组<img src="https://spark-wz.github.io/post-images/1576048771521.jpg" alt=""><br>
+但是这个方法将数组转为集合后，集合的底层还是数组<img src="https://spark-wz.github.io/post-images/1576048771521.jpg" alt="" loading="lazy"><br>
 2.传递的对象必须是基本对象，不能是包装类<br>
 int[] myArray = { 1, 2, 3 };<br>
 List myList = Arrays.asList(myArray);<br>
@@ -234,8 +285,8 @@ System.out.println(&quot;key = &quot; + key+&quot;value = &quot;+value);<br>
     </entry>
     <entry>
         <title type="html"><![CDATA[铜陵项目代码学习]]></title>
-        <id>https://spark-wz.github.io/post/tong-ling-xiang-mu-dai-ma-xue-xi</id>
-        <link href="https://spark-wz.github.io/post/tong-ling-xiang-mu-dai-ma-xue-xi">
+        <id>https://spark-wz.github.io/post/tong-ling-xiang-mu-dai-ma-xue-xi/</id>
+        <link href="https://spark-wz.github.io/post/tong-ling-xiang-mu-dai-ma-xue-xi/">
         </link>
         <updated>2019-11-11T01:53:39.000Z</updated>
         <content type="html"><![CDATA[<p><strong>ThreadLocal</strong><br>
@@ -245,23 +296,23 @@ sThreadLocal.set()<br>
 sThreadLocal.get()<br>
 <strong>spring动态切换多数据源解决方案</strong><br>
 1.建立一个数据源的名称常量类，建立一个获得和设置上下文环境的类，主要负责改变上下文数据源的名称，两个类可以合并。<br>
-<img src="https://spark-wz.github.io/post-images/1574906751791.png" alt=""><br>
+<img src="https://spark-wz.github.io/post-images/1574906751791.png" alt="" loading="lazy"><br>
 2.建立动态数据源类，这个类必须继承AbstractRoutingDataSource且实现方法datermineCurrentLookupKey，该方法返回一个key，一般是Object；<br>
-<img src="https://spark-wz.github.io/post-images/1574907519526.png" alt=""><br>
+<img src="https://spark-wz.github.io/post-images/1574907519526.png" alt="" loading="lazy"><br>
 3.编写spring的配置多个数据源<br>
-<img src="https://spark-wz.github.io/post-images/1574907652472.png" alt=""><br>
+<img src="https://spark-wz.github.io/post-images/1574907652472.png" alt="" loading="lazy"><br>
 <strong>config文件</strong><br>
 配置数据源<br>
 配置动态数据源<br>
-<img src="https://spark-wz.github.io/post-images/1574911348867.png" alt=""><br>
+<img src="https://spark-wz.github.io/post-images/1574911348867.png" alt="" loading="lazy"><br>
 <strong>MyBatis 逆向工程 Generator＋Example</strong><br>
 <em><strong>Generator代码生成器</strong></em><br>
 1.添加依赖和配置<br>
-<img src="https://spark-wz.github.io/post-images/1574912134286.png" alt=""><br>
+<img src="https://spark-wz.github.io/post-images/1574912134286.png" alt="" loading="lazy"><br>
 2.在generatorConfig.xml配置数据库驱动，生成实体（模型），xml文件，dao接口的包名和位置，还有对应的数据库表和实体类。<br>
-<img src="https://spark-wz.github.io/post-images/1574912327152.png" alt=""><br>
+<img src="https://spark-wz.github.io/post-images/1574912327152.png" alt="" loading="lazy"><br>
 3.在maven中启动<br>
-<img src="https://spark-wz.github.io/post-images/1574912374990.png" alt=""><br>
+<img src="https://spark-wz.github.io/post-images/1574912374990.png" alt="" loading="lazy"><br>
 <em><strong>example用法</strong></em><br>
 int deleteByPrimaryKey(Integer id) thorws SQLException    按主键删除<br>
 int deleteByExample(UserExample example) thorws SQLException    按条件查询<br>
@@ -283,11 +334,11 @@ setOrderByClause   排序    列名是条件<br>
 example.createCriteria().andEqualTo(&quot;terminalName&quot;, &quot;计量现场服务终端&quot;);<br>
 条件查询用的是属性名  终端名称是计量现场服务终端<br>
 example.createCriteria().andGreaterThan(&quot;id&quot;,3); 厂商id&gt;3<br>
-<img src="https://spark-wz.github.io/post-images/1573009821363.png" alt=""><br>
+<img src="https://spark-wz.github.io/post-images/1573009821363.png" alt="" loading="lazy"><br>
 <strong>spring刷新数据源</strong><br>
 @Scheduled注解配合@EnableScheduling使用，计划任务执行<br>
 将service注入，配置数据源刷新时间，调用service中更新方法<br>
-<img src="https://spark-wz.github.io/post-images/1574913872984.png" alt=""><br>
+<img src="https://spark-wz.github.io/post-images/1574913872984.png" alt="" loading="lazy"><br>
 @Async 加上这个注解可以异步执行</p>
 <pre><code>*lambok**
 懒人神器，帮你自动生成get，set之类的方法
@@ -303,14 +354,14 @@ controller中在参数前边加@RequestBody注解，且只能加一次，
 </code></pre>
 <ol>
 <li>@PathVariable注解，绑定参数（映射url绑定的占位符）@PathVariable(value=&quot;id&quot;) String id  可以在url中直接写id<br>
-2.@RequestHeader 注解，可以把Request请求header部分的值绑定到方法的参数上。<img src="https://spark-wz.github.io/post-images/1575362303722.png" alt=""></li>
+2.@RequestHeader 注解，可以把Request请求header部分的值绑定到方法的参数上。<img src="https://spark-wz.github.io/post-images/1575362303722.png" alt="" loading="lazy"></li>
 <li></li>
 </ol>
 <p>@CookieValue 可以把Request header中关于cookie的值绑定到方法的参数上。<br>
 图片示例<br>
 4.@RequestParam   常用来处理简单类型的绑定<br>
 通过Request.getParameter() 获取的String可直接转换为简单类型的情况<br>
-<img src="https://spark-wz.github.io/post-images/1575364405727.png" alt=""></p>
+<img src="https://spark-wz.github.io/post-images/1575364405727.png" alt="" loading="lazy"></p>
 <pre><code>**Criteria用法**
 Excample.or()相当于 Example.Criteria criteria = Example.createCriteria;
 criteria.andTestIsNull();    -里面的参数必须为null
@@ -358,8 +409,8 @@ BigDecimal num2 = new BigDecimal(&quot;0.00005&quot;);<br>
     </entry>
     <entry>
         <title type="html"><![CDATA[部署命令]]></title>
-        <id>https://spark-wz.github.io/post/bu-shu-ming-ling</id>
-        <link href="https://spark-wz.github.io/post/bu-shu-ming-ling">
+        <id>https://spark-wz.github.io/post/bu-shu-ming-ling/</id>
+        <link href="https://spark-wz.github.io/post/bu-shu-ming-ling/">
         </link>
         <updated>2019-11-09T02:51:56.000Z</updated>
         <content type="html"><![CDATA[<p>cd /data/service 进入目录<br>
@@ -371,7 +422,7 @@ nohup java -jar sr-gasoline-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev &gt;
 //查看日志<br>
 tail -f -n 200 catalina.out<br>
 配置nginx<br>
-<img src="https://spark-wz.github.io/post-images/1573268782670.png" alt=""><br>
+<img src="https://spark-wz.github.io/post-images/1573268782670.png" alt="" loading="lazy"><br>
 service nginx restart</p>
 <p>ps -ef | grep java</p>
 <p>kill -9 id</p>
@@ -385,7 +436,7 @@ PATH=</annotation></semantics></math></span><span class="katex-html" aria-hidden
 export PATH JAVA_HOME CLASSPATH）<br>
 5.执行命令，使配置文件生效（source /etc/profile）<br>
 6.查看是否生效（java -version）<br>
-7.效果<img src="https://spark-wz.github.io/post-images/1573628339167.png" alt=""><br>
+7.效果<img src="https://spark-wz.github.io/post-images/1573628339167.png" alt="" loading="lazy"><br>
 <strong>linux下安装MySql</strong><br>
 1.mysql和rpm安装包 电脑上有<br>
 2./opt/installer 目录<br>
@@ -441,72 +492,6 @@ root<br>
 <p>netstat -ano |findstr &quot;8181&quot;<br>
 taskkill /pid 3672 /F</p>
 <p>CREATE TABLE IF NOT EXISTS test.lc (time TIMESTAMP, lc int, weight int, actualvol int);</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[动态sql学习]]></title>
-        <id>https://spark-wz.github.io/post/dong-tai-sql-xue-xi</id>
-        <link href="https://spark-wz.github.io/post/dong-tai-sql-xue-xi">
-        </link>
-        <updated>2019-11-07T01:36:16.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="什么是动态sql动态sql有什么作用">什么是动态Sql，动态Sql有什么作用？</h2>
-<p>传统的使用JDBC的方法，相信大家在组合复杂的的SQL语句的时候，需要去拼接，稍不注意哪怕少了个空格，都会导致错误。Mybatis的动态SQL功能正是为了解决这种问题， 其通过 if, choose, when, otherwise, trim, where, set, foreach标签，可组合成非常灵活的SQL语句，从而提高开发人员的效率</p>
-<h3 id="动态sql标签">动态Sql标签</h3>
-<p><strong>if</strong><br>
-利用if实现简单的条件选择<br>
-<img src="https://spark-wz.github.io/post-images/1573093765857.png" alt=""><br>
-gt 对应  &gt;</p>
-<p>gte 对应 &gt;=</p>
-<p>lt 对应 &lt;(会报错  相关联的 &quot;test&quot; 属性值不能包含 '&lt;' 字符)</p>
-<p>lte 对应  &lt;=(会报错  相关联的 &quot;test&quot; 属性值不能包含 '&lt;' 字符)<br>
-<strong>choose（when，otherwise）</strong><br>
-相当于java的switch语句，通常与when和otherwise搭配<br>
-<img src="https://spark-wz.github.io/post-images/1573108301437.png" alt=""><br>
-例子中当title和author都不为null的时候，那么就二选一（前者优先），如果都为null，那么就选择otherwise中的，如果title个author中只有一个不为null，那么就选择哪个不为null的。<br>
-<strong>where</strong><br>
-简化Sql语句中的where的条件判断<br>
-<strong>set</strong><br>
-解决动态更新问题<br>
-<strong>trim</strong><br>
-可以灵活的去除多余的关键字</p>
-<p><img src="https://spark-wz.github.io/post-images/1573094725608.png" alt="">假如说name和gender的值都不为null的话打印的SQL为：select * from user where    name = 'xx' and gender = 'xx'<br>
-在标记的地方是不存在第一个and的，在where语句中 prefix是前缀，prefixoverride=“AND | OR”去掉第一个and或者or。<br>
-<img src="https://spark-wz.github.io/post-images/1573094813156.png" alt=""><br>
-假如说name和gender的值都不为null的话打印的SQL为：update user set name='xx' , gender='xx'     where id='x'</p>
-<p>在标记的地方不存在逗号，而且自动加了一个set前缀和where后缀，上面三个属性的意义如下，其中prefix意义如上：</p>
-<p>suffixoverride：去掉最后一个逗号（也可以是其他的标记，就像是上面前缀中的and一样）</p>
-<p>suffix：后缀<br>
-<strong>foreach</strong><br>
-迭代一个集合，通常用于in条件</p>
-<p><strong>include标签和limit用法</strong> -- 湖州<br>
-<sql id = "Base_Column_List" ><br>
-id, number, type, start_time, end_time, start_count, end_count, this_count, status,<br>
-record_type, c_t, u_t, create_user, update_user, create_user_name, update_user_name<br>
-</sql><br>
-<select id = "selectLast" resultMap="BaseResultMap"><br>
-select<br>
-<include refid="Base_Column_List" /><br>
-from cz_records<br>
-where number = #{number, jdbcType=INTEFER}<br>
-<if test="status != null" ><br>
-and status = #{status,jdbcType=INTEGER}<br>
-</if><br>
-order by c_t desc limit 1<br>
-</select><br>
-<strong>上边的sql标签内的字段，通过绑定id 在下边的include字段中，通过refid传递过来整个sql语句相当于</strong><br>
-select sql标签内的字段 from 表;<br>
-<strong>limit</strong>   截取查询到的第一条;<br>
-<strong>补充</strong>    在知道结果只有一条的情况下，加limit 1可以提高效率;</p>
-<p><strong>MySql中的sum(if(exp1,exp2,exp3))</strong><br>
-加入exp1条件成立,返回exp2,不对返回exp3<br>
-sum(if(type=1,this_count,0))  将所有type字段等于1的this_count相加求和</p>
-<p><strong>as起别名  test as column</strong></p>
-<p><strong>MyBatis中的<![CDATA[]]]]><![CDATA[></strong><br>
-如果sql中有字符被xml解析之后会被转义的话，比如，&lt; ,&lt;=,&amp; 等我们不希望被转义，就会将sql语句包在<![CDATA[  ]]]]><![CDATA[>中<br>
-<strong>实例</strong><br>
-<if test="param.startTime != null and param.startTime != ''" ><br>
-<![CDATA[ and c_t >= #{param.startTime} ]]]]><![CDATA[><br>
-</if></p>
 ]]></content>
     </entry>
 </feed>
