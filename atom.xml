@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://spark-wz.github.io</id>
     <title>Gridea</title>
-    <updated>2020-04-29T17:16:00.951Z</updated>
+    <updated>2020-05-08T03:14:47.435Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://spark-wz.github.io"/>
     <link rel="self" href="https://spark-wz.github.io/atom.xml"/>
@@ -169,6 +169,7 @@ mvn install:install-file -Dfile=E:\apache-maven-3.5.0\lib/modbus4j-2.0.7.jar -Dg
 其中Dfile是当前目录加jar包全称，DgroupId 可以随便起，DartifactId一般是jar包名,Dversion是版本号。</p>
 <p>mvn install:install-file -Dfile=E:\apache-maven-3.5.0\lib/serotonin-timer-2.0.6.jar -DgroupId=com.wz.package -DartifactId=serotonin-timer -Dversion=2.0.6 -Dpackaging=jar</p>
 <p>mvn install:install-file -Dfile=E:\apache-maven-3.5.0\lib/commons-logging-1.2.jar -DgroupId=com.wz.package -DartifactId=commons-logging -Dversion=1.2 -Dpackaging=jar</p>
+<p>mvn install:install-file -Dfile=E:\apache-maven-3.5.0\lib/sqljdbc4-3.0.jar -DgroupId=com.wz.package -DartifactId=sqljdbc4 -Dversion=3.0 -Dpackaging=jar</p>
 <p>mvn install:install-file -Dfile=E:\apache-maven-3.5.0\lib/modbus4j-2.0.2.jar -DgroupId=com.wz.package -DartifactId=modbus4j2 -Dversion=2.0.2 -Dpackaging=jar</p>
 ]]></content>
     </entry>
