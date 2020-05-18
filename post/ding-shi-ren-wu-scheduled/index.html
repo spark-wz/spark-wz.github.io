@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>动态sql学习 | Gridea</title>
+<title>定时任务@Scheduled | Gridea</title>
 <meta name="description" content="">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -81,71 +81,48 @@
       <div class="sm-12 md-8 col">
         <div class="paper">
           <article class="article">
-            <h1>动态sql学习</h1>
+            <h1>定时任务@Scheduled</h1>
             <p class="article-meta">
-              2019-11-07
+              2020-05-18
               
             </p>
             
             <div class="post-content">
-              <h2 id="什么是动态sql动态sql有什么作用">什么是动态Sql，动态Sql有什么作用？</h2>
-<p>传统的使用JDBC的方法，相信大家在组合复杂的的SQL语句的时候，需要去拼接，稍不注意哪怕少了个空格，都会导致错误。Mybatis的动态SQL功能正是为了解决这种问题， 其通过 if, choose, when, otherwise, trim, where, set, foreach标签，可组合成非常灵活的SQL语句，从而提高开发人员的效率</p>
-<h3 id="动态sql标签">动态Sql标签</h3>
-<p><strong>if</strong><br>
-利用if实现简单的条件选择<br>
-<img src="https://spark-wz.github.io/post-images/1573093765857.png" alt="" loading="lazy"><br>
-gt 对应  &gt;</p>
-<p>gte 对应 &gt;=</p>
-<p>lt 对应 &lt;(会报错  相关联的 &quot;test&quot; 属性值不能包含 '&lt;' 字符)</p>
-<p>lte 对应  &lt;=(会报错  相关联的 &quot;test&quot; 属性值不能包含 '&lt;' 字符)<br>
-<strong>choose（when，otherwise）</strong><br>
-相当于java的switch语句，通常与when和otherwise搭配<br>
-<img src="https://spark-wz.github.io/post-images/1573108301437.png" alt="" loading="lazy"><br>
-例子中当title和author都不为null的时候，那么就二选一（前者优先），如果都为null，那么就选择otherwise中的，如果title个author中只有一个不为null，那么就选择哪个不为null的。<br>
-<strong>where</strong><br>
-简化Sql语句中的where的条件判断<br>
-<strong>set</strong><br>
-解决动态更新问题<br>
-<strong>trim</strong><br>
-可以灵活的去除多余的关键字</p>
-<p><img src="https://spark-wz.github.io/post-images/1573094725608.png" alt="" loading="lazy">假如说name和gender的值都不为null的话打印的SQL为：select * from user where    name = 'xx' and gender = 'xx'<br>
-在标记的地方是不存在第一个and的，在where语句中 prefix是前缀，prefixoverride=“AND | OR”去掉第一个and或者or。<br>
-<img src="https://spark-wz.github.io/post-images/1573094813156.png" alt="" loading="lazy"><br>
-假如说name和gender的值都不为null的话打印的SQL为：update user set name='xx' , gender='xx'     where id='x'</p>
-<p>在标记的地方不存在逗号，而且自动加了一个set前缀和where后缀，上面三个属性的意义如下，其中prefix意义如上：</p>
-<p>suffixoverride：去掉最后一个逗号（也可以是其他的标记，就像是上面前缀中的and一样）</p>
-<p>suffix：后缀<br>
-<strong>foreach</strong><br>
-迭代一个集合，通常用于in条件</p>
-<p><strong>include标签和limit用法</strong> -- 湖州<br>
-<sql id = "Base_Column_List" ><br>
-id, number, type, start_time, end_time, start_count, end_count, this_count, status,<br>
-record_type, c_t, u_t, create_user, update_user, create_user_name, update_user_name<br>
-</sql><br>
-<select id = "selectLast" resultMap="BaseResultMap"><br>
-select<br>
-<include refid="Base_Column_List" /><br>
-from cz_records<br>
-where number = #{number, jdbcType=INTEFER}<br>
-<if test="status != null" ><br>
-and status = #{status,jdbcType=INTEGER}<br>
-</if><br>
-order by c_t desc limit 1<br>
-</select><br>
-<strong>上边的sql标签内的字段，通过绑定id 在下边的include字段中，通过refid传递过来整个sql语句相当于</strong><br>
-select sql标签内的字段 from 表;<br>
-<strong>limit</strong>   截取查询到的第一条;<br>
-<strong>补充</strong>    在知道结果只有一条的情况下，加limit 1可以提高效率;</p>
-<p><strong>MySql中的sum(if(exp1,exp2,exp3))</strong><br>
-加入exp1条件成立,返回exp2,不对返回exp3<br>
-sum(if(type=1,this_count,0))  将所有type字段等于1的this_count相加求和</p>
-<p><strong>as起别名  test as column</strong></p>
-<p><strong>MyBatis中的<![CDATA[]]></strong><br>
-如果sql中有字符被xml解析之后会被转义的话，比如，&lt; ,&lt;=,&amp; 等我们不希望被转义，就会将sql语句包在<![CDATA[  ]]>中<br>
-<strong>实例</strong><br>
-<if test="param.startTime != null and param.startTime != ''" ><br>
-<![CDATA[ and c_t >= #{param.startTime} ]]><br>
-</if></p>
+              <p>字段 允许值 允许的特殊字符<br>
+秒 0-59 , - * /<br>
+分 0-59 , - * /<br>
+小时 0-23 , - * /<br>
+日期 1-31 , - * ? / L W C<br>
+月份 1-12 或者 JAN-DEC , - * /<br>
+星期 1-7 或者 SUN-SAT , - * ? / L C #<br>
+年（可选） 留空, 1970-2099 , - * /<br>
+表达式意义<br>
+&quot;0 0 12 * * ?&quot; 每天中午12点触发<br>
+&quot;0 15 10 ? * *&quot; 每天上午10:15触发<br>
+&quot;0 15 10 * * ?&quot; 每天上午10:15触发<br>
+&quot;0 15 10 * * ? *&quot; 每天上午10:15触发<br>
+&quot;0 15 10 * * ? 2005&quot; 2005年的每天上午10:15触发<br>
+&quot;0 * 14 * * ?&quot; 在每天下午2点到下午2:59期间的每1分钟触发<br>
+&quot;0 0/5 14 * * ?&quot; 在每天下午2点到下午2:55期间的每5分钟触发<br>
+&quot;0 0/5 14,18 * * ?&quot; 在每天下午2点到2:55期间和下午6点到6:55期间的每5分钟触发<br>
+&quot;0 0-5 14 * * ?&quot; 在每天下午2点到下午2:05期间的每1分钟触发<br>
+&quot;0 10,44 14 ? 3 WED&quot; 每年三月的星期三的下午2:10和2:44触发<br>
+&quot;0 15 10 ? * MON-FRI&quot; 周一至周五的上午10:15触发<br>
+&quot;0 15 10 15 * ?&quot; 每月15日上午10:15触发<br>
+&quot;0 15 10 L * ?&quot; 每月最后一日的上午10:15触发<br>
+&quot;0 15 10 ? * 6L&quot; 每月的最后一个星期五上午10:15触发<br>
+&quot;0 15 10 ? * 6L 2002-2005&quot; 2002年至2005年的每月的最后一个星期五上午10:15触发<br>
+&quot;0 15 10 ? * 6#3&quot; 每月的第三个星期五上午10:15触发<br>
+每天早上6点<br>
+0 6 * * *<br>
+每两个小时<br>
+0 */2 * * *<br>
+晚上11点到早上8点之间每两个小时，早上八点<br>
+0 23-7/2，8 * * *<br>
+每个月的4号和每个礼拜的礼拜一到礼拜三的早上11点<br>
+0 11 4 * 1-3<br>
+1月1日早上4点<br>
+0 4 1 1 *</p>
 
             </div>
           </article>
@@ -156,9 +133,9 @@ sum(if(type=1,this_count,0))  将所有type字段等于1的this_count相加求�
               <div class="next">
                 下一篇
               </div>
-              <a href="https://spark-wz.github.io/post/mybatis-ni-xiang-gong-cheng-bi-ji/">
+              <a href="https://spark-wz.github.io/post/bi-ye-lun-wen/">
                 <h3 class="post-title">
-                  MyBatis逆向工程笔记
+                  毕业论文
                 </h3>
               </a>
             </div>

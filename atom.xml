@@ -2,13 +2,56 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://spark-wz.github.io</id>
     <title>Gridea</title>
-    <updated>2020-05-08T03:14:47.435Z</updated>
+    <updated>2020-05-18T01:27:42.888Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://spark-wz.github.io"/>
     <link rel="self" href="https://spark-wz.github.io/atom.xml"/>
     <logo>https://spark-wz.github.io/images/avatar.png</logo>
     <icon>https://spark-wz.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[定时任务@Scheduled]]></title>
+        <id>https://spark-wz.github.io/post/ding-shi-ren-wu-scheduled/</id>
+        <link href="https://spark-wz.github.io/post/ding-shi-ren-wu-scheduled/">
+        </link>
+        <updated>2020-05-18T01:26:17.000Z</updated>
+        <content type="html"><![CDATA[<p>字段 允许值 允许的特殊字符<br>
+秒 0-59 , - * /<br>
+分 0-59 , - * /<br>
+小时 0-23 , - * /<br>
+日期 1-31 , - * ? / L W C<br>
+月份 1-12 或者 JAN-DEC , - * /<br>
+星期 1-7 或者 SUN-SAT , - * ? / L C #<br>
+年（可选） 留空, 1970-2099 , - * /<br>
+表达式意义<br>
+&quot;0 0 12 * * ?&quot; 每天中午12点触发<br>
+&quot;0 15 10 ? * *&quot; 每天上午10:15触发<br>
+&quot;0 15 10 * * ?&quot; 每天上午10:15触发<br>
+&quot;0 15 10 * * ? *&quot; 每天上午10:15触发<br>
+&quot;0 15 10 * * ? 2005&quot; 2005年的每天上午10:15触发<br>
+&quot;0 * 14 * * ?&quot; 在每天下午2点到下午2:59期间的每1分钟触发<br>
+&quot;0 0/5 14 * * ?&quot; 在每天下午2点到下午2:55期间的每5分钟触发<br>
+&quot;0 0/5 14,18 * * ?&quot; 在每天下午2点到2:55期间和下午6点到6:55期间的每5分钟触发<br>
+&quot;0 0-5 14 * * ?&quot; 在每天下午2点到下午2:05期间的每1分钟触发<br>
+&quot;0 10,44 14 ? 3 WED&quot; 每年三月的星期三的下午2:10和2:44触发<br>
+&quot;0 15 10 ? * MON-FRI&quot; 周一至周五的上午10:15触发<br>
+&quot;0 15 10 15 * ?&quot; 每月15日上午10:15触发<br>
+&quot;0 15 10 L * ?&quot; 每月最后一日的上午10:15触发<br>
+&quot;0 15 10 ? * 6L&quot; 每月的最后一个星期五上午10:15触发<br>
+&quot;0 15 10 ? * 6L 2002-2005&quot; 2002年至2005年的每月的最后一个星期五上午10:15触发<br>
+&quot;0 15 10 ? * 6#3&quot; 每月的第三个星期五上午10:15触发<br>
+每天早上6点<br>
+0 6 * * *<br>
+每两个小时<br>
+0 */2 * * *<br>
+晚上11点到早上8点之间每两个小时，早上八点<br>
+0 23-7/2，8 * * *<br>
+每个月的4号和每个礼拜的礼拜一到礼拜三的早上11点<br>
+0 11 4 * 1-3<br>
+1月1日早上4点<br>
+0 4 1 1 *</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[毕业论文]]></title>
         <id>https://spark-wz.github.io/post/bi-ye-lun-wen/</id>
@@ -250,59 +293,6 @@ serverSocket.accept() 接收客户端的连接请求，返回一个套接字，�
 <p>在活动连接数不是特别高（小于单机1000）的情况下，这种模型是比较不错的，可以让每一个连接专注于自己的 I/O 并且编程模型简单，也不用过多考虑系统的过载、限流等问题。线程池本身就是一个天然的漏斗，可以缓冲一些系统处理不了的连接或请求。但是，当面对十万甚至百万级连接的时候，传统的 BIO 模型是无能为力的。因此，我们需要一种更高效的 I/O 处理模型来应对更高的并发量。</p>
 <p><strong>NIO new (I/O)</strong><br>
 同步非阻塞的I/O模型</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[集合常用]]></title>
-        <id>https://spark-wz.github.io/post/java/</id>
-        <link href="https://spark-wz.github.io/post/java/">
-        </link>
-        <updated>2019-12-11T07:14:13.000Z</updated>
-        <content type="html"><![CDATA[<p><strong>java中将数组转为list</strong><br>
-String[] myArray = {&quot;Apple&quot;,&quot;Banana&quot;,&quot;Orange&quot;};<br>
-List<String> myList = Arrays.asList(myArray);<br>
-但是这个方法将数组转为集合后，集合的底层还是数组<img src="https://spark-wz.github.io/post-images/1576048771521.jpg" alt="" loading="lazy"><br>
-2.传递的对象必须是基本对象，不能是包装类<br>
-int[] myArray = { 1, 2, 3 };<br>
-List myList = Arrays.asList(myArray);<br>
-System.out.println(myList.size());//1<br>
-System.out.println(myList.get(0));//数组地址值<br>
-System.out.println(myList.get(1));//报错：ArrayIndexOutOfBoundsException<br>
-当传入原生数据类型是,myList.get(0)拿到的是数组本身，而不是第一个值<br>
-List myList = Arrays.asList(1, 2, 3);<br>
-myList.add(4);//运行时报错：UnsupportedOperationException<br>
-myList.remove(1);//运行时报错：UnsupportedOperationException<br>
-myList.clear();//运行时报错：UnsupportedOperationException<br>
-在使用add(),remove(),clear()会报错<br>
-<em>正确的最简便的方法</em><br>
-String myArray = {&quot;Apple&quot;,&quot;Banana&quot;,&quot;Orange&quot;};<br>
-List list = new ArrayList&lt;&gt;(Arrays.asList(myArray));</p>
-<p><strong>遍历Map</strong></p>
-<p>1.通过map.keySet()</p>
-<p>通过key去获取value<br>
-Set<Integer> set = map.keySet();</p>
-<p>for (Integer integer: set) {</p>
-<p>System.out.println(integer +&quot;的对应值为:&quot; + map.get(integer));</p>
-<p>}<br>
-2.通过map.values遍历所有的value</p>
-<p>Map&lt;Integer,Integer&gt; map = new HashMap&lt;&gt;();<br>
-map.put(1,1);<br>
-map.put(2,2);<br>
-map.put(3,3);<br>
-Collection<Integer> values = map.values();<br>
-for (Integer value : values) {<br>
-System.out.println(&quot;value = &quot; + value);<br>
-}<br>
-3.遍历map.entrySet</p>
-<p>遍历map.entrySet,可同时拿到所有的KEY和VALUE<br>
-Set&lt;Map.Entry&lt;Integer, Integer&gt;&gt; entries = map.entrySet();<br>
-for (Map.Entry&lt;Integer, Integer&gt; entry : entries) {<br>
-System.out.println(&quot;entry.getValue() = &quot; + entry.getValue());<br>
-}</p>
-<p>4.lambda表达式</p>
-<p>map.forEach((key,value) -&gt;{<br>
-System.out.println(&quot;key = &quot; + key+&quot;value = &quot;+value);<br>
-});</p>
 ]]></content>
     </entry>
 </feed>
