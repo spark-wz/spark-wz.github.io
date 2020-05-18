@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://spark-wz.github.io</id>
     <title>Gridea</title>
-    <updated>2020-05-18T01:27:42.888Z</updated>
+    <updated>2020-05-18T04:16:53.553Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://spark-wz.github.io"/>
     <link rel="self" href="https://spark-wz.github.io/atom.xml"/>
@@ -53,24 +53,54 @@
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[毕业论文]]></title>
-        <id>https://spark-wz.github.io/post/bi-ye-lun-wen/</id>
-        <link href="https://spark-wz.github.io/post/bi-ye-lun-wen/">
+        <title type="html"><![CDATA[taos数据库]]></title>
+        <id>https://spark-wz.github.io/post/taos-shu-ju-ku/</id>
+        <link href="https://spark-wz.github.io/post/taos-shu-ju-ku/">
         </link>
-        <updated>2020-04-24T09:04:04.000Z</updated>
-        <content type="html"><![CDATA[<p>学生 查看个人信息    查看成绩   个人信息管理    选课      登录（登录通过真实邮箱验证） 注册<br>
-教师   个人信息  包括管理   查看本班学生信息 成绩 登录  学生打分 Excel表导出<br>
-管理员  对教师的管理，增删盖查  对选课的增删盖查</p>
-<p>邮箱校验没有做</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[4.20上饶]]></title>
-        <id>https://spark-wz.github.io/post/420-shang-rao/</id>
-        <link href="https://spark-wz.github.io/post/420-shang-rao/">
-        </link>
-        <updated>2020-04-17T07:53:52.000Z</updated>
-        <content type="html"><![CDATA[<p>本地更改油品数据字典</p>
+        <updated>2020-05-12T06:38:25.000Z</updated>
+        <content type="html"><![CDATA[<p>TDengine要求每个数据点单独建表，系统中表的数量和采集点点的数量在一个量级.<br>
+超级表(STable)是同一类型数据采集点的抽象，是同类型采集实例的集合，包含多张数据结构一样的子表。<br>
+TDengine使用标准SQL语法定义表，使用关键词tags指定标签信息<br>
+create table &lt;stable_name&gt;(&lt;field_name&gt; timestamp,field_name1 field_type,……) tags(tag_name tag_type,…)</p>
+<p>实例<br>
+create table thermometer (ts timestamp, degree float)<br>
+tags (location binary(20),type int);</p>
+<p>沿用例子，使用超级表建立单个温度计数据表</p>
+<p>create table t1 using thermometer tags('beijing',10);</p>
+<p>tags字段的名称和类型：</p>
+<p>1.tags总长度不能超过512bytes。<br>
+2.tags列的数据类型不能是timestamp。<br>
+3.tags列名不能与其他列名相同。<br>
+4.tags列名不能为预留关键字。</p>
+<p>删除STable时，所有通过该STable时，所有通过该超级表建立的表都会被删除。</p>
+<p>查看属于某STable并满足查询条件的表<br>
+SELECT TBNAME,[TAG_NAME,…] FROM &lt;stable_name&gt; WHERE &lt;tag_name&gt; &lt;[=|&lt;=|&gt;=|&lt;&gt;] values..&gt; ([AND|OR] …)</p>
+<p>查询过程中可以加条件计数啥的</p>
+<p>#写数据时自动建子表</p>
+<p>自动建表只能建立子表不能建立超级表<br>
+INSERT INTO &lt;tb_name&gt; USING &lt;stb_name&gt; TAGS (&lt;tag1_value&gt;, ...) VALUES (field_value, ...) (field_value, ...) ...;</p>
+<p>#STable中tag管理</p>
+<p>添加新标签<br>
+alter table &lt;stable_name&gt; add tag&lt;new_tag_name&gt; <type><br>
+删除标签<br>
+drop tag<br>
+修改 change<br>
+修改子表标签值<br>
+alter table &lt;table_name&gt; set tag &lt;tag_name&gt;=&lt;new_tag_value&gt;</p>
+<p>#STable多表聚合</p>
+<p>针对超级表子表进行多表聚合查询，支持按照全部的tag值进行条件过滤，不支持binary类型的模糊查询</p>
+<p>SELECT function&lt;field_name&gt;,…<br>
+FROM &lt;stable_name&gt;<br>
+WHERE &lt;tag_name&gt; &lt;[=|&lt;=|&gt;=|&lt;&gt;] values..&gt; ([AND|OR] …)<br>
+INTERVAL (<time range>)<br>
+GROUP BY &lt;tag_name&gt;, &lt;tag_name&gt;…<br>
+ORDER BY &lt;tag_name&gt; &lt;asc|desc&gt;<br>
+SLIMIT &lt;group_limit&gt;<br>
+SOFFSET &lt;group_offset&gt;<br>
+LIMIT &lt;record_limit&gt;<br>
+OFFSET &lt;record_offset&gt;<br>
+超级表聚合查询，TDengine目前支持sum、count、avg、first、last、min、max、top、bottom不使用orderBy的查询将会对超级表下满足条件的进行查询</p>
+<p>#STable使用实例</p>
 ]]></content>
     </entry>
     <entry>
@@ -248,51 +278,180 @@ person::getAge;<br>
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[BIO,NIO,AIO总结]]></title>
-        <id>https://spark-wz.github.io/post/bionioaio-zong-jie/</id>
-        <link href="https://spark-wz.github.io/post/bionioaio-zong-jie/">
+        <title type="html"><![CDATA[集合常用]]></title>
+        <id>https://spark-wz.github.io/post/java/</id>
+        <link href="https://spark-wz.github.io/post/java/">
         </link>
-        <updated>2019-12-11T08:08:47.000Z</updated>
-        <content type="html"><![CDATA[<p>目录:</p>
-<ol>
-<li>BIO (Blocking I/O) 同步并阻塞<br>
-1.1 传统 BIO<br>
-1.2 伪异步 IO<br>
-1.3 代码示例<br>
-1.4 总结</li>
-<li>NIO (New I/O)    同步非阻塞<br>
-2.1 NIO 简介<br>
-2.2 NIO的特性/NIO与IO区别<br>
-1)Non-blocking IO（非阻塞IO）<br>
-2)Buffer(缓冲区)<br>
-3)Channel (通道)<br>
-4)Selectors(选择器)<br>
-2.3 NIO 读数据和写数据方式<br>
-2.4 NIO核心组件简单介绍<br>
-2.5 代码示例</li>
-<li>AIO (Asynchronous I/O)   异步非阻塞</li>
-</ol>
-<p><strong>实例</strong><br>
-<strong>1. BIO (Blocking I/O)</strong><br>
-同步阻塞I/O模式，数据的读取写入必须阻塞在一个线程中等待其完成。<br>
-<strong>1.1传统BIO通信模型</strong><br>
-通常用一个独立的Acceptor负责监听客户端的连接，一般会在While(true)循环服务中调用accept()方法等待接受客户端请求的连接的方式监听请求，一旦接到请求，就可以在这之上进行读写请求，此时不能再接受其他客户端连接请求。只能等待当前连接的操作完成，但是可以通过多线程来支持多个客户端的连接。</p>
-<p>如果想让BIO通信模型能够同时处理多个请求，就必须使用多线程（主要原因是socket.accept(),socket.read(),socket.write()射击的三个方法都是同步阻塞的），也就是说他接到客户端连接请求之后为客户端创建一个新的线程进行链路处理，处理完成之后，通过输出流返回应答给客户端，线程销毁。这就是典型的 <strong>一请求一应答模型</strong>，如果连接创建之后不做任何事情的话，就会造成不必要的线程开销，但是可以通过 <strong>线程池</strong> 来改善，线程池还可以让线程的创建和回收成本更低。使用了FixedThreadPool可以有效的控制线程的最大数量，保证了系统有限的资源控制，实现了N（客户端请求数量）:M（处理客户端请求的线程数量）的伪异步I/O模型。</p>
-<p><strong>当客户端并发访问量增加后</strong><br>
-可能会导致线程堆栈溢出，创建新线程失败等问题，最终导致进程宕机或者僵死，不能对外提供服务。</p>
-<p><strong>1.2 伪异步 IO</strong><br>
-<strong>1.3代码示例</strong><br>
-客户端</p>
-<figure data-type="image" tabindex="1"><img src="https://spark-wz.github.io/post-images/1576489092714.png" alt="" loading="lazy"></figure>
-<pre><code>服务端
+        <updated>2019-12-11T07:14:13.000Z</updated>
+        <content type="html"><![CDATA[<p><strong>java中将数组转为list</strong><br>
+String[] myArray = {&quot;Apple&quot;,&quot;Banana&quot;,&quot;Orange&quot;};<br>
+List<String> myList = Arrays.asList(myArray);<br>
+但是这个方法将数组转为集合后，集合的底层还是数组<img src="https://spark-wz.github.io/post-images/1576048771521.jpg" alt="" loading="lazy"><br>
+2.传递的对象必须是基本对象，不能是包装类<br>
+int[] myArray = { 1, 2, 3 };<br>
+List myList = Arrays.asList(myArray);<br>
+System.out.println(myList.size());//1<br>
+System.out.println(myList.get(0));//数组地址值<br>
+System.out.println(myList.get(1));//报错：ArrayIndexOutOfBoundsException<br>
+当传入原生数据类型是,myList.get(0)拿到的是数组本身，而不是第一个值<br>
+List myList = Arrays.asList(1, 2, 3);<br>
+myList.add(4);//运行时报错：UnsupportedOperationException<br>
+myList.remove(1);//运行时报错：UnsupportedOperationException<br>
+myList.clear();//运行时报错：UnsupportedOperationException<br>
+在使用add(),remove(),clear()会报错<br>
+<em>正确的最简便的方法</em><br>
+String myArray = {&quot;Apple&quot;,&quot;Banana&quot;,&quot;Orange&quot;};<br>
+List list = new ArrayList&lt;&gt;(Arrays.asList(myArray));</p>
+<p><strong>遍历Map</strong></p>
+<p>1.通过map.keySet()</p>
+<p>通过key去获取value<br>
+Set<Integer> set = map.keySet();</p>
+<p>for (Integer integer: set) {</p>
+<p>System.out.println(integer +&quot;的对应值为:&quot; + map.get(integer));</p>
+<p>}<br>
+2.通过map.values遍历所有的value</p>
+<p>Map&lt;Integer,Integer&gt; map = new HashMap&lt;&gt;();<br>
+map.put(1,1);<br>
+map.put(2,2);<br>
+map.put(3,3);<br>
+Collection<Integer> values = map.values();<br>
+for (Integer value : values) {<br>
+System.out.println(&quot;value = &quot; + value);<br>
+}<br>
+3.遍历map.entrySet</p>
+<p>遍历map.entrySet,可同时拿到所有的KEY和VALUE<br>
+Set&lt;Map.Entry&lt;Integer, Integer&gt;&gt; entries = map.entrySet();<br>
+for (Map.Entry&lt;Integer, Integer&gt; entry : entries) {<br>
+System.out.println(&quot;entry.getValue() = &quot; + entry.getValue());<br>
+}</p>
+<p>4.lambda表达式</p>
+<p>map.forEach((key,value) -&gt;{<br>
+System.out.println(&quot;key = &quot; + key+&quot;value = &quot;+value);<br>
+});</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[铜陵项目代码学习]]></title>
+        <id>https://spark-wz.github.io/post/tong-ling-xiang-mu-dai-ma-xue-xi/</id>
+        <link href="https://spark-wz.github.io/post/tong-ling-xiang-mu-dai-ma-xue-xi/">
+        </link>
+        <updated>2019-11-11T01:53:39.000Z</updated>
+        <content type="html"><![CDATA[<p><strong>ThreadLocal</strong><br>
+ThreadLocal是一个线程每部的存储类，可以在既定线程内存储数据，数据存储之后，只有指定线程才会得到数据。<br>
+static final ThreadLocal<T> sThreadLocal = new ThreadLocal<T>();<br>
+sThreadLocal.set()<br>
+sThreadLocal.get()<br>
+<strong>spring动态切换多数据源解决方案</strong><br>
+1.建立一个数据源的名称常量类，建立一个获得和设置上下文环境的类，主要负责改变上下文数据源的名称，两个类可以合并。<br>
+<img src="https://spark-wz.github.io/post-images/1574906751791.png" alt="" loading="lazy"><br>
+2.建立动态数据源类，这个类必须继承AbstractRoutingDataSource且实现方法datermineCurrentLookupKey，该方法返回一个key，一般是Object；<br>
+<img src="https://spark-wz.github.io/post-images/1574907519526.png" alt="" loading="lazy"><br>
+3.编写spring的配置多个数据源<br>
+<img src="https://spark-wz.github.io/post-images/1574907652472.png" alt="" loading="lazy"><br>
+<strong>config文件</strong><br>
+配置数据源<br>
+配置动态数据源<br>
+<img src="https://spark-wz.github.io/post-images/1574911348867.png" alt="" loading="lazy"><br>
+<strong>MyBatis 逆向工程 Generator＋Example</strong><br>
+<em><strong>Generator代码生成器</strong></em><br>
+1.添加依赖和配置<br>
+<img src="https://spark-wz.github.io/post-images/1574912134286.png" alt="" loading="lazy"><br>
+2.在generatorConfig.xml配置数据库驱动，生成实体（模型），xml文件，dao接口的包名和位置，还有对应的数据库表和实体类。<br>
+<img src="https://spark-wz.github.io/post-images/1574912327152.png" alt="" loading="lazy"><br>
+3.在maven中启动<br>
+<img src="https://spark-wz.github.io/post-images/1574912374990.png" alt="" loading="lazy"><br>
+<em><strong>example用法</strong></em><br>
+int deleteByPrimaryKey(Integer id) thorws SQLException    按主键删除<br>
+int deleteByExample(UserExample example) thorws SQLException    按条件查询<br>
+String/Integer insert(User record) thorws SQLException    插入数据（返回值为ID）<br>
+User selectByPrimaryKey(Integer id) thorws SQLException    按主键查询<br>
+updateByExample     更新所有字段<br>
+updateByExample     根据条件更新想要更新的字段<br>
+updateByPrimaryKeySelective    根据主键更新密码<br>
+updateByPrimaryKey    根据主键更新除了主键之外的<br>
+setOrderByClause(&quot;ID DESC&quot;)id排序 也可以传多个参数 (&quot;<code>index</code> ASC,id ASC&quot;)<br>
+ListselectByExample(UserExample example) thorws SQLException    按条件查询<br>
+ListselectByExampleWithBLOGs(UserExample example) thorws SQLException    按条件查询（包括BLOB字段）。只有当数据表中的字段类型有为二进制的才会产生。<br>
+insert   插入数据          insertSelective      插入不为null的数据<br>
+int updateByPrimaryKey(User record) thorws SQLException    按主键更新<br>
+int updateByPrimaryKeySelective(User record) thorws SQLException    按主键更新值不为null的字段<br>
+int updateByExample(User record, UserExample example) thorws SQLException    按条件更新<br>
+int updateByExampleSelective(User record, UserExample example) thorws SQLException    按条件更新值不为null的字段<br>
+setOrderByClause   排序    列名是条件<br>
+example.createCriteria().andEqualTo(&quot;terminalName&quot;, &quot;计量现场服务终端&quot;);<br>
+条件查询用的是属性名  终端名称是计量现场服务终端<br>
+example.createCriteria().andGreaterThan(&quot;id&quot;,3); 厂商id&gt;3<br>
+<img src="https://spark-wz.github.io/post-images/1573009821363.png" alt="" loading="lazy"><br>
+<strong>spring刷新数据源</strong><br>
+@Scheduled注解配合@EnableScheduling使用，计划任务执行<br>
+将service注入，配置数据源刷新时间，调用service中更新方法<br>
+<img src="https://spark-wz.github.io/post-images/1574913872984.png" alt="" loading="lazy"><br>
+@Async 加上这个注解可以异步执行</p>
+<pre><code>*lambok**
+懒人神器，帮你自动生成get，set之类的方法
+安装方法：idea中下载lambok
+![](https://spark-wz.github.io/post-images/1573562104882.png)
+常用方法：
+实体类或者dto类中导入lambok
+加上data注解直接修饰所有getter变量，setter所有不为final的变量[]()
+![](https://spark-wz.github.io/post-images/1573562183069.png) 
 
-serverSocket.accept() 接收客户端的连接请求，返回一个套接字，如果没有连接到客户端，线程处于阻塞状态，程序无法执行下去。
+快捷键：alt +7 查看类中的所有方法
+controller中在参数前边加@RequestBody注解，且只能加一次，
 </code></pre>
-<figure data-type="image" tabindex="2"><img src="https://spark-wz.github.io/post-images/1576489522129.png" alt="" loading="lazy"></figure>
-<p><strong>1.4小结</strong></p>
-<p>在活动连接数不是特别高（小于单机1000）的情况下，这种模型是比较不错的，可以让每一个连接专注于自己的 I/O 并且编程模型简单，也不用过多考虑系统的过载、限流等问题。线程池本身就是一个天然的漏斗，可以缓冲一些系统处理不了的连接或请求。但是，当面对十万甚至百万级连接的时候，传统的 BIO 模型是无能为力的。因此，我们需要一种更高效的 I/O 处理模型来应对更高的并发量。</p>
-<p><strong>NIO new (I/O)</strong><br>
-同步非阻塞的I/O模型</p>
+<ol>
+<li>@PathVariable注解，绑定参数（映射url绑定的占位符）@PathVariable(value=&quot;id&quot;) String id  可以在url中直接写id<br>
+2.@RequestHeader 注解，可以把Request请求header部分的值绑定到方法的参数上。<img src="https://spark-wz.github.io/post-images/1575362303722.png" alt="" loading="lazy"></li>
+<li></li>
+</ol>
+<p>@CookieValue 可以把Request header中关于cookie的值绑定到方法的参数上。<br>
+图片示例<br>
+4.@RequestParam   常用来处理简单类型的绑定<br>
+通过Request.getParameter() 获取的String可直接转换为简单类型的情况<br>
+<img src="https://spark-wz.github.io/post-images/1575364405727.png" alt="" loading="lazy"></p>
+<pre><code>**Criteria用法**
+Excample.or()相当于 Example.Criteria criteria = Example.createCriteria;
+criteria.andTestIsNull();    -里面的参数必须为null
+criteria.andTestIsNotNull();     -里面的参数必须不是null
+criteria.andTestEqualTo();     String  等于  
+criteria.andTestBetween();     String1,String2 在区间
+criteria.andTestGreaterThan();   String  大于
+criteria.andTestGreaterThanOrEqualTo();   String  大于等于
+criteria.andTestIn();   String 
+criteria.andTestLessThan();   String 小于
+criteria.andTestLessThanOrEqualTo();   String  小于等于
+criteria.andTestLike();  String
+criteria.andTestNotBetween();   String 小于等于
+criteria.andTestNotEqualTo();   String
+criteria.andTestNotIn();   String 
+criteria.andTestNotLike();  String
+criteria.isValid();  return boolean   检查对象是否实例化
+criteria.notify();   线程通知
+criteria.wait();     线程等待
+</code></pre>
+<p>wait() 和 notify()必须配合synchrozied关键字使用，无论是wait()还是notify()都需要首先获取目标对象的一个监听器。<br>
+wait()会释放锁，而notify()不释放锁。<br>
+1线程被wait();之后释放锁然后2线程执行，2线程执行notify之后，2线程执行完程序1线程才会执行。</p>
+<pre><code>**时间戳**
+js获得当前时间时间戳
+new Date().getTime();
+new Date().valueOf();
+Date.parse(new Date());
+</code></pre>
+<p><strong>BigDecimal使用</strong><br>
+1.BigDecimal转Double<br>
+Double num = 123456789.98;<br>
+BigDecimal big = new BigDecimal(num + &quot;&quot;);<br>
+尽量用字符串的方式初始化<br>
+BigDecimal num1 = new BigDecimal(&quot;0.005&quot;);<br>
+BigDecimal num2 = new BigDecimal(&quot;0.00005&quot;);<br>
+加法 add()函数     减法subtract()函数<br>
+乘法multiply()函数    除法divide()函数    绝对值abs()函数<br>
+加法BigDecimal result = num1.add(num2);<br>
+减法BigDecimal result = num1.subtract(num2);<br>
+乘法BigDecimal result = num1.multiply(num2);<br>
+除法BigDecimal result = num1.divide(https://spark-wz.github.io/post-images/1575971121829.png)<br>
+绝对值BigDecimal result = num1.abs();</p>
 ]]></content>
     </entry>
 </feed>

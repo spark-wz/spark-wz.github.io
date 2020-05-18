@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>Python BeautifulSoup | Gridea</title>
+<title>taos数据库 | Gridea</title>
 <meta name="description" content="">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -81,71 +81,56 @@
       <div class="sm-12 md-8 col">
         <div class="paper">
           <article class="article">
-            <h1>Python BeautifulSoup</h1>
+            <h1>taos数据库</h1>
             <p class="article-meta">
-              2020-04-01
+              2020-05-12
               
             </p>
             
             <div class="post-content">
-              <p>BeautifulSoup是一个可以从html或者xml中提取数据的Python库。<br>
-BeautifulSoup最常用解析器（lxml）效率最高<br>
-soup = BeautifulSoup(rurl,'lxml')</p>
-<p><strong>根据name属性找<br>
-soup.name<br>
-soup.head 只获取head标签<br>
-soup.body.b 获取第一个b标签<br>
-通过点取属性的方式只能获得当前名字的第一个tag标签<br>
-获取所有的a标签soup.find_all()<br>
-soup.find_all('a')</strong></p>
-<p><strong>tag的.contains属性可以将tag的子节点以列表的方式输出<br>
-字符创没有.contains属性，因为没有子节点。<br>
-tag的.children可以对tag的直接子节点循环<br>
-for child in title_tag.children:<br>
-print(child)<br>
-.descendants可以对tag的所有子孙节点进行递归循环<br>
-for child in head_tag.descendants:<br>
-print(child)</strong></p>
-<pre><code>**.parent 可以拿到父节点
-html的父节点是BeautifulSoup
-.parents可以递归循环所有的父类节点
-link = soup.a
-</code></pre>
-<p>link</p>
-<h1 id="a-classsister-hrefhttpexamplecomelsie-idlink1elsiea"><a class="sister" href="http://example.com/elsie" id="link1">Elsie</a></h1>
-<p>for parent in link.parents:<br>
-if parent is None:<br>
-print(parent)<br>
-else:<br>
-print(parent.name)<br>
-**</p>
-<p><strong>兄弟节点</strong><br>
-sibling_soup.prettify())输出所有兄弟节点<br>
-sibling_soup.b.next_sibling 输出后边的兄弟节点</p>
-<h1 id="ctext2c"><c>text2</c></h1>
-<p>sibling_soup.c.previous_sibling输出前边的兄弟节点</p>
-<h1 id="btext1b"><b>text1</b></h1>
-<p><strong>正则表达式</strong><br>
-re<br>
-import re<br>
-complie()返回匹配的对象，单独使用没有意义，和find_all搭配使用</p>
-<p><strong>true</strong><br>
-for tag in soup.find_all(True):<br>
-print(tag.name)</p>
-<h1 id="html">html</h1>
-<h1 id="head">head</h1>
-<h1 id="title">title</h1>
-<h1 id="body">body</h1>
-<h1 id="p">p</h1>
-<h1 id="b">b</h1>
-<h1 id="p-2">p</h1>
-<h1 id="a">a</h1>
-<h1 id="a-2">a</h1>
-<h1 id="a-3">a</h1>
-<h1 id="p-可以匹配任何值但是不会返回字符串节点">p 可以匹配任何值，但是不会返回字符串节点。</h1>
-<p><strong>id</strong><br>
-soup.find_all(id='link2')<br>
-根据id匹配</p>
+              <p>TDengine要求每个数据点单独建表，系统中表的数量和采集点点的数量在一个量级.<br>
+超级表(STable)是同一类型数据采集点的抽象，是同类型采集实例的集合，包含多张数据结构一样的子表。<br>
+TDengine使用标准SQL语法定义表，使用关键词tags指定标签信息<br>
+create table &lt;stable_name&gt;(&lt;field_name&gt; timestamp,field_name1 field_type,……) tags(tag_name tag_type,…)</p>
+<p>实例<br>
+create table thermometer (ts timestamp, degree float)<br>
+tags (location binary(20),type int);</p>
+<p>沿用例子，使用超级表建立单个温度计数据表</p>
+<p>create table t1 using thermometer tags('beijing',10);</p>
+<p>tags字段的名称和类型：</p>
+<p>1.tags总长度不能超过512bytes。<br>
+2.tags列的数据类型不能是timestamp。<br>
+3.tags列名不能与其他列名相同。<br>
+4.tags列名不能为预留关键字。</p>
+<p>删除STable时，所有通过该STable时，所有通过该超级表建立的表都会被删除。</p>
+<p>查看属于某STable并满足查询条件的表<br>
+SELECT TBNAME,[TAG_NAME,…] FROM &lt;stable_name&gt; WHERE &lt;tag_name&gt; &lt;[=|&lt;=|&gt;=|&lt;&gt;] values..&gt; ([AND|OR] …)</p>
+<p>查询过程中可以加条件计数啥的</p>
+<p>#写数据时自动建子表</p>
+<p>自动建表只能建立子表不能建立超级表<br>
+INSERT INTO &lt;tb_name&gt; USING &lt;stb_name&gt; TAGS (&lt;tag1_value&gt;, ...) VALUES (field_value, ...) (field_value, ...) ...;</p>
+<p>#STable中tag管理</p>
+<p>添加新标签<br>
+alter table &lt;stable_name&gt; add tag&lt;new_tag_name&gt; <type><br>
+删除标签<br>
+drop tag<br>
+修改 change<br>
+修改子表标签值<br>
+alter table &lt;table_name&gt; set tag &lt;tag_name&gt;=&lt;new_tag_value&gt;</p>
+<p>#STable多表聚合</p>
+<p>针对超级表子表进行多表聚合查询，支持按照全部的tag值进行条件过滤，不支持binary类型的模糊查询</p>
+<p>SELECT function&lt;field_name&gt;,…<br>
+FROM &lt;stable_name&gt;<br>
+WHERE &lt;tag_name&gt; &lt;[=|&lt;=|&gt;=|&lt;&gt;] values..&gt; ([AND|OR] …)<br>
+INTERVAL (<time range>)<br>
+GROUP BY &lt;tag_name&gt;, &lt;tag_name&gt;…<br>
+ORDER BY &lt;tag_name&gt; &lt;asc|desc&gt;<br>
+SLIMIT &lt;group_limit&gt;<br>
+SOFFSET &lt;group_offset&gt;<br>
+LIMIT &lt;record_limit&gt;<br>
+OFFSET &lt;record_offset&gt;<br>
+超级表聚合查询，TDengine目前支持sum、count、avg、first、last、min、max、top、bottom不使用orderBy的查询将会对超级表下满足条件的进行查询</p>
+<p>#STable使用实例</p>
 
             </div>
           </article>
@@ -156,9 +141,9 @@ soup.find_all(id='link2')<br>
               <div class="next">
                 下一篇
               </div>
-              <a href="https://spark-wz.github.io/post/mysql-gui-fan/">
+              <a href="https://spark-wz.github.io/post/wei-xin-xiao-cheng-xu/">
                 <h3 class="post-title">
-                  MySQL规范
+                  微信小程序
                 </h3>
               </a>
             </div>
