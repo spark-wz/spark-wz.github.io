@@ -7,7 +7,7 @@
 <meta name="description" content="">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://spark-wz.github.io/favicon.ico?v=1592903220195">
+<link rel="shortcut icon" href="https://spark-wz.github.io/favicon.ico?v=1592907348260">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -88,81 +88,81 @@
             </p>
             
             <div class="post-content">
-              <p>cd /data/service 进入目录<br>
-mkdir tl-gasoline<br>
-cd tl-gasoline<br>
-上传jar包<br>
-//部署的时候注意开发环境 dev开发，prod正式<br>
-nohup java -jar sr-gasoline-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev &gt;&gt; catalina.out  2&gt;&amp;1 &amp;<br>
-//查看日志<br>
-tail -f -n 200 catalina.out<br>
-配置nginx<br>
-<img src="https://spark-wz.github.io/post-images/1573268782670.png" alt="" loading="lazy"><br>
+              <p>cd /data/service 进入目录
+mkdir tl-gasoline
+cd tl-gasoline
+上传jar包
+//部署的时候注意开发环境 dev开发，prod正式
+nohup java -jar sr-gasoline-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev &gt;&gt; catalina.out  2&gt;&amp;1 &amp;
+//查看日志
+tail -f -n 200 catalina.out
+配置nginx
+<img src="https://spark-wz.github.io/post-images/1573268782670.png" alt="">
 service nginx restart</p>
 <p>ps -ef | grep java</p>
 <p>kill -9 id</p>
-<p><strong>linux下安装jdk</strong><br>
-1.去官网下载jdk1.8   linux版本 （电脑里面有）<br>
-2.去usr中创建java目录 ，解压   tar -zxvf jdk-8u231-linux-x64.tar.gz<br>
-3.编辑配置文件  使用vi命令 （vi /etc/profile）<br>
-4.添加配置   输入i进入编辑模式，输入shift+Q后在输入wq保存（JAVA_HOME=/usr/java/jdk1.8.0_231<br>
+<p><strong>linux下安装jdk</strong>
+1.去官网下载jdk1.8   linux版本 （电脑里面有）
+2.去usr中创建java目录 ，解压   tar -zxvf jdk-8u231-linux-x64.tar.gz
+3.编辑配置文件  使用vi命令 （vi /etc/profile）
+4.添加配置   输入i进入编辑模式，输入shift+Q后在输入wq保存（JAVA_HOME=/usr/java/jdk1.8.0_231
 CLASSPATH=<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>J</mi><mi>A</mi><mi>V</mi><msub><mi>A</mi><mi>H</mi></msub><mi>O</mi><mi>M</mi><mi>E</mi><mi mathvariant="normal">/</mi><mi>l</mi><mi>i</mi><mi>b</mi><mi mathvariant="normal">/</mi><mi>P</mi><mi>A</mi><mi>T</mi><mi>H</mi><mo>=</mo></mrow><annotation encoding="application/x-tex">JAVA_HOME/lib/
-PATH=</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.09618em;">J</span><span class="mord mathdefault">A</span><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.08125em;">H</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord">/</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">i</span><span class="mord mathdefault">b</span><span class="mord">/</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mord mathdefault">A</span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span></span></span></span>PATH:$JAVA_HOME/bin<br>
-export PATH JAVA_HOME CLASSPATH）<br>
-5.执行命令，使配置文件生效（source /etc/profile）<br>
-6.查看是否生效（java -version）<br>
-7.效果<img src="https://spark-wz.github.io/post-images/1573628339167.png" alt="" loading="lazy"><br>
-<strong>linux下安装MySql</strong><br>
-1.mysql和rpm安装包 电脑上有<br>
-2./opt/installer 目录<br>
-3.tar xvf mysql-8.0.15-1.el7.x86_64.rpm-bundle.tar<br>
-4.rpm -ivh mysql-community-common-8.0.15-1.el7.x86_64.rpm<br>
-rpm -ivh mysql-community-libs-8.0.15-1.el7.x86_64.rpm --force --nodeps<br>
-rpm -ivh mysql-community-devel-8.0.15-1.el7.x86_64.rpm --force --nodeps<br>
-rpm -ivh mysql-community-libs-compat-8.0.15-1.el7.x86_64.rpm --force --nodeps<br>
-rpm -ivh mysql-community-client-8.0.15-1.el7.x86_64.rpm --force --nodeps<br>
-rpm -ivh mysql-community-server-8.0.15-1.el7.x86_64.rpm --force --nodeps<br>
-5.systemctl status mysqld<br>
-<strong>本机虚拟机mysql账户密码</strong><br>
-root    123qweQWE<br>
-update user set authentication_string = 'Platform@123' where user = 'root';<br>
-GRANT ALL PRIVILEGES ON <em>.</em> TO 'root'@'%'IDENTIFIED BY '123@qweQWE' WITH GRANT OPTION;<br>
-GRANT ALL PRIVILEGES ON <em>.</em> TO 'root'@'%' IDENTIFIED BY '123@qweQWE' WITH GRANT OPTION;<br>
-<strong>mysql安装完后设置密码，更改root权限</strong><br>
-连接https://blog.csdn.net/csdnxufei/article/details/88800559<br>
-rpm -ev mysql-community-client-8.0.15-1.el7.x86_64 --nodeps<br>
-set password for 'root'@'192.168.1.231' = '123qweQWE';<br>
-set password='123456';<br>
-lR/;l25C)j&gt;4<br>
-GRANT ALL PRIVILEGES ON <em>.</em> TO 'root'@'%' IDENTIFIED BY '123qweQWE'<br>
-ALTER USER 'root)'@'192.168.1.231' IDENTIFIED WITH mysql_native_password BY '123456';<br>
-set global validate_password.policy=LOW;<br>
-set global validate_password.length=6;<br>
-ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '123qweQWE';<br>
-<strong>防火墙关闭 systemctl stop firewalld</strong><br>
-<strong>nginx离线安装</strong><br>
-1.下载需要的版本和rpm包（电脑里面有）<br>
-安装各种需要的依赖<br>
-https://www.jianshu.com/p/0c9ca8c1b49c<br>
-<strong>铜陵各个数据库IP  账户 密码</strong><br>
-MySql              192.168.1.231         root         123@qweQWE<br>
-SqlServer汽车   192.168.1.204         sa            123456<br>
-SqlServer码头   192.168.1.203<br>
-SqlServer铁路    192.168.1.201<br>
-E:\apache-maven-3.5.0\conf\settings.xml<br>
-E:\apache-maven-3.5.0\repository<br>
-管理员1  guanliyuan1<br>
-2<br>
-操作员1  caozuoyaun1<br>
-2<br>
-<strong>湖州linux账户</strong><br>
-root<br>
+PATH=</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:0.75em;"></span><span class="strut bottom" style="height:1em;vertical-align:-0.25em;"></span><span class="base textstyle uncramped"><span class="mord mathit" style="margin-right:0.09618em;">J</span><span class="mord mathit">A</span><span class="mord mathit" style="margin-right:0.22222em;">V</span><span class="mord"><span class="mord mathit">A</span><span class="vlist"><span style="top:0.15em;margin-right:0.05em;margin-left:0em;"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span><span class="reset-textstyle scriptstyle cramped"><span class="mord mathit" style="margin-right:0.08125em;">H</span></span></span><span class="baseline-fix"><span class="fontsize-ensurer reset-size5 size5"><span style="font-size:0em;">​</span></span>​</span></span></span><span class="mord mathit" style="margin-right:0.02778em;">O</span><span class="mord mathit" style="margin-right:0.10903em;">M</span><span class="mord mathit" style="margin-right:0.05764em;">E</span><span class="mord mathrm">/</span><span class="mord mathit" style="margin-right:0.01968em;">l</span><span class="mord mathit">i</span><span class="mord mathit">b</span><span class="mord mathrm">/</span><span class="mord mathit" style="margin-right:0.13889em;">P</span><span class="mord mathit">A</span><span class="mord mathit" style="margin-right:0.13889em;">T</span><span class="mord mathit" style="margin-right:0.08125em;">H</span><span class="mrel">=</span></span></span></span>PATH:$JAVA_HOME/bin
+export PATH JAVA_HOME CLASSPATH）
+5.执行命令，使配置文件生效（source /etc/profile）
+6.查看是否生效（java -version）
+7.效果<img src="https://spark-wz.github.io/post-images/1573628339167.png" alt="">
+<strong>linux下安装MySql</strong>
+1.mysql和rpm安装包 电脑上有
+2./opt/installer 目录
+3.tar xvf mysql-8.0.15-1.el7.x86_64.rpm-bundle.tar
+4.rpm -ivh mysql-community-common-8.0.15-1.el7.x86_64.rpm
+rpm -ivh mysql-community-libs-8.0.15-1.el7.x86_64.rpm --force --nodeps
+rpm -ivh mysql-community-devel-8.0.15-1.el7.x86_64.rpm --force --nodeps
+rpm -ivh mysql-community-libs-compat-8.0.15-1.el7.x86_64.rpm --force --nodeps
+rpm -ivh mysql-community-client-8.0.15-1.el7.x86_64.rpm --force --nodeps
+rpm -ivh mysql-community-server-8.0.15-1.el7.x86_64.rpm --force --nodeps
+5.systemctl status mysqld
+<strong>本机虚拟机mysql账户密码</strong>
+root    123qweQWE
+update user set authentication_string = 'Platform@123' where user = 'root';
+GRANT ALL PRIVILEGES ON <em>.</em> TO 'root'@'%'IDENTIFIED BY '123@qweQWE' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON <em>.</em> TO 'root'@'%' IDENTIFIED BY '123@qweQWE' WITH GRANT OPTION;
+<strong>mysql安装完后设置密码，更改root权限</strong>
+连接https://blog.csdn.net/csdnxufei/article/details/88800559
+rpm -ev mysql-community-client-8.0.15-1.el7.x86_64 --nodeps
+set password for 'root'@'192.168.1.231' = '123qweQWE';
+set password='123456';
+lR/;l25C)j&gt;4
+GRANT ALL PRIVILEGES ON <em>.</em> TO 'root'@'%' IDENTIFIED BY '123qweQWE'
+ALTER USER 'root)'@'192.168.1.231' IDENTIFIED WITH mysql_native_password BY '123456';
+set global validate_password.policy=LOW;
+set global validate_password.length=6;
+ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '123qweQWE';
+<strong>防火墙关闭 systemctl stop firewalld</strong>
+<strong>nginx离线安装</strong>
+1.下载需要的版本和rpm包（电脑里面有）
+安装各种需要的依赖
+https://www.jianshu.com/p/0c9ca8c1b49c
+<strong>铜陵各个数据库IP  账户 密码</strong>
+MySql              192.168.1.231         root         123@qweQWE
+SqlServer汽车   192.168.1.204         sa            123456
+SqlServer码头   192.168.1.203
+SqlServer铁路    192.168.1.201
+E:\apache-maven-3.5.0\conf\settings.xml
+E:\apache-maven-3.5.0\repository
+管理员1  guanliyuan1
+2
+操作员1  caozuoyaun1
+2
+<strong>湖州linux账户</strong>
+root
 123qwe</p>
-<p><strong>铜陵</strong><br>
-0#轻柴油<br>
-#7f7456     -10#军用柴油<br>
-#693341     93#车用汽油<br>
-#4045f9      75#航空汽油<br>
+<p><strong>铜陵</strong>
+0#轻柴油
+#7f7456     -10#军用柴油
+#693341     93#车用汽油
+#4045f9      75#航空汽油
 #2638f0      95#航空汽油</p>
 <p>netstat -ano |findstr &quot;8181&quot;<br>
 taskkill /pid 3672 /F</p>
@@ -177,7 +177,7 @@ taskkill /pid 3672 /F</p>
               <div class="next">
                 下一篇
               </div>
-              <a href="https://spark-wz.github.io/post/dong-tai-sql-xue-xi/">
+              <a href="https://spark-wz.github.io/post/dong-tai-sql-xue-xi">
                 <h3 class="post-title">
                   动态sql学习
                 </h3>
@@ -190,7 +190,7 @@ taskkill /pid 3672 /F</p>
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://spark-wz.github.io/images/avatar.png?v=1592903220195" class="no-responsive avatar">
+    <img src="https://spark-wz.github.io/images/avatar.png?v=1592907348260" class="no-responsive avatar">
     <div class="text-muted"></div>
     <div class="social-container">
       
@@ -215,61 +215,61 @@ taskkill /pid 3672 /F</p>
         
           
             <li>
-              <a href="https://spark-wz.github.io/post/ce-shi/">Modbus RTU</a>
+              <a href="https://spark-wz.github.io/post/ce-shi">Modbus RTU</a>
             </li>
           
         
           
             <li>
-              <a href="https://spark-wz.github.io/post/ding-shi-ren-wu-scheduled/">定时任务@Scheduled</a>
+              <a href="https://spark-wz.github.io/post/ding-shi-ren-wu-scheduled">定时任务@Scheduled</a>
             </li>
           
         
           
             <li>
-              <a href="https://spark-wz.github.io/post/taos-shu-ju-ku/">taos数据库</a>
+              <a href="https://spark-wz.github.io/post/taos-shu-ju-ku">taos数据库</a>
             </li>
           
         
           
             <li>
-              <a href="https://spark-wz.github.io/post/wei-xin-xiao-cheng-xu/">微信小程序</a>
+              <a href="https://spark-wz.github.io/post/wei-xin-xiao-cheng-xu">微信小程序</a>
             </li>
           
         
           
             <li>
-              <a href="https://spark-wz.github.io/post/python-beautifulsoup/">Python BeautifulSoup</a>
+              <a href="https://spark-wz.github.io/post/python-beautifulsoup">Python BeautifulSoup</a>
             </li>
           
         
           
             <li>
-              <a href="https://spark-wz.github.io/post/mysql-gui-fan/">MySQL规范</a>
+              <a href="https://spark-wz.github.io/post/mysql-gui-fan">MySQL规范</a>
             </li>
           
         
           
             <li>
-              <a href="https://spark-wz.github.io/post/yao-chi-ju/">钥匙柜</a>
+              <a href="https://spark-wz.github.io/post/yao-chi-ju">钥匙柜</a>
             </li>
           
         
           
             <li>
-              <a href="https://spark-wz.github.io/post/ji-lu-yi-ci-ben-di-jar-bao-dao-ru-maven-cang-ku-cai-dao-de-keng/">记录一次本地jar包导入maven仓库踩到的坑</a>
+              <a href="https://spark-wz.github.io/post/ji-lu-yi-ci-ben-di-jar-bao-dao-ru-maven-cang-ku-cai-dao-de-keng">记录一次本地jar包导入maven仓库踩到的坑</a>
             </li>
           
         
           
             <li>
-              <a href="https://spark-wz.github.io/post/lambda-biao-da-shi/">Lambda表达式</a>
+              <a href="https://spark-wz.github.io/post/lambda-biao-da-shi">Lambda表达式</a>
             </li>
           
         
           
             <li>
-              <a href="https://spark-wz.github.io/post/java/">集合常用</a>
+              <a href="https://spark-wz.github.io/post/java">集合常用</a>
             </li>
           
         
