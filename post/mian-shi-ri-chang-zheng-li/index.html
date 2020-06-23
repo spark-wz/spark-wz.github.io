@@ -7,7 +7,7 @@
 <meta name="description" content="">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://spark-wz.github.io/favicon.ico?v=1592907348260">
+<link rel="shortcut icon" href="https://spark-wz.github.io/favicon.ico?v=1592907574558">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -88,24 +88,24 @@
             </p>
             
             <div class="post-content">
-              <p><strong>hashmap的底层原理</strong>
-1.jdk1.8之前hashmap采用位桶(数组)+链表实现即使用链表处理冲突，统一hash值得链表都存储在一个链表中，但是当同一个通中的元素过多时，即hash值相等的元素过多时，通过可以查找值的效率就变低。
-2.jdk1.8之后，hashmap采用的是位桶(数组)+链表+红黑树实现，当链表长度超过8的阈值后，将链表转换为红黑树，这样大大减少了查找时间。
-<strong>spring的事务管理</strong>
-<em>1事务的特性(ACID)</em>
-原子性：最小的执行单位，不能分割。
-一致性：执行数据前后，数据保持一致。
-隔离性：并发访问数据库时，一个用户的事务不能被其他事务干扰，各并发事务之间数据库时相互独立的。
-持久性：一个事务被提交之后，他对数据库中的改变是持久的，即使数据库发生故障也不应该发生影响。
-<em>2.事务管理器</em>
-1.创建事务(getTransaction)
-2.提交(commit)
-3.回滚(rollback)
-<strong>Mysql优化</strong>
-1.最后迫不得已看看是否硬件上存在问题。
-2.开启慢查询，看看哪个查询最浪费时间。记得查询时设置SQL_NO_CACHE
-(插一句话：Mysql只对&lt;,&lt;=,=,&gt;,&gt;=,between,in,以及某些时候的like使用，下划线'_','%'开始时不需要)。
-3.sql优化
+              <p><strong>hashmap的底层原理</strong><br>
+1.jdk1.8之前hashmap采用位桶(数组)+链表实现即使用链表处理冲突，统一hash值得链表都存储在一个链表中，但是当同一个通中的元素过多时，即hash值相等的元素过多时，通过可以查找值的效率就变低。<br>
+2.jdk1.8之后，hashmap采用的是位桶(数组)+链表+红黑树实现，当链表长度超过8的阈值后，将链表转换为红黑树，这样大大减少了查找时间。<br>
+<strong>spring的事务管理</strong><br>
+<em>1事务的特性(ACID)</em><br>
+原子性：最小的执行单位，不能分割。<br>
+一致性：执行数据前后，数据保持一致。<br>
+隔离性：并发访问数据库时，一个用户的事务不能被其他事务干扰，各并发事务之间数据库时相互独立的。<br>
+持久性：一个事务被提交之后，他对数据库中的改变是持久的，即使数据库发生故障也不应该发生影响。<br>
+<em>2.事务管理器</em><br>
+1.创建事务(getTransaction)<br>
+2.提交(commit)<br>
+3.回滚(rollback)<br>
+<strong>Mysql优化</strong><br>
+1.最后迫不得已看看是否硬件上存在问题。<br>
+2.开启慢查询，看看哪个查询最浪费时间。记得查询时设置SQL_NO_CACHE<br>
+(插一句话：Mysql只对&lt;,&lt;=,=,&gt;,&gt;=,between,in,以及某些时候的like使用，下划线'_','%'开始时不需要)。<br>
+3.sql优化<br>
 <em>3.1查询优化</em></p>
 <ul>
 <li>3.1.1：避免全局扫描，尽量在orderby和where的语句上使用索引。</li>
@@ -118,19 +118,19 @@
 <li>3.1.8：避免临时表的创建和删除。</li>
 <li>3.1.9：游标的效率很差。</li>
 <li>3.1.10：索引并不是越多越好，一个表最多6个，索引太多会造成更新和插入变慢。</li>
-<li>3.1.11：服务器开启慢查询日志过滤，观察那些sql是需要优化的。
+<li>3.1.11：服务器开启慢查询日志过滤，观察那些sql是需要优化的。<br>
 <em>3.2写入优化</em></li>
 <li>3.2.1：插入数据的时候尽量不要循环插入，使用批量插入。</li>
 <li>3.2.2：数据合并插入。</li>
 <li>3.2.3：使用事务，将多条插入语句放入一个事务中提交。</li>
 <li>3.2.4：有序插入。</li>
-<li>3.2.5：数据量大234结合使用
+<li>3.2.5：数据量大234结合使用<br>
 <em>3.3更新优化</em></li>
-<li>不要同时间操纵一大批数据，尽量分批处理。
-<em>4bug/业务优化</em>
-对不需要操作数据库的业务进行缩减，观察是否有sql产生新的bug
-<strong>JVM的原理</strong>
-jvm是java虚拟机，包括一套字节码指令集，一组寄存器，一个栈，一个垃圾回收，一个堆，和一个存储方法域。
+<li>不要同时间操纵一大批数据，尽量分批处理。<br>
+<em>4bug/业务优化</em><br>
+对不需要操作数据库的业务进行缩减，观察是否有sql产生新的bug<br>
+<strong>JVM的原理</strong><br>
+jvm是java虚拟机，包括一套字节码指令集，一组寄存器，一个栈，一个垃圾回收，一个堆，和一个存储方法域。<br>
 <em><strong>WEB的内置对象</strong></em></li>
 <li>request</li>
 <li>response</li>
@@ -139,9 +139,9 @@ jvm是java虚拟机，包括一套字节码指令集，一组寄存器，一个�
 <li>out</li>
 <li>pagecontext</li>
 <li>config</li>
-<li>exception
-<strong>WEB的四个作用域</strong>
-page，request，session，application
+<li>exception<br>
+<strong>WEB的四个作用域</strong><br>
+page，request，session，application<br>
 <strong>String StringBuffer StringBuilder的区别</strong></li>
 <li>1.3者在执行速度的比较上StringBuilder&gt;StringBuffer&gt;String\</li>
 <li>String字符串常量</li>
@@ -150,44 +150,44 @@ page，request，session，application
 <li>2.每当操作String的字符串时都是在操作新的对象。例如String s = “sddsd” ，s = s+“asd”；其实是又创建了一个对象</li>
 <li>3.StringBuilder是线程不安全的</li>
 <li>4.StringBuffer是线程安全的。</li>
-<li>5.1.如果要操作少量的数据用 = String
-2.单线程操作字符串缓冲区 下操作大量数据 = StringBuilder
-3.多线程操作字符串缓冲区 下操作大量数据 = StringBuffer
-<strong>redis面试</strong>
-1.redis是一种key-value类型的分布式关系型数据库，具有高性能，持久存储，适合高并发的一些场景，一般用来做缓存，支持丰富的数据类型，适用于对读写要求高，数据处理业务复杂，安全性要求较高的系统，支持简单业务。
+<li>5.1.如果要操作少量的数据用 = String<br>
+2.单线程操作字符串缓冲区 下操作大量数据 = StringBuilder<br>
+3.多线程操作字符串缓冲区 下操作大量数据 = StringBuffer<br>
+<strong>redis面试</strong><br>
+1.redis是一种key-value类型的分布式关系型数据库，具有高性能，持久存储，适合高并发的一些场景，一般用来做缓存，支持丰富的数据类型，适用于对读写要求高，数据处理业务复杂，安全性要求较高的系统，支持简单业务。<br>
 <em>2.redis的数据类型</em></li>
 <li>2.1：String（最简单的数据类型，最常用的用途就是存储用户信息）。</li>
 <li>2.2：hash（相当于java的hashMap，是无序的，内部结构也类似，数据加链表，但是消耗比String高）。</li>
 <li>2.3：list（相当于java的Linkedlist，增删改很快，查询很慢，可以使用list做存储商品的列表，key是该商品的id，value是商品评论信息列表）。</li>
 <li>2.4：set（相当于java的hashset，是一个无序的组合，redis利用key-value存储时，value都是相当于null，当移除最后一个set元素时，整个数据结构被回收，主要用于用户是否中奖）。</li>
-<li>2.5：zset（redis最有特色的数据结构，类似于java的sortedset，HashMap的结合体，一方面一个set保证去重，另一方面可以给set一个分数，表示其分数，内部采用《跳跃列表》的数据结构比较复杂，可以用来存储学生的成绩，并按照成绩排名）。
-<strong>redis持久化</strong>
-默认的是rdb，默认没5分钟往内存中更新一次数据
+<li>2.5：zset（redis最有特色的数据结构，类似于java的sortedset，HashMap的结合体，一方面一个set保证去重，另一方面可以给set一个分数，表示其分数，内部采用《跳跃列表》的数据结构比较复杂，可以用来存储学生的成绩，并按照成绩排名）。<br>
+<strong>redis持久化</strong><br>
+默认的是rdb，默认没5分钟往内存中更新一次数据<br>
 aof可以自己自定义存储的时间，比如几秒或者每次进行增删改的操作。</li>
 </ul>
-<p>MVC是三个单词的缩写,分别为：
-模型(Model),视图(View)和控制Controller)。
+<p>MVC是三个单词的缩写,分别为：<br>
+模型(Model),视图(View)和控制Controller)。<br>
 MVC模式的目的就是实现Web系统的职能分工。</p>
-<p>Model层实现系统中的业务逻辑，通常可以用JavaBean或EJB来实现。 
+<p>Model层实现系统中的业务逻辑，通常可以用JavaBean或EJB来实现。 <br>
 View层用于与用户的交互，通常用JSP来实现。</p>
 <p>Controller层是Model与View之间沟通的桥梁，它可以分派用户的请求并选择恰当的视图以用于显示，同时它也可以解释用户的输入并将它们映射为模型层可执行的操作。</p>
 <p>MVC模式的好处</p>
-<p>各施其职，互不干涉
+<p>各施其职，互不干涉<br>
 在MVC模式中，三个层各施其职，所以如果一旦哪一层的需求发生了变化，就只需要更改相应的层中的代码而不会影响到其它层中的代码。</p>
-<p><strong>.sleep()和wait()有什么区别?</strong>
+<p><strong>.sleep()和wait()有什么区别?</strong><br>
 答：Sleep() 是线程类的方法  wait()是object类的方法。Sleep（） 不会释放对象锁 到时自动恢复 ，wait（）会释放对象锁 进入等待此对象的等待锁定池  发出notify（）方法后 才进入等待锁定池准备对象锁的获取进入运行状态</p>
-<p>。
-<strong>. sleep()和yield()有什么区别?</strong>
-答：sleep()方法给其他线程运行机会时不考虑线程的优先级，因此会给低优先级的线程以运行的机会；yield()方法只会给相同优先级或更高优先级的线程以运行的机会；
-线程执行sleep()方法后转入阻塞（blocked）状态，而执行yield()方法后转入就绪（ready）状态；
+<p>。<br>
+<strong>. sleep()和yield()有什么区别?</strong><br>
+答：sleep()方法给其他线程运行机会时不考虑线程的优先级，因此会给低优先级的线程以运行的机会；yield()方法只会给相同优先级或更高优先级的线程以运行的机会；<br>
+线程执行sleep()方法后转入阻塞（blocked）状态，而执行yield()方法后转入就绪（ready）状态；<br>
 sleep()方法声明抛出InterruptedException，而yield()方法没有声明任何异常； sleep()方法比yield()方法（跟操作系统相关）具有更好的可移植性。</p>
-<p><strong>30. 什么情况用+做字符串连接比调用StringBuffer / StringBuilder对象的append方法性能更好？</strong>
+<p><strong>30. 什么情况用+做字符串连接比调用StringBuffer / StringBuilder对象的append方法性能更好？</strong><br>
 答：串接后得到的字符串在静态存储区中是早已存在的，那么用+做字符串连接是优于 StringBuffer / StringBuilder的append方法的。</p>
-<p><strong>8.创建线程有几种不同的方式</strong>
+<p><strong>8.创建线程有几种不同的方式</strong><br>
 答：（1）继承Thread类（2）实现Runnable接口（3）应用程序可以使用Executor框架来创建线程池实现Runnable接口这种方式更受欢迎，因为这不需要继承Thread类。在应用设计中已经继承了别的对象的情况下，这需要多继承（而Java不支持多继承），只能实现接口。同时，线程池也是非常高效的，很容易实现和使用。</p>
-<p><strong>9．Java支持多继承么？</strong>
+<p><strong>9．Java支持多继承么？</strong><br>
 答：不支持，Java不支持多继承。每个类都只能继承一个类，但是可以实现多个接口。</p>
-<p><strong>12.什么是java序列化，如何实现java序列化？</strong>
+<p><strong>12.什么是java序列化，如何实现java序列化？</strong><br>
 答：java序列化就是将一个java对象变成字节流的形式传出去或者从一个字节流中恢复成一个java对象，需要被序列化的类必须实现Serializable接口</p>
 <p>27.列出自己常用的jdk包.</p>
 <p>解答：JDK常用的package</p>
@@ -208,7 +208,7 @@ sleep()方法声明抛出InterruptedException，而yield()方法没有声明任�
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://spark-wz.github.io/images/avatar.png?v=1592907348260" class="no-responsive avatar">
+    <img src="https://spark-wz.github.io/images/avatar.png?v=1592907574558" class="no-responsive avatar">
     <div class="text-muted"></div>
     <div class="social-container">
       

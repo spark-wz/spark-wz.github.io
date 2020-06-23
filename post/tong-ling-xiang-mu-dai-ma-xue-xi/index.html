@@ -7,7 +7,7 @@
 <meta name="description" content="">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://spark-wz.github.io/favicon.ico?v=1592907348260">
+<link rel="shortcut icon" href="https://spark-wz.github.io/favicon.ico?v=1592907574558">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -88,56 +88,56 @@
             </p>
             
             <div class="post-content">
-              <p><strong>ThreadLocal</strong>
-ThreadLocal是一个线程每部的存储类，可以在既定线程内存储数据，数据存储之后，只有指定线程才会得到数据。
-static final ThreadLocal<T> sThreadLocal = new ThreadLocal<T>();
-sThreadLocal.set()
-sThreadLocal.get()
-<strong>spring动态切换多数据源解决方案</strong>
-1.建立一个数据源的名称常量类，建立一个获得和设置上下文环境的类，主要负责改变上下文数据源的名称，两个类可以合并。
-<img src="https://spark-wz.github.io/post-images/1574906751791.png" alt="">
-2.建立动态数据源类，这个类必须继承AbstractRoutingDataSource且实现方法datermineCurrentLookupKey，该方法返回一个key，一般是Object；
-<img src="https://spark-wz.github.io/post-images/1574907519526.png" alt="">
-3.编写spring的配置多个数据源
-<img src="https://spark-wz.github.io/post-images/1574907652472.png" alt="">
-<strong>config文件</strong>
-配置数据源
-配置动态数据源
-<img src="https://spark-wz.github.io/post-images/1574911348867.png" alt="">
-<strong>MyBatis 逆向工程 Generator＋Example</strong>
-<em><strong>Generator代码生成器</strong></em>
-1.添加依赖和配置
-<img src="https://spark-wz.github.io/post-images/1574912134286.png" alt="">
-2.在generatorConfig.xml配置数据库驱动，生成实体（模型），xml文件，dao接口的包名和位置，还有对应的数据库表和实体类。
-<img src="https://spark-wz.github.io/post-images/1574912327152.png" alt="">
-3.在maven中启动
-<img src="https://spark-wz.github.io/post-images/1574912374990.png" alt="">
-<em><strong>example用法</strong></em>
-int deleteByPrimaryKey(Integer id) thorws SQLException    按主键删除
-int deleteByExample(UserExample example) thorws SQLException    按条件查询
-String/Integer insert(User record) thorws SQLException    插入数据（返回值为ID）
-User selectByPrimaryKey(Integer id) thorws SQLException    按主键查询
+              <p><strong>ThreadLocal</strong><br>
+ThreadLocal是一个线程每部的存储类，可以在既定线程内存储数据，数据存储之后，只有指定线程才会得到数据。<br>
+static final ThreadLocal<T> sThreadLocal = new ThreadLocal<T>();<br>
+sThreadLocal.set()<br>
+sThreadLocal.get()<br>
+<strong>spring动态切换多数据源解决方案</strong><br>
+1.建立一个数据源的名称常量类，建立一个获得和设置上下文环境的类，主要负责改变上下文数据源的名称，两个类可以合并。<br>
+<img src="https://spark-wz.github.io/post-images/1574906751791.png" alt=""><br>
+2.建立动态数据源类，这个类必须继承AbstractRoutingDataSource且实现方法datermineCurrentLookupKey，该方法返回一个key，一般是Object；<br>
+<img src="https://spark-wz.github.io/post-images/1574907519526.png" alt=""><br>
+3.编写spring的配置多个数据源<br>
+<img src="https://spark-wz.github.io/post-images/1574907652472.png" alt=""><br>
+<strong>config文件</strong><br>
+配置数据源<br>
+配置动态数据源<br>
+<img src="https://spark-wz.github.io/post-images/1574911348867.png" alt=""><br>
+<strong>MyBatis 逆向工程 Generator＋Example</strong><br>
+<em><strong>Generator代码生成器</strong></em><br>
+1.添加依赖和配置<br>
+<img src="https://spark-wz.github.io/post-images/1574912134286.png" alt=""><br>
+2.在generatorConfig.xml配置数据库驱动，生成实体（模型），xml文件，dao接口的包名和位置，还有对应的数据库表和实体类。<br>
+<img src="https://spark-wz.github.io/post-images/1574912327152.png" alt=""><br>
+3.在maven中启动<br>
+<img src="https://spark-wz.github.io/post-images/1574912374990.png" alt=""><br>
+<em><strong>example用法</strong></em><br>
+int deleteByPrimaryKey(Integer id) thorws SQLException    按主键删除<br>
+int deleteByExample(UserExample example) thorws SQLException    按条件查询<br>
+String/Integer insert(User record) thorws SQLException    插入数据（返回值为ID）<br>
+User selectByPrimaryKey(Integer id) thorws SQLException    按主键查询<br>
 updateByExample     更新所有字段<br>
-updateByExample     根据条件更新想要更新的字段
-updateByPrimaryKeySelective    根据主键更新密码
-updateByPrimaryKey    根据主键更新除了主键之外的
-setOrderByClause(&quot;ID DESC&quot;)id排序 也可以传多个参数 (&quot;<code>index</code> ASC,id ASC&quot;)
-ListselectByExample(UserExample example) thorws SQLException    按条件查询
-ListselectByExampleWithBLOGs(UserExample example) thorws SQLException    按条件查询（包括BLOB字段）。只有当数据表中的字段类型有为二进制的才会产生。
-insert   插入数据          insertSelective      插入不为null的数据
-int updateByPrimaryKey(User record) thorws SQLException    按主键更新
-int updateByPrimaryKeySelective(User record) thorws SQLException    按主键更新值不为null的字段
-int updateByExample(User record, UserExample example) thorws SQLException    按条件更新
-int updateByExampleSelective(User record, UserExample example) thorws SQLException    按条件更新值不为null的字段
-setOrderByClause   排序    列名是条件
-example.createCriteria().andEqualTo(&quot;terminalName&quot;, &quot;计量现场服务终端&quot;);
-条件查询用的是属性名  终端名称是计量现场服务终端
-example.createCriteria().andGreaterThan(&quot;id&quot;,3); 厂商id&gt;3
-<img src="https://spark-wz.github.io/post-images/1573009821363.png" alt="">
-<strong>spring刷新数据源</strong>
-@Scheduled注解配合@EnableScheduling使用，计划任务执行
-将service注入，配置数据源刷新时间，调用service中更新方法
-<img src="https://spark-wz.github.io/post-images/1574913872984.png" alt="">
+updateByExample     根据条件更新想要更新的字段<br>
+updateByPrimaryKeySelective    根据主键更新密码<br>
+updateByPrimaryKey    根据主键更新除了主键之外的<br>
+setOrderByClause(&quot;ID DESC&quot;)id排序 也可以传多个参数 (&quot;<code>index</code> ASC,id ASC&quot;)<br>
+ListselectByExample(UserExample example) thorws SQLException    按条件查询<br>
+ListselectByExampleWithBLOGs(UserExample example) thorws SQLException    按条件查询（包括BLOB字段）。只有当数据表中的字段类型有为二进制的才会产生。<br>
+insert   插入数据          insertSelective      插入不为null的数据<br>
+int updateByPrimaryKey(User record) thorws SQLException    按主键更新<br>
+int updateByPrimaryKeySelective(User record) thorws SQLException    按主键更新值不为null的字段<br>
+int updateByExample(User record, UserExample example) thorws SQLException    按条件更新<br>
+int updateByExampleSelective(User record, UserExample example) thorws SQLException    按条件更新值不为null的字段<br>
+setOrderByClause   排序    列名是条件<br>
+example.createCriteria().andEqualTo(&quot;terminalName&quot;, &quot;计量现场服务终端&quot;);<br>
+条件查询用的是属性名  终端名称是计量现场服务终端<br>
+example.createCriteria().andGreaterThan(&quot;id&quot;,3); 厂商id&gt;3<br>
+<img src="https://spark-wz.github.io/post-images/1573009821363.png" alt=""><br>
+<strong>spring刷新数据源</strong><br>
+@Scheduled注解配合@EnableScheduling使用，计划任务执行<br>
+将service注入，配置数据源刷新时间，调用service中更新方法<br>
+<img src="https://spark-wz.github.io/post-images/1574913872984.png" alt=""><br>
 @Async 加上这个注解可以异步执行</p>
 <pre><code>*lambok**
 懒人神器，帮你自动生成get，set之类的方法
@@ -152,14 +152,14 @@ example.createCriteria().andGreaterThan(&quot;id&quot;,3); 厂商id&gt;3
 controller中在参数前边加@RequestBody注解，且只能加一次，
 </code></pre>
 <ol>
-<li>@PathVariable注解，绑定参数（映射url绑定的占位符）@PathVariable(value=&quot;id&quot;) String id  可以在url中直接写id
+<li>@PathVariable注解，绑定参数（映射url绑定的占位符）@PathVariable(value=&quot;id&quot;) String id  可以在url中直接写id<br>
 2.@RequestHeader 注解，可以把Request请求header部分的值绑定到方法的参数上。<img src="https://spark-wz.github.io/post-images/1575362303722.png" alt=""></li>
 <li></li>
 </ol>
-<p>@CookieValue 可以把Request header中关于cookie的值绑定到方法的参数上。
-图片示例
-4.@RequestParam   常用来处理简单类型的绑定
-通过Request.getParameter() 获取的String可直接转换为简单类型的情况
+<p>@CookieValue 可以把Request header中关于cookie的值绑定到方法的参数上。<br>
+图片示例<br>
+4.@RequestParam   常用来处理简单类型的绑定<br>
+通过Request.getParameter() 获取的String可直接转换为简单类型的情况<br>
 <img src="https://spark-wz.github.io/post-images/1575364405727.png" alt=""></p>
 <pre><code>**Criteria用法**
 Excample.or()相当于 Example.Criteria criteria = Example.createCriteria;
@@ -181,8 +181,8 @@ criteria.isValid();  return boolean   检查对象是否实例化
 criteria.notify();   线程通知
 criteria.wait();     线程等待
 </code></pre>
-<p>wait() 和 notify()必须配合synchrozied关键字使用，无论是wait()还是notify()都需要首先获取目标对象的一个监听器。
-wait()会释放锁，而notify()不释放锁。
+<p>wait() 和 notify()必须配合synchrozied关键字使用，无论是wait()还是notify()都需要首先获取目标对象的一个监听器。<br>
+wait()会释放锁，而notify()不释放锁。<br>
 1线程被wait();之后释放锁然后2线程执行，2线程执行notify之后，2线程执行完程序1线程才会执行。</p>
 <pre><code>**时间戳**
 js获得当前时间时间戳
@@ -190,19 +190,19 @@ new Date().getTime();
 new Date().valueOf();
 Date.parse(new Date());
 </code></pre>
-<p><strong>BigDecimal使用</strong>
+<p><strong>BigDecimal使用</strong><br>
 1.BigDecimal转Double<br>
-Double num = 123456789.98;
-BigDecimal big = new BigDecimal(num + &quot;&quot;);
-尽量用字符串的方式初始化
-BigDecimal num1 = new BigDecimal(&quot;0.005&quot;);
-BigDecimal num2 = new BigDecimal(&quot;0.00005&quot;);
-加法 add()函数     减法subtract()函数
-乘法multiply()函数    除法divide()函数    绝对值abs()函数
-加法BigDecimal result = num1.add(num2);
-减法BigDecimal result = num1.subtract(num2);
-乘法BigDecimal result = num1.multiply(num2);
-除法BigDecimal result = num1.divide(https://spark-wz.github.io/post-images/1575971121829.png)
+Double num = 123456789.98;<br>
+BigDecimal big = new BigDecimal(num + &quot;&quot;);<br>
+尽量用字符串的方式初始化<br>
+BigDecimal num1 = new BigDecimal(&quot;0.005&quot;);<br>
+BigDecimal num2 = new BigDecimal(&quot;0.00005&quot;);<br>
+加法 add()函数     减法subtract()函数<br>
+乘法multiply()函数    除法divide()函数    绝对值abs()函数<br>
+加法BigDecimal result = num1.add(num2);<br>
+减法BigDecimal result = num1.subtract(num2);<br>
+乘法BigDecimal result = num1.multiply(num2);<br>
+除法BigDecimal result = num1.divide(https://spark-wz.github.io/post-images/1575971121829.png)<br>
 绝对值BigDecimal result = num1.abs();</p>
 
             </div>
@@ -227,7 +227,7 @@ BigDecimal num2 = new BigDecimal(&quot;0.00005&quot;);
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://spark-wz.github.io/images/avatar.png?v=1592907348260" class="no-responsive avatar">
+    <img src="https://spark-wz.github.io/images/avatar.png?v=1592907574558" class="no-responsive avatar">
     <div class="text-muted"></div>
     <div class="social-container">
       

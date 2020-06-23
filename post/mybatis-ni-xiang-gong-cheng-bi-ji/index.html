@@ -7,7 +7,7 @@
 <meta name="description" content="">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://spark-wz.github.io/favicon.ico?v=1592907348260">
+<link rel="shortcut icon" href="https://spark-wz.github.io/favicon.ico?v=1592907574558">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -88,42 +88,42 @@
             </p>
             
             <div class="post-content">
-              <p><strong>1. <generatorConfiguration> 标签</strong>
-如果需要在业务中增加别的依赖或者驱动，使用location属性知名依赖的全路径名
+              <p><strong>1. <generatorConfiguration> 标签</strong><br>
+如果需要在业务中增加别的依赖或者驱动，使用location属性知名依赖的全路径名<br>
 <classPathEntry  location="E:\apache-maven-3.5.0\repository\com\microsoft\sqlserver\sqljdbc4\4.0\sqljdbc4-4.0.jar"/></p>
-<p><strong>context标签</strong> 用于生成一组对象的环境
-<em>可用属性</em>
-<strong>id</strong> 必选，上下文id，用于在生成错误时候提示
-<strong>defaultModelType</strong>用于指定生成对象的模式
-<strong>targetRuntime</strong> MyBatis3用于生成基于MyBatis3以上的版本的内容
-<img src="https://spark-wz.github.io/post-images/1572838613004.png" alt="">
-<strong>数据库连接驱动类，URL，用户名，密码</strong>
-<jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver" connectionURL="jdbc:sqlserver://39.97.227.216:1433;DatabaseName=PCS06" userId="sa" password="Geyifei212"></jdbcConnection>
-<strong>commentGenerator标签</strong>
-由于Generator生成的注释都是英文，而且无法理解，所以关闭注释
-<img src="https://spark-wz.github.io/post-images/1572920494055.png" alt="">
-<strong>java类型处理器 javaTypeResolver</strong>
-java类型处理器，默认使用JavaTypeResolverDefultImpl
-默认会先尝试使用Integer，Long，Short来对应DECIMAL和NUMERIC数据类型
-其中的property name = &quot;forceBigDecimals&quot;的取值规则如下：
-true：使用BigDecimal对应的DECIMAL个NUMERIC数据类型
-false：默认值
-scale&gt;0,length&gt;18:使用BigDeciamal
-scale=0,length[10,18]使用long
-scale=0,length[5,9]使用integer
-scale=0,length 小于5 使用short
-<strong>javaModelGenerator标签  java模型创建器</strong>
-targetPackage：生成实体模型的包名和位置
-targetPackage：目标项目指定路径
-<em><strong>图示</strong></em>
-<img src="https://spark-wz.github.io/post-images/1572840104537.png" alt="">
-标签内属性图示
-<img src="https://spark-wz.github.io/post-images/1572840360075.png" alt="">
-<strong>sqlMapGenerator 生成xml文件的包名</strong>
-<strong>javaClientGenerator 生成dao接口的包名和位置</strong>
-<strong>table标签  要生成的表</strong>
-table是数据库中的表名或者视图名
-domainObjectName是实体类名
+<p><strong>context标签</strong> 用于生成一组对象的环境<br>
+<em>可用属性</em><br>
+<strong>id</strong> 必选，上下文id，用于在生成错误时候提示<br>
+<strong>defaultModelType</strong>用于指定生成对象的模式<br>
+<strong>targetRuntime</strong> MyBatis3用于生成基于MyBatis3以上的版本的内容<br>
+<img src="https://spark-wz.github.io/post-images/1572838613004.png" alt=""><br>
+<strong>数据库连接驱动类，URL，用户名，密码</strong><br>
+<jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver" connectionURL="jdbc:sqlserver://39.97.227.216:1433;DatabaseName=PCS06" userId="sa" password="Geyifei212"></jdbcConnection><br>
+<strong>commentGenerator标签</strong><br>
+由于Generator生成的注释都是英文，而且无法理解，所以关闭注释<br>
+<img src="https://spark-wz.github.io/post-images/1572920494055.png" alt=""><br>
+<strong>java类型处理器 javaTypeResolver</strong><br>
+java类型处理器，默认使用JavaTypeResolverDefultImpl<br>
+默认会先尝试使用Integer，Long，Short来对应DECIMAL和NUMERIC数据类型<br>
+其中的property name = &quot;forceBigDecimals&quot;的取值规则如下：<br>
+true：使用BigDecimal对应的DECIMAL个NUMERIC数据类型<br>
+false：默认值<br>
+scale&gt;0,length&gt;18:使用BigDeciamal<br>
+scale=0,length[10,18]使用long<br>
+scale=0,length[5,9]使用integer<br>
+scale=0,length 小于5 使用short<br>
+<strong>javaModelGenerator标签  java模型创建器</strong><br>
+targetPackage：生成实体模型的包名和位置<br>
+targetPackage：目标项目指定路径<br>
+<em><strong>图示</strong></em><br>
+<img src="https://spark-wz.github.io/post-images/1572840104537.png" alt=""><br>
+标签内属性图示<br>
+<img src="https://spark-wz.github.io/post-images/1572840360075.png" alt=""><br>
+<strong>sqlMapGenerator 生成xml文件的包名</strong><br>
+<strong>javaClientGenerator 生成dao接口的包名和位置</strong><br>
+<strong>table标签  要生成的表</strong><br>
+table是数据库中的表名或者视图名<br>
+domainObjectName是实体类名<br>
 <img src="https://spark-wz.github.io/post-images/1572840632594.png" alt=""></p>
 <pre><code>--------------------------------------------------------------------------------
 **Spring配置文件**
@@ -140,14 +140,14 @@ idleTimeout： 允许在池中闲置的最长时间。
 pool-name：连接池的自定义名称。
 max-lifetime：池中链接最长生命周期。
 </code></pre>
-<p>**	pagehelper分页配置**
-配置数据库方言
-helperDialect：mysql
-配置分页的合理化数据
-reasonable：true
-自动分页配置
-supportMethodsArguments：true
-配置参数映射，从对象中根据属性名取值
+<p>**	pagehelper分页配置**<br>
+配置数据库方言<br>
+helperDialect：mysql<br>
+配置分页的合理化数据<br>
+reasonable：true<br>
+自动分页配置<br>
+supportMethodsArguments：true<br>
+配置参数映射，从对象中根据属性名取值<br>
 params：count=countSql</p>
 <pre><code>**具体使用Excample**  java中的静态方法可以直接用列名点方法名调用
 普通方法需要先new；
@@ -176,7 +176,7 @@ countByExcample：按照条件删除
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://spark-wz.github.io/images/avatar.png?v=1592907348260" class="no-responsive avatar">
+    <img src="https://spark-wz.github.io/images/avatar.png?v=1592907574558" class="no-responsive avatar">
     <div class="text-muted"></div>
     <div class="social-container">
       

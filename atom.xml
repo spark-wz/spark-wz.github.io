@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://spark-wz.github.io</id>
     <title>Gridea</title>
-    <updated>2020-06-23T09:15:17.828Z</updated>
+    <updated>2020-06-23T10:20:10.037Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://spark-wz.github.io"/>
     <link rel="self" href="https://spark-wz.github.io/atom.xml"/>
@@ -11,8 +11,8 @@
     <rights>All rights reserved 2020, Gridea</rights>
     <entry>
         <title type="html"><![CDATA[Modbus RTU]]></title>
-        <id>https://spark-wz.github.io/post/ce-shi/</id>
-        <link href="https://spark-wz.github.io/post/ce-shi/">
+        <id>https://spark-wz.github.io/post/ce-shi</id>
+        <link href="https://spark-wz.github.io/post/ce-shi">
         </link>
         <updated>2020-06-08T01:33:32.000Z</updated>
         <content type="html"><![CDATA[<h3 id="windows">Windows</h3>
@@ -24,16 +24,16 @@
 <li>创建SerialParameters实例<br>
 SerialParameters serialParameters = new SerialParameters();</li>
 <li>设定从站地址（slaveId）、串行口波特率、设定串行口名称（区分大小写）、设定无奇偶校验、设定数据位、设定停止位、设定从站名称，<br>
-<img src="https://spark-wz.github.io/post-images/1592897149873.png" alt="" loading="lazy"></li>
+<img src="https://spark-wz.github.io/post-images/1592897149873.png" alt=""></li>
 <li>创建ModbusFactory工厂实例，将SerialParameters作为参数创建ModbusMaster实例。<br>
-<img src="https://spark-wz.github.io/post-images/1592897345686.png" alt="" loading="lazy"></li>
+<img src="https://spark-wz.github.io/post-images/1592897345686.png" alt=""></li>
 <li>初始化<br>
-<img src="https://spark-wz.github.io/post-images/1592897399514.png" alt="" loading="lazy"></li>
+<img src="https://spark-wz.github.io/post-images/1592897399514.png" alt=""></li>
 <li>读取串口数据</li>
 <li>创建读取请求，设定从站id、开始位、读取位数</li>
 <li>主站发送请求，获取结果</li>
 <li>异常判断，转换结果格式<br>
-<img src="https://spark-wz.github.io/post-images/1592897782379.png" alt="" loading="lazy"></li>
+<img src="https://spark-wz.github.io/post-images/1592897782379.png" alt=""></li>
 </ol>
 <h3 id="树莓派">树莓派</h3>
 <h4 id="环境-当前重启丢失java环境删除部分文件">环境   (当前重启丢失java环境，删除部分文件)</h4>
@@ -57,8 +57,8 @@ export CLASSPATH=.:JAVA_HOME/lib/dt.jar:JAVA_HOME/lib/tools.jar<br>
     </entry>
     <entry>
         <title type="html"><![CDATA[定时任务@Scheduled]]></title>
-        <id>https://spark-wz.github.io/post/ding-shi-ren-wu-scheduled/</id>
-        <link href="https://spark-wz.github.io/post/ding-shi-ren-wu-scheduled/">
+        <id>https://spark-wz.github.io/post/ding-shi-ren-wu-scheduled</id>
+        <link href="https://spark-wz.github.io/post/ding-shi-ren-wu-scheduled">
         </link>
         <updated>2020-05-18T01:26:17.000Z</updated>
         <content type="html"><![CDATA[<p>字段 允许值 允许的特殊字符<br>
@@ -104,8 +104,8 @@ firewall-cmd --reload  重新加载端口，开放端口后需要重新reload</p
     </entry>
     <entry>
         <title type="html"><![CDATA[taos数据库]]></title>
-        <id>https://spark-wz.github.io/post/taos-shu-ju-ku/</id>
-        <link href="https://spark-wz.github.io/post/taos-shu-ju-ku/">
+        <id>https://spark-wz.github.io/post/taos-shu-ju-ku</id>
+        <link href="https://spark-wz.github.io/post/taos-shu-ju-ku">
         </link>
         <updated>2020-05-12T06:38:25.000Z</updated>
         <content type="html"><![CDATA[<p>TDengine要求每个数据点单独建表，系统中表的数量和采集点点的数量在一个量级.<br>
@@ -159,8 +159,8 @@ https://blog.csdn.net/wsbgmofo/article/details/79088186</p>
     </entry>
     <entry>
         <title type="html"><![CDATA[微信小程序]]></title>
-        <id>https://spark-wz.github.io/post/wei-xin-xiao-cheng-xu/</id>
-        <link href="https://spark-wz.github.io/post/wei-xin-xiao-cheng-xu/">
+        <id>https://spark-wz.github.io/post/wei-xin-xiao-cheng-xu</id>
+        <link href="https://spark-wz.github.io/post/wei-xin-xiao-cheng-xu">
         </link>
         <updated>2020-04-02T09:47:30.000Z</updated>
         <content type="html"><![CDATA[<p>第一步：前端调用wx.login()函数，获取返回的code值。（每次通过wx.login()得到的code值可能不一样）</p>
@@ -170,8 +170,8 @@ https://blog.csdn.net/wsbgmofo/article/details/79088186</p>
     </entry>
     <entry>
         <title type="html"><![CDATA[Python BeautifulSoup]]></title>
-        <id>https://spark-wz.github.io/post/python-beautifulsoup/</id>
-        <link href="https://spark-wz.github.io/post/python-beautifulsoup/">
+        <id>https://spark-wz.github.io/post/python-beautifulsoup</id>
+        <link href="https://spark-wz.github.io/post/python-beautifulsoup">
         </link>
         <updated>2020-04-01T08:42:35.000Z</updated>
         <content type="html"><![CDATA[<p>BeautifulSoup是一个可以从html或者xml中提取数据的Python库。<br>
@@ -236,8 +236,8 @@ soup.find_all(id='link2')<br>
     </entry>
     <entry>
         <title type="html"><![CDATA[MySQL规范]]></title>
-        <id>https://spark-wz.github.io/post/mysql-gui-fan/</id>
-        <link href="https://spark-wz.github.io/post/mysql-gui-fan/">
+        <id>https://spark-wz.github.io/post/mysql-gui-fan</id>
+        <link href="https://spark-wz.github.io/post/mysql-gui-fan">
         </link>
         <updated>2020-01-06T06:56:25.000Z</updated>
         <content type="html"><![CDATA[<p><strong>数据类型</strong><br>
@@ -249,7 +249,7 @@ varchar类型的，如果长度不超过255都用char</p>
 记得写注释<br>
 记得加默认值，数字的就是0<br>
 字符串的就 EMPTY STRING<br>
-<img src="https://spark-wz.github.io/post-images/1578298913491.png" alt="" loading="lazy"><br>
+<img src="https://spark-wz.github.io/post-images/1578298913491.png" alt=""><br>
 如果字符串时null的话，去查的话就很废效率。</p>
 <p>前端传给我取钥匙或者存钥匙<br>
 把所有状态为空的钥匙柜放在实时页面</p>
@@ -257,8 +257,8 @@ varchar类型的，如果长度不超过255都用char</p>
     </entry>
     <entry>
         <title type="html"><![CDATA[钥匙柜]]></title>
-        <id>https://spark-wz.github.io/post/yao-chi-ju/</id>
-        <link href="https://spark-wz.github.io/post/yao-chi-ju/">
+        <id>https://spark-wz.github.io/post/yao-chi-ju</id>
+        <link href="https://spark-wz.github.io/post/yao-chi-ju">
         </link>
         <updated>2019-12-30T06:25:39.000Z</updated>
         <content type="html"><![CDATA[<p><strong>整体流程</strong><br>
@@ -284,12 +284,12 @@ varchar类型的，如果长度不超过255都用char</p>
     </entry>
     <entry>
         <title type="html"><![CDATA[记录一次本地jar包导入maven仓库踩到的坑]]></title>
-        <id>https://spark-wz.github.io/post/ji-lu-yi-ci-ben-di-jar-bao-dao-ru-maven-cang-ku-cai-dao-de-keng/</id>
-        <link href="https://spark-wz.github.io/post/ji-lu-yi-ci-ben-di-jar-bao-dao-ru-maven-cang-ku-cai-dao-de-keng/">
+        <id>https://spark-wz.github.io/post/ji-lu-yi-ci-ben-di-jar-bao-dao-ru-maven-cang-ku-cai-dao-de-keng</id>
+        <link href="https://spark-wz.github.io/post/ji-lu-yi-ci-ben-di-jar-bao-dao-ru-maven-cang-ku-cai-dao-de-keng">
         </link>
         <updated>2019-12-20T02:27:13.000Z</updated>
         <content type="html"><![CDATA[<p>首先将conf/repository中的setttings中的配置文件路径改成自己的路径，要不会报一个路径不对的错，如下<br>
-<img src="https://spark-wz.github.io/post-images/1576809073329.png" alt="" loading="lazy"><br>
+<img src="https://spark-wz.github.io/post-images/1576809073329.png" alt=""><br>
 改成自己的路径之后使用mvn命令直接将jar包导入自己的maven仓库，设置好依赖的3个属性。<br>
 将jar包放到lib目录下<br>
 mvn install:install-file -Dfile=E:\apache-maven-3.5.0\lib/modbus4j-2.0.7.jar -DgroupId=com.wz.package -DartifactId=modbus4j -Dversion=2.0.7 -Dpackaging=jar<br>
@@ -302,8 +302,8 @@ mvn install:install-file -Dfile=E:\apache-maven-3.5.0\lib/modbus4j-2.0.7.jar -Dg
     </entry>
     <entry>
         <title type="html"><![CDATA[Lambda表达式]]></title>
-        <id>https://spark-wz.github.io/post/lambda-biao-da-shi/</id>
-        <link href="https://spark-wz.github.io/post/lambda-biao-da-shi/">
+        <id>https://spark-wz.github.io/post/lambda-biao-da-shi</id>
+        <link href="https://spark-wz.github.io/post/lambda-biao-da-shi">
         </link>
         <updated>2019-12-18T01:38:23.000Z</updated>
         <content type="html"><![CDATA[<p><strong>简介</strong><br>
@@ -333,14 +333,14 @@ person::getAge;<br>
     </entry>
     <entry>
         <title type="html"><![CDATA[集合常用]]></title>
-        <id>https://spark-wz.github.io/post/java/</id>
-        <link href="https://spark-wz.github.io/post/java/">
+        <id>https://spark-wz.github.io/post/java</id>
+        <link href="https://spark-wz.github.io/post/java">
         </link>
         <updated>2019-12-11T07:14:13.000Z</updated>
         <content type="html"><![CDATA[<p><strong>java中将数组转为list</strong><br>
 String[] myArray = {&quot;Apple&quot;,&quot;Banana&quot;,&quot;Orange&quot;};<br>
 List<String> myList = Arrays.asList(myArray);<br>
-但是这个方法将数组转为集合后，集合的底层还是数组<img src="https://spark-wz.github.io/post-images/1576048771521.jpg" alt="" loading="lazy"><br>
+但是这个方法将数组转为集合后，集合的底层还是数组<img src="https://spark-wz.github.io/post-images/1576048771521.jpg" alt=""><br>
 2.传递的对象必须是基本对象，不能是包装类<br>
 int[] myArray = { 1, 2, 3 };<br>
 List myList = Arrays.asList(myArray);<br>

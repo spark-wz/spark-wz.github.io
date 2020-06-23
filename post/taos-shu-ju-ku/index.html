@@ -7,7 +7,7 @@
 <meta name="description" content="">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://spark-wz.github.io/favicon.ico?v=1592907348260">
+<link rel="shortcut icon" href="https://spark-wz.github.io/favicon.ico?v=1592907574558">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -88,52 +88,52 @@
             </p>
             
             <div class="post-content">
-              <p>TDengine要求每个数据点单独建表，系统中表的数量和采集点点的数量在一个量级.
-超级表(STable)是同一类型数据采集点的抽象，是同类型采集实例的集合，包含多张数据结构一样的子表。
-TDengine使用标准SQL语法定义表，使用关键词tags指定标签信息
+              <p>TDengine要求每个数据点单独建表，系统中表的数量和采集点点的数量在一个量级.<br>
+超级表(STable)是同一类型数据采集点的抽象，是同类型采集实例的集合，包含多张数据结构一样的子表。<br>
+TDengine使用标准SQL语法定义表，使用关键词tags指定标签信息<br>
 create table &lt;stable_name&gt;(&lt;field_name&gt; timestamp,field_name1 field_type,……) tags(tag_name tag_type,…)</p>
-<p>实例
-create table thermometer (ts timestamp, degree float)
+<p>实例<br>
+create table thermometer (ts timestamp, degree float)<br>
 tags (location binary(20),type int);</p>
 <p>沿用例子，使用超级表建立单个温度计数据表</p>
 <p>create table t1 using thermometer tags('beijing',10);</p>
 <p>tags字段的名称和类型：</p>
-<p>1.tags总长度不能超过512bytes。
-2.tags列的数据类型不能是timestamp。
-3.tags列名不能与其他列名相同。
+<p>1.tags总长度不能超过512bytes。<br>
+2.tags列的数据类型不能是timestamp。<br>
+3.tags列名不能与其他列名相同。<br>
 4.tags列名不能为预留关键字。</p>
 <p>删除STable时，所有通过该STable时，所有通过该超级表建立的表都会被删除。</p>
-<p>查看属于某STable并满足查询条件的表
+<p>查看属于某STable并满足查询条件的表<br>
 SELECT TBNAME,[TAG_NAME,…] FROM &lt;stable_name&gt; WHERE &lt;tag_name&gt; &lt;[=|&lt;=|&gt;=|&lt;&gt;] values..&gt; ([AND|OR] …)</p>
 <p>查询过程中可以加条件计数啥的</p>
 <p>#写数据时自动建子表</p>
-<p>自动建表只能建立子表不能建立超级表
+<p>自动建表只能建立子表不能建立超级表<br>
 INSERT INTO &lt;tb_name&gt; USING &lt;stb_name&gt; TAGS (&lt;tag1_value&gt;, ...) VALUES (field_value, ...) (field_value, ...) ...;</p>
 <p>#STable中tag管理</p>
-<p>添加新标签
-alter table &lt;stable_name&gt; add tag&lt;new_tag_name&gt; <type>
-删除标签
-drop tag
-修改 change
-修改子表标签值
+<p>添加新标签<br>
+alter table &lt;stable_name&gt; add tag&lt;new_tag_name&gt; <type><br>
+删除标签<br>
+drop tag<br>
+修改 change<br>
+修改子表标签值<br>
 alter table &lt;table_name&gt; set tag &lt;tag_name&gt;=&lt;new_tag_value&gt;</p>
 <p>#STable多表聚合</p>
 <p>针对超级表子表进行多表聚合查询，支持按照全部的tag值进行条件过滤，不支持binary类型的模糊查询</p>
-<p>SELECT function&lt;field_name&gt;,…
-FROM &lt;stable_name&gt;
-WHERE &lt;tag_name&gt; &lt;[=|&lt;=|&gt;=|&lt;&gt;] values..&gt; ([AND|OR] …)
-INTERVAL (<time range>)
-GROUP BY &lt;tag_name&gt;, &lt;tag_name&gt;…
-ORDER BY &lt;tag_name&gt; &lt;asc|desc&gt;
-SLIMIT &lt;group_limit&gt;
-SOFFSET &lt;group_offset&gt;
-LIMIT &lt;record_limit&gt;
-OFFSET &lt;record_offset&gt;
+<p>SELECT function&lt;field_name&gt;,…<br>
+FROM &lt;stable_name&gt;<br>
+WHERE &lt;tag_name&gt; &lt;[=|&lt;=|&gt;=|&lt;&gt;] values..&gt; ([AND|OR] …)<br>
+INTERVAL (<time range>)<br>
+GROUP BY &lt;tag_name&gt;, &lt;tag_name&gt;…<br>
+ORDER BY &lt;tag_name&gt; &lt;asc|desc&gt;<br>
+SLIMIT &lt;group_limit&gt;<br>
+SOFFSET &lt;group_offset&gt;<br>
+LIMIT &lt;record_limit&gt;<br>
+OFFSET &lt;record_offset&gt;<br>
 超级表聚合查询，TDengine目前支持sum、count、avg、first、last、min、max、top、bottom不使用orderBy的查询将会对超级表下满足条件的进行查询</p>
 <p>#STable使用实例</p>
-<p><strong>在一个服务器上部署多个docker实现负载均衡</strong>
-在一个服务器上实现负载均衡，当一个docker挂掉，启动另一个docker使项目不会停
-demo外链
+<p><strong>在一个服务器上部署多个docker实现负载均衡</strong><br>
+在一个服务器上实现负载均衡，当一个docker挂掉，启动另一个docker使项目不会停<br>
+demo外链<br>
 https://blog.csdn.net/wsbgmofo/article/details/79088186</p>
 
             </div>
@@ -158,7 +158,7 @@ https://blog.csdn.net/wsbgmofo/article/details/79088186</p>
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://spark-wz.github.io/images/avatar.png?v=1592907348260" class="no-responsive avatar">
+    <img src="https://spark-wz.github.io/images/avatar.png?v=1592907574558" class="no-responsive avatar">
     <div class="text-muted"></div>
     <div class="social-container">
       
