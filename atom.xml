@@ -2,13 +2,40 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://spark-wz.github.io</id>
     <title>Gridea</title>
-    <updated>2020-06-23T10:22:39.518Z</updated>
+    <updated>2020-06-25T13:03:24.014Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://spark-wz.github.io"/>
     <link rel="self" href="https://spark-wz.github.io/atom.xml"/>
     <logo>https://spark-wz.github.io/images/avatar.png</logo>
     <icon>https://spark-wz.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[Rocket Mq]]></title>
+        <id>https://spark-wz.github.io/post/rocket-mq</id>
+        <link href="https://spark-wz.github.io/post/rocket-mq">
+        </link>
+        <updated>2020-06-24T08:46:25.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="定义">定义</h2>
+<ol>
+<li>Producer(生产者)  Producer Group(消息生产者组)</li>
+<li>Consumer(消费者)  Consumer Group（消费同类消息的多个实例）</li>
+<li>Broker(包括接收请求，处理消费，消费持久，消息的HA，以及服务端过滤等)MQ程序，接受生产者信息，提供给消费者消费</li>
+<li>Topic(消息主题通过topic对不同的消息进行分类) Tag(对topic的进一步细化)</li>
+<li>Message Queue(消息队列,必须指定Topic)</li>
+<li>NameServer(负责producer、Consumer和Broker之间的协调，可以多个部署，相互独立)</li>
+<li>Offset （偏移量，相当于消息进度）</li>
+<li>Commit Log（消息存储会写在Commit Log文件里面）</li>
+</ol>
+<h3 id="职能图示">职能图示</h3>
+<p><img src="https://spark-wz.github.io/post-images/1592989472723.png" alt=""></p>
+<h3 id="消费者类型">消费者类型</h3>
+<ol>
+<li>PushConsumer 使用简单，只需要设置订阅参数和消息处理方法，系统自动保存offset。</li>
+<li>PullConsumer可控性更高，可以设定拉取时间、控制offset。</li>
+</ol>
+<h2 id=""></h2>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Modbus RTU]]></title>
         <id>https://spark-wz.github.io/post/ce-shi</id>
@@ -329,59 +356,6 @@ Lambda 表达式的正文可以包含零条，一条或多条语句。<br>
 双冒号(::)操作符是java的方法引用。当我们使用一个方法的引用时，目标引用放在冒号前，目标引用提供的方法在：：之后。即目标引用::方法。<br>
 person::getAge;<br>
 在person类中定义的方法getAge的引用。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[集合常用]]></title>
-        <id>https://spark-wz.github.io/post/java</id>
-        <link href="https://spark-wz.github.io/post/java">
-        </link>
-        <updated>2019-12-11T07:14:13.000Z</updated>
-        <content type="html"><![CDATA[<p><strong>java中将数组转为list</strong><br>
-String[] myArray = {&quot;Apple&quot;,&quot;Banana&quot;,&quot;Orange&quot;};<br>
-List<String> myList = Arrays.asList(myArray);<br>
-但是这个方法将数组转为集合后，集合的底层还是数组<img src="https://spark-wz.github.io/post-images/1576048771521.jpg" alt=""><br>
-2.传递的对象必须是基本对象，不能是包装类<br>
-int[] myArray = { 1, 2, 3 };<br>
-List myList = Arrays.asList(myArray);<br>
-System.out.println(myList.size());//1<br>
-System.out.println(myList.get(0));//数组地址值<br>
-System.out.println(myList.get(1));//报错：ArrayIndexOutOfBoundsException<br>
-当传入原生数据类型是,myList.get(0)拿到的是数组本身，而不是第一个值<br>
-List myList = Arrays.asList(1, 2, 3);<br>
-myList.add(4);//运行时报错：UnsupportedOperationException<br>
-myList.remove(1);//运行时报错：UnsupportedOperationException<br>
-myList.clear();//运行时报错：UnsupportedOperationException<br>
-在使用add(),remove(),clear()会报错<br>
-<em>正确的最简便的方法</em><br>
-String myArray = {&quot;Apple&quot;,&quot;Banana&quot;,&quot;Orange&quot;};<br>
-List list = new ArrayList&lt;&gt;(Arrays.asList(myArray));</p>
-<p><strong>遍历Map</strong></p>
-<p>1.通过map.keySet()</p>
-<p>通过key去获取value<br>
-Set<Integer> set = map.keySet();</p>
-<p>for (Integer integer: set) {</p>
-<p>System.out.println(integer +&quot;的对应值为:&quot; + map.get(integer));</p>
-<p>}<br>
-2.通过map.values遍历所有的value</p>
-<p>Map&lt;Integer,Integer&gt; map = new HashMap&lt;&gt;();<br>
-map.put(1,1);<br>
-map.put(2,2);<br>
-map.put(3,3);<br>
-Collection<Integer> values = map.values();<br>
-for (Integer value : values) {<br>
-System.out.println(&quot;value = &quot; + value);<br>
-}<br>
-3.遍历map.entrySet</p>
-<p>遍历map.entrySet,可同时拿到所有的KEY和VALUE<br>
-Set&lt;Map.Entry&lt;Integer, Integer&gt;&gt; entries = map.entrySet();<br>
-for (Map.Entry&lt;Integer, Integer&gt; entry : entries) {<br>
-System.out.println(&quot;entry.getValue() = &quot; + entry.getValue());<br>
-}</p>
-<p>4.lambda表达式</p>
-<p>map.forEach((key,value) -&gt;{<br>
-System.out.println(&quot;key = &quot; + key+&quot;value = &quot;+value);<br>
-});</p>
 ]]></content>
     </entry>
 </feed>
