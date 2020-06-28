@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>Python BeautifulSoup | Gridea</title>
+<title>Gridea</title>
 <meta name="description" content="">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -23,7 +23,6 @@
 
   </head>
   <body>
-  
     <nav class="navbar border fixed split-nav">
   <div class="nav-brand">
     <h3><a href="https://spark-wz.github.io">Gridea</a></h3>
@@ -77,96 +76,45 @@
   </div>
 </nav>
 
+
     <div id="top" class="row site">
       <div class="sm-12 md-8 col">
         <div class="paper">
-          <article class="article">
-            <h1>Python BeautifulSoup</h1>
-            <p class="article-meta">
-              2020-04-01
-              
-            </p>
-            
-            <div class="post-content">
-              <p>BeautifulSoup是一个可以从html或者xml中提取数据的Python库。<br>
-BeautifulSoup最常用解析器（lxml）效率最高<br>
-soup = BeautifulSoup(rurl,'lxml')</p>
-<p><strong>根据name属性找<br>
-soup.name<br>
-soup.head 只获取head标签<br>
-soup.body.b 获取第一个b标签<br>
-通过点取属性的方式只能获得当前名字的第一个tag标签<br>
-获取所有的a标签soup.find_all()<br>
-soup.find_all('a')</strong></p>
-<p><strong>tag的.contains属性可以将tag的子节点以列表的方式输出<br>
-字符创没有.contains属性，因为没有子节点。<br>
-tag的.children可以对tag的直接子节点循环<br>
-for child in title_tag.children:<br>
-print(child)<br>
-.descendants可以对tag的所有子孙节点进行递归循环<br>
-for child in head_tag.descendants:<br>
-print(child)</strong></p>
-<pre><code>**.parent 可以拿到父节点
-html的父节点是BeautifulSoup
-.parents可以递归循环所有的父类节点
-link = soup.a
-</code></pre>
-<p>link</p>
-<h1 id="a-classsister-hrefhttpexamplecomelsie-idlink1elsiea"><a class="sister" href="http://example.com/elsie" id="link1">Elsie</a></h1>
-<p>for parent in link.parents:<br>
-if parent is None:<br>
-print(parent)<br>
-else:<br>
-print(parent.name)<br>
-**</p>
-<p><strong>兄弟节点</strong><br>
-sibling_soup.prettify())输出所有兄弟节点<br>
-sibling_soup.b.next_sibling 输出后边的兄弟节点</p>
-<h1 id="ctext2c"><c>text2</c></h1>
-<p>sibling_soup.c.previous_sibling输出前边的兄弟节点</p>
-<h1 id="btext1b"><b>text1</b></h1>
-<p><strong>正则表达式</strong><br>
-re<br>
-import re<br>
-complie()返回匹配的对象，单独使用没有意义，和find_all搭配使用</p>
-<p><strong>true</strong><br>
-for tag in soup.find_all(True):<br>
-print(tag.name)</p>
-<h1 id="html">html</h1>
-<h1 id="head">head</h1>
-<h1 id="title">title</h1>
-<h1 id="body">body</h1>
-<h1 id="p">p</h1>
-<h1 id="b">b</h1>
-<h1 id="p-2">p</h1>
-<h1 id="a">a</h1>
-<h1 id="a-2">a</h1>
-<h1 id="a-3">a</h1>
-<h1 id="p-可以匹配任何值但是不会返回字符串节点">p 可以匹配任何值，但是不会返回字符串节点。</h1>
-<p><strong>id</strong><br>
-soup.find_all(id='link2')<br>
-根据id匹配</p>
+          
+  <article class="article">
+    <h2 class="article-title">
+      <a href="https://spark-wz.github.io/post/mian-shi-ri-chang-zheng-li">面试日常整理</a>
+    </h2>
+    <p class="article-meta">
+      2019-09-23
+      
+    </p>
+    <p class="text-lead">
+      
+    </p>
+    <div class="row">
+      <a href="https://spark-wz.github.io/post/mian-shi-ri-chang-zheng-li" class="readmore-link">
+        <button>
+          Read More
+        </button>
+      </a>
+    </div>
+  </article>
 
-            </div>
-          </article>
-        </div>
-        <div class="paper" data-aos="fade-in">
-          
-            <div class="next-post">
-              <div class="next">
-                下一篇
-              </div>
-              <a href="https://spark-wz.github.io/post/mysql-gui-fan">
-                <h3 class="post-title">
-                  MySQL规范
-                </h3>
-              </a>
-            </div>
-          
+
         </div>
         
-      </div>
+        <div class="row flex-edges">
+  
+    <a href="https://spark-wz.github.io/page/2/" class="paper-btn">
+      上一页
+    </a>
+  
+  
+</div>
 
+      </div>
+      
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
     <img src="https://spark-wz.github.io/images/avatar.png?v=1593310360074" class="no-responsive avatar">
@@ -290,9 +238,7 @@ soup.find_all(id='link2')<br>
   </div>
 </div>
 
-
     </div>
-
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 
 <script type="application/javascript">
