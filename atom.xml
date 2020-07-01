@@ -2,13 +2,112 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://spark-wz.github.io</id>
     <title>Gridea</title>
-    <updated>2020-07-01T04:00:05.212Z</updated>
+    <updated>2020-07-01T04:02:29.246Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://spark-wz.github.io"/>
     <link rel="self" href="https://spark-wz.github.io/atom.xml"/>
     <logo>https://spark-wz.github.io/images/avatar.png</logo>
     <icon>https://spark-wz.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[nodejs]]></title>
+        <id>https://spark-wz.github.io/post/nodejs</id>
+        <link href="https://spark-wz.github.io/post/nodejs">
+        </link>
+        <updated>2020-07-01T04:01:49.000Z</updated>
+        <content type="html"><![CDATA[<p>//person对象<br>
+function Person(id, year, project, importance,pp,funds,funds_allocated,software_or_hardware,competition_and_selection,domestic_part,research_unit,is_private) {<br>
+this.id = id;<br>
+this.year = year;<br>
+this.project = project;<br>
+this.importance = importance;<br>
+this.pp = pp;<br>
+this.funds = funds;<br>
+this.funds_allocated = funds_allocated;<br>
+this.software_or_hardware = software_or_hardware;<br>
+this.competition_and_selection = competition_and_selection;<br>
+this.domestic_part = domestic_part;<br>
+this.research_unit = research_unit;<br>
+this.is_private = is_private;<br>
+}<br>
+function Person(id, year, project, importance,pp,funds,funds_allocated,software_or_hardware,competition_and_selection,domestic_part,research_unit,is_private) {<br>
+}<br>
+//set方法<br>
+Person.prototype.setId=function (id) {<br>
+this.id = id;<br>
+}<br>
+Person.prototype.setYear=function (year) {<br>
+this.year = year;<br>
+}<br>
+Person.prototype.setProject=function (project) {<br>
+this.project = project;<br>
+}<br>
+Person.prototype.setImportance=function (importance) {<br>
+this.importance = importance;<br>
+}<br>
+Person.prototype.setPp=function (pp) {<br>
+this.pp = pp;<br>
+}<br>
+Person.prototype.setFunds=function (funds) {<br>
+this.funds = funds;<br>
+}<br>
+Person.prototype.setAllocated=function (funds_allocated) {<br>
+this.funds_allocated = funds_allocated;<br>
+}<br>
+Person.prototype.setSoftware=function (software_or_hardware) {<br>
+this.software_or_hardware = software_or_hardware;<br>
+}<br>
+Person.prototype.setCompetition=function (competition_and_selection) {<br>
+this.competition_and_selection = competition_and_selection;<br>
+}<br>
+Person.prototype.setDomestic=function (domestic_part) {<br>
+this.domestic_part = domestic_part;<br>
+}<br>
+Person.prototype.setResearch=function (research_unit) {<br>
+this.research_unit = research_unit;<br>
+}<br>
+Person.prototype.setPrivate=function (is_private) {<br>
+this.is_private = is_private;<br>
+}<br>
+//get方法<br>
+Person.prototype.getId=function () {<br>
+return this.id ;<br>
+}<br>
+Person.prototype.getYear=function () {<br>
+return this.year;<br>
+}<br>
+Person.prototype.getProject=function () {<br>
+return this.project ;<br>
+}<br>
+Person.prototype.getImportance=function () {<br>
+return this.importance;<br>
+}<br>
+Person.prototype.getPp=function () {<br>
+return this.pp ;<br>
+}<br>
+Person.prototype.getFunds=function () {<br>
+return this.funds;<br>
+}<br>
+Person.prototype.getAllocated=function () {<br>
+return this.funds_allocated ;<br>
+}<br>
+Person.prototype.getSoftware=function () {<br>
+return this.software_or_hardware;<br>
+}<br>
+Person.prototype.getCompetition=function () {<br>
+return this.competition_and_selection;<br>
+}<br>
+Person.prototype.getDomestic=function () {<br>
+return this.domestic_part ;<br>
+}<br>
+Person.prototype.getResearch=function () {<br>
+return this.research_unit;<br>
+}<br>
+Person.prototype.getPrivate=function () {<br>
+return this.is_private;<br>
+}</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[6.28]]></title>
         <id>https://spark-wz.github.io/post/628</id>
@@ -338,33 +437,6 @@ varchar类型的，如果长度不超过255都用char</p>
 如果字符串时null的话，去查的话就很废效率。</p>
 <p>前端传给我取钥匙或者存钥匙<br>
 把所有状态为空的钥匙柜放在实时页面</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[钥匙柜]]></title>
-        <id>https://spark-wz.github.io/post/yao-chi-ju</id>
-        <link href="https://spark-wz.github.io/post/yao-chi-ju">
-        </link>
-        <updated>2019-12-30T06:25:39.000Z</updated>
-        <content type="html"><![CDATA[<p><strong>整体流程</strong><br>
-从钥匙柜sqlserver数据库里面取数存到mysql中,再从sqlserver中读数给前端。<br>
-两张表一张实时表,一张历史表<br>
-<strong>要点</strong></p>
-<ul>
-<li>实时数据<br>
-切换到MySQL,从MySQL中读数返给前端,根据时间排序。写一个同步方法，先切换到MySQL中,删除MySQL实时表中的数据,再切换到sqlserver，读取sqlserver中的数据,再切换到MySQL,插入   显示当前所有钥匙状态。<br>
-历史数据<br>
-同步方法中，切换到MySQL,根据时间排序查到最后一个更新的id,切换到SqlServer,按条件查询，将id大于MySQL最后一个id的记录查出(条件查询)，再切换到MySQL，查到的集合插入。</li>
-</ul>
-<p>写一个根据前端参数返回数据的方法，返回给前端。<br>
-<strong>sqlServer的generator配置</strong><br>
-<jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver" connectionURL="jdbc:sqlserver://HQR333TW24G54FN\ADMIN; DatabaseName=I-KeyBox" userId="sa" password="123456"></jdbcConnection><br>
-数据库驱动<br>
-<classPathEntry  location="E:\ggdon\sqljdbc4-4.0.jar"/><br>
-<strong>MySQL的generator配置</strong><br>
-<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://39.97.227.216:3306/gasoline?useUnicode=true&amp;characterEncoding=utf8" userId="root" password="Platform@123"></jdbcConnection><br>
-数据库驱动<br>
-<classPathEntry  location="E:\apache-maven-3.5.0\repository\mysql\mysql-connector-java\5.1.6\mysql-connector-java-5.1.6.jar"/></p>
 ]]></content>
     </entry>
 </feed>

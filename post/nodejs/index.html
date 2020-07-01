@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>定时任务@Scheduled | Gridea</title>
+<title>nodejs | Gridea</title>
 <meta name="description" content="">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -81,52 +81,104 @@
       <div class="sm-12 md-8 col">
         <div class="paper">
           <article class="article">
-            <h1>定时任务@Scheduled</h1>
+            <h1>nodejs</h1>
             <p class="article-meta">
-              2020-05-18
+              2020-07-01
               
             </p>
             
             <div class="post-content">
-              <p>字段 允许值 允许的特殊字符<br>
-秒 0-59 , - * /<br>
-分 0-59 , - * /<br>
-小时 0-23 , - * /<br>
-日期 1-31 , - * ? / L W C<br>
-月份 1-12 或者 JAN-DEC , - * /<br>
-星期 1-7 或者 SUN-SAT , - * ? / L C #<br>
-年（可选） 留空, 1970-2099 , - * /<br>
-表达式意义<br>
-&quot;0 0 12 * * ?&quot; 每天中午12点触发<br>
-&quot;0 15 10 ? * *&quot; 每天上午10:15触发<br>
-&quot;0 15 10 * * ?&quot; 每天上午10:15触发<br>
-&quot;0 15 10 * * ? *&quot; 每天上午10:15触发<br>
-&quot;0 15 10 * * ? 2005&quot; 2005年的每天上午10:15触发<br>
-&quot;0 * 14 * * ?&quot; 在每天下午2点到下午2:59期间的每1分钟触发<br>
-&quot;0 0/5 14 * * ?&quot; 在每天下午2点到下午2:55期间的每5分钟触发<br>
-&quot;0 0/5 14,18 * * ?&quot; 在每天下午2点到2:55期间和下午6点到6:55期间的每5分钟触发<br>
-&quot;0 0-5 14 * * ?&quot; 在每天下午2点到下午2:05期间的每1分钟触发<br>
-&quot;0 10,44 14 ? 3 WED&quot; 每年三月的星期三的下午2:10和2:44触发<br>
-&quot;0 15 10 ? * MON-FRI&quot; 周一至周五的上午10:15触发<br>
-&quot;0 15 10 15 * ?&quot; 每月15日上午10:15触发<br>
-&quot;0 15 10 L * ?&quot; 每月最后一日的上午10:15触发<br>
-&quot;0 15 10 ? * 6L&quot; 每月的最后一个星期五上午10:15触发<br>
-&quot;0 15 10 ? * 6L 2002-2005&quot; 2002年至2005年的每月的最后一个星期五上午10:15触发<br>
-&quot;0 15 10 ? * 6#3&quot; 每月的第三个星期五上午10:15触发<br>
-每天早上6点<br>
-0 6 * * *<br>
-每两个小时<br>
-0 */2 * * *<br>
-晚上11点到早上8点之间每两个小时，早上八点<br>
-0 23-7/2，8 * * *<br>
-每个月的4号和每个礼拜的礼拜一到礼拜三的早上11点<br>
-0 11 4 * 1-3<br>
-1月1日早上4点<br>
-0 4 1 1 *</p>
-<p><strong>linux防火墙命令</strong><br>
-netstat -anp   查看当前开放端口<br>
-firewall-cmd --zone=public --add-port=6030/tcp --permanent  开放端口<br>
-firewall-cmd --reload  重新加载端口，开放端口后需要重新reload</p>
+              <p>//person对象<br>
+function Person(id, year, project, importance,pp,funds,funds_allocated,software_or_hardware,competition_and_selection,domestic_part,research_unit,is_private) {<br>
+this.id = id;<br>
+this.year = year;<br>
+this.project = project;<br>
+this.importance = importance;<br>
+this.pp = pp;<br>
+this.funds = funds;<br>
+this.funds_allocated = funds_allocated;<br>
+this.software_or_hardware = software_or_hardware;<br>
+this.competition_and_selection = competition_and_selection;<br>
+this.domestic_part = domestic_part;<br>
+this.research_unit = research_unit;<br>
+this.is_private = is_private;<br>
+}<br>
+function Person(id, year, project, importance,pp,funds,funds_allocated,software_or_hardware,competition_and_selection,domestic_part,research_unit,is_private) {<br>
+}<br>
+//set方法<br>
+Person.prototype.setId=function (id) {<br>
+this.id = id;<br>
+}<br>
+Person.prototype.setYear=function (year) {<br>
+this.year = year;<br>
+}<br>
+Person.prototype.setProject=function (project) {<br>
+this.project = project;<br>
+}<br>
+Person.prototype.setImportance=function (importance) {<br>
+this.importance = importance;<br>
+}<br>
+Person.prototype.setPp=function (pp) {<br>
+this.pp = pp;<br>
+}<br>
+Person.prototype.setFunds=function (funds) {<br>
+this.funds = funds;<br>
+}<br>
+Person.prototype.setAllocated=function (funds_allocated) {<br>
+this.funds_allocated = funds_allocated;<br>
+}<br>
+Person.prototype.setSoftware=function (software_or_hardware) {<br>
+this.software_or_hardware = software_or_hardware;<br>
+}<br>
+Person.prototype.setCompetition=function (competition_and_selection) {<br>
+this.competition_and_selection = competition_and_selection;<br>
+}<br>
+Person.prototype.setDomestic=function (domestic_part) {<br>
+this.domestic_part = domestic_part;<br>
+}<br>
+Person.prototype.setResearch=function (research_unit) {<br>
+this.research_unit = research_unit;<br>
+}<br>
+Person.prototype.setPrivate=function (is_private) {<br>
+this.is_private = is_private;<br>
+}<br>
+//get方法<br>
+Person.prototype.getId=function () {<br>
+return this.id ;<br>
+}<br>
+Person.prototype.getYear=function () {<br>
+return this.year;<br>
+}<br>
+Person.prototype.getProject=function () {<br>
+return this.project ;<br>
+}<br>
+Person.prototype.getImportance=function () {<br>
+return this.importance;<br>
+}<br>
+Person.prototype.getPp=function () {<br>
+return this.pp ;<br>
+}<br>
+Person.prototype.getFunds=function () {<br>
+return this.funds;<br>
+}<br>
+Person.prototype.getAllocated=function () {<br>
+return this.funds_allocated ;<br>
+}<br>
+Person.prototype.getSoftware=function () {<br>
+return this.software_or_hardware;<br>
+}<br>
+Person.prototype.getCompetition=function () {<br>
+return this.competition_and_selection;<br>
+}<br>
+Person.prototype.getDomestic=function () {<br>
+return this.domestic_part ;<br>
+}<br>
+Person.prototype.getResearch=function () {<br>
+return this.research_unit;<br>
+}<br>
+Person.prototype.getPrivate=function () {<br>
+return this.is_private;<br>
+}</p>
 
             </div>
           </article>
@@ -137,9 +189,9 @@ firewall-cmd --reload  重新加载端口，开放端口后需要重新reload</p
               <div class="next">
                 下一篇
               </div>
-              <a href="https://spark-wz.github.io/post/taos-shu-ju-ku">
+              <a href="https://spark-wz.github.io/post/628">
                 <h3 class="post-title">
-                  taos数据库
+                  6.28
                 </h3>
               </a>
             </div>
