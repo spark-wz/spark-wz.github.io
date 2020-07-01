@@ -7,7 +7,7 @@
 <meta name="description" content="">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://spark-wz.github.io/favicon.ico?v=1593527770065">
+<link rel="shortcut icon" href="https://spark-wz.github.io/favicon.ico?v=1593576001041">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -100,6 +100,27 @@
 <p>计算多年年度结果，页面显示结果加图表对比，支持导出word<br>
 npm install sqlite3 --save</p>
 <p>UPDATE &quot;main&quot;.&quot;test&quot; SET &quot;year&quot;=202, &quot;project&quot;=2, &quot;importance&quot;=2, &quot;pp&quot;=2, &quot;funds&quot;=2, &quot;funds_allocated&quot;=2, &quot;software_or_hardware&quot;=2, &quot;competition_and_selection&quot;=2, &quot;domestic_part&quot;=2, &quot;research_unit&quot;=22, &quot;is_private&quot;=2 WHERE (&quot;id&quot;=10)</p>
+<p>参数一  运算符   参数二     权重   百分比    运算    参数三  运算符  参数四      权重    百分比  type</p>
+<p>// 添加<br>
+function insert(info) {<br>
+insert.run(&quot;INSERT INTO &quot;main&quot;.&quot;test&quot; (&quot;year&quot;, &quot;project&quot;, &quot;importance&quot;, &quot;pp&quot;, &quot;funds&quot;, &quot;funds_allocated&quot;, &quot;software_or_hardware&quot;, &quot;competition_and_selection&quot;, &quot;domestic_part&quot;, &quot;research_unit&quot;, &quot;is_private&quot;, &quot;domestic_sw&quot;, &quot;project_function&quot;, &quot;goal&quot;,&quot;total_part&quot;) VALUES (&quot;+info.year+&quot;, &quot;+info.project+&quot;, &quot;+info.importance+&quot;, &quot;+info.pp+&quot;, &quot;+info.funds+&quot;, &quot;+info.funds_allocated+&quot;, &quot;+info.software_or_hardware+&quot;, &quot;+info.competition_and_selection+&quot;, &quot;+info.domestic_part+&quot;, &quot;+info.research_unit+&quot;, &quot;+info.is_private+&quot;, &quot;+info.domestic_sw+&quot;, &quot;+info.project_function+&quot;, &quot;+info.goal+&quot;, &quot;+info.total_part+&quot;)&quot;,function (err) {<br>
+if(null != err){<br>
+DB.printErrorInfo(err);<br>
+}else {<br>
+return 1;<br>
+};<br>
+});<br>
+}<br>
+//更新<br>
+function update(info) {<br>
+update.run(&quot;UPDATE &quot;main&quot;.&quot;test&quot; SET &quot;year&quot;=&quot;+info.year+&quot;, &quot;project&quot;=&quot;+info.project+&quot;, &quot;importance&quot;=&quot;+info.importance+&quot;, &quot;pp&quot;=&quot;+info.pp+&quot;, &quot;funds&quot;=&quot;+info.funds+&quot;, &quot;funds_allocated&quot;=&quot;+info.funds_allocated+&quot;, &quot;software_or_hardware&quot;=&quot;+info.software_or_hardware+&quot;, &quot;competition_and_selection&quot;=&quot;+info.competition_and_selection+&quot;, &quot;domestic_part&quot;=&quot;+info.domestic_part+&quot;, &quot;research_unit&quot;=&quot;+info.research_unit+&quot;, &quot;is_private&quot;=&quot;+info.is_private+&quot;, &quot;domestic_sw&quot;=&quot;+info.domestic_sw+&quot;, &quot;project_function&quot;=&quot;+info.project_function+&quot;, &quot;goal&quot;=&quot;+info.goal+&quot;, &quot;total_part&quot;=&quot;+info.total_part+&quot; WHERE (&quot;id&quot;=&quot;+info.id+&quot; )&quot;,function (err) {<br>
+if(null != err){<br>
+DB.printErrorInfo(err);<br>
+}else {<br>
+return 1;<br>
+};<br>
+});<br>
+}</p>
 
             </div>
           </article>
@@ -123,7 +144,7 @@ npm install sqlite3 --save</p>
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://spark-wz.github.io/images/avatar.png?v=1593527770065" class="no-responsive avatar">
+    <img src="https://spark-wz.github.io/images/avatar.png?v=1593576001041" class="no-responsive avatar">
     <div class="text-muted"></div>
     <div class="social-container">
       
