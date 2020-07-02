@@ -2,13 +2,60 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://spark-wz.github.io</id>
     <title>Gridea</title>
-    <updated>2020-07-01T04:02:29.246Z</updated>
+    <updated>2020-07-02T07:30:07.282Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://spark-wz.github.io"/>
     <link rel="self" href="https://spark-wz.github.io/atom.xml"/>
     <logo>https://spark-wz.github.io/images/avatar.png</logo>
     <icon>https://spark-wz.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[参数sql]]></title>
+        <id>https://spark-wz.github.io/post/can-shu-sql</id>
+        <link href="https://spark-wz.github.io/post/can-shu-sql">
+        </link>
+        <updated>2020-07-02T02:28:01.000Z</updated>
+        <content type="html"><![CDATA[<p>select count(pp) from test where pp='立项' or pp='签约' or pp='已完成' or pp='引入经费计划'   历年累计立项数<br>
+select count(pp) from test where pp='规划' or pp='立项' or pp='进行中' or pp='已完成' or pp='引入经费计划'  规划新上项目数<br>
+select count(pp) from test where pp='已完成' and importance = '重点项目'  实际完成重点项目数<br>
+select count(pp) from test 规划任务总量<br>
+select count(pp) from test where pp='已完成' and importance = '一般项目' 实际完成一般项目数量<br>
+select sum(funds_allocated) from test where importance = '重点项目' 以拨付重点项目经费<br>
+select sum(funds) from test;  规划经费总额<br>
+select sum(funds_allocated) from test where importance = '一般项目' 以拨付一般项目经费<br>
+select count (id) from test where funds_allocated &gt; funds and importance = '重点项目'    超概算重点项目数量<br>
+select count (id) from test where funds_allocated &gt; funds and importance = '一般项目'    超概算一般项目数量<br>
+select sum (funds_allocated - funds) from test where funds_allocated &gt; funds and importance = '重点项目'    超概算重点项目金额<br>
+select sum (funds_allocated - funds) from test where funds_allocated &gt; funds and importance = '一般项目'    超概算一般项目金额<br>
+select count(id) from test where pp='立项' or pp='进行中' or pp='已完成' and importance = '重点项目' and year = ?' 年度新上重点项目已立项数<br>
+select count(id) from test where pp='立项' or pp='进行中' or pp='已完成' and importance = '一般项目' and year = ? 年度新上一般项目已立项数<br>
+select count(id) from test  year = ? 年度新上项目数<br>
+select count(id) from test  year = ? 年度总项目数<br>
+select count(id) from test where  pp='进行中' or pp='已完成' and importance = '重点项目' and year = ?' 年度签订重点项目合同数<br>
+select count(id) from test where  pp='进行中' or pp='已完成' and importance = '一般项目' and year = ? 年度签订一般项目合同数<br>
+select count(id) from test where  pp='进行中' or pp='已完成' or pp='引入经费计划' and importance = '重点项目' and year = ?' 列入经费计划的重点项目数<br>
+select count(id) from test where  pp='进行中' or pp='已完成' or pp='引入经费计划' and importance = '一般项目' and year = ? 列入经费计划的一般项目数<br>
+select sum(funds_allocated)  from test where  pp='进行中' or pp='已完成' or pp='引入经费计划' and importance = '重点项目' 列入经费计划的重点项目已拨付经费数<br>
+select sum(funds_allocated)  from test where  pp='进行中' or pp='已完成' or pp='引入经费计划' and importance = '一般项目' 列入经费计划的一般项目已拨付经费数<br>
+select count (importance) from test where importance='重点项目' and pp = '已完成'   已完成重点项目数<br>
+select count (importance)  from test where importance='一般项目' and pp = '已完成'   已完成一般项目数<br>
+select count (id)  from test where competition_and_selection ='是' and importance = '重点项目'  竞争择优确定的重点项目数<br>
+select count (id)  from test where competition_and_selection ='是' and importance = '一般项目'  竞争择优确定的一般项目数<br>
+select count(software_or_hardware) from test where software_or_hardware='软件'  软件项目总数<br>
+select count(is_private) from test  总承研单位数量<br>
+select count(is_private) from test where importance='重点项目' and is_private='是'   重点项目民营承研单位数量<br>
+select count(is_private) from test where importance='一般项目' and is_private='是'   一般项目民营承研单位数量<br>
+select count(domestic_sw) from test where importance = '重点项目'<br>
+重点项目国产化软件数<br>
+select count(domestic_sw) from test where importance = '一般项目'<br>
+一般项目国产化软件数<br>
+select sum(total_part) from test 项目零部件总数<br>
+select sum(domestic_part) from test where importance = '重点项目'<br>
+重点项目国产化零部件数<br>
+select sum(domestic_part) from test where importance = '一般项目'<br>
+一般项目国产化零部件数</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[nodejs]]></title>
         <id>https://spark-wz.github.io/post/nodejs</id>
@@ -147,6 +194,7 @@ return 1;<br>
 };<br>
 });<br>
 }</p>
+<p>UPDATE &quot;main&quot;.&quot;test&quot; SET &quot;year&quot;=11, &quot;project&quot;=1, &quot;importance&quot;=111, &quot;pp&quot;=111, &quot;funds&quot;=1111, &quot;funds_allocated&quot;=111, &quot;software_or_hardware&quot;=111, &quot;competition_and_selection&quot;=111, &quot;domestic_part&quot;=111, &quot;research_unit&quot;=11, &quot;is_private&quot;=11, &quot;domestic_sw&quot;=1, &quot;project_function&quot;=1, &quot;goal&quot;=1, &quot;total_part&quot;=1 WHERE (&quot;id&quot;=11)</p>
 ]]></content>
     </entry>
     <entry>
@@ -416,27 +464,6 @@ print(tag.name)</p>
 <p><strong>id</strong><br>
 soup.find_all(id='link2')<br>
 根据id匹配</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[MySQL规范]]></title>
-        <id>https://spark-wz.github.io/post/mysql-gui-fan</id>
-        <link href="https://spark-wz.github.io/post/mysql-gui-fan">
-        </link>
-        <updated>2020-01-06T06:56:25.000Z</updated>
-        <content type="html"><![CDATA[<p><strong>数据类型</strong><br>
-MySQL中小数的数据类型有float（前7）和double（前15），都是浮点类型数都只有前几位准确，不精确，decimal是精确的小数，通常用于货币，计算精确的数。<br>
-varchar类型的，如果长度不超过255都用char</p>
-<p><strong>基本字段</strong><br>
-一般表的基本字段，id、is_deleted(假删除)、c_t、u_t、create_user、update_user、create_user_name、update_user_name</p>
-<p><strong>注意事项</strong><br>
-记得写注释<br>
-记得加默认值，数字的就是0<br>
-字符串的就 EMPTY STRING<br>
-<img src="https://spark-wz.github.io/post-images/1578298913491.png" alt=""><br>
-如果字符串时null的话，去查的话就很废效率。</p>
-<p>前端传给我取钥匙或者存钥匙<br>
-把所有状态为空的钥匙柜放在实时页面</p>
 ]]></content>
     </entry>
 </feed>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>集合常用 | Gridea</title>
+<title>参数sql | Gridea</title>
 <meta name="description" content="">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -81,58 +81,52 @@
       <div class="sm-12 md-8 col">
         <div class="paper">
           <article class="article">
-            <h1>集合常用</h1>
+            <h1>参数sql</h1>
             <p class="article-meta">
-              2019-12-11
+              2020-07-02
               
             </p>
             
             <div class="post-content">
-              <p><strong>java中将数组转为list</strong><br>
-String[] myArray = {&quot;Apple&quot;,&quot;Banana&quot;,&quot;Orange&quot;};<br>
-List<String> myList = Arrays.asList(myArray);<br>
-但是这个方法将数组转为集合后，集合的底层还是数组<img src="https://spark-wz.github.io/post-images/1576048771521.jpg" alt=""><br>
-2.传递的对象必须是基本对象，不能是包装类<br>
-int[] myArray = { 1, 2, 3 };<br>
-List myList = Arrays.asList(myArray);<br>
-System.out.println(myList.size());//1<br>
-System.out.println(myList.get(0));//数组地址值<br>
-System.out.println(myList.get(1));//报错：ArrayIndexOutOfBoundsException<br>
-当传入原生数据类型是,myList.get(0)拿到的是数组本身，而不是第一个值<br>
-List myList = Arrays.asList(1, 2, 3);<br>
-myList.add(4);//运行时报错：UnsupportedOperationException<br>
-myList.remove(1);//运行时报错：UnsupportedOperationException<br>
-myList.clear();//运行时报错：UnsupportedOperationException<br>
-在使用add(),remove(),clear()会报错<br>
-<em>正确的最简便的方法</em><br>
-String myArray = {&quot;Apple&quot;,&quot;Banana&quot;,&quot;Orange&quot;};<br>
-List list = new ArrayList&lt;&gt;(Arrays.asList(myArray));</p>
-<p><strong>遍历Map</strong></p>
-<p>1.通过map.keySet()</p>
-<p>通过key去获取value<br>
-Set<Integer> set = map.keySet();</p>
-<p>for (Integer integer: set) {</p>
-<p>System.out.println(integer +&quot;的对应值为:&quot; + map.get(integer));</p>
-<p>}<br>
-2.通过map.values遍历所有的value</p>
-<p>Map&lt;Integer,Integer&gt; map = new HashMap&lt;&gt;();<br>
-map.put(1,1);<br>
-map.put(2,2);<br>
-map.put(3,3);<br>
-Collection<Integer> values = map.values();<br>
-for (Integer value : values) {<br>
-System.out.println(&quot;value = &quot; + value);<br>
-}<br>
-3.遍历map.entrySet</p>
-<p>遍历map.entrySet,可同时拿到所有的KEY和VALUE<br>
-Set&lt;Map.Entry&lt;Integer, Integer&gt;&gt; entries = map.entrySet();<br>
-for (Map.Entry&lt;Integer, Integer&gt; entry : entries) {<br>
-System.out.println(&quot;entry.getValue() = &quot; + entry.getValue());<br>
-}</p>
-<p>4.lambda表达式</p>
-<p>map.forEach((key,value) -&gt;{<br>
-System.out.println(&quot;key = &quot; + key+&quot;value = &quot;+value);<br>
-});</p>
+              <p>select count(pp) from test where pp='立项' or pp='签约' or pp='已完成' or pp='引入经费计划'   历年累计立项数<br>
+select count(pp) from test where pp='规划' or pp='立项' or pp='进行中' or pp='已完成' or pp='引入经费计划'  规划新上项目数<br>
+select count(pp) from test where pp='已完成' and importance = '重点项目'  实际完成重点项目数<br>
+select count(pp) from test 规划任务总量<br>
+select count(pp) from test where pp='已完成' and importance = '一般项目' 实际完成一般项目数量<br>
+select sum(funds_allocated) from test where importance = '重点项目' 以拨付重点项目经费<br>
+select sum(funds) from test;  规划经费总额<br>
+select sum(funds_allocated) from test where importance = '一般项目' 以拨付一般项目经费<br>
+select count (id) from test where funds_allocated &gt; funds and importance = '重点项目'    超概算重点项目数量<br>
+select count (id) from test where funds_allocated &gt; funds and importance = '一般项目'    超概算一般项目数量<br>
+select sum (funds_allocated - funds) from test where funds_allocated &gt; funds and importance = '重点项目'    超概算重点项目金额<br>
+select sum (funds_allocated - funds) from test where funds_allocated &gt; funds and importance = '一般项目'    超概算一般项目金额<br>
+select count(id) from test where pp='立项' or pp='进行中' or pp='已完成' and importance = '重点项目' and year = ?' 年度新上重点项目已立项数<br>
+select count(id) from test where pp='立项' or pp='进行中' or pp='已完成' and importance = '一般项目' and year = ? 年度新上一般项目已立项数<br>
+select count(id) from test  year = ? 年度新上项目数<br>
+select count(id) from test  year = ? 年度总项目数<br>
+select count(id) from test where  pp='进行中' or pp='已完成' and importance = '重点项目' and year = ?' 年度签订重点项目合同数<br>
+select count(id) from test where  pp='进行中' or pp='已完成' and importance = '一般项目' and year = ? 年度签订一般项目合同数<br>
+select count(id) from test where  pp='进行中' or pp='已完成' or pp='引入经费计划' and importance = '重点项目' and year = ?' 列入经费计划的重点项目数<br>
+select count(id) from test where  pp='进行中' or pp='已完成' or pp='引入经费计划' and importance = '一般项目' and year = ? 列入经费计划的一般项目数<br>
+select sum(funds_allocated)  from test where  pp='进行中' or pp='已完成' or pp='引入经费计划' and importance = '重点项目' 列入经费计划的重点项目已拨付经费数<br>
+select sum(funds_allocated)  from test where  pp='进行中' or pp='已完成' or pp='引入经费计划' and importance = '一般项目' 列入经费计划的一般项目已拨付经费数<br>
+select count (importance) from test where importance='重点项目' and pp = '已完成'   已完成重点项目数<br>
+select count (importance)  from test where importance='一般项目' and pp = '已完成'   已完成一般项目数<br>
+select count (id)  from test where competition_and_selection ='是' and importance = '重点项目'  竞争择优确定的重点项目数<br>
+select count (id)  from test where competition_and_selection ='是' and importance = '一般项目'  竞争择优确定的一般项目数<br>
+select count(software_or_hardware) from test where software_or_hardware='软件'  软件项目总数<br>
+select count(is_private) from test  总承研单位数量<br>
+select count(is_private) from test where importance='重点项目' and is_private='是'   重点项目民营承研单位数量<br>
+select count(is_private) from test where importance='一般项目' and is_private='是'   一般项目民营承研单位数量<br>
+select count(domestic_sw) from test where importance = '重点项目'<br>
+重点项目国产化软件数<br>
+select count(domestic_sw) from test where importance = '一般项目'<br>
+一般项目国产化软件数<br>
+select sum(total_part) from test 项目零部件总数<br>
+select sum(domestic_part) from test where importance = '重点项目'<br>
+重点项目国产化零部件数<br>
+select sum(domestic_part) from test where importance = '一般项目'<br>
+一般项目国产化零部件数</p>
 
             </div>
           </article>
@@ -143,9 +137,9 @@ System.out.println(&quot;key = &quot; + key+&quot;value = &quot;+value);<br>
               <div class="next">
                 下一篇
               </div>
-              <a href="https://spark-wz.github.io/post/tong-ling-xiang-mu-dai-ma-xue-xi">
+              <a href="https://spark-wz.github.io/post/nodejs">
                 <h3 class="post-title">
-                  铜陵项目代码学习
+                  nodejs
                 </h3>
               </a>
             </div>
