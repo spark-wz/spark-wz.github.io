@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://spark-wz.github.io</id>
     <title>Gridea</title>
-    <updated>2020-07-02T10:29:20.583Z</updated>
+    <updated>2020-07-03T05:45:41.139Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://spark-wz.github.io"/>
     <link rel="self" href="https://spark-wz.github.io/atom.xml"/>
@@ -15,45 +15,49 @@
         <link href="https://spark-wz.github.io/post/can-shu-sql">
         </link>
         <updated>2020-07-02T02:28:01.000Z</updated>
-        <content type="html"><![CDATA[<p>select count(pp) from test where pp='立项' or pp='签约' or pp='已完成' or pp='引入经费计划'   历年累计立项数<br>
-select count(pp) from test where pp='规划' or pp='立项' or pp='进行中' or pp='已完成' or pp='引入经费计划'  规划新上项目数<br>
-select count(pp) from test where pp='已完成' and importance = '重点项目'  实际完成重点项目数<br>
-select count(pp) from test 规划任务总量<br>
-select count(pp) from test where pp='已完成' and importance = '一般项目' 实际完成一般项目数量<br>
-select sum(funds_allocated) from test where importance = '重点项目' 以拨付重点项目经费<br>
-select sum(funds) from test;  规划经费总额<br>
-select sum(funds_allocated) from test where importance = '一般项目' 以拨付一般项目经费<br>
-select count (id) from test where funds_allocated &gt; funds and importance = '重点项目'    超概算重点项目数量<br>
-select count (id) from test where funds_allocated &gt; funds and importance = '一般项目'    超概算一般项目数量<br>
-select sum (funds_allocated - funds) from test where funds_allocated &gt; funds and importance = '重点项目'    超概算重点项目金额<br>
-select sum (funds_allocated - funds) from test where funds_allocated &gt; funds and importance = '一般项目'    超概算一般项目金额<br>
-select count(id) from test where pp='立项' or pp='进行中' or pp='已完成' and importance = '重点项目' and year = ?' 年度新上重点项目已立项数<br>
-select count(id) from test where pp='立项' or pp='进行中' or pp='已完成' and importance = '一般项目' and year = ? 年度新上一般项目已立项数<br>
-select count(id) from test  year = ? 年度新上项目数<br>
-select count(id) from test  year = ? 年度总项目数<br>
-select count(id) from test where  pp='进行中' or pp='已完成' and importance = '重点项目' and year = ?' 年度签订重点项目合同数<br>
-select count(id) from test where  pp='进行中' or pp='已完成' and importance = '一般项目' and year = ? 年度签订一般项目合同数<br>
-select count(id) from test where  pp='进行中' or pp='已完成' or pp='引入经费计划' and importance = '重点项目' and year = ?' 列入经费计划的重点项目数<br>
-select count(id) from test where  pp='进行中' or pp='已完成' or pp='引入经费计划' and importance = '一般项目' and year = ? 列入经费计划的一般项目数<br>
-select sum(funds_allocated)  from test where  pp='进行中' or pp='已完成' or pp='引入经费计划' and importance = '重点项目' 列入经费计划的重点项目已拨付经费数<br>
-select sum(funds_allocated)  from test where  pp='进行中' or pp='已完成' or pp='引入经费计划' and importance = '一般项目' 列入经费计划的一般项目已拨付经费数<br>
-select count (importance) from test where importance='重点项目' and pp = '已完成'   已完成重点项目数<br>
-select count (importance)  from test where importance='一般项目' and pp = '已完成'   已完成一般项目数<br>
-select count (id)  from test where competition_and_selection ='是' and importance = '重点项目'  竞争择优确定的重点项目数<br>
-select count (id)  from test where competition_and_selection ='是' and importance = '一般项目'  竞争择优确定的一般项目数<br>
-select count(software_or_hardware) from test where software_or_hardware='软件'  软件项目总数<br>
-select count(is_private) from test  总承研单位数量<br>
-select count(is_private) from test where importance='重点项目' and is_private='是'   重点项目民营承研单位数量<br>
-select count(is_private) from test where importance='一般项目' and is_private='是'   一般项目民营承研单位数量<br>
-select count(domestic_sw) from test where importance = '重点项目'<br>
+        <content type="html"><![CDATA[<p>select count(pp)alias from test where pp='立项' or pp='签约' or pp='已完成' or pp='引入经费计划'   历年累计立项数</p>
+<p>select count(pp)alias from test where pp='规划' or pp='立项' or pp='进行中' or pp='已完成' or pp='引入经费计划'  规划新上项目数</p>
+<p>select count(pp)alias from test where pp='已完成' and importance = '重点项目'  实际完成重点项目数</p>
+<p>select count(pp)alias from test 规划任务总量</p>
+<p>select count(pp)alias from test where pp='已完成' and importance = '一般项目' 实际完成一般项目数量</p>
+<p>select sum(funds_allocated)alias from test where importance = '重点项目' 以拨付重点项目经费</p>
+<p>select sum(funds)alias from test  规划经费总额</p>
+<p>select sum(funds_allocated)alias from test where importance = '一般项目' 以拨付一般项目经费</p>
+<p>select count(id)alias from test where funds_allocated &gt; funds and importance = '重点项目'    超概算重点项目数量</p>
+<p>select count(id)alias from test where funds_allocated &gt; funds and importance = '一般项目'    超概算一般项目数量</p>
+<p>select sum(funds_allocated - funds)alias from test where funds_allocated &gt; funds and importance = '重点项目'    超概算重点项目金额</p>
+<p>select sum(funds_allocated - funds)alias from test where funds_allocated &gt; funds and importance = '一般项目'    超概算一般项目金额</p>
+<p>select count(id)alias from test where pp='立项' or pp='进行中' or pp='已完成' and importance = '重点项目' and year = ?' 年度新上重点项目已立项数</p>
+<p>select count(id)alias from test where pp='立项' or pp='进行中' or pp='已完成' and importance = '一般项目' and year = ? 年度新上一般项目已立项数</p>
+<p>select count(id)alias from test  year = ? 年度新上项目数<br>
+select count(id)alias from test  year = ? 年度总项目数<br>
+select count(id)alias from test where  pp='进行中' or pp='已完成' and importance = '重点项目' and year = ?' 年度签订重点项目合同数<br>
+select count(id)alias from test where  pp='进行中' or pp='已完成' and importance = '一般项目' and year = ? 年度签订一般项目合同数<br>
+select count(id)alias from test where  pp='进行中' or pp='已完成' or pp='引入经费计划' and importance = '重点项目' and year = ?' 列入经费计划的重点项目数<br>
+select count(id)alias from test where  pp='进行中' or pp='已完成' or pp='引入经费计划' and importance = '一般项目' and year = ? 列入经费计划的一般项目数<br>
+select sum(funds_allocated)alias  from test where  pp='进行中' or pp='已完成' or pp='引入经费计划' and importance = '重点项目' 列入经费计划的重点项目已拨付经费数<br>
+select sum(funds_allocated)alias  from test where  pp='进行中' or pp='已完成' or pp='引入经费计划' and importance = '一般项目' 列入经费计划的一般项目已拨付经费数<br>
+select count(importance)alias from test where importance='重点项目' and pp = '已完成'   已完成重点项目数<br>
+select count(importance)alias  from test where importance='一般项目' and pp = '已完成'   已完成一般项目数<br>
+select count(id)alias  from test where competition_and_selection ='是' and importance = '重点项目'  竞争择优确定的重点项目数<br>
+select count(id)alias  from test where competition_and_selection ='是' and importance = '一般项目'  竞争择优确定的一般项目数<br>
+select count(software_or_hardware)alias from test where software_or_hardware='软件'  软件项目总数<br>
+select count(is_private)alias from test  总承研单位数量<br>
+select count(is_private)alias from test where importance='重点项目' and is_private='是'   重点项目民营承研单位数量<br>
+select count(is_private)alias from test where importance='一般项目' and is_private='是'   一般项目民营承研单位数量<br>
+select count(domestic_sw)alias from test where importance = '重点项目'<br>
 重点项目国产化软件数<br>
-select count(domestic_sw) from test where importance = '一般项目'<br>
+select count(domestic_sw)alias from test where importance = '一般项目'<br>
 一般项目国产化软件数<br>
-select sum(total_part) from test 项目零部件总数<br>
-select sum(domestic_part) from test where importance = '重点项目'<br>
+select sum(total_part)alias from test 项目零部件总数<br>
+select sum(domestic_part)alias from test where importance = '重点项目'<br>
 重点项目国产化零部件数<br>
-select sum(domestic_part) from test where importance = '一般项目'<br>
+select sum(domestic_part)alias from test where importance = '一般项目'<br>
 一般项目国产化零部件数</p>
+<p>历年评分</p>
+<p>用年去限定，只查当年，一天更新一次，查询指标表，然后遍历，拿到里面的参数、权重、运算符去计算，返回 指标名、最终的计算结果、指标分数、指标权重、的json数组  （根据年限分组）</p>
+<p>在nodejs里面找一个方法，只执行一次，以后不在执行<br>
+执行上边方法，不用年限定</p>
 ]]></content>
     </entry>
     <entry>
