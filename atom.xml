@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://spark-wz.github.io</id>
     <title>Gridea</title>
-    <updated>2020-07-07T10:25:38.218Z</updated>
+    <updated>2020-07-09T03:41:09.202Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://spark-wz.github.io"/>
     <link rel="self" href="https://spark-wz.github.io/atom.xml"/>
@@ -120,6 +120,38 @@ select sum(domestic_part)alias from test where importance = '一般项目'<br>
 <p>用年去限定，只查当年，一天更新一次，查询指标表，然后遍历，拿到里面的参数、权重、运算符去计算，返回 指标名、最终的计算结果、指标分数、指标权重、的json数组  （根据年限分组）</p>
 <p>在nodejs里面找一个方法，只执行一次，以后不在执行<br>
 执行上边方法，不用年限定</p>
+<p>// //查询<br>
+// function getQueryYear (parameter,year){<br>
+//   return new Promise((resolve, reject) =&gt; {<br>
+//     database.all(&quot;select parameter_sql from parameter where parameter_name =&quot;+&quot;'&quot;+parameter+&quot;'&quot;,function (err,row) {<br>
+//       var sql = (row[0].parameter_sql);<br>
+//       if(!err){<br>
+//         database.all(sql+&quot;and year = &quot;+&quot;'&quot;+year+&quot;'&quot;,function (err,row) {<br>
+//           console.log(sql+&quot;and year = &quot;+&quot;'&quot;+year+&quot;'&quot;)<br>
+//           if (!err){<br>
+//             resolve (row[0].alias);<br>
+//           }else {<br>
+//             console.log(err);<br>
+//             return 1;<br>
+//           }<br>
+//         })<br>
+//       }<br>
+//       else{<br>
+//         console.log(err);}<br>
+//     });<br>
+//   });<br>
+// }<br>
+// //score删除<br>
+// function deleteScore(vals) {<br>
+//   database.run(&quot;update score set is_deleted = '1' where year =&quot;+vals,function (err) {<br>
+//     if(null != err){<br>
+//       database.printErrorInfo(err);<br>
+//     }else {<br>
+//       return 1;<br>
+//     };<br>
+//   })<br>
+// }<br>
+// deleteScore(&quot;2021&quot;)</p>
 ]]></content>
     </entry>
     <entry>
