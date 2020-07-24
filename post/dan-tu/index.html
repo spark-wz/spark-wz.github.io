@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>钥匙柜 | Gridea</title>
+<title>丹徒 | Gridea</title>
 <meta name="description" content="">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -81,32 +81,65 @@
       <div class="sm-12 md-8 col">
         <div class="paper">
           <article class="article">
-            <h1>钥匙柜</h1>
+            <h1>丹徒</h1>
             <p class="article-meta">
-              2019-12-30
+              2020-07-19
               
             </p>
             
             <div class="post-content">
-              <p><strong>整体流程</strong><br>
-从钥匙柜sqlserver数据库里面取数存到mysql中,再从sqlserver中读数给前端。<br>
-两张表一张实时表,一张历史表<br>
-<strong>要点</strong></p>
-<ul>
-<li>实时数据<br>
-切换到MySQL,从MySQL中读数返给前端,根据时间排序。写一个同步方法，先切换到MySQL中,删除MySQL实时表中的数据,再切换到sqlserver，读取sqlserver中的数据,再切换到MySQL,插入   显示当前所有钥匙状态。<br>
-历史数据<br>
-同步方法中，切换到MySQL,根据时间排序查到最后一个更新的id,切换到SqlServer,按条件查询，将id大于MySQL最后一个id的记录查出(条件查询)，再切换到MySQL，查到的集合插入。</li>
-</ul>
-<p>写一个根据前端参数返回数据的方法，返回给前端。<br>
-<strong>sqlServer的generator配置</strong><br>
-<jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver" connectionURL="jdbc:sqlserver://HQR333TW24G54FN\ADMIN; DatabaseName=I-KeyBox" userId="sa" password="123456"></jdbcConnection><br>
-数据库驱动<br>
-<classPathEntry  location="E:\ggdon\sqljdbc4-4.0.jar"/><br>
-<strong>MySQL的generator配置</strong><br>
-<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://39.97.227.216:3306/gasoline?useUnicode=true&amp;characterEncoding=utf8" userId="root" password="Platform@123"></jdbcConnection><br>
-数据库驱动<br>
-<classPathEntry  location="E:\apache-maven-3.5.0\repository\mysql\mysql-connector-java\5.1.6\mysql-connector-java-5.1.6.jar"/></p>
+              <h3 id="安装服务器">安装服务器</h3>
+<p>服务器品牌华为  delete进入bios<br>
+bios初始密码 Huawei12#$<br>
+root密码123qwe123QWE</p>
+<h4 id="丹徒mysql">丹徒MySQL</h4>
+<p><strong>MySQL更改加密规则，修改密码</strong><br>
+ALTER USER 'root'@'%t' IDENTIFIED WITH mysql_native_password BY '123qweQWE@'; //修改加密规则<br>
+ALTER USER 'root'@'%' IDENTIFIED BY '123@qweQWE' PASSWORD EXPIRE NEVER; //修改密码<br>
+FLUSH PRIVILEGES; //刷新权限</p>
+<h4 id="丹徒taos">丹徒taos</h4>
+<p><strong>超级表</strong><br>
+CREATE TABLE lc3021 (ts timestamp, lc float, temp float, corrected_vol float, standard_vol float, corrected_dens float, standard_dens float, mass float, pressure float)<br>
+TAGS (gkwz binary(20), oil_type binary(20));<br>
+<strong>子表</strong><br>
+CREATE TABLE lc4030 USING lc TAGS ('一分库', '0#柴油')；<br>
+<strong>写入数据</strong><br>
+INSERT INTO lc4030 VALUES ('2020-07-22 00:00:00.000', 1,1,1,1,1,1,1,1);</p>
+<h4 id="jar包启动">jar包启动</h4>
+<p><strong>jeecg</strong><br>
+nohup java -jar jeecg-boot-module-system-2.1.4.jar &gt;catalina.out 2&gt;&amp;1 &amp;<br>
+<strong>shr</strong><br>
+nohup java -jar sr-gasoline-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod &gt;&gt; catalina.out  2&gt;&amp;1 &amp;</p>
+<h4 id="页面">页面</h4>
+<p>铁路收发油历史<br>
+http://192.168.1.254/page/shr/#/oil-railway-history<br>
+铁路实时<br>
+http://192.168.1.254/page/tl/#/oil-railway-realtime<br>
+铁路收发油统计<br>
+http://192.168.1.254/page/shr/#/railway-transport-stat<br>
+铁路流量计管理<br>
+http://192.168.1.254/page/shr/#/flowmeter-mgmt<br>
+水路流量计历史<br>
+http://192.168.1.254/page/tl/#/oil-port-history<br>
+水路实时<br>
+http://192.168.1.254/page/tl/#/oil-port-realtime<br>
+水路流量计管理<br>
+http://192.168.1.254/page/tl/#/flowmeter-mgmt-port<br>
+水路收发油统计<br>
+http://192.168.1.254/page/tl/#/transport-stat-port<br>
+钥匙柜历史<br>
+http://192.168.1.254/page/shr/#/key-mgmt-history<br>
+钥匙柜实时<br>
+http://192.168.1.254/page/shr/#/key-mgmt-realtime<br>
+巡更历史<br>
+http://192.168.1.254/page/shr/#/patrol-history<br>
+巡更实时<br>
+http://192.168.1.254/page/shr/#/patrol-status<br>
+汽车实时<br>
+http://192.168.1.254/page/tl/#/oil-station-realtime<br>
+汽车历史<br>
+http://192.168.1.254/page/tl/#/oil-station-history</p>
+<p>d17f014839872fcf53fa53edaee7e076.png</p>
 
             </div>
           </article>
@@ -117,9 +150,9 @@
               <div class="next">
                 下一篇
               </div>
-              <a href="https://spark-wz.github.io/post/ji-lu-yi-ci-ben-di-jar-bao-dao-ru-maven-cang-ku-cai-dao-de-keng">
+              <a href="https://spark-wz.github.io/post/excel-dao-chu">
                 <h3 class="post-title">
-                  记录一次本地jar包导入maven仓库踩到的坑
+                  excel导出
                 </h3>
               </a>
             </div>

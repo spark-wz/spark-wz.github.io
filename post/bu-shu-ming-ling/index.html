@@ -7,7 +7,7 @@
 <meta name="description" content="">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://spark-wz.github.io/favicon.ico?v=1594449031782">
+<link rel="shortcut icon" href="https://spark-wz.github.io/favicon.ico?v=1595576610743">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -125,10 +125,10 @@ rpm -ivh mysql-community-server-8.0.15-1.el7.x86_64.rpm --force --nodeps<br>
 5.systemctl status mysqld<br>
 <strong>本机虚拟机mysql账户密码</strong><br>
 root    123qweQWE<br>
-update user set authentication_string = 'Platform@123' where user = 'root';<br>
-GRANT ALL PRIVILEGES ON <em>.</em> TO 'root'@'%'IDENTIFIED BY '123@qweQWE' WITH GRANT OPTION;<br>
-GRANT ALL PRIVILEGES ON <em>.</em> TO 'root'@'%' IDENTIFIED BY '123@qweQWE' WITH GRANT OPTION;<br>
-<strong>mysql安装完后设置密码，更改root权限</strong><br>
+ALTER USER 'root'@'%t' IDENTIFIED WITH mysql_native_password BY '123qweQWE@'; //修改加密规则<br>
+ALTER USER 'root'@'%' IDENTIFIED BY '123@qweQWE' PASSWORD EXPIRE NEVER; //修改密码<br>
+FLUSH PRIVILEGES; //刷新权限</p>
+<p><strong>mysql安装完后设置密码，更改root权限</strong><br>
 连接https://blog.csdn.net/csdnxufei/article/details/88800559<br>
 rpm -ev mysql-community-client-8.0.15-1.el7.x86_64 --nodeps<br>
 set password for 'root'@'192.168.1.231' = '123qweQWE';<br>
@@ -190,7 +190,7 @@ taskkill /pid 3672 /F</p>
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://spark-wz.github.io/images/avatar.png?v=1594449031782" class="no-responsive avatar">
+    <img src="https://spark-wz.github.io/images/avatar.png?v=1595576610743" class="no-responsive avatar">
     <div class="text-muted"></div>
     <div class="social-container">
       
@@ -212,6 +212,18 @@ taskkill /pid 3672 /F</p>
     </div>
     <div class="row">
       <ul>
+        
+          
+            <li>
+              <a href="https://spark-wz.github.io/post/websocket">websocket</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://spark-wz.github.io/post/dan-tu">丹徒</a>
+            </li>
+          
         
           
             <li>
@@ -262,15 +274,9 @@ taskkill /pid 3672 /F</p>
           
         
           
-            <li>
-              <a href="https://spark-wz.github.io/post/taos-shu-ju-ku">taos数据库</a>
-            </li>
-          
         
           
-            <li>
-              <a href="https://spark-wz.github.io/post/wei-xin-xiao-cheng-xu">微信小程序</a>
-            </li>
+        
           
         
           

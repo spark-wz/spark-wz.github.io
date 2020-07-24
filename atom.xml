@@ -2,13 +2,96 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://spark-wz.github.io</id>
     <title>Gridea</title>
-    <updated>2020-07-11T06:32:25.760Z</updated>
+    <updated>2020-07-24T08:22:40.977Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://spark-wz.github.io"/>
     <link rel="self" href="https://spark-wz.github.io/atom.xml"/>
     <logo>https://spark-wz.github.io/images/avatar.png</logo>
     <icon>https://spark-wz.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[websocket]]></title>
+        <id>https://spark-wz.github.io/post/websocket</id>
+        <link href="https://spark-wz.github.io/post/websocket">
+        </link>
+        <updated>2020-07-24T07:20:41.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="定义">定义</h2>
+<p>WebSocket是基于tcp的一种新的网络协议，它实现了浏览器与服务器之间双全工通信，允许服务器主动发信息给客户端。</p>
+<h2 id="原理">原理</h2>
+<p>在实现WebSocket连线过程中，需要通过浏览器发出WebSocket请求，然后服务器发出回应，这个过程通常称为握手，在WebSocket API中，只需要做一次握手，实现数据传送。</p>
+<h3 id="websocket与socket区别">WebSocket与Socket区别</h3>
+<h4 id="websocket">WebSocket</h4>
+<p>1.WebSocket建立阶段是依赖于http协议的，握手阶段是http协议，完成之后变成WebSocket协议，完全脱离socket。<br>
+2.建立通讯时，是客户端主动发起请求，服务端被动监听<br>
+3.建立通讯后，变成“双全工”模式，服务端和客户端都在任何时间自由发送数据，<br>
+4.交互模式不再是请求应答，完全由开发者自行设计<br>
+5.通信的数据是基于“帧frame”的，可以传输文本数据，也可以直接传输二进制数据，效率高，封包、拆包、编号。</p>
+<h4 id="socket">socket</h4>
+<p>1.服务器监听通讯，被动提供服务，每次交互都是客户端主动发起请求，服务端被动应答。<br>
+2.服务端不能被动向客户端推送数据<br>
+3.通讯数据基于文本格式，二进制数据（图片等）需要转换</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[丹徒]]></title>
+        <id>https://spark-wz.github.io/post/dan-tu</id>
+        <link href="https://spark-wz.github.io/post/dan-tu">
+        </link>
+        <updated>2020-07-19T02:01:26.000Z</updated>
+        <content type="html"><![CDATA[<h3 id="安装服务器">安装服务器</h3>
+<p>服务器品牌华为  delete进入bios<br>
+bios初始密码 Huawei12#$<br>
+root密码123qwe123QWE</p>
+<h4 id="丹徒mysql">丹徒MySQL</h4>
+<p><strong>MySQL更改加密规则，修改密码</strong><br>
+ALTER USER 'root'@'%t' IDENTIFIED WITH mysql_native_password BY '123qweQWE@'; //修改加密规则<br>
+ALTER USER 'root'@'%' IDENTIFIED BY '123@qweQWE' PASSWORD EXPIRE NEVER; //修改密码<br>
+FLUSH PRIVILEGES; //刷新权限</p>
+<h4 id="丹徒taos">丹徒taos</h4>
+<p><strong>超级表</strong><br>
+CREATE TABLE lc3021 (ts timestamp, lc float, temp float, corrected_vol float, standard_vol float, corrected_dens float, standard_dens float, mass float, pressure float)<br>
+TAGS (gkwz binary(20), oil_type binary(20));<br>
+<strong>子表</strong><br>
+CREATE TABLE lc4030 USING lc TAGS ('一分库', '0#柴油')；<br>
+<strong>写入数据</strong><br>
+INSERT INTO lc4030 VALUES ('2020-07-22 00:00:00.000', 1,1,1,1,1,1,1,1);</p>
+<h4 id="jar包启动">jar包启动</h4>
+<p><strong>jeecg</strong><br>
+nohup java -jar jeecg-boot-module-system-2.1.4.jar &gt;catalina.out 2&gt;&amp;1 &amp;<br>
+<strong>shr</strong><br>
+nohup java -jar sr-gasoline-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod &gt;&gt; catalina.out  2&gt;&amp;1 &amp;</p>
+<h4 id="页面">页面</h4>
+<p>铁路收发油历史<br>
+http://192.168.1.254/page/shr/#/oil-railway-history<br>
+铁路实时<br>
+http://192.168.1.254/page/tl/#/oil-railway-realtime<br>
+铁路收发油统计<br>
+http://192.168.1.254/page/shr/#/railway-transport-stat<br>
+铁路流量计管理<br>
+http://192.168.1.254/page/shr/#/flowmeter-mgmt<br>
+水路流量计历史<br>
+http://192.168.1.254/page/tl/#/oil-port-history<br>
+水路实时<br>
+http://192.168.1.254/page/tl/#/oil-port-realtime<br>
+水路流量计管理<br>
+http://192.168.1.254/page/tl/#/flowmeter-mgmt-port<br>
+水路收发油统计<br>
+http://192.168.1.254/page/tl/#/transport-stat-port<br>
+钥匙柜历史<br>
+http://192.168.1.254/page/shr/#/key-mgmt-history<br>
+钥匙柜实时<br>
+http://192.168.1.254/page/shr/#/key-mgmt-realtime<br>
+巡更历史<br>
+http://192.168.1.254/page/shr/#/patrol-history<br>
+巡更实时<br>
+http://192.168.1.254/page/shr/#/patrol-status<br>
+汽车实时<br>
+http://192.168.1.254/page/tl/#/oil-station-realtime<br>
+汽车历史<br>
+http://192.168.1.254/page/tl/#/oil-station-history</p>
+<p>d17f014839872fcf53fa53edaee7e076.png</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[excel导出]]></title>
         <id>https://spark-wz.github.io/post/excel-dao-chu</id>
@@ -430,72 +513,6 @@ export CLASSPATH=.:JAVA_HOME/lib/dt.jar:JAVA_HOME/lib/tools.jar<br>
 netstat -anp   查看当前开放端口<br>
 firewall-cmd --zone=public --add-port=6030/tcp --permanent  开放端口<br>
 firewall-cmd --reload  重新加载端口，开放端口后需要重新reload</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[taos数据库]]></title>
-        <id>https://spark-wz.github.io/post/taos-shu-ju-ku</id>
-        <link href="https://spark-wz.github.io/post/taos-shu-ju-ku">
-        </link>
-        <updated>2020-05-12T06:38:25.000Z</updated>
-        <content type="html"><![CDATA[<p>TDengine要求每个数据点单独建表，系统中表的数量和采集点点的数量在一个量级.<br>
-超级表(STable)是同一类型数据采集点的抽象，是同类型采集实例的集合，包含多张数据结构一样的子表。<br>
-TDengine使用标准SQL语法定义表，使用关键词tags指定标签信息<br>
-create table &lt;stable_name&gt;(&lt;field_name&gt; timestamp,field_name1 field_type,……) tags(tag_name tag_type,…)</p>
-<p>实例<br>
-create table thermometer (ts timestamp, degree float)<br>
-tags (location binary(20),type int);</p>
-<p>沿用例子，使用超级表建立单个温度计数据表</p>
-<p>create table t1 using thermometer tags('beijing',10);</p>
-<p>tags字段的名称和类型：</p>
-<p>1.tags总长度不能超过512bytes。<br>
-2.tags列的数据类型不能是timestamp。<br>
-3.tags列名不能与其他列名相同。<br>
-4.tags列名不能为预留关键字。</p>
-<p>删除STable时，所有通过该STable时，所有通过该超级表建立的表都会被删除。</p>
-<p>查看属于某STable并满足查询条件的表<br>
-SELECT TBNAME,[TAG_NAME,…] FROM &lt;stable_name&gt; WHERE &lt;tag_name&gt; &lt;[=|&lt;=|&gt;=|&lt;&gt;] values..&gt; ([AND|OR] …)</p>
-<p>查询过程中可以加条件计数啥的</p>
-<p>#写数据时自动建子表</p>
-<p>自动建表只能建立子表不能建立超级表<br>
-INSERT INTO &lt;tb_name&gt; USING &lt;stb_name&gt; TAGS (&lt;tag1_value&gt;, ...) VALUES (field_value, ...) (field_value, ...) ...;</p>
-<p>#STable中tag管理</p>
-<p>添加新标签<br>
-alter table &lt;stable_name&gt; add tag&lt;new_tag_name&gt; <type><br>
-删除标签<br>
-drop tag<br>
-修改 change<br>
-修改子表标签值<br>
-alter table &lt;table_name&gt; set tag &lt;tag_name&gt;=&lt;new_tag_value&gt;</p>
-<p>#STable多表聚合</p>
-<p>针对超级表子表进行多表聚合查询，支持按照全部的tag值进行条件过滤，不支持binary类型的模糊查询</p>
-<p>SELECT function&lt;field_name&gt;,…<br>
-FROM &lt;stable_name&gt;<br>
-WHERE &lt;tag_name&gt; &lt;[=|&lt;=|&gt;=|&lt;&gt;] values..&gt; ([AND|OR] …)<br>
-INTERVAL (<time range>)<br>
-GROUP BY &lt;tag_name&gt;, &lt;tag_name&gt;…<br>
-ORDER BY &lt;tag_name&gt; &lt;asc|desc&gt;<br>
-SLIMIT &lt;group_limit&gt;<br>
-SOFFSET &lt;group_offset&gt;<br>
-LIMIT &lt;record_limit&gt;<br>
-OFFSET &lt;record_offset&gt;<br>
-超级表聚合查询，TDengine目前支持sum、count、avg、first、last、min、max、top、bottom不使用orderBy的查询将会对超级表下满足条件的进行查询</p>
-<p>#STable使用实例</p>
-<p><strong>在一个服务器上部署多个docker实现负载均衡</strong><br>
-在一个服务器上实现负载均衡，当一个docker挂掉，启动另一个docker使项目不会停<br>
-demo外链<br>
-https://blog.csdn.net/wsbgmofo/article/details/79088186</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[微信小程序]]></title>
-        <id>https://spark-wz.github.io/post/wei-xin-xiao-cheng-xu</id>
-        <link href="https://spark-wz.github.io/post/wei-xin-xiao-cheng-xu">
-        </link>
-        <updated>2020-04-02T09:47:30.000Z</updated>
-        <content type="html"><![CDATA[<p>第一步：前端调用wx.login()函数，获取返回的code值。（每次通过wx.login()得到的code值可能不一样）</p>
-<p>第二步：传递获取到的code值到服务器端，在服务器端用小程序appid，appsecret等去请求微信服务器，获取openid和session_key。（注：每个微信账号，在每个小程序中获取到的openid是唯一的，它可以作为判断新用户和老用户的依据。）</p>
-<p>第三步：将用户openid保存到数据库，并将用户id返回到前端，放到缓存中保持登录态</p>
 ]]></content>
     </entry>
 </feed>

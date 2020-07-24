@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>钥匙柜 | Gridea</title>
+<title>websocket | Gridea</title>
 <meta name="description" content="">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -81,32 +81,28 @@
       <div class="sm-12 md-8 col">
         <div class="paper">
           <article class="article">
-            <h1>钥匙柜</h1>
+            <h1>websocket</h1>
             <p class="article-meta">
-              2019-12-30
+              2020-07-24
               
             </p>
             
             <div class="post-content">
-              <p><strong>整体流程</strong><br>
-从钥匙柜sqlserver数据库里面取数存到mysql中,再从sqlserver中读数给前端。<br>
-两张表一张实时表,一张历史表<br>
-<strong>要点</strong></p>
-<ul>
-<li>实时数据<br>
-切换到MySQL,从MySQL中读数返给前端,根据时间排序。写一个同步方法，先切换到MySQL中,删除MySQL实时表中的数据,再切换到sqlserver，读取sqlserver中的数据,再切换到MySQL,插入   显示当前所有钥匙状态。<br>
-历史数据<br>
-同步方法中，切换到MySQL,根据时间排序查到最后一个更新的id,切换到SqlServer,按条件查询，将id大于MySQL最后一个id的记录查出(条件查询)，再切换到MySQL，查到的集合插入。</li>
-</ul>
-<p>写一个根据前端参数返回数据的方法，返回给前端。<br>
-<strong>sqlServer的generator配置</strong><br>
-<jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver" connectionURL="jdbc:sqlserver://HQR333TW24G54FN\ADMIN; DatabaseName=I-KeyBox" userId="sa" password="123456"></jdbcConnection><br>
-数据库驱动<br>
-<classPathEntry  location="E:\ggdon\sqljdbc4-4.0.jar"/><br>
-<strong>MySQL的generator配置</strong><br>
-<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://39.97.227.216:3306/gasoline?useUnicode=true&amp;characterEncoding=utf8" userId="root" password="Platform@123"></jdbcConnection><br>
-数据库驱动<br>
-<classPathEntry  location="E:\apache-maven-3.5.0\repository\mysql\mysql-connector-java\5.1.6\mysql-connector-java-5.1.6.jar"/></p>
+              <h2 id="定义">定义</h2>
+<p>WebSocket是基于tcp的一种新的网络协议，它实现了浏览器与服务器之间双全工通信，允许服务器主动发信息给客户端。</p>
+<h2 id="原理">原理</h2>
+<p>在实现WebSocket连线过程中，需要通过浏览器发出WebSocket请求，然后服务器发出回应，这个过程通常称为握手，在WebSocket API中，只需要做一次握手，实现数据传送。</p>
+<h3 id="websocket与socket区别">WebSocket与Socket区别</h3>
+<h4 id="websocket">WebSocket</h4>
+<p>1.WebSocket建立阶段是依赖于http协议的，握手阶段是http协议，完成之后变成WebSocket协议，完全脱离socket。<br>
+2.建立通讯时，是客户端主动发起请求，服务端被动监听<br>
+3.建立通讯后，变成“双全工”模式，服务端和客户端都在任何时间自由发送数据，<br>
+4.交互模式不再是请求应答，完全由开发者自行设计<br>
+5.通信的数据是基于“帧frame”的，可以传输文本数据，也可以直接传输二进制数据，效率高，封包、拆包、编号。</p>
+<h4 id="socket">socket</h4>
+<p>1.服务器监听通讯，被动提供服务，每次交互都是客户端主动发起请求，服务端被动应答。<br>
+2.服务端不能被动向客户端推送数据<br>
+3.通讯数据基于文本格式，二进制数据（图片等）需要转换</p>
 
             </div>
           </article>
@@ -117,9 +113,9 @@
               <div class="next">
                 下一篇
               </div>
-              <a href="https://spark-wz.github.io/post/ji-lu-yi-ci-ben-di-jar-bao-dao-ru-maven-cang-ku-cai-dao-de-keng">
+              <a href="https://spark-wz.github.io/post/dan-tu">
                 <h3 class="post-title">
-                  记录一次本地jar包导入maven仓库踩到的坑
+                  丹徒
                 </h3>
               </a>
             </div>
