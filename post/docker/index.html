@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>钥匙柜＋generator | Gridea</title>
+<title>Docker | Gridea</title>
 <meta name="description" content="">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -81,36 +81,27 @@
       <div class="sm-12 md-8 col">
         <div class="paper">
           <article class="article">
-            <h1>钥匙柜＋generator</h1>
+            <h1>Docker</h1>
             <p class="article-meta">
-              2019-12-30
+              2020-09-01
               
             </p>
             
             <div class="post-content">
-              <p><strong>整体流程</strong><br>
-从钥匙柜sqlserver数据库里面取数存到mysql中,再从sqlserver中读数给前端。<br>
-两张表一张实时表,一张历史表<br>
-<strong>要点</strong></p>
-<ul>
-<li>实时数据<br>
-切换到MySQL,从MySQL中读数返给前端,根据时间排序。写一个同步方法，先切换到MySQL中,删除MySQL实时表中的数据,再切换到sqlserver，读取sqlserver中的数据,再切换到MySQL,插入   显示当前所有钥匙状态。<br>
-历史数据<br>
-同步方法中，切换到MySQL,根据时间排序查到最后一个更新的id,切换到SqlServer,按条件查询，将id大于MySQL最后一个id的记录查出(条件查询)，再切换到MySQL，查到的集合插入。</li>
-</ul>
-<p>写一个根据前端参数返回数据的方法，返回给前端。<br>
-<strong>sqlServer的generator配置</strong><br>
-<jdbcConnection driverClass="com.microsoft.sqlserver.jdbc.SQLServerDriver" connectionURL="jdbc:sqlserver://39.97.227.216:1433;DatabaseName=PCS06" userId="sa" password="Geyifei212"><br>
-</jdbcConnection><br>
-<javaTypeResolver><br>
-<property name="forceBigDecimals" value="false"/><br>
-</javaTypeResolver><br>
-数据库驱动<br>
-<classPathEntry  location="D:\idea\maven\repository\com\microsoft\sqlserver\sqljdbc4\4.0\sqljdbc4-4.0.jar"/><br>
-<strong>MySQL的generator配置</strong><br>
-<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://39.97.227.216:3306/gasoline?useUnicode=true&amp;characterEncoding=utf8" userId="root" password="Platform@123"></jdbcConnection><br>
-数据库驱动<br>
-<classPathEntry  location="E:\apache-maven-3.5.0\repository\mysql\mysql-connector-java\5.1.6\mysql-connector-java-5.1.6.jar"/></p>
+              <h3 id="安装docker源">安装Docker源</h3>
+<p>sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo</p>
+<h3 id="安装docker">安装Docker</h3>
+<p>sudo yum install docker-ce docker-ce-cli containerd.io</p>
+<h3 id="启动docker">启动Docker</h3>
+<p>systemctl start docker</p>
+<h3 id="docker使用">Docker使用</h3>
+<p>sudo docker run hello-world</p>
+<h3 id="创建文件夹">创建文件夹</h3>
+<p>mkdir rootfs</p>
+<h3 id="使用busybox镜像创建系统">使用busybox镜像创建系统</h3>
+<p>docker export $(docker create busybox) -o busybox.tar</p>
+<h3 id="解压">解压</h3>
+<p>tar -xf busybox.tar</p>
 
             </div>
           </article>
@@ -121,9 +112,9 @@
               <div class="next">
                 下一篇
               </div>
-              <a href="https://spark-wz.github.io/post/ji-lu-yi-ci-ben-di-jar-bao-dao-ru-maven-cang-ku-cai-dao-de-keng">
+              <a href="https://spark-wz.github.io/post/websocket">
                 <h3 class="post-title">
-                  记录一次本地jar包导入maven仓库踩到的坑
+                  websocket
                 </h3>
               </a>
             </div>

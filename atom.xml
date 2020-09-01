@@ -2,13 +2,35 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://spark-wz.github.io</id>
     <title>Gridea</title>
-    <updated>2020-07-24T08:22:40.977Z</updated>
+    <updated>2020-09-01T15:55:10.244Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://spark-wz.github.io"/>
     <link rel="self" href="https://spark-wz.github.io/atom.xml"/>
     <logo>https://spark-wz.github.io/images/avatar.png</logo>
     <icon>https://spark-wz.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[Docker]]></title>
+        <id>https://spark-wz.github.io/post/docker</id>
+        <link href="https://spark-wz.github.io/post/docker">
+        </link>
+        <updated>2020-09-01T14:57:57.000Z</updated>
+        <content type="html"><![CDATA[<h3 id="安装docker源">安装Docker源</h3>
+<p>sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo</p>
+<h3 id="安装docker">安装Docker</h3>
+<p>sudo yum install docker-ce docker-ce-cli containerd.io</p>
+<h3 id="启动docker">启动Docker</h3>
+<p>systemctl start docker</p>
+<h3 id="docker使用">Docker使用</h3>
+<p>sudo docker run hello-world</p>
+<h3 id="创建文件夹">创建文件夹</h3>
+<p>mkdir rootfs</p>
+<h3 id="使用busybox镜像创建系统">使用busybox镜像创建系统</h3>
+<p>docker export $(docker create busybox) -o busybox.tar</p>
+<h3 id="解压">解压</h3>
+<p>tar -xf busybox.tar</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[websocket]]></title>
         <id>https://spark-wz.github.io/post/websocket</id>
@@ -49,12 +71,12 @@ ALTER USER 'root'@'%' IDENTIFIED BY '123@qweQWE' PASSWORD EXPIRE NEVER; //修改
 FLUSH PRIVILEGES; //刷新权限</p>
 <h4 id="丹徒taos">丹徒taos</h4>
 <p><strong>超级表</strong><br>
-CREATE TABLE lc3021 (ts timestamp, lc float, temp float, corrected_vol float, standard_vol float, corrected_dens float, standard_dens float, mass float, pressure float)<br>
+CREATE TABLE lc (ts timestamp, lc float, temp float, corrected_vol float, standard_vol float, corrected_dens float, standard_dens float, mass float, pressure float)<br>
 TAGS (gkwz binary(20), oil_type binary(20));<br>
 <strong>子表</strong><br>
-CREATE TABLE lc4030 USING lc TAGS ('一分库', '0#柴油')；<br>
+CREATE TABLE lc3019 USING lc TAGS ('一分库', '0#柴油')<br>
 <strong>写入数据</strong><br>
-INSERT INTO lc4030 VALUES ('2020-07-22 00:00:00.000', 1,1,1,1,1,1,1,1);</p>
+INSERT INTO lc3018 VALUES ('2020-07-25 00:00:00.000', 10,1,1,1,1,1,1,1);</p>
 <h4 id="jar包启动">jar包启动</h4>
 <p><strong>jeecg</strong><br>
 nohup java -jar jeecg-boot-module-system-2.1.4.jar &gt;catalina.out 2&gt;&amp;1 &amp;<br>
@@ -466,53 +488,6 @@ export CLASSPATH=.:JAVA_HOME/lib/dt.jar:JAVA_HOME/lib/tools.jar<br>
 <li>由于编译过的RXTX只支持ttyS开头的串口，所以要做串口映射（ ln -s /dev/ttyUSB2 /dev/ttyS145），将/dev/ttyUSB2串口映射为ttyS145,在代码中读取ttyS145串口。</li>
 <li>在代码中串口名参数不能直接为ttyS145，应为(/dev/ttyS145)</li>
 </ol>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[定时任务@Scheduled]]></title>
-        <id>https://spark-wz.github.io/post/ding-shi-ren-wu-scheduled</id>
-        <link href="https://spark-wz.github.io/post/ding-shi-ren-wu-scheduled">
-        </link>
-        <updated>2020-05-18T01:26:17.000Z</updated>
-        <content type="html"><![CDATA[<p>字段 允许值 允许的特殊字符<br>
-秒 0-59 , - * /<br>
-分 0-59 , - * /<br>
-小时 0-23 , - * /<br>
-日期 1-31 , - * ? / L W C<br>
-月份 1-12 或者 JAN-DEC , - * /<br>
-星期 1-7 或者 SUN-SAT , - * ? / L C #<br>
-年（可选） 留空, 1970-2099 , - * /<br>
-表达式意义<br>
-&quot;0 0 12 * * ?&quot; 每天中午12点触发<br>
-&quot;0 15 10 ? * *&quot; 每天上午10:15触发<br>
-&quot;0 15 10 * * ?&quot; 每天上午10:15触发<br>
-&quot;0 15 10 * * ? *&quot; 每天上午10:15触发<br>
-&quot;0 15 10 * * ? 2005&quot; 2005年的每天上午10:15触发<br>
-&quot;0 * 14 * * ?&quot; 在每天下午2点到下午2:59期间的每1分钟触发<br>
-&quot;0 0/5 14 * * ?&quot; 在每天下午2点到下午2:55期间的每5分钟触发<br>
-&quot;0 0/5 14,18 * * ?&quot; 在每天下午2点到2:55期间和下午6点到6:55期间的每5分钟触发<br>
-&quot;0 0-5 14 * * ?&quot; 在每天下午2点到下午2:05期间的每1分钟触发<br>
-&quot;0 10,44 14 ? 3 WED&quot; 每年三月的星期三的下午2:10和2:44触发<br>
-&quot;0 15 10 ? * MON-FRI&quot; 周一至周五的上午10:15触发<br>
-&quot;0 15 10 15 * ?&quot; 每月15日上午10:15触发<br>
-&quot;0 15 10 L * ?&quot; 每月最后一日的上午10:15触发<br>
-&quot;0 15 10 ? * 6L&quot; 每月的最后一个星期五上午10:15触发<br>
-&quot;0 15 10 ? * 6L 2002-2005&quot; 2002年至2005年的每月的最后一个星期五上午10:15触发<br>
-&quot;0 15 10 ? * 6#3&quot; 每月的第三个星期五上午10:15触发<br>
-每天早上6点<br>
-0 6 * * *<br>
-每两个小时<br>
-0 */2 * * *<br>
-晚上11点到早上8点之间每两个小时，早上八点<br>
-0 23-7/2，8 * * *<br>
-每个月的4号和每个礼拜的礼拜一到礼拜三的早上11点<br>
-0 11 4 * 1-3<br>
-1月1日早上4点<br>
-0 4 1 1 *</p>
-<p><strong>linux防火墙命令</strong><br>
-netstat -anp   查看当前开放端口<br>
-firewall-cmd --zone=public --add-port=6030/tcp --permanent  开放端口<br>
-firewall-cmd --reload  重新加载端口，开放端口后需要重新reload</p>
 ]]></content>
     </entry>
 </feed>

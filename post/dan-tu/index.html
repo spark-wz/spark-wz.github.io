@@ -7,7 +7,7 @@
 <meta name="description" content="">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://spark-wz.github.io/favicon.ico?v=1595576610743">
+<link rel="shortcut icon" href="https://spark-wz.github.io/favicon.ico?v=1598975706590">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -99,12 +99,12 @@ ALTER USER 'root'@'%' IDENTIFIED BY '123@qweQWE' PASSWORD EXPIRE NEVER; //修改
 FLUSH PRIVILEGES; //刷新权限</p>
 <h4 id="丹徒taos">丹徒taos</h4>
 <p><strong>超级表</strong><br>
-CREATE TABLE lc3021 (ts timestamp, lc float, temp float, corrected_vol float, standard_vol float, corrected_dens float, standard_dens float, mass float, pressure float)<br>
+CREATE TABLE lc (ts timestamp, lc float, temp float, corrected_vol float, standard_vol float, corrected_dens float, standard_dens float, mass float, pressure float)<br>
 TAGS (gkwz binary(20), oil_type binary(20));<br>
 <strong>子表</strong><br>
-CREATE TABLE lc4030 USING lc TAGS ('一分库', '0#柴油')；<br>
+CREATE TABLE lc3019 USING lc TAGS ('一分库', '0#柴油')<br>
 <strong>写入数据</strong><br>
-INSERT INTO lc4030 VALUES ('2020-07-22 00:00:00.000', 1,1,1,1,1,1,1,1);</p>
+INSERT INTO lc3018 VALUES ('2020-07-25 00:00:00.000', 10,1,1,1,1,1,1,1);</p>
 <h4 id="jar包启动">jar包启动</h4>
 <p><strong>jeecg</strong><br>
 nohup java -jar jeecg-boot-module-system-2.1.4.jar &gt;catalina.out 2&gt;&amp;1 &amp;<br>
@@ -163,7 +163,7 @@ http://192.168.1.254/page/tl/#/oil-station-history</p>
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://spark-wz.github.io/images/avatar.png?v=1595576610743" class="no-responsive avatar">
+    <img src="https://spark-wz.github.io/images/avatar.png?v=1598975706590" class="no-responsive avatar">
     <div class="text-muted"></div>
     <div class="social-container">
       
@@ -185,6 +185,12 @@ http://192.168.1.254/page/tl/#/oil-station-history</p>
     </div>
     <div class="row">
       <ul>
+        
+          
+            <li>
+              <a href="https://spark-wz.github.io/post/docker">Docker</a>
+            </li>
+          
         
           
             <li>
@@ -240,10 +246,6 @@ http://192.168.1.254/page/tl/#/oil-station-history</p>
             </li>
           
         
-          
-            <li>
-              <a href="https://spark-wz.github.io/post/ding-shi-ren-wu-scheduled">定时任务@Scheduled</a>
-            </li>
           
         
           
