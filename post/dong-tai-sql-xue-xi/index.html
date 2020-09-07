@@ -7,7 +7,7 @@
 <meta name="description" content="">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://spark-wz.github.io/favicon.ico?v=1598975706590">
+<link rel="shortcut icon" href="https://spark-wz.github.io/favicon.ico?v=1599470737041">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -146,6 +146,60 @@ sum(if(type=1,this_count,0))  将所有type字段等于1的this_count相加求�
 <if test="param.startTime != null and param.startTime != ''" ><br>
 <![CDATA[ and c_t >= #{param.startTime} ]]><br>
 </if></p>
+<h3 id="resultmap-标签">resultMap 标签</h3>
+<h4 id="作用">作用</h4>
+<p>1.建立sql查询结果字段与实体属性的映射关系。<br>
+2.查询的结果集转换为java对象，方便进一步操作。<br>
+3.将结果集中的列与java对象中的属性对应起来并将值填进去。<br>
+<img src="https://spark-wz.github.io/post-images/1599447265721.png" alt=""></p>
+<h3 id="if标签">if标签</h3>
+<p>if标签通常用于where语句，update语句，insert语句中，通过判断参数值来决定是否使用某个查询条件，判断是否更新某个字段，判断是否插入某个字段的值。<br>
+<img src="https://spark-wz.github.io/post-images/1599462289199.png" alt=""></p>
+<h3 id="foreach标签">foreach标签</h3>
+<p>foreach标签主要用于构建in条件，可在sql中对集合进行迭代，也常用到批量删除，添加等操作中。<br>
+<img src="https://spark-wz.github.io/post-images/1599462401094.png" alt=""></p>
+<h4 id="属性">属性</h4>
+<p>collection：collection属性有三个值分别是list、array、map三种，分别对应的参数类型为：LIst、数组、map集合。<br>
+item：表示在迭代过程中每一个元素的别名<br>
+index：表示在迭代过程中每次迭代到的位置（下）<br>
+open：前缀<br>
+close：后缀<br>
+separate：分隔符，表示迭代时每个元素以什么分隔。</p>
+<h3 id="choose标签">choose标签</h3>
+<p>Mybatis提供了choose元素，按顺序判断when中的条件是否成立，如果有一个条件成立，则choose结束，当choose中的when的条件都不满时，则执行otherwise中的sql，类似于java的switch语句，choose为switch，when为case，otherwise则为default；<br>
+if是与（and）的关系，choose是或（or）的关系<br>
+<img src="https://spark-wz.github.io/post-images/1599466410513.png" alt=""></p>
+<h3 id="where-标签">where 标签</h3>
+<p>当if标签过多时可能会出现错误<br>
+<img src="https://spark-wz.github.io/post-images/1599466617125.png" alt=""><br>
+当第一个name为null的时候，查询语句很可能出现where and的情况，可以加where标签，如果标签内有返回值的时候，他就会插入一个where，如果标签返回的内容是以and或者or开头的，可以自动剔除。<br>
+<img src="https://spark-wz.github.io/post-images/1599466809665.png" alt=""></p>
+<h3 id="set-标签">set 标签</h3>
+<p>没有使用fi标签时，如果有一个参数为null，都会导致错误，当在update标签中使用了if标签后如果最后的if没有执行，有可能导致逗号多余错误，使用set标签可以将动态的配置set关键字，和剔除追加到条件末尾任何不相关的逗号。<br>
+<img src="https://spark-wz.github.io/post-images/1599467173202.png" alt=""><br>
+<img src="https://spark-wz.github.io/post-images/1599467207173.png" alt=""></p>
+<h3 id="trim-标签">trim 标签</h3>
+<p>trim标签是一个格式化的标记，主要用于拼接sql的条件语句（前缀和后缀添加除外），可以完成set或者where标记的功能</p>
+<h4 id="trim属性">trim属性</h4>
+<p>prefix：在trim标签内sql语句加上前缀。<br>
+suffix：在trim标签内sql语句加上后缀。<br>
+prefixOverrides：指定去除多余的前缀内容，如：prefixOverrides=“AND | OR”，去除trim标签内sql语句多余的前缀&quot;and&quot;或者&quot;or&quot;。<br>
+suffixOverrides：指定去除多余的后缀内容。<br>
+<img src="https://spark-wz.github.io/post-images/1599468105264.png" alt=""><br>
+<img src="https://spark-wz.github.io/post-images/1599468190249.png" alt=""></p>
+<h2 id="五-配置关联关系">五. 配置关联关系</h2>
+<h4 id="association标签">association标签</h4>
+<p>关联单个对象，如果超过一个会报错<br>
+<img src="https://spark-wz.github.io/post-images/1599470504032.png" alt=""></p>
+<h4 id="collection标签">collection标签</h4>
+<p>关联对象集合<br>
+<img src="https://spark-wz.github.io/post-images/1599470706755.png" alt=""></p>
+<h2 id="六-定义常量及引用">六. 定义常量及引用</h2>
+<h3 id="sql-标签">sql 标签</h3>
+<p>当多种类型的查询语句的查询字段或者查询条件相同时，可以将其定义为常量，方便调用。为求 select 结构清晰也可将 sql 语句分解。                                         <img src="https://spark-wz.github.io/post-images/1599469855340.png" alt=""></p>
+<h3 id="include-标签">include 标签</h3>
+<p>用于引用定义的常量<br>
+<img src="https://spark-wz.github.io/post-images/1599469957833.png" alt=""></p>
 
             </div>
           </article>
@@ -169,7 +223,7 @@ sum(if(type=1,this_count,0))  将所有type字段等于1的this_count相加求�
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://spark-wz.github.io/images/avatar.png?v=1598975706590" class="no-responsive avatar">
+    <img src="https://spark-wz.github.io/images/avatar.png?v=1599470737041" class="no-responsive avatar">
     <div class="text-muted"></div>
     <div class="social-container">
       
@@ -191,6 +245,12 @@ sum(if(type=1,this_count,0))  将所有type字段等于1的this_count相加求�
     </div>
     <div class="row">
       <ul>
+        
+          
+            <li>
+              <a href="https://spark-wz.github.io/post/you-ku-ping-tai">Modbus连接池</a>
+            </li>
+          
         
           
             <li>
@@ -246,10 +306,6 @@ sum(if(type=1,this_count,0))  将所有type字段等于1的this_count相加求�
             </li>
           
         
-          
-            <li>
-              <a href="https://spark-wz.github.io/post/ce-shi">Modbus RTU</a>
-            </li>
           
         
           
