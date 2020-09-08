@@ -2,13 +2,57 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://spark-wz.github.io</id>
     <title>Gridea</title>
-    <updated>2020-09-08T07:15:12.503Z</updated>
+    <updated>2020-09-08T07:26:46.877Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://spark-wz.github.io"/>
     <link rel="self" href="https://spark-wz.github.io/atom.xml"/>
     <logo>https://spark-wz.github.io/images/avatar.png</logo>
     <icon>https://spark-wz.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[9.10现场任务]]></title>
+        <id>https://spark-wz.github.io/post/910-xian-chang-ren-wu</id>
+        <link href="https://spark-wz.github.io/post/910-xian-chang-ren-wu">
+        </link>
+        <updated>2020-09-08T07:15:36.000Z</updated>
+        <content type="html"><![CDATA[<ul>
+<li>备份nginx.conf</li>
+<li>安装ffmpeg，调试摄像头。</li>
+<li>部队首页图</li>
+<li>数据库迁移，将军油表迁移到jeecg-boot库中</li>
+<li>前端、后端包上传测试（液位，零发油，流量计）</li>
+</ul>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[设置服务器自启动脚本]]></title>
+        <id>https://spark-wz.github.io/post/she-zhi-fu-wu-qi-zi-qi-dong-jiao-ben</id>
+        <link href="https://spark-wz.github.io/post/she-zhi-fu-wu-qi-zi-qi-dong-jiao-ben">
+        </link>
+        <updated>2020-09-08T07:14:46.000Z</updated>
+        <content type="html"><![CDATA[<p>/ 1.前往目录</p>
+<p>cd /etc/rc.d/init.d</p>
+<p>/2. 新建startup脚本<br>
+vi startup.sh</p>
+<p>/3.粘贴脚本内容 (注意替换nginx和java项目的路径）</p>
+<p>!/bin/bash<br>
+chkconfig: 2345 10 90<br>
+descriptiom: startup service<br>
+cd /usr/local/nginx/sbin<br>
+./nginx<br>
+service mysql start<br>
+source /etc/profile<br>
+nohup java -jar /data/service/tl-gasoline/tl-gasoline-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod &gt;&gt; catalina.out  2&gt;&amp;1 &amp;<br>
+service firewalld stop</p>
+<p>/4.增加脚本的可执行权限<br>
+chmod +x /etc/rc.d/init.d/startup.sh</p>
+<p>/5.添加脚本到开机自动启动项目中<br>
+cd /etc/rc.d/init.d<br>
+chkconfig --add startup.sh<br>
+chkconfig startup.sh on<br>
+————————————————</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Modbus连接池]]></title>
         <id>https://spark-wz.github.io/post/you-ku-ping-tai</id>
@@ -412,50 +456,6 @@ return 1;<br>
 });<br>
 }</p>
 <p>UPDATE &quot;main&quot;.&quot;test&quot; SET &quot;year&quot;=11, &quot;project&quot;=1, &quot;importance&quot;=111, &quot;pp&quot;=111, &quot;funds&quot;=1111, &quot;funds_allocated&quot;=111, &quot;software_or_hardware&quot;=111, &quot;competition_and_selection&quot;=111, &quot;domestic_part&quot;=111, &quot;research_unit&quot;=11, &quot;is_private&quot;=11, &quot;domestic_sw&quot;=1, &quot;project_function&quot;=1, &quot;goal&quot;=1, &quot;total_part&quot;=1 WHERE (&quot;id&quot;=11)</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[node]]></title>
-        <id>https://spark-wz.github.io/post/node</id>
-        <link href="https://spark-wz.github.io/post/node">
-        </link>
-        <updated>2020-06-27T12:26:19.000Z</updated>
-        <content type="html"><![CDATA[<p>npm config set prefix &quot;D:\tools\node\node_global&quot;<br>
-npm config set cache &quot;D:\tools\node\node_cache&quot;</p>
-<p>proxy=null<br>
-registry=http://registry.npm.taobao.org/<br>
-prefix=D:\tools\node\node_global<br>
-cache=D:\tools\node\node_cache</p>
-<p>npm config set registry http://registry.npm.taobao.org<br>
-npm install express -g<br>
-npm install -g express-generator</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Rocket Mq]]></title>
-        <id>https://spark-wz.github.io/post/rocket-mq</id>
-        <link href="https://spark-wz.github.io/post/rocket-mq">
-        </link>
-        <updated>2020-06-24T08:46:25.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="定义">定义</h2>
-<ol>
-<li>Producer(生产者)  Producer Group(消息生产者组)</li>
-<li>Consumer(消费者)  Consumer Group（消费同类消息的多个实例）</li>
-<li>Broker(包括接收请求，处理消费，消费持久，消息的HA，以及服务端过滤等)MQ程序，接受生产者信息，提供给消费者消费</li>
-<li>Topic(消息主题通过topic对不同的消息进行分类) Tag(对topic的进一步细化)</li>
-<li>Message Queue(消息队列,必须指定Topic)</li>
-<li>NameServer(负责producer、Consumer和Broker之间的协调，可以多个部署，相互独立)</li>
-<li>Offset （偏移量，相当于消息进度）</li>
-<li>Commit Log（消息存储会写在Commit Log文件里面）</li>
-</ol>
-<h3 id="职能图示">职能图示</h3>
-<p><img src="https://spark-wz.github.io/post-images/1592989472723.png" alt=""></p>
-<h3 id="消费者类型">消费者类型</h3>
-<ol>
-<li>PushConsumer 使用简单，只需要设置订阅参数和消息处理方法，系统自动保存offset。</li>
-<li>PullConsumer可控性更高，可以设定拉取时间、控制offset。</li>
-</ol>
-<h2 id=""></h2>
 ]]></content>
     </entry>
 </feed>
