@@ -2,51 +2,13 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://spark-wz.github.io</id>
     <title>Gridea</title>
-    <updated>2021-03-05T05:43:21.073Z</updated>
+    <updated>2021-03-05T05:44:38.049Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://spark-wz.github.io"/>
     <link rel="self" href="https://spark-wz.github.io/atom.xml"/>
     <logo>https://spark-wz.github.io/images/avatar.png</logo>
     <icon>https://spark-wz.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Gridea</rights>
-    <entry>
-        <title type="html"><![CDATA[供料系统taos]]></title>
-        <id>https://spark-wz.github.io/post/gong-liao-xi-tong-taos</id>
-        <link href="https://spark-wz.github.io/post/gong-liao-xi-tong-taos">
-        </link>
-        <updated>2021-03-05T05:42:10.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="供料系统">供料系统</h2>
-<h3 id="创建超级表">创建超级表</h3>
-<p>CREATE TABLE device(ts timestamp,device_name binary(50), procedure_num float,beltline float, lc float,weight float, device_status float) TAGS (procedure  binary(20));<br>
-ts时间<br>
-device_name设备名称<br>
-procedure_num工序号，1代表一道工序<br>
-beltline生产线号，1代表一号生产线<br>
-lc 液位<br>
-weight 重量<br>
-device_status 设备状态</p>
-<h3 id="一道工序一号生产线创建表">一道工序一号生产线创建表</h3>
-<p>CREATE TABLE device11LT01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device11TM01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device11VL01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device11VL02 USING device TAGS ('一道工序');<br>
-CREATE TABLE device11MM01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device11WM01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device11PM01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device11VL03 USING device TAGS ('一道工序');<br>
-CREATE TABLE device11LT02 USING device TAGS ('一道工序');</p>
-<h3 id="一道工序一号生产线插入数据">一道工序一号生产线插入数据</h3>
-<p>INSERT INTO device11LT01 VALUES ('2021-03-05 18:12:02.000','原料罐液位计', 1,1,0,0,0);<br>
-INSERT INTO device11TM01 VALUES ('2021-03-05 18:12:02.000','固体罐螺杆电机', 1,1,0,0,0);<br>
-INSERT INTO device11VL01 VALUES ('2021-03-05 18:12:02.000','固体罐至搅拌罐阀门', 1,1,0,0,0);<br>
-INSERT INTO device11VL02 VALUES ('2021-03-05 18:12:02.000','纯水阀门', 1,1,0,0,0);<br>
-INSERT INTO device11MM01 VALUES ('2021-03-05 18:12:02.000','搅拌电机', 1,1,0,0,0);<br>
-INSERT INTO device11WM01 VALUES ('2021-03-05 18:12:02.000','搅拌罐称重模块', 1,1,0,0,0);<br>
-INSERT INTO device11PM01 VALUES ('2021-03-05 18:12:02.000','搅拌罐至成品罐泵', 1,1,0,0,0);<br>
-INSERT INTO device11VL03 VALUES ('2021-03-05 18:12:02.000','搅拌罐至成品罐阀门', 1,1,0,0,0);<br>
-INSERT INTO device11LT02 VALUES ('2021-03-05 18:12:02.000','成品罐液位计', 1,1,0,0,0);</p>
-]]></content>
-    </entry>
     <entry>
         <title type="html"><![CDATA[docker命令]]></title>
         <id>https://spark-wz.github.io/post/docker-ming-ling</id>
@@ -237,6 +199,29 @@ chkconfig startup.sh on<br>
 <p>docker export $(docker create busybox) -o busybox.tar</p>
 <h3 id="解压">解压</h3>
 <p>tar -xf busybox.tar</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[websocket]]></title>
+        <id>https://spark-wz.github.io/post/websocket</id>
+        <link href="https://spark-wz.github.io/post/websocket">
+        </link>
+        <updated>2020-07-24T07:20:41.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="定义">定义</h2>
+<p>WebSocket是基于tcp的一种新的网络协议，它实现了浏览器与服务器之间双全工通信，允许服务器主动发信息给客户端。</p>
+<h2 id="原理">原理</h2>
+<p>在实现WebSocket连线过程中，需要通过浏览器发出WebSocket请求，然后服务器发出回应，这个过程通常称为握手，在WebSocket API中，只需要做一次握手，实现数据传送。</p>
+<h3 id="websocket与socket区别">WebSocket与Socket区别</h3>
+<h4 id="websocket">WebSocket</h4>
+<p>1.WebSocket建立阶段是依赖于http协议的，握手阶段是http协议，完成之后变成WebSocket协议，完全脱离socket。<br>
+2.建立通讯时，是客户端主动发起请求，服务端被动监听<br>
+3.建立通讯后，变成“双全工”模式，服务端和客户端都在任何时间自由发送数据，<br>
+4.交互模式不再是请求应答，完全由开发者自行设计<br>
+5.通信的数据是基于“帧frame”的，可以传输文本数据，也可以直接传输二进制数据，效率高，封包、拆包、编号。</p>
+<h4 id="socket">socket</h4>
+<p>1.服务器监听通讯，被动提供服务，每次交互都是客户端主动发起请求，服务端被动应答。<br>
+2.服务端不能被动向客户端推送数据<br>
+3.通讯数据基于文本格式，二进制数据（图片等）需要转换</p>
 ]]></content>
     </entry>
 </feed>
