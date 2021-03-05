@@ -2,13 +2,121 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://spark-wz.github.io</id>
     <title>Gridea</title>
-    <updated>2020-09-10T03:02:54.111Z</updated>
+    <updated>2021-03-05T05:43:21.073Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://spark-wz.github.io"/>
     <link rel="self" href="https://spark-wz.github.io/atom.xml"/>
     <logo>https://spark-wz.github.io/images/avatar.png</logo>
     <icon>https://spark-wz.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2020, Gridea</rights>
+    <rights>All rights reserved 2021, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[供料系统taos]]></title>
+        <id>https://spark-wz.github.io/post/gong-liao-xi-tong-taos</id>
+        <link href="https://spark-wz.github.io/post/gong-liao-xi-tong-taos">
+        </link>
+        <updated>2021-03-05T05:42:10.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="供料系统">供料系统</h2>
+<h3 id="创建超级表">创建超级表</h3>
+<p>CREATE TABLE device(ts timestamp,device_name binary(50), procedure_num float,beltline float, lc float,weight float, device_status float) TAGS (procedure  binary(20));<br>
+ts时间<br>
+device_name设备名称<br>
+procedure_num工序号，1代表一道工序<br>
+beltline生产线号，1代表一号生产线<br>
+lc 液位<br>
+weight 重量<br>
+device_status 设备状态</p>
+<h3 id="一道工序一号生产线创建表">一道工序一号生产线创建表</h3>
+<p>CREATE TABLE device11LT01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device11TM01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device11VL01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device11VL02 USING device TAGS ('一道工序');<br>
+CREATE TABLE device11MM01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device11WM01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device11PM01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device11VL03 USING device TAGS ('一道工序');<br>
+CREATE TABLE device11LT02 USING device TAGS ('一道工序');</p>
+<h3 id="一道工序一号生产线插入数据">一道工序一号生产线插入数据</h3>
+<p>INSERT INTO device11LT01 VALUES ('2021-03-05 18:12:02.000','原料罐液位计', 1,1,0,0,0);<br>
+INSERT INTO device11TM01 VALUES ('2021-03-05 18:12:02.000','固体罐螺杆电机', 1,1,0,0,0);<br>
+INSERT INTO device11VL01 VALUES ('2021-03-05 18:12:02.000','固体罐至搅拌罐阀门', 1,1,0,0,0);<br>
+INSERT INTO device11VL02 VALUES ('2021-03-05 18:12:02.000','纯水阀门', 1,1,0,0,0);<br>
+INSERT INTO device11MM01 VALUES ('2021-03-05 18:12:02.000','搅拌电机', 1,1,0,0,0);<br>
+INSERT INTO device11WM01 VALUES ('2021-03-05 18:12:02.000','搅拌罐称重模块', 1,1,0,0,0);<br>
+INSERT INTO device11PM01 VALUES ('2021-03-05 18:12:02.000','搅拌罐至成品罐泵', 1,1,0,0,0);<br>
+INSERT INTO device11VL03 VALUES ('2021-03-05 18:12:02.000','搅拌罐至成品罐阀门', 1,1,0,0,0);<br>
+INSERT INTO device11LT02 VALUES ('2021-03-05 18:12:02.000','成品罐液位计', 1,1,0,0,0);</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[docker命令]]></title>
+        <id>https://spark-wz.github.io/post/docker-ming-ling</id>
+        <link href="https://spark-wz.github.io/post/docker-ming-ling">
+        </link>
+        <updated>2021-02-25T08:12:27.000Z</updated>
+        <content type="html"><![CDATA[<p>docker pull +应用名称 下载应用镜像<br>
+docker run -itd --name ubuntu-test ubuntu /bin/bash （i交互式操作、t终端、d后台运行 、/bin/bash通过shell运行）<br>
+docker ps -a 查看所有运行容器<br>
+docker stop、start、restart +容器id，停止、开始、重启容器<br>
+docker exec -it +容器id /bin/bash 进入容器，退出时不会影响容器运行。<br>
+docker run -p 80 -d nginx 启动docker中的nginx<br>
+iZ2ze8vj2il5rc16bwvb6aZ</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[work]]></title>
+        <id>https://spark-wz.github.io/post/work</id>
+        <link href="https://spark-wz.github.io/post/work">
+        </link>
+        <updated>2021-02-24T09:29:07.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="供料配料系统">供料配料系统</h2>
+<ol>
+<li><strong>jeecg boot升级微服务</strong></li>
+<li>taos连接池</li>
+<li>读取西门子系列plc实数</li>
+<li>plc控制逻辑</li>
+</ol>
+<h2 id="宁波资料">宁波资料</h2>
+<ol>
+<li>材料报审</li>
+<li>开工资料</li>
+<li>工程变更单</li>
+<li>检验批</li>
+<li>分部分项</li>
+<li>电阻接地</li>
+</ol>
+<h2 id="年度总结">年度总结</h2>
+<p>今天晚上必须写完，更新到飞书</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[引力运动场]]></title>
+        <id>https://spark-wz.github.io/post/yin-li-yun-dong-chang</id>
+        <link href="https://spark-wz.github.io/post/yin-li-yun-dong-chang">
+        </link>
+        <updated>2020-11-13T15:10:59.000Z</updated>
+        <content type="html"><![CDATA[<ul>
+<li><strong>登录时判断用户是否第一次登录，是，插入，否，更新用户信息（不确定头像、微信昵称是否更改过）</strong></li>
+<li>根据场馆id获取场馆场地。</li>
+<li>下订单的时候加一个字段  场地名</li>
+<li>查询最近约战返回一条（数据库限定）</li>
+<li>查询最近约战（根据订单人uuid，以及跟随约战人uuid返回用户信息）</li>
+<li>预约本场就是加入约战接口，加入约战人uuid用逗号分开</li>
+</ul>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[aliyunStartService]]></title>
+        <id>https://spark-wz.github.io/post/aliyunstartservice</id>
+        <link href="https://spark-wz.github.io/post/aliyunstartservice">
+        </link>
+        <updated>2020-11-03T12:33:07.000Z</updated>
+        <content type="html"><![CDATA[<p><strong>启动nginx</strong><br>
+/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf</p>
+<p><strong>启动redis</strong><br>
+cd到/usr/local/redis/bin<br>
+./redis-server redis.conf</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[java线程]]></title>
         <id>https://spark-wz.github.io/post/java-xian-cheng</id>
@@ -49,18 +157,21 @@ Java中，每个线程都有一个调用栈，即使不在程序中创建任何�
         </link>
         <updated>2020-09-08T07:15:36.000Z</updated>
         <content type="html"><![CDATA[<ul>
-<li>备份nginx.conf</li>
 <li>安装ffmpeg，调试摄像头。</li>
 <li>编写摄像头脚本，编写数据库配置</li>
 <li>部队首页图</li>
-<li>数据库迁移，将军油表迁移到jeecg-boot库中</li>
-<li>前端、后端包上传测试（液位，零发油，流量计）</li>
 <li>部署单机版</li>
 <li>任务确认书</li>
 <li>洞库分区名，油罐名</li>
+<li>taos数据库问题测试</li>
 </ul>
-<h3 id="液位代码流程">液位代码流程</h3>
-<p>查询液位配置表，根据油罐编号排序，查询到所有油罐油罐编号和油罐各数据寄存器地址。建立taos连接，遍历液位配置list，插入taos数据库。</p>
+<p>汽车零发油 sqlserver未连接 - 看下数据库对不对<br>
+液位，流量计真实数据未测试<br>
+液位进度条<br>
+单机版未部署<br>
+油品，各油罐位置，数量ip<br>
+3个tab改4个<br>
+摄像头账号密码，布局图，ffmpeg未安装 启动摄像头脚本</p>
 ]]></content>
     </entry>
     <entry>
@@ -126,249 +237,6 @@ chkconfig startup.sh on<br>
 <p>docker export $(docker create busybox) -o busybox.tar</p>
 <h3 id="解压">解压</h3>
 <p>tar -xf busybox.tar</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[websocket]]></title>
-        <id>https://spark-wz.github.io/post/websocket</id>
-        <link href="https://spark-wz.github.io/post/websocket">
-        </link>
-        <updated>2020-07-24T07:20:41.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="定义">定义</h2>
-<p>WebSocket是基于tcp的一种新的网络协议，它实现了浏览器与服务器之间双全工通信，允许服务器主动发信息给客户端。</p>
-<h2 id="原理">原理</h2>
-<p>在实现WebSocket连线过程中，需要通过浏览器发出WebSocket请求，然后服务器发出回应，这个过程通常称为握手，在WebSocket API中，只需要做一次握手，实现数据传送。</p>
-<h3 id="websocket与socket区别">WebSocket与Socket区别</h3>
-<h4 id="websocket">WebSocket</h4>
-<p>1.WebSocket建立阶段是依赖于http协议的，握手阶段是http协议，完成之后变成WebSocket协议，完全脱离socket。<br>
-2.建立通讯时，是客户端主动发起请求，服务端被动监听<br>
-3.建立通讯后，变成“双全工”模式，服务端和客户端都在任何时间自由发送数据，<br>
-4.交互模式不再是请求应答，完全由开发者自行设计<br>
-5.通信的数据是基于“帧frame”的，可以传输文本数据，也可以直接传输二进制数据，效率高，封包、拆包、编号。</p>
-<h4 id="socket">socket</h4>
-<p>1.服务器监听通讯，被动提供服务，每次交互都是客户端主动发起请求，服务端被动应答。<br>
-2.服务端不能被动向客户端推送数据<br>
-3.通讯数据基于文本格式，二进制数据（图片等）需要转换</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[丹徒]]></title>
-        <id>https://spark-wz.github.io/post/dan-tu</id>
-        <link href="https://spark-wz.github.io/post/dan-tu">
-        </link>
-        <updated>2020-07-19T02:01:26.000Z</updated>
-        <content type="html"><![CDATA[<h3 id="安装服务器">安装服务器</h3>
-<p>服务器品牌华为  delete进入bios<br>
-bios初始密码 Huawei12#$<br>
-root密码123qwe123QWE</p>
-<h4 id="丹徒mysql">丹徒MySQL</h4>
-<p><strong>MySQL更改加密规则，修改密码</strong><br>
-ALTER USER 'root'@'%t' IDENTIFIED WITH mysql_native_password BY '123qweQWE@'; //修改加密规则<br>
-ALTER USER 'root'@'%' IDENTIFIED BY '123@qweQWE' PASSWORD EXPIRE NEVER; //修改密码<br>
-FLUSH PRIVILEGES; //刷新权限</p>
-<h4 id="丹徒taos">丹徒taos</h4>
-<p><strong>超级表</strong><br>
-CREATE TABLE lc (ts timestamp, lc float, temp float, corrected_vol float, standard_vol float, corrected_dens float, standard_dens float, mass float, pressure float)<br>
-TAGS (gkwz binary(20), oil_type binary(20));<br>
-<strong>子表</strong><br>
-CREATE TABLE lc3019 USING lc TAGS ('一分库', '0#柴油')<br>
-<strong>写入数据</strong><br>
-INSERT INTO lc3018 VALUES ('2020-07-25 00:00:00.000', 10,1,1,1,1,1,1,1);</p>
-<h4 id="jar包启动">jar包启动</h4>
-<p><strong>jeecg</strong><br>
-nohup java -jar jeecg-boot-module-system-2.1.4.jar &gt;catalina.out 2&gt;&amp;1 &amp;<br>
-<strong>shr</strong><br>
-nohup java -jar sr-gasoline-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod &gt;&gt; catalina.out  2&gt;&amp;1 &amp;</p>
-<h4 id="页面">页面</h4>
-<p>铁路收发油历史<br>
-http://192.168.1.254/page/shr/#/oil-railway-history<br>
-铁路实时<br>
-http://192.168.1.254/page/tl/#/oil-railway-realtime<br>
-铁路收发油统计<br>
-http://192.168.1.254/page/shr/#/railway-transport-stat<br>
-铁路流量计管理<br>
-http://192.168.1.254/page/shr/#/flowmeter-mgmt<br>
-水路流量计历史<br>
-http://192.168.1.254/page/tl/#/oil-port-history<br>
-水路实时<br>
-http://192.168.1.254/page/tl/#/oil-port-realtime<br>
-水路流量计管理<br>
-http://192.168.1.254/page/tl/#/flowmeter-mgmt-port<br>
-水路收发油统计<br>
-http://192.168.1.254/page/tl/#/transport-stat-port<br>
-钥匙柜历史<br>
-http://192.168.1.254/page/shr/#/key-mgmt-history<br>
-钥匙柜实时<br>
-http://192.168.1.254/page/shr/#/key-mgmt-realtime<br>
-巡更历史<br>
-http://192.168.1.254/page/shr/#/patrol-history<br>
-巡更实时<br>
-http://192.168.1.254/page/shr/#/patrol-status<br>
-汽车实时<br>
-http://192.168.1.254/page/tl/#/oil-station-realtime<br>
-汽车历史<br>
-http://192.168.1.254/page/tl/#/oil-station-history</p>
-<p>d17f014839872fcf53fa53edaee7e076.png</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[nodejs循环和异步]]></title>
-        <id>https://spark-wz.github.io/post/nodejs-xun-huan-he-yi-bu</id>
-        <link href="https://spark-wz.github.io/post/nodejs-xun-huan-he-yi-bu">
-        </link>
-        <updated>2020-07-10T03:02:27.000Z</updated>
-        <content type="html"><![CDATA[<h3 id="在for循环内调用异步方法">在for循环内调用异步方法</h3>
-<p><img src="https://spark-wz.github.io/post-images/1594350395285.png" alt=""><br>
-输出结果为<br>
-undefined: AAA<br>
-undefined: BBB<br>
-undefined: CCC<br>
-将i打印出来，结果都为3。所以fs.readFile的回调函数中访问到的i值都是循环结束后的值</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[excel导出]]></title>
-        <id>https://spark-wz.github.io/post/excel-dao-chu</id>
-        <link href="https://spark-wz.github.io/post/excel-dao-chu">
-        </link>
-        <updated>2020-07-07T10:13:49.000Z</updated>
-        <content type="html"><![CDATA[<p>//导出Excel，xlsx格式<br>
-router.get('/exportexcel',async (ctx) =&gt; {<br>
-async function readydata() {<br>
-//做点什么，如从数据库取数据<br>
-let exceldata=[<br>
-{name:&quot;张三&quot;,age:&quot;20&quot;,sex:&quot;男&quot;,birthday:&quot;1998-10-10&quot;},<br>
-{name:&quot;李四&quot;,age:&quot;21&quot;,sex:&quot;男&quot;,birthday:&quot;1997-08-08&quot;},<br>
-{name:&quot;王五&quot;,age:&quot;22&quot;,sex:&quot;男&quot;,birthday:&quot;1996-06-06&quot;},<br>
-{name:&quot;赵六&quot;,age:&quot;20&quot;,sex:&quot;男&quot;,birthday:&quot;1998-12-12&quot;},<br>
-];<br>
-return exceldata;<br>
-}<br>
-//导出<br>
-async function exportdata(v) {<br>
-let conf ={};<br>
-conf.name = &quot;mysheet&quot;;//表格名<br>
-let alldata = new Array();<br>
-for(let i = 0;i&lt;v.length;i++){<br>
-let arr = new Array();<br>
-arr.push(v[i].name);<br>
-arr.push(v[i].age);<br>
-arr.push(v[i].sex);<br>
-arr.push(v[i].birthday);<br>
-alldata.push(arr);<br>
-}<br>
-//决定列名和类型<br>
-conf.cols = [{<br>
-caption:'姓名',<br>
-type:'string'<br>
-},{<br>
-caption:'年龄',<br>
-type:'number'<br>
-},{<br>
-caption:'性别',<br>
-type:'string'<br>
-},{<br>
-caption:'出生日期',<br>
-type:'string',<br>
-//width:280<br>
-}];<br>
-conf.rows = alldata;//填充数据<br>
-let result = nodeExcel.execute(conf);<br>
-//最后3行express框架是这样写<br>
-// res.setHeader('Content-Type', 'application/vnd.openxmlformats');<br>
-// res.setHeader(&quot;Content-Disposition&quot;, &quot;attachment; filename=&quot; + &quot;Report.xlsx&quot;);<br>
-// res.end(result, 'binary');<br>
-let data = new Buffer(result,'binary');<br>
-ctx.set('Content-Type', 'application/vnd.openxmlformats');<br>
-ctx.set(&quot;Content-Disposition&quot;, &quot;attachment; filename=&quot; + &quot;Report.xlsx&quot;);<br>
-ctx.body=data;<br>
-}<br>
-let r=await readydata();<br>
-r=await exportdata(r);<br>
-});</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[参数sql]]></title>
-        <id>https://spark-wz.github.io/post/can-shu-sql</id>
-        <link href="https://spark-wz.github.io/post/can-shu-sql">
-        </link>
-        <updated>2020-07-02T02:28:01.000Z</updated>
-        <content type="html"><![CDATA[<p>select count(pp)alias from test where pp='立项' or pp='签约' or pp='已完成' or pp='引入经费计划'   历年累计立项数</p>
-<p>select count(pp)alias from test where pp='规划' or pp='立项' or pp='进行中' or pp='已完成' or pp='引入经费计划'  规划新上项目数</p>
-<p>select count(pp)alias from test where pp='已完成' and importance = '重点项目'  实际完成重点项目数</p>
-<p>select count(pp)alias from test 规划任务总量</p>
-<p>select count(pp)alias from test where pp='已完成' and importance = '一般项目' 实际完成一般项目数量</p>
-<p>select sum(funds_allocated)alias from test where importance = '重点项目' 以拨付重点项目经费</p>
-<p>select sum(funds)alias from test  规划经费总额</p>
-<p>select sum(funds_allocated)alias from test where importance = '一般项目' 以拨付一般项目经费</p>
-<p>select count(id)alias from test where funds_allocated &gt; funds and importance = '重点项目'    超概算重点项目数量</p>
-<p>select count(id)alias from test where funds_allocated &gt; funds and importance = '一般项目'    超概算一般项目数量</p>
-<p>select sum(funds_allocated - funds)alias from test where funds_allocated &gt; funds and importance = '重点项目'    超概算重点项目金额</p>
-<p>select sum(funds_allocated - funds)alias from test where funds_allocated &gt; funds and importance = '一般项目'    超概算一般项目金额</p>
-<p>select count(id)alias from test where pp='立项' or pp='进行中' or pp='已完成' and importance = '重点项目' and year = ?' 年度新上重点项目已立项数</p>
-<p>select count(id)alias from test where pp='立项' or pp='进行中' or pp='已完成' and importance = '一般项目' and year = ? 年度新上一般项目已立项数</p>
-<p>select count(id)alias from test  year = ? 年度新上项目数<br>
-select count(id)alias from test  year = ? 年度总项目数<br>
-select count(id)alias from test where  pp='进行中' or pp='已完成' and importance = '重点项目' and year = ?' 年度签订重点项目合同数<br>
-select count(id)alias from test where  pp='进行中' or pp='已完成' and importance = '一般项目' and year = ? 年度签订一般项目合同数<br>
-select count(id)alias from test where  pp='进行中' or pp='已完成' or pp='引入经费计划' and importance = '重点项目' and year = ?' 列入经费计划的重点项目数<br>
-select count(id)alias from test where  pp='进行中' or pp='已完成' or pp='引入经费计划' and importance = '一般项目' and year = ? 列入经费计划的一般项目数<br>
-select sum(funds_allocated)alias  from test where  pp='进行中' or pp='已完成' or pp='引入经费计划' and importance = '重点项目' 列入经费计划的重点项目已拨付经费数<br>
-select sum(funds_allocated)alias  from test where  pp='进行中' or pp='已完成' or pp='引入经费计划' and importance = '一般项目' 列入经费计划的一般项目已拨付经费数<br>
-select count(importance)alias from test where importance='重点项目' and pp = '已完成'   已完成重点项目数<br>
-select count(importance)alias  from test where importance='一般项目' and pp = '已完成'   已完成一般项目数<br>
-select count(id)alias  from test where competition_and_selection ='是' and importance = '重点项目'  竞争择优确定的重点项目数<br>
-select count(id)alias  from test where competition_and_selection ='是' and importance = '一般项目'  竞争择优确定的一般项目数<br>
-select count(software_or_hardware)alias from test where software_or_hardware='软件'  软件项目总数<br>
-select count(is_private)alias from test  总承研单位数量<br>
-select count(is_private)alias from test where importance='重点项目' and is_private='是'   重点项目民营承研单位数量<br>
-select count(is_private)alias from test where importance='一般项目' and is_private='是'   一般项目民营承研单位数量<br>
-select count(domestic_sw)alias from test where importance = '重点项目'<br>
-重点项目国产化软件数<br>
-select count(domestic_sw)alias from test where importance = '一般项目'<br>
-一般项目国产化软件数<br>
-select sum(total_part)alias from test 项目零部件总数<br>
-select sum(domestic_part)alias from test where importance = '重点项目'<br>
-重点项目国产化零部件数<br>
-select sum(domestic_part)alias from test where importance = '一般项目'<br>
-一般项目国产化零部件数</p>
-<p>历年评分</p>
-<p>用年去限定，只查当年，一天更新一次，查询指标表，然后遍历，拿到里面的参数、权重、运算符去计算，返回 指标名、最终的计算结果、指标分数、指标权重、的json数组  （根据年限分组）</p>
-<p>在nodejs里面找一个方法，只执行一次，以后不在执行<br>
-执行上边方法，不用年限定</p>
-<p>// //查询<br>
-// function getQueryYear (parameter,year){<br>
-//   return new Promise((resolve, reject) =&gt; {<br>
-//     database.all(&quot;select parameter_sql from parameter where parameter_name =&quot;+&quot;'&quot;+parameter+&quot;'&quot;,function (err,row) {<br>
-//       var sql = (row[0].parameter_sql);<br>
-//       if(!err){<br>
-//         database.all(sql+&quot;and year = &quot;+&quot;'&quot;+year+&quot;'&quot;,function (err,row) {<br>
-//           console.log(sql+&quot;and year = &quot;+&quot;'&quot;+year+&quot;'&quot;)<br>
-//           if (!err){<br>
-//             resolve (row[0].alias);<br>
-//           }else {<br>
-//             console.log(err);<br>
-//             return 1;<br>
-//           }<br>
-//         })<br>
-//       }<br>
-//       else{<br>
-//         console.log(err);}<br>
-//     });<br>
-//   });<br>
-// }<br>
-// //score删除<br>
-// function deleteScore(vals) {<br>
-//   database.run(&quot;update score set is_deleted = '1' where year =&quot;+vals,function (err) {<br>
-//     if(null != err){<br>
-//       database.printErrorInfo(err);<br>
-//     }else {<br>
-//       return 1;<br>
-//     };<br>
-//   })<br>
-// }<br>
-// deleteScore(&quot;2021&quot;)</p>
 ]]></content>
     </entry>
 </feed>

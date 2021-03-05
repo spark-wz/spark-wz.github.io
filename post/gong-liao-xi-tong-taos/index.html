@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>记录一次本地jar包导入maven仓库踩到的坑 | Gridea</title>
+<title>供料系统taos | Gridea</title>
 <meta name="description" content="">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -81,23 +81,43 @@
       <div class="sm-12 md-8 col">
         <div class="paper">
           <article class="article">
-            <h1>记录一次本地jar包导入maven仓库踩到的坑</h1>
+            <h1>供料系统taos</h1>
             <p class="article-meta">
-              2019-12-20
+              2021-03-05
               
             </p>
             
             <div class="post-content">
-              <p>首先将conf/repository中的setttings中的配置文件路径改成自己的路径，要不会报一个路径不对的错，如下<br>
-<img src="https://spark-wz.github.io/post-images/1576809073329.png" alt=""><br>
-改成自己的路径之后使用mvn命令直接将jar包导入自己的maven仓库，设置好依赖的3个属性。<br>
-将jar包放到lib目录下<br>
-mvn install:install-file -Dfile=E:\apache-maven-3.5.0\lib/modbus4j-2.0.7.jar -DgroupId=com.wz.package -DartifactId=modbus4j -Dversion=2.0.7 -Dpackaging=jar<br>
-其中Dfile是当前目录加jar包全称，DgroupId 可以随便起，DartifactId一般是jar包名,Dversion是版本号。</p>
-<p>mvn install:install-file -Dfile=E:\apache-maven-3.5.0\lib/serotonin-timer-2.0.6.jar -DgroupId=com.wz.package -DartifactId=serotonin-timer -Dversion=2.0.6 -Dpackaging=jar</p>
-<p>mvn install:install-file -Dfile=E:\apache-maven-3.5.0\lib/commons-logging-1.2.jar -DgroupId=com.wz.package -DartifactId=commons-logging -Dversion=1.2 -Dpackaging=jar</p>
-<p>mvn install:install-file -Dfile=E:\apache-maven-3.5.0\lib/sqljdbc4-3.0.jar -DgroupId=com.wz.package -DartifactId=sqljdbc4 -Dversion=3.0 -Dpackaging=jar</p>
-<p>mvn install:install-file -Dfile=D:\idea\maven\apache-maven-3.5.0\lib/Access.jar -DgroupId=com.wz.package -DartifactId=access -Dversion=1.0.1 -Dpackaging=jar</p>
+              <h2 id="供料系统">供料系统</h2>
+<h3 id="创建超级表">创建超级表</h3>
+<p>CREATE TABLE device(ts timestamp,device_name binary(50), procedure_num float,beltline float, lc float,weight float, device_status float) TAGS (procedure  binary(20));<br>
+ts时间<br>
+device_name设备名称<br>
+procedure_num工序号，1代表一道工序<br>
+beltline生产线号，1代表一号生产线<br>
+lc 液位<br>
+weight 重量<br>
+device_status 设备状态</p>
+<h3 id="一道工序一号生产线创建表">一道工序一号生产线创建表</h3>
+<p>CREATE TABLE device11LT01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device11TM01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device11VL01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device11VL02 USING device TAGS ('一道工序');<br>
+CREATE TABLE device11MM01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device11WM01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device11PM01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device11VL03 USING device TAGS ('一道工序');<br>
+CREATE TABLE device11LT02 USING device TAGS ('一道工序');</p>
+<h3 id="一道工序一号生产线插入数据">一道工序一号生产线插入数据</h3>
+<p>INSERT INTO device11LT01 VALUES ('2021-03-05 18:12:02.000','原料罐液位计', 1,1,0,0,0);<br>
+INSERT INTO device11TM01 VALUES ('2021-03-05 18:12:02.000','固体罐螺杆电机', 1,1,0,0,0);<br>
+INSERT INTO device11VL01 VALUES ('2021-03-05 18:12:02.000','固体罐至搅拌罐阀门', 1,1,0,0,0);<br>
+INSERT INTO device11VL02 VALUES ('2021-03-05 18:12:02.000','纯水阀门', 1,1,0,0,0);<br>
+INSERT INTO device11MM01 VALUES ('2021-03-05 18:12:02.000','搅拌电机', 1,1,0,0,0);<br>
+INSERT INTO device11WM01 VALUES ('2021-03-05 18:12:02.000','搅拌罐称重模块', 1,1,0,0,0);<br>
+INSERT INTO device11PM01 VALUES ('2021-03-05 18:12:02.000','搅拌罐至成品罐泵', 1,1,0,0,0);<br>
+INSERT INTO device11VL03 VALUES ('2021-03-05 18:12:02.000','搅拌罐至成品罐阀门', 1,1,0,0,0);<br>
+INSERT INTO device11LT02 VALUES ('2021-03-05 18:12:02.000','成品罐液位计', 1,1,0,0,0);</p>
 
             </div>
           </article>
@@ -108,9 +128,9 @@ mvn install:install-file -Dfile=E:\apache-maven-3.5.0\lib/modbus4j-2.0.7.jar -Dg
               <div class="next">
                 下一篇
               </div>
-              <a href="https://spark-wz.github.io/post/lambda-biao-da-shi">
+              <a href="https://spark-wz.github.io/post/docker-ming-ling">
                 <h3 class="post-title">
-                  Lambda表达式
+                  docker命令
                 </h3>
               </a>
             </div>

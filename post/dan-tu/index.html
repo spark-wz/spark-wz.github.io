@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8" >
 
-<title>丹徒 | Gridea</title>
+<title>丹徒、供料系统 | Gridea</title>
 <meta name="description" content="">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://spark-wz.github.io/favicon.ico?v=1599706971272">
+<link rel="shortcut icon" href="https://spark-wz.github.io/favicon.ico?v=1614922994650">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -81,7 +81,7 @@
       <div class="sm-12 md-8 col">
         <div class="paper">
           <article class="article">
-            <h1>丹徒</h1>
+            <h1>丹徒、供料系统</h1>
             <p class="article-meta">
               2020-07-19
               
@@ -99,12 +99,11 @@ ALTER USER 'root'@'%' IDENTIFIED BY '123@qweQWE' PASSWORD EXPIRE NEVER; //修改
 FLUSH PRIVILEGES; //刷新权限</p>
 <h4 id="丹徒taos">丹徒taos</h4>
 <p><strong>超级表</strong><br>
-CREATE TABLE lc (ts timestamp, lc float, temp float, corrected_vol float, standard_vol float, corrected_dens float, standard_dens float, mass float, pressure float)<br>
-TAGS (gkwz binary(20), oil_type binary(20));<br>
+CREATE TABLE device (ts timestamp, lc float, num float, weight float, device_status float) TAGS (procedure binary(20));<br>
 <strong>子表</strong><br>
-CREATE TABLE lc3019 USING lc TAGS ('一分库', '0#柴油')<br>
+CREATE TABLE device_one USING device TAGS ('一道工序')<br>
 <strong>写入数据</strong><br>
-INSERT INTO lc3018 VALUES ('2020-07-25 00:00:00.000', 10,1,1,1,1,1,1,1);</p>
+INSERT INTO lc3018 VALUES ('2021-03-02 21:00:00.000', 301,10,3205,1);</p>
 <h4 id="jar包启动">jar包启动</h4>
 <p><strong>jeecg</strong><br>
 nohup java -jar jeecg-boot-module-system-2.1.4.jar &gt;catalina.out 2&gt;&amp;1 &amp;<br>
@@ -140,6 +139,36 @@ http://192.168.1.254/page/tl/#/oil-station-realtime<br>
 汽车历史<br>
 http://192.168.1.254/page/tl/#/oil-station-history</p>
 <p>d17f014839872fcf53fa53edaee7e076.png</p>
+<h2 id="供料系统">供料系统</h2>
+<h2 id="创建超级表">创建超级表</h2>
+<p>CREATE TABLE device(ts timestamp,device_name binary(50), procedure_num float,beltline float, lc float,weight float, device_status float) TAGS (procedure  binary(20));<br>
+ts时间<br>
+device_name设备名称<br>
+procedure_num工序号，1代表一道工序<br>
+beltline生产线号，1代表一号生产线<br>
+lc 液位<br>
+weight 重量<br>
+device_status 设备状态</p>
+<h2 id="一道工序一号生产线创建表">一道工序一号生产线创建表</h2>
+<p>CREATE TABLE device11LT01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device11TM01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device11VL01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device11VL02 USING device TAGS ('一道工序');<br>
+CREATE TABLE device11MM01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device11WM01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device11PM01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device11VL03 USING device TAGS ('一道工序');<br>
+CREATE TABLE device11LT02 USING device TAGS ('一道工序');</p>
+<h2 id="一道工序一号生产线插入数据">一道工序一号生产线插入数据</h2>
+<p>INSERT INTO device11LT01 VALUES ('2021-03-05 18:12:02.000','原料罐液位计', 1,1,0,0,0);<br>
+INSERT INTO device11TM01 VALUES ('2021-03-05 18:12:02.000','固体罐螺杆电机', 1,1,0,0,0);<br>
+INSERT INTO device11VL01 VALUES ('2021-03-05 18:12:02.000','固体罐至搅拌罐阀门', 1,1,0,0,0);<br>
+INSERT INTO device11VL02 VALUES ('2021-03-05 18:12:02.000','纯水阀门', 1,1,0,0,0);<br>
+INSERT INTO device11MM01 VALUES ('2021-03-05 18:12:02.000','搅拌电机', 1,1,0,0,0);<br>
+INSERT INTO device11WM01 VALUES ('2021-03-05 18:12:02.000','搅拌罐称重模块', 1,1,0,0,0);<br>
+INSERT INTO device11PM01 VALUES ('2021-03-05 18:12:02.000','搅拌罐至成品罐泵', 1,1,0,0,0);<br>
+INSERT INTO device11VL03 VALUES ('2021-03-05 18:12:02.000','搅拌罐至成品罐阀门', 1,1,0,0,0);<br>
+INSERT INTO device11LT02 VALUES ('2021-03-05 18:12:02.000','成品罐液位计', 1,1,0,0,0);</p>
 
             </div>
           </article>
@@ -163,7 +192,7 @@ http://192.168.1.254/page/tl/#/oil-station-history</p>
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://spark-wz.github.io/images/avatar.png?v=1599706971272" class="no-responsive avatar">
+    <img src="https://spark-wz.github.io/images/avatar.png?v=1614922994650" class="no-responsive avatar">
     <div class="text-muted"></div>
     <div class="social-container">
       
@@ -185,6 +214,36 @@ http://192.168.1.254/page/tl/#/oil-station-history</p>
     </div>
     <div class="row">
       <ul>
+        
+          
+            <li>
+              <a href="https://spark-wz.github.io/post/gong-liao-xi-tong-taos">供料系统taos</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://spark-wz.github.io/post/docker-ming-ling">docker命令</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://spark-wz.github.io/post/work">work</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://spark-wz.github.io/post/yin-li-yun-dong-chang">引力运动场</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://spark-wz.github.io/post/aliyunstartservice">aliyunStartService</a>
+            </li>
+          
         
           
             <li>
@@ -217,33 +276,13 @@ http://192.168.1.254/page/tl/#/oil-station-history</p>
           
         
           
-            <li>
-              <a href="https://spark-wz.github.io/post/websocket">websocket</a>
-            </li>
+        
           
         
           
-            <li>
-              <a href="https://spark-wz.github.io/post/dan-tu">丹徒</a>
-            </li>
-          
         
           
-            <li>
-              <a href="https://spark-wz.github.io/post/nodejs-xun-huan-he-yi-bu">nodejs循环和异步</a>
-            </li>
-          
         
-          
-            <li>
-              <a href="https://spark-wz.github.io/post/excel-dao-chu">excel导出</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://spark-wz.github.io/post/can-shu-sql">参数sql</a>
-            </li>
           
         
           
