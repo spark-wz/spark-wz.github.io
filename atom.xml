@@ -2,13 +2,201 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://spark-wz.github.io</id>
     <title>Gridea</title>
-    <updated>2021-03-05T05:44:38.049Z</updated>
+    <updated>2021-05-04T07:32:03.545Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://spark-wz.github.io"/>
     <link rel="self" href="https://spark-wz.github.io/atom.xml"/>
     <logo>https://spark-wz.github.io/images/avatar.png</logo>
     <icon>https://spark-wz.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[南京]]></title>
+        <id>https://spark-wz.github.io/post/nan-jing</id>
+        <link href="https://spark-wz.github.io/post/nan-jing">
+        </link>
+        <updated>2021-04-16T11:46:23.000Z</updated>
+        <content type="html"><![CDATA[<p>产线表状态使用待定<br>
+任务成功与否：读取plc反馈<br>
+当前产线状态接口：返回产线情况：增加故障业务<br>
+判断当前产线设备，去taos查，看有没有故障设备</p>
+<p>产线表中没有物料名称、成品名称<br>
+<strong>设备故障产线暂停</strong><br>
+二道工序自动任务停止<br>
+先读各个产线的任务状态、再去读判断条件，下发指令、下发成功</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[现场任务]]></title>
+        <id>https://spark-wz.github.io/post/shi</id>
+        <link href="https://spark-wz.github.io/post/shi">
+        </link>
+        <updated>2021-03-20T14:32:17.000Z</updated>
+        <content type="html"><![CDATA[<p>液位最新数据未更新（数据插入taos失败）<br>
+洞库有一个罐液位数据为0<br>
+带两根长网线、一个插线板、一个光驱、一个光盘</p>
+<p><strong>代码恢复<br>
+数据库恢复<br>
+洞库质量为0</strong></p>
+<p>dist文件路径/usr/share/nginx/html<br>
+丹徒服务器双ip 192.168.1.254    192.168.4.254</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[mysql根据日期分组填充不存在时间]]></title>
+        <id>https://spark-wz.github.io/post/shou-dong-fa</id>
+        <link href="https://spark-wz.github.io/post/shou-dong-fa">
+        </link>
+        <updated>2021-03-16T11:15:36.000Z</updated>
+        <content type="html"><![CDATA[<p>SELECT date(downtime) AS dday, count(*) AS num FROM re_device GROUP BY dday<br>
+得到如下结果，如果那天没有数据，那麽就会没有记录<br>
+这里写图片描述<br>
+我们看到，时间不连续，没有2016-3-05这一天的，这样本来不是问题，但是，我拿出来的数据，还要画出图表呀，没有当然不行，我们需要的是下面这个样子的。<br>
+这里写图片描述</p>
+<p>简单的说就是，没有数据，就要补充一个0.</p>
+<p>3、下面我们讲实现</p>
+<p>我们要生成一个日历的表，然后和原来的数据，联合查询，说到这里，大家就知道很low了，但是，限于我水平有限，研究这个问题，半天，这个是我找到的比较好的一种实现方式。如果你又更好的，也请你给我说下。<br>
+执行下面的sql，直接诶生成日历的表（calendar）</p>
+<p>CREATE TABLE num (i int);-- 创建一个表用来储存0-9的数字</p>
+<p>INSERT INTO num (i) VALUES (0), (1), (2), (3), (4), (5), (6), (7), (8), (9);-- 生成0-9的数字，方便以后计算时间</p>
+<p>CREATE TABLE  if not exists calendar(datelist date); -- 生成一个存储日期的表，datalist是字段名</p>
+<p>-- 这里是生成并插入日期数据</p>
+<p>INSERT INTO calendar(datelist) SELECT</p>
+<pre><code>adddate(
+
+    (   -- 这里的起始日期，你可以换成当前日期
+
+        DATE_FORMAT(&quot;2016-1-1&quot;, '%Y-%m-%d') 
+
+    ),
+
+    numlist.id
+
+) AS `date`
+</code></pre>
+<p>FROM</p>
+<pre><code>(
+
+    SELECT
+
+        n1.i + n10.i * 10 + n100.i * 100 + n1000.i * 1000+ n10000.i * 10000 AS id
+    FROM
+
+        num n1
+
+    CROSS JOIN num AS n10
+
+    CROSS JOIN num AS n100
+
+    CROSS JOIN num AS n1000
+
+    CROSS JOIN num AS n10000
+
+) AS numlist;
+</code></pre>
+<p>这里我用了100000条记录，算出来到2289年了，完全够用了，到那个时候，出问题，我也管不了了。</p>
+<p>完成之后，请删除num的零时表<br>
+4、联合查询</p>
+<p>SELECT</p>
+<pre><code>date(dday) ddate,
+
+count(*) - 1 as num
+</code></pre>
+<p>FROM</p>
+<pre><code>(
+
+    SELECT
+
+        datelist as dday
+
+    FROM
+
+        calendar 
+
+        -- 这里是限制返回最近30天的数据
+
+        where  DATE_SUB(CURDATE(), INTERVAL 30 DAY) &lt;= date
+</code></pre>
+<p>(datelist)&amp;&amp;date(datelist)&lt;=CURDATE()</p>
+<pre><code>    UNION ALL
+
+        SELECT
+
+            downtime
+
+        FROM
+
+            re_device
+
+) a
+</code></pre>
+<p>GROUP BY ddate<br>
+好了，到这里，基本就完成了这个查询，出来的数据，我还是比较满意的。</p>
+<p>5、其他解决方法<br>
+当然，应该还有其他的解决方案，但是博主就没有去写了，有时间可以去写一下。<br>
+我用的spring mvc，所以，也还是可以在java代码中补充完整的，因为数据返回的是个map对象，那麽我们要遍历这个对象，直接用calendar对象，生成日期作为key来遍历，如果没有数据，就put进去一个0，然后在限制一下，需要多少天的，就可以了。数据就完整了。<br>
+但是这样也有一个问题，那就是map里的数据顺序会有问题，所以，使用的时候，也必须是生成calendar对象，然后构造出来日期作为key来遍历。或者用Collections.sort（）排序一下。</p>
+<p>我个人觉得，还是上数据直接生成得比较好一点。</p>
+<p>分类: SQL, 工作总结<br>
+标签: java经验集锦, 通用实践, SQL, DB, Mysql<br>
+好文要顶 关注我 收藏该文</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[新疆油库巡更换电脑]]></title>
+        <id>https://spark-wz.github.io/post/xin-jiang-you-ku-xun-geng-huan-dian-nao</id>
+        <link href="https://spark-wz.github.io/post/xin-jiang-you-ku-xun-geng-huan-dian-nao">
+        </link>
+        <updated>2021-03-08T07:23:24.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="配置java环境">配置java环境</h2>
+<p>https://blog.csdn.net/qq_40881680/article/details/83585542</p>
+<ul>
+<li>双击巡更软件，自动安装</li>
+<li>将笔记本自启动脚本放入台式机启动文件夹相同位置</li>
+<li>将笔记本jar包放入台式机相同目录</li>
+</ul>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[供料系统taos]]></title>
+        <id>https://spark-wz.github.io/post/gong-liao-xi-tong-taos</id>
+        <link href="https://spark-wz.github.io/post/gong-liao-xi-tong-taos">
+        </link>
+        <updated>2021-03-05T05:42:10.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="供料系统">供料系统</h2>
+<h3 id="创建超级表">创建超级表</h3>
+<p>CREATE TABLE device(ts timestamp,device_name binary(50), procedure_num float,beltline float, lc float,weight float, device_status float) TAGS (procedure  binary(20));<br>
+ts时间<br>
+device_name设备名称<br>
+procedure_num工序号，1代表一道工序<br>
+beltline生产线号，1代表一号生产线<br>
+lc 液位<br>
+weight 重量<br>
+device_status 设备状态<br>
+device_id设备id<br>
+flow 流量</p>
+<h3 id="一道工序一号生产线创建表">一道工序一号生产线创建表</h3>
+<p>CREATE TABLE device11LT01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device11TM01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device11VL01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device11VL02 USING device TAGS ('一道工序');<br>
+CREATE TABLE device11MM01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device11WM01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device11PM01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device11VL03 USING device TAGS ('一道工序');<br>
+CREATE TABLE device11LT02 USING device TAGS ('一道工序');</p>
+<h3 id="一道工序一号生产线插入数据">一道工序一号生产线插入数据</h3>
+<p>INSERT INTO device11LT01 VALUES ('2021-03-05 18:12:02.000','原料罐液位计', 1,1,0,0,0);<br>
+INSERT INTO device11TM01 VALUES ('2021-03-05 18:12:02.000','固体罐螺杆电机', 1,1,0,0,0);<br>
+INSERT INTO device11VL01 VALUES ('2021-03-05 18:12:02.000','固体罐至搅拌罐阀门', 1,1,0,0,0);<br>
+INSERT INTO device11VL02 VALUES ('2021-03-05 18:12:02.000','纯水阀门', 1,1,0,0,0);<br>
+INSERT INTO device11MM01 VALUES ('2021-03-05 18:12:02.000','搅拌电机', 1,1,0,0,0);<br>
+INSERT INTO device11WM01 VALUES ('2021-03-05 18:12:02.000','搅拌罐称重模块', 1,1,0,0,0);<br>
+INSERT INTO device11PM01 VALUES ('2021-03-05 18:12:02.000','搅拌罐至成品罐泵', 1,1,0,0,0);<br>
+INSERT INTO device11VL03 VALUES ('2021-03-05 18:12:02.000','搅拌罐至成品罐阀门', 1,1,0,0,0);<br>
+INSERT INTO device11LT02 VALUES ('2021-03-05 18:12:02.000','成品罐液位计', 1,1,0,0,0);<br>
+CREATE TABLE ceshi1 USING device TAGS ('一道工序');</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[docker命令]]></title>
         <id>https://spark-wz.github.io/post/docker-ming-ling</id>
@@ -110,118 +298,6 @@ Java中，每个线程都有一个调用栈，即使不在程序中创建任何�
 线程总体分两类：用户线程和守候线程。<br>
 当所有线程执行完毕的时候，jvm自动关闭，但是守护线程部不独立于jvm，守护线程一般由操作系统或者用户创建的。</li>
 </ol>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[9.10现场任务]]></title>
-        <id>https://spark-wz.github.io/post/910-xian-chang-ren-wu</id>
-        <link href="https://spark-wz.github.io/post/910-xian-chang-ren-wu">
-        </link>
-        <updated>2020-09-08T07:15:36.000Z</updated>
-        <content type="html"><![CDATA[<ul>
-<li>安装ffmpeg，调试摄像头。</li>
-<li>编写摄像头脚本，编写数据库配置</li>
-<li>部队首页图</li>
-<li>部署单机版</li>
-<li>任务确认书</li>
-<li>洞库分区名，油罐名</li>
-<li>taos数据库问题测试</li>
-</ul>
-<p>汽车零发油 sqlserver未连接 - 看下数据库对不对<br>
-液位，流量计真实数据未测试<br>
-液位进度条<br>
-单机版未部署<br>
-油品，各油罐位置，数量ip<br>
-3个tab改4个<br>
-摄像头账号密码，布局图，ffmpeg未安装 启动摄像头脚本</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[设置服务器自启动脚本]]></title>
-        <id>https://spark-wz.github.io/post/she-zhi-fu-wu-qi-zi-qi-dong-jiao-ben</id>
-        <link href="https://spark-wz.github.io/post/she-zhi-fu-wu-qi-zi-qi-dong-jiao-ben">
-        </link>
-        <updated>2020-09-08T07:14:46.000Z</updated>
-        <content type="html"><![CDATA[<p>/ 1.前往目录</p>
-<p>cd /etc/rc.d/init.d</p>
-<p>/2. 新建startup脚本<br>
-vi startup.sh</p>
-<p>/3.粘贴脚本内容 (注意替换nginx和java项目的路径）</p>
-<p>!/bin/bash<br>
-chkconfig: 2345 10 90<br>
-descriptiom: startup service<br>
-cd /usr/local/nginx/sbin<br>
-./nginx<br>
-service mysql start<br>
-source /etc/profile<br>
-nohup java -jar /data/service/tl-gasoline/tl-gasoline-0.0.1-SNAPSHOT.jar --spring.profiles.active=prod &gt;&gt; catalina.out  2&gt;&amp;1 &amp;<br>
-service firewalld stop</p>
-<p>/4.增加脚本的可执行权限<br>
-chmod +x /etc/rc.d/init.d/startup.sh</p>
-<p>/5.添加脚本到开机自动启动项目中<br>
-cd /etc/rc.d/init.d<br>
-chkconfig --add startup.sh<br>
-chkconfig startup.sh on<br>
-————————————————</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Modbus连接池]]></title>
-        <id>https://spark-wz.github.io/post/you-ku-ping-tai</id>
-        <link href="https://spark-wz.github.io/post/you-ku-ping-tai">
-        </link>
-        <updated>2020-09-04T05:45:33.000Z</updated>
-        <content type="html"><![CDATA[<h3 id="原理">原理</h3>
-<p>申请好与mysql的连接，将连接放入内存中，以后每次需要连接的时候，从连接池内获取连接。</p>
-<h3 id="实现">实现</h3>
-<p>定义一个DataSource类，这个类负责初始化mysql Connection，以及将释放的mysql连接存储起来，使用LinkedList来作为存储的数据结构（频繁对线程池进行增加和删除）（一个线程来获取就要从池子里删除一个connection，线程运行完就要将connection加入池子）</p>
-<h3 id="datasource类">DataSource类</h3>
-<p><img src="https://spark-wz.github.io/post-images/1599471940689.png" alt=""></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Docker]]></title>
-        <id>https://spark-wz.github.io/post/docker</id>
-        <link href="https://spark-wz.github.io/post/docker">
-        </link>
-        <updated>2020-09-01T14:57:57.000Z</updated>
-        <content type="html"><![CDATA[<h3 id="安装docker源">安装Docker源</h3>
-<p>sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo</p>
-<h3 id="安装docker">安装Docker</h3>
-<p>sudo yum install docker-ce docker-ce-cli containerd.io</p>
-<h3 id="启动docker">启动Docker</h3>
-<p>systemctl start docker</p>
-<h3 id="docker使用">Docker使用</h3>
-<p>sudo docker run hello-world</p>
-<h3 id="创建文件夹">创建文件夹</h3>
-<p>mkdir rootfs</p>
-<h3 id="使用busybox镜像创建系统">使用busybox镜像创建系统</h3>
-<p>docker export $(docker create busybox) -o busybox.tar</p>
-<h3 id="解压">解压</h3>
-<p>tar -xf busybox.tar</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[websocket]]></title>
-        <id>https://spark-wz.github.io/post/websocket</id>
-        <link href="https://spark-wz.github.io/post/websocket">
-        </link>
-        <updated>2020-07-24T07:20:41.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="定义">定义</h2>
-<p>WebSocket是基于tcp的一种新的网络协议，它实现了浏览器与服务器之间双全工通信，允许服务器主动发信息给客户端。</p>
-<h2 id="原理">原理</h2>
-<p>在实现WebSocket连线过程中，需要通过浏览器发出WebSocket请求，然后服务器发出回应，这个过程通常称为握手，在WebSocket API中，只需要做一次握手，实现数据传送。</p>
-<h3 id="websocket与socket区别">WebSocket与Socket区别</h3>
-<h4 id="websocket">WebSocket</h4>
-<p>1.WebSocket建立阶段是依赖于http协议的，握手阶段是http协议，完成之后变成WebSocket协议，完全脱离socket。<br>
-2.建立通讯时，是客户端主动发起请求，服务端被动监听<br>
-3.建立通讯后，变成“双全工”模式，服务端和客户端都在任何时间自由发送数据，<br>
-4.交互模式不再是请求应答，完全由开发者自行设计<br>
-5.通信的数据是基于“帧frame”的，可以传输文本数据，也可以直接传输二进制数据，效率高，封包、拆包、编号。</p>
-<h4 id="socket">socket</h4>
-<p>1.服务器监听通讯，被动提供服务，每次交互都是客户端主动发起请求，服务端被动应答。<br>
-2.服务端不能被动向客户端推送数据<br>
-3.通讯数据基于文本格式，二进制数据（图片等）需要转换</p>
 ]]></content>
     </entry>
 </feed>

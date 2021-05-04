@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>BIO,NIO,AIO总结 | Gridea</title>
+<title>mysql根据日期分组填充不存在时间 | Gridea</title>
 <meta name="description" content="">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -81,53 +81,105 @@
       <div class="sm-12 md-8 col">
         <div class="paper">
           <article class="article">
-            <h1>BIO,NIO,AIO总结</h1>
+            <h1>mysql根据日期分组填充不存在时间</h1>
             <p class="article-meta">
-              2019-12-11
+              2021-03-16
               
             </p>
             
             <div class="post-content">
-              <p>目录:</p>
-<ol>
-<li>BIO (Blocking I/O) 同步并阻塞<br>
-1.1 传统 BIO<br>
-1.2 伪异步 IO<br>
-1.3 代码示例<br>
-1.4 总结</li>
-<li>NIO (New I/O)    同步非阻塞<br>
-2.1 NIO 简介<br>
-2.2 NIO的特性/NIO与IO区别<br>
-1)Non-blocking IO（非阻塞IO）<br>
-2)Buffer(缓冲区)<br>
-3)Channel (通道)<br>
-4)Selectors(选择器)<br>
-2.3 NIO 读数据和写数据方式<br>
-2.4 NIO核心组件简单介绍<br>
-2.5 代码示例</li>
-<li>AIO (Asynchronous I/O)   异步非阻塞</li>
-</ol>
-<p><strong>实例</strong><br>
-<strong>1. BIO (Blocking I/O)</strong><br>
-同步阻塞I/O模式，数据的读取写入必须阻塞在一个线程中等待其完成。<br>
-<strong>1.1传统BIO通信模型</strong><br>
-通常用一个独立的Acceptor负责监听客户端的连接，一般会在While(true)循环服务中调用accept()方法等待接受客户端请求的连接的方式监听请求，一旦接到请求，就可以在这之上进行读写请求，此时不能再接受其他客户端连接请求。只能等待当前连接的操作完成，但是可以通过多线程来支持多个客户端的连接。</p>
-<p>如果想让BIO通信模型能够同时处理多个请求，就必须使用多线程（主要原因是socket.accept(),socket.read(),socket.write()射击的三个方法都是同步阻塞的），也就是说他接到客户端连接请求之后为客户端创建一个新的线程进行链路处理，处理完成之后，通过输出流返回应答给客户端，线程销毁。这就是典型的 <strong>一请求一应答模型</strong>，如果连接创建之后不做任何事情的话，就会造成不必要的线程开销，但是可以通过 <strong>线程池</strong> 来改善，线程池还可以让线程的创建和回收成本更低。使用了FixedThreadPool可以有效的控制线程的最大数量，保证了系统有限的资源控制，实现了N（客户端请求数量）:M（处理客户端请求的线程数量）的伪异步I/O模型。</p>
-<p><strong>当客户端并发访问量增加后</strong><br>
-可能会导致线程堆栈溢出，创建新线程失败等问题，最终导致进程宕机或者僵死，不能对外提供服务。</p>
-<p><strong>1.2 伪异步 IO</strong><br>
-<strong>1.3代码示例</strong><br>
-客户端</p>
-<p><img src="https://spark-wz.github.io/post-images/1576489092714.png" alt=""></p>
-<pre><code>服务端
+              <p>SELECT date(downtime) AS dday, count(*) AS num FROM re_device GROUP BY dday<br>
+得到如下结果，如果那天没有数据，那麽就会没有记录<br>
+这里写图片描述<br>
+我们看到，时间不连续，没有2016-3-05这一天的，这样本来不是问题，但是，我拿出来的数据，还要画出图表呀，没有当然不行，我们需要的是下面这个样子的。<br>
+这里写图片描述</p>
+<p>简单的说就是，没有数据，就要补充一个0.</p>
+<p>3、下面我们讲实现</p>
+<p>我们要生成一个日历的表，然后和原来的数据，联合查询，说到这里，大家就知道很low了，但是，限于我水平有限，研究这个问题，半天，这个是我找到的比较好的一种实现方式。如果你又更好的，也请你给我说下。<br>
+执行下面的sql，直接诶生成日历的表（calendar）</p>
+<p>CREATE TABLE num (i int);-- 创建一个表用来储存0-9的数字</p>
+<p>INSERT INTO num (i) VALUES (0), (1), (2), (3), (4), (5), (6), (7), (8), (9);-- 生成0-9的数字，方便以后计算时间</p>
+<p>CREATE TABLE  if not exists calendar(datelist date); -- 生成一个存储日期的表，datalist是字段名</p>
+<p>-- 这里是生成并插入日期数据</p>
+<p>INSERT INTO calendar(datelist) SELECT</p>
+<pre><code>adddate(
 
-serverSocket.accept() 接收客户端的连接请求，返回一个套接字，如果没有连接到客户端，线程处于阻塞状态，程序无法执行下去。
+    (   -- 这里的起始日期，你可以换成当前日期
+
+        DATE_FORMAT(&quot;2016-1-1&quot;, '%Y-%m-%d') 
+
+    ),
+
+    numlist.id
+
+) AS `date`
 </code></pre>
-<p><img src="https://spark-wz.github.io/post-images/1576489522129.png" alt=""></p>
-<p><strong>1.4小结</strong></p>
-<p>在活动连接数不是特别高（小于单机1000）的情况下，这种模型是比较不错的，可以让每一个连接专注于自己的 I/O 并且编程模型简单，也不用过多考虑系统的过载、限流等问题。线程池本身就是一个天然的漏斗，可以缓冲一些系统处理不了的连接或请求。但是，当面对十万甚至百万级连接的时候，传统的 BIO 模型是无能为力的。因此，我们需要一种更高效的 I/O 处理模型来应对更高的并发量。</p>
-<p><strong>NIO new (I/O)</strong><br>
-同步非阻塞的I/O模型</p>
+<p>FROM</p>
+<pre><code>(
+
+    SELECT
+
+        n1.i + n10.i * 10 + n100.i * 100 + n1000.i * 1000+ n10000.i * 10000 AS id
+    FROM
+
+        num n1
+
+    CROSS JOIN num AS n10
+
+    CROSS JOIN num AS n100
+
+    CROSS JOIN num AS n1000
+
+    CROSS JOIN num AS n10000
+
+) AS numlist;
+</code></pre>
+<p>这里我用了100000条记录，算出来到2289年了，完全够用了，到那个时候，出问题，我也管不了了。</p>
+<p>完成之后，请删除num的零时表<br>
+4、联合查询</p>
+<p>SELECT</p>
+<pre><code>date(dday) ddate,
+
+count(*) - 1 as num
+</code></pre>
+<p>FROM</p>
+<pre><code>(
+
+    SELECT
+
+        datelist as dday
+
+    FROM
+
+        calendar 
+
+        -- 这里是限制返回最近30天的数据
+
+        where  DATE_SUB(CURDATE(), INTERVAL 30 DAY) &lt;= date
+</code></pre>
+<p>(datelist)&amp;&amp;date(datelist)&lt;=CURDATE()</p>
+<pre><code>    UNION ALL
+
+        SELECT
+
+            downtime
+
+        FROM
+
+            re_device
+
+) a
+</code></pre>
+<p>GROUP BY ddate<br>
+好了，到这里，基本就完成了这个查询，出来的数据，我还是比较满意的。</p>
+<p>5、其他解决方法<br>
+当然，应该还有其他的解决方案，但是博主就没有去写了，有时间可以去写一下。<br>
+我用的spring mvc，所以，也还是可以在java代码中补充完整的，因为数据返回的是个map对象，那麽我们要遍历这个对象，直接用calendar对象，生成日期作为key来遍历，如果没有数据，就put进去一个0，然后在限制一下，需要多少天的，就可以了。数据就完整了。<br>
+但是这样也有一个问题，那就是map里的数据顺序会有问题，所以，使用的时候，也必须是生成calendar对象，然后构造出来日期作为key来遍历。或者用Collections.sort（）排序一下。</p>
+<p>我个人觉得，还是上数据直接生成得比较好一点。</p>
+<p>分类: SQL, 工作总结<br>
+标签: java经验集锦, 通用实践, SQL, DB, Mysql<br>
+好文要顶 关注我 收藏该文</p>
 
             </div>
           </article>
@@ -138,9 +190,9 @@ serverSocket.accept() 接收客户端的连接请求，返回一个套接字，�
               <div class="next">
                 下一篇
               </div>
-              <a href="https://spark-wz.github.io/post/java">
+              <a href="https://spark-wz.github.io/post/xin-jiang-you-ku-xun-geng-huan-dian-nao">
                 <h3 class="post-title">
-                  集合常用
+                  新疆油库巡更换电脑
                 </h3>
               </a>
             </div>
