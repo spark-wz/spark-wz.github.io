@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://spark-wz.github.io</id>
     <title>Gridea</title>
-    <updated>2021-05-09T02:52:14.455Z</updated>
+    <updated>2021-05-09T03:57:15.041Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://spark-wz.github.io"/>
     <link rel="self" href="https://spark-wz.github.io/atom.xml"/>
@@ -164,7 +164,7 @@ count(*) - 1 as num
         <updated>2021-03-05T05:42:10.000Z</updated>
         <content type="html"><![CDATA[<h2 id="供料系统">供料系统</h2>
 <h3 id="创建超级表">创建超级表</h3>
-<p>CREATE TABLE device(ts timestamp,device_name binary(50), procedure_num float,beltline float, lc float,weight float, device_status float) TAGS (procedure  binary(20));<br>
+<p>CREATE TABLE device(ts timestamp,device_name binary(50), procedure_num binary(50),beltline binary(50), lc float,weight float, device_status float) TAGS (procedure  binary(20));<br>
 ts时间<br>
 device_name设备名称<br>
 procedure_num工序号，1代表一道工序<br>
@@ -184,6 +184,46 @@ CREATE TABLE device11WM01 USING device TAGS ('一道工序');<br>
 CREATE TABLE device11PM01 USING device TAGS ('一道工序');<br>
 CREATE TABLE device11VL03 USING device TAGS ('一道工序');<br>
 CREATE TABLE device11LT02 USING device TAGS ('一道工序');</p>
+<h3 id="一道工序二号生产线创建表">一道工序二号生产线创建表</h3>
+<p>CREATE TABLE device12LT02 USING device TAGS ('一道工序');<br>
+CREATE TABLE device12TM01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device12VL03 USING device TAGS ('一道工序');<br>
+CREATE TABLE device12PM01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device12WM01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device12MM01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device12LT01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device12VL02 USING device TAGS ('一道工序');<br>
+CREATE TABLE device12VL01 USING device TAGS ('一道工序');</p>
+<h3 id="一道工序三号生产线创建表">一道工序三号生产线创建表</h3>
+<p>CREATE TABLE device13LT02 USING device TAGS ('一道工序');<br>
+CREATE TABLE device13VL03 USING device TAGS ('一道工序');<br>
+CREATE TABLE device13PM01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device13WM01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device13MM01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device13VL02 USING device TAGS ('一道工序');<br>
+CREATE TABLE device13VL01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device13TM01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device13LT01 USING device TAGS ('一道工序');</p>
+<h3 id="一道工序四号生产线创建表">一道工序四号生产线创建表</h3>
+<p>CREATE TABLE device14LT02 USING device TAGS ('一道工序');<br>
+CREATE TABLE device14EP01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device14PM02 USING device TAGS ('一道工序');<br>
+CREATE TABLE device14WM01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device14MM01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device14VL02 USING device TAGS ('一道工序');<br>
+CREATE TABLE device14VL01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device14VL03 USING device TAGS ('一道工序');<br>
+CREATE TABLE device14LT01 USING device TAGS ('一道工序');</p>
+<h3 id="一道工序五号生产线创建表">一道工序五号生产线创建表</h3>
+<p>CREATE TABLE device15LT02 USING device TAGS ('一道工序');<br>
+CREATE TABLE device15VL03 USING device TAGS ('一道工序');<br>
+CREATE TABLE device15PM02 USING device TAGS ('一道工序');<br>
+CREATE TABLE device15WM01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device15MM01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device15VL02 USING device TAGS ('一道工序');<br>
+CREATE TABLE device15VL01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device15VL03 USING device TAGS ('一道工序');<br>
+CREATE TABLE device15LT01 USING device TAGS ('一道工序');</p>
 <h3 id="一道工序一号生产线插入数据">一道工序一号生产线插入数据</h3>
 <p>INSERT INTO device11LT01 VALUES ('2021-03-05 18:12:02.000','原料罐液位计', 1,1,0,0,0);<br>
 INSERT INTO device11TM01 VALUES ('2021-03-05 18:12:02.000','固体罐螺杆电机', 1,1,0,0,0);<br>
@@ -195,6 +235,46 @@ INSERT INTO device11PM01 VALUES ('2021-03-05 18:12:02.000','搅拌罐至成品�
 INSERT INTO device11VL03 VALUES ('2021-03-05 18:12:02.000','搅拌罐至成品罐阀门', 1,1,0,0,0);<br>
 INSERT INTO device11LT02 VALUES ('2021-03-05 18:12:02.000','成品罐液位计', 1,1,0,0,0);<br>
 CREATE TABLE ceshi1 USING device TAGS ('一道工序');</p>
+<h3 id="一道工序二号生产线插入数据">一道工序二号生产线插入数据</h3>
+<p>INSERT INTO device12VL01 VALUES ('2021-03-05 18:12:02.000','固体罐至搅拌罐阀门', '一道工序','二号产线',0,0,0);<br>
+INSERT INTO device12VL02 VALUES ('2021-03-05 18:12:02.000','纯水阀门', '一道工序','二号产线',0,0,0);<br>
+INSERT INTO device12LT01 VALUES ('2021-03-05 18:12:02.000','原料罐液位计', '一道工序','二号产线',0,0,0);<br>
+INSERT INTO device12MM01 VALUES ('2021-03-05 18:12:02.000','搅拌电机', '一道工序','二号产线',0,0,0);<br>
+INSERT INTO device12WM01 VALUES ('2021-03-05 18:12:02.000','搅拌罐称重模块', '一道工序','二号产线',0,0,0);<br>
+INSERT INTO device12PM01 VALUES ('2021-03-05 18:12:02.000','搅拌罐至成品罐泵', '一道工序','二号产线',0,0,0);<br>
+INSERT INTO device12VL03 VALUES ('2021-03-05 18:12:02.000','搅拌罐至成品罐阀门', '一道工序','二号产线',0,0,0);<br>
+INSERT INTO device12TM01 VALUES ('2021-03-05 18:12:02.000','固体罐螺杆电机', '一道工序','二号产线',0,0,0);<br>
+INSERT INTO device12LT02 VALUES ('2021-03-05 18:12:02.000','原料罐液位计', '一道工序','二号产线',0,0,0);</p>
+<h3 id="一道工序三号生产线插入数据">一道工序三号生产线插入数据</h3>
+<p>INSERT INTO device13LT01 VALUES ('2021-03-05 18:12:02.000','原料罐液位计', '一道工序','三号产线',0,0,0);<br>
+INSERT INTO device13TM01 VALUES ('2021-03-05 18:12:02.000','固体罐螺杆电机', '一道工序','三号产线',0,0,0);<br>
+INSERT INTO device13VL01 VALUES ('2021-03-05 18:12:02.000','固体罐至搅拌罐阀门', '一道工序','三号产线',0,0,0);<br>
+INSERT INTO device13VL02 VALUES ('2021-03-05 18:12:02.000','纯水阀门', '一道工序','三号产线',0,0,0);<br>
+INSERT INTO device13MM01 VALUES ('2021-03-05 18:12:02.000','搅拌电机', '一道工序','三号产线',0,0,0);<br>
+INSERT INTO device13WM01 VALUES ('2021-03-05 18:12:02.000','搅拌罐称重模块', '一道工序','三号产线',0,0,0);<br>
+INSERT INTO device13PM01 VALUES ('2021-03-05 18:12:02.000','搅拌罐至成品罐泵', '一道工序','三号产线',0,0,0);<br>
+INSERT INTO device13VL03 VALUES ('2021-03-05 18:12:02.000','搅拌罐至成品罐阀门', '一道工序','三号产线',0,0,0);<br>
+INSERT INTO device13LT02 VALUES ('2021-03-05 18:12:02.000','成品罐液位计', '一道工序','三号产线',0,0,0);</p>
+<h3 id="一道工序四号生产线插入数据">一道工序四号生产线插入数据</h3>
+<p>INSERT INTO device14LT01 VALUES ('2021-03-05 18:12:02.000','原料罐液位计', '一道工序','四号产线',0,0,0);<br>
+INSERT INTO device14PM01 VALUES ('2021-03-05 18:12:02.000','原料罐至搅拌罐泵', '一道工序','四号产线',0,0,0);<br>
+INSERT INTO device14VL01 VALUES ('2021-03-05 18:12:02.000','原料罐至搅拌罐阀门', '一道工序','四号产线',0,0,0);<br>
+INSERT INTO device14VL02 VALUES ('2021-03-05 18:12:02.000','纯水阀门', '一道工序','四号产线',0,0,0);<br>
+INSERT INTO device14MM01 VALUES ('2021-03-05 18:12:02.000','搅拌电机', '一道工序','四号产线',0,0,0);<br>
+INSERT INTO device14WM01 VALUES ('2021-03-05 18:12:02.000','搅拌罐称重模块', '一道工序','四号产线',0,0,0);<br>
+INSERT INTO device14PM02 VALUES ('2021-03-05 18:12:02.000','搅拌罐至成品罐泵', '一道工序','四号产线',0,0,0);<br>
+INSERT INTO device14VL03 VALUES ('2021-03-05 18:12:02.000','搅拌罐至成品罐阀门', '一道工序','四号产线',0,0,0);<br>
+INSERT INTO device14LT02 VALUES ('2021-03-05 18:12:02.000','成品罐液位计', '一道工序','四号产线',0,0,0);</p>
+<h3 id="一道工序五号生产线插入数据">一道工序五号生产线插入数据</h3>
+<p>INSERT INTO device15LT01 VALUES ('2021-03-05 18:12:02.000','原料罐液位计', '一道工序','五号产线',0,0,0);<br>
+INSERT INTO device15PM01 VALUES ('2021-03-05 18:12:02.000','原料罐至搅拌罐泵', '一道工序','五号产线',0,0,0);<br>
+INSERT INTO device15VL01 VALUES ('2021-03-05 18:12:02.000','原料罐至搅拌罐阀门', '一道工序','五号产线',0,0,0);<br>
+INSERT INTO device15VL02 VALUES ('2021-03-05 18:12:02.000','纯水阀门', '一道工序','五号产线',0,0,0);<br>
+INSERT INTO device15MM01 VALUES ('2021-03-05 18:12:02.000','搅拌电机', '一道工序','五号产线',0,0,0);<br>
+INSERT INTO device15WM01 VALUES ('2021-03-05 18:12:02.000','搅拌罐称重模块', '一道工序','五号产线',0,0,0);<br>
+INSERT INTO device15PM02 VALUES ('2021-03-05 18:12:02.000','搅拌罐至成品罐泵', '一道工序','五号产线',0,0,0);<br>
+INSERT INTO device15VL03 VALUES ('2021-03-05 18:12:02.000','搅拌罐至成品罐泵', '一道工序','五号产线',0,0,0);<br>
+INSERT INTO device15LT02 VALUES ('2021-03-05 18:12:02.000','成品罐液位计', '一道工序','五号产线',0,0,0);</p>
 ]]></content>
     </entry>
     <entry>
