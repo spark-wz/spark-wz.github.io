@@ -7,7 +7,7 @@
 <meta name="description" content="">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://spark-wz.github.io/favicon.ico?v=1621130837639">
+<link rel="shortcut icon" href="https://spark-wz.github.io/favicon.ico?v=1621154920340">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -92,7 +92,7 @@
 S7Client s7Client = new S7Client();<br>
 <strong>连接参数  机器的ip,机器的机架号 ,插槽号</strong><br>
 s7Client.ConnectTo(&quot;192.168.2.15&quot;, 0, 1);</p>
-<h2 id="plc批量写入">plc批量写入</h2>
+<h2 id="plc批量写入">PLC批量写入</h2>
 <p>批量写入plc<br>
 写入plc的第一条数据为byte数组中的第0位，byte数组写入位置间隔为plc各数据之间的偏移量间隔，若想间隔插入、必须在byte数据中留出与plc各数据之间的偏移量间隔</p>
 <pre><code>		`
@@ -115,6 +115,26 @@ s7Client.ConnectTo(&quot;192.168.2.15&quot;, 0, 1);</p>
     //bytes第5个参数为要写入的byte数组
     int i = s7Client.WriteArea(S7.S7AreaDB, 25, 2, 22, bytes);
 				`
+</code></pre>
+<h2 id="plc批量读取">PLC批量读取</h2>
+<pre><code>			`
+    S7Client s7Client = new S7Client();
+    //连接参数  机器的ip,机器的机架号 ,插槽号
+    s7Client.ConnectTo(&quot;192.168.2.15&quot;, 0, 1);
+    System.out.println(&quot;s7Client.Connected = &quot; + s7Client.Connected);
+    byte[] bytes = new byte[64];
+    int i = s7Client.ReadArea(S7.S7AreaDB,25,2,22,bytes);
+    System.out.println(&quot;i = &quot; + i);
+    System.out.println(&quot;S7.GetShortAt(bytes,0) = &quot; + S7.GetShortAt(bytes,0));
+    System.out.println(&quot;S7.GetShortAt(bytes,2) = &quot; + S7.GetShortAt(bytes,2));
+    System.out.println(&quot;bytes = &quot; + S7.GetShortAt(bytes,4));
+    System.out.println(&quot;S7.GetFloatAt(bytes,6) = &quot; + S7.GetFloatAt(bytes,6));
+    System.out.println(&quot;S7.GetFloatAt(bytes,10) = &quot; + S7.GetFloatAt(bytes,10));
+    System.out.println(&quot;S7.GetFloatAt(bytes,14) = &quot; + S7.GetFloatAt(bytes,14));
+    System.out.println(&quot;S7.GetBitAt(bytes,18,0) = &quot; + S7.GetBitAt(bytes,18,0));
+    System.out.println(&quot;S7.GetShortAt(bytes,20) = &quot; + S7.GetShortAt(bytes,20));
+		
+`
 </code></pre>
 
             </div>
@@ -139,7 +159,7 @@ s7Client.ConnectTo(&quot;192.168.2.15&quot;, 0, 1);</p>
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://spark-wz.github.io/images/avatar.png?v=1621130837639" class="no-responsive avatar">
+    <img src="https://spark-wz.github.io/images/avatar.png?v=1621154920340" class="no-responsive avatar">
     <div class="text-muted"></div>
     <div class="social-container">
       
@@ -299,7 +319,7 @@ s7Client.ConnectTo(&quot;192.168.2.15&quot;, 0, 1);</p>
     </div>
     <div class="row">
       
-        <a href="https://spark-wz.github.io/tag/U9P-JQ1AK" class="badge warning">
+        <a href="https://spark-wz.github.io/tag/U9P-JQ1AK" class="badge secondary">
           Gridea
         </a>
       
