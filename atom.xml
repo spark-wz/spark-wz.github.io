@@ -2,26 +2,13 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://spark-wz.github.io</id>
     <title>Gridea</title>
-    <updated>2021-05-16T14:55:58.642Z</updated>
+    <updated>2021-05-16T14:57:02.237Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://spark-wz.github.io"/>
     <link rel="self" href="https://spark-wz.github.io/atom.xml"/>
     <logo>https://spark-wz.github.io/images/avatar.png</logo>
     <icon>https://spark-wz.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Gridea</rights>
-    <entry>
-        <title type="html"><![CDATA[我们结束吧]]></title>
-        <id>https://spark-wz.github.io/post/wo-men-jie-shu-ba</id>
-        <link href="https://spark-wz.github.io/post/wo-men-jie-shu-ba">
-        </link>
-        <updated>2021-05-16T08:48:47.000Z</updated>
-        <content type="html"><![CDATA[<p>最近想了跟多，还是在今天做出了决定，我们分手吧。<br>
-因为家庭的原因，从小我和他人相处总是谨小慎微，生怕自己说错什么话会让别人不高兴，生怕自己给别人留下什么坏印象。再加上从小受我妈一个人的教育，我从小就笃定我妈讲的都是真理，并深信不疑。所以就导致我们两个的价值观、三观有些不同，而且我这种偏极端的性格，也在恋爱过程中给你带去很多困扰。<br>
-分手的原因前几天和你讲了大部分，这两天我又仔细想多好多，因为家庭的原因，导致我变成一个在情感上很难满足的一个人；不是你的问题，是我要求太高了；<br>
-但最近让我有分手想法的导火索很残酷，也很现实。其实我们家的房子出了点状况，我面临的压力更大了，我妈为了给我攒买房子的钱，自己背着我去平原打工了，我特别不忍心，可也说不听她。所以我不想继续这场没有结果的爱情了，减少恋爱的开销，好好的攒几年钱。<br>
-很抱歉擅自做了这样的决定，之前的时光，有你在，很感谢。</p>
-]]></content>
-    </entry>
     <entry>
         <title type="html"><![CDATA[PLC文档]]></title>
         <id>https://spark-wz.github.io/post/plc-wen-dang</id>
@@ -401,6 +388,19 @@ iZ2ze8vj2il5rc16bwvb6aZ</p>
 <li>查询最近约战（根据订单人uuid，以及跟随约战人uuid返回用户信息）</li>
 <li>预约本场就是加入约战接口，加入约战人uuid用逗号分开</li>
 </ul>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[aliyunStartService]]></title>
+        <id>https://spark-wz.github.io/post/aliyunstartservice</id>
+        <link href="https://spark-wz.github.io/post/aliyunstartservice">
+        </link>
+        <updated>2020-11-03T12:33:07.000Z</updated>
+        <content type="html"><![CDATA[<p><strong>启动nginx</strong><br>
+/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf</p>
+<p><strong>启动redis</strong><br>
+cd到/usr/local/redis/bin<br>
+./redis-server redis.conf</p>
 ]]></content>
     </entry>
 </feed>
