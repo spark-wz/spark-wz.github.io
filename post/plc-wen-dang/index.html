@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>Modbus RTU | Gridea</title>
+<title>PLC文档 | Gridea</title>
 <meta name="description" content="">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -81,51 +81,41 @@
       <div class="sm-12 md-8 col">
         <div class="paper">
           <article class="article">
-            <h1>Modbus RTU</h1>
+            <h1>PLC文档</h1>
             <p class="article-meta">
-              2020-06-08
+              2021-05-16
               
             </p>
             
             <div class="post-content">
-              <h3 id="windows">Windows</h3>
-<h4 id="依赖">依赖</h4>
-<ol>
-<li>Windows中需要的依赖 modbus4J-1.0.jar（modbus4j，用户modbus协议工具类，导入maven仓库）、RXTXcomm.jar（版本为2.1.7，需要和java环境中的dll文件相对应）、seroUtils-3.0.jar，目录都在/resources/libs中</li>
-<li>需要的dll文件为rxtxParallel.dll、rxtxSerial.dll 版本都是2.1.7 。 存放位置在jre/bin目录下: D:\Program Files\java\jre\bin<br>
-####实现</li>
-<li>创建SerialParameters实例<br>
-SerialParameters serialParameters = new SerialParameters();</li>
-<li>设定从站地址（slaveId）、串行口波特率、设定串行口名称（区分大小写）、设定无奇偶校验、设定数据位、设定停止位、设定从站名称，<br>
-<img src="https://spark-wz.github.io/post-images/1592897149873.png" alt=""></li>
-<li>创建ModbusFactory工厂实例，将SerialParameters作为参数创建ModbusMaster实例。<br>
-<img src="https://spark-wz.github.io/post-images/1592897345686.png" alt=""></li>
-<li>初始化<br>
-<img src="https://spark-wz.github.io/post-images/1592897399514.png" alt=""></li>
-<li>读取串口数据</li>
-<li>创建读取请求，设定从站id、开始位、读取位数</li>
-<li>主站发送请求，获取结果</li>
-<li>异常判断，转换结果格式<br>
-<img src="https://spark-wz.github.io/post-images/1592897782379.png" alt=""></li>
-</ol>
-<h3 id="树莓派">树莓派</h3>
-<h4 id="环境-当前重启丢失java环境删除部分文件">环境   (当前重启丢失java环境，删除部分文件)</h4>
-<ol>
-<li>烧写树莓派系统，测试树莓派功能。切换root用户，sudo su root 设定密码</li>
-<li>jdk环境<br>
-树莓派为arm32位系统，安装arm32位jdk，本地jdk包在D:\chrome\Downloads下，安装目录为/usr/local 将jdk-8u251-linux-arm32-vfp-hflt.tar.gz解压在当前目录。编辑vi /etc/profile在文件最下边加入配置<br>
-export JAVA_HOME=/usr/local/jdk1.8.0_251<br>
-export PATH=<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>J</mi><mi>A</mi><mi>V</mi><msub><mi>A</mi><mi>H</mi></msub><mi>O</mi><mi>M</mi><mi>E</mi><mi mathvariant="normal">/</mi><mi>b</mi><mi>i</mi><mi>n</mi><mo>:</mo></mrow><annotation encoding="application/x-tex">JAVA_HOME/bin:</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.09618em;">J</span><span class="mord mathdefault">A</span><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.08125em;">H</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="mord">/</span><span class="mord mathdefault">b</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">:</span></span></span></span>PATH<br>
-export CLASSPATH=.:JAVA_HOME/lib/dt.jar:JAVA_HOME/lib/tools.jar<br>
-刷新配置文件source /etc/profile</li>
-<li>配置modbus RXTX环境（等同于rxtxParallel.dll、rxtxSerial.dll配置，需要版本都为2.1.7）</li>
-<li>切换目录 cd /tmp</li>
-<li>下载wget http://rxtx.qbang.org/pub/rxtx/rxtx-2.1-7r2.zip ，解压到当前目录</li>
-<li>使用uname-r 命令查看当前系统版本信息，当前树莓派系统版本为4.14.90-v7+；编辑 vi /usr/include/linux/version.h文件，在文件最后一行加入 （#define UTS_RELEASE &quot;4.14.90-v7+&quot;）</li>
-<li>由于RXTX没有为arm32位系统的版本，所以需要自己编译，打开刚才解压的目录 编辑configure，在文档里面找到所有的1.2*|1.3*|1.4*|1.5*，都替换为1.2*|1.3*|1.4*|1.5*|1.6*|1.7*|1.8*，更改过的configure在D:\tools\grIdea\images目录下。完成后开始编译、安装 ./configure   make   make install</li>
-<li>由于编译过的RXTX只支持ttyS开头的串口，所以要做串口映射（ ln -s /dev/ttyUSB2 /dev/ttyS145），将/dev/ttyUSB2串口映射为ttyS145,在代码中读取ttyS145串口。</li>
-<li>在代码中串口名参数不能直接为ttyS145，应为(/dev/ttyS145)</li>
-</ol>
+              <p><strong>准备连接</strong><br>
+S7Client s7Client = new S7Client();<br>
+<strong>连接参数  机器的ip,机器的机架号 ,插槽号</strong><br>
+s7Client.ConnectTo(&quot;192.168.2.15&quot;, 0, 1);</p>
+<h2 id="plc批量写入">plc批量写入</h2>
+<p>批量写入plc<br>
+写入plc的第一条数据为byte数组中的第0位，byte数组写入位置间隔为plc各数据之间的偏移量间隔，若想间隔插入、必须在byte数据中留出与plc各数据之间的偏移量间隔</p>
+<pre><code>		`
+    byte[] bytes = new byte[64];
+    //short对应plc中的int，每一个数据占两位，pos为数组中的位置、value为写入值
+    S7.SetShortAt(bytes,0,56);
+    S7.SetShortAt(bytes,2,54);
+    S7.SetShortAt(bytes,4,58);
+    //float对应plc中的real，每一个数据占4位，pos为数组中的位置、value为写入值
+    S7.SetFloatAt(bytes,6,(float) 10.5);
+    S7.SetFloatAt(bytes,10,(float) 10.5);
+    S7.SetFloatAt(bytes,14,(float) 10.5);
+    //bit对应plc中的bool，每一个数据占1位，pos为数组中的位置、bit为当前字节的位数，因为一个bool对应一个字节中的一位、value为写入值
+    S7.SetBitAt(bytes,18,0,true);
+    S7.SetShortAt(bytes,20,61);
+    //参数第一个为读写区域，DB为S7.S7AreaDB=132、读写区域AO、DO 为130、读写区域AI、DI 为129
+    //DBNumber第二个参数为DB号、读取区域为130、129时，第二个参数无作用
+    //start第三个参数为写入数据的起始位、为写入plc第一条数据的偏移量
+    //amount第四个参数为写入数据的位数、目前测定最大为22位
+    //bytes第5个参数为要写入的byte数组
+    int i = s7Client.WriteArea(S7.S7AreaDB, 25, 2, 22, bytes);
+				`
+</code></pre>
 
             </div>
           </article>
@@ -136,9 +126,9 @@ export CLASSPATH=.:JAVA_HOME/lib/dt.jar:JAVA_HOME/lib/tools.jar<br>
               <div class="next">
                 下一篇
               </div>
-              <a href="https://spark-wz.github.io/post/ding-shi-ren-wu-scheduled">
+              <a href="https://spark-wz.github.io/post/nan-jing">
                 <h3 class="post-title">
-                  定时任务@Scheduled
+                  南京
                 </h3>
               </a>
             </div>
@@ -309,7 +299,7 @@ export CLASSPATH=.:JAVA_HOME/lib/dt.jar:JAVA_HOME/lib/tools.jar<br>
     </div>
     <div class="row">
       
-        <a href="https://spark-wz.github.io/tag/U9P-JQ1AK" class="badge success">
+        <a href="https://spark-wz.github.io/tag/U9P-JQ1AK" class="badge ">
           Gridea
         </a>
       

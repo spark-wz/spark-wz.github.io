@@ -2,13 +2,49 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://spark-wz.github.io</id>
     <title>Gridea</title>
-    <updated>2021-05-09T03:57:15.041Z</updated>
+    <updated>2021-05-16T02:07:30.732Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://spark-wz.github.io"/>
     <link rel="self" href="https://spark-wz.github.io/atom.xml"/>
     <logo>https://spark-wz.github.io/images/avatar.png</logo>
     <icon>https://spark-wz.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[PLC文档]]></title>
+        <id>https://spark-wz.github.io/post/plc-wen-dang</id>
+        <link href="https://spark-wz.github.io/post/plc-wen-dang">
+        </link>
+        <updated>2021-05-16T02:00:23.000Z</updated>
+        <content type="html"><![CDATA[<p><strong>准备连接</strong><br>
+S7Client s7Client = new S7Client();<br>
+<strong>连接参数  机器的ip,机器的机架号 ,插槽号</strong><br>
+s7Client.ConnectTo(&quot;192.168.2.15&quot;, 0, 1);</p>
+<h2 id="plc批量写入">plc批量写入</h2>
+<p>批量写入plc<br>
+写入plc的第一条数据为byte数组中的第0位，byte数组写入位置间隔为plc各数据之间的偏移量间隔，若想间隔插入、必须在byte数据中留出与plc各数据之间的偏移量间隔</p>
+<pre><code>		`
+    byte[] bytes = new byte[64];
+    //short对应plc中的int，每一个数据占两位，pos为数组中的位置、value为写入值
+    S7.SetShortAt(bytes,0,56);
+    S7.SetShortAt(bytes,2,54);
+    S7.SetShortAt(bytes,4,58);
+    //float对应plc中的real，每一个数据占4位，pos为数组中的位置、value为写入值
+    S7.SetFloatAt(bytes,6,(float) 10.5);
+    S7.SetFloatAt(bytes,10,(float) 10.5);
+    S7.SetFloatAt(bytes,14,(float) 10.5);
+    //bit对应plc中的bool，每一个数据占1位，pos为数组中的位置、bit为当前字节的位数，因为一个bool对应一个字节中的一位、value为写入值
+    S7.SetBitAt(bytes,18,0,true);
+    S7.SetShortAt(bytes,20,61);
+    //参数第一个为读写区域，DB为S7.S7AreaDB=132、读写区域AO、DO 为130、读写区域AI、DI 为129
+    //DBNumber第二个参数为DB号、读取区域为130、129时，第二个参数无作用
+    //start第三个参数为写入数据的起始位、为写入plc第一条数据的偏移量
+    //amount第四个参数为写入数据的位数、目前测定最大为22位
+    //bytes第5个参数为要写入的byte数组
+    int i = s7Client.WriteArea(S7.S7AreaDB, 25, 2, 22, bytes);
+				`
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[南京]]></title>
         <id>https://spark-wz.github.io/post/nan-jing</id>
@@ -345,39 +381,6 @@ iZ2ze8vj2il5rc16bwvb6aZ</p>
 <p><strong>启动redis</strong><br>
 cd到/usr/local/redis/bin<br>
 ./redis-server redis.conf</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[java线程]]></title>
-        <id>https://spark-wz.github.io/post/java-xian-cheng</id>
-        <link href="https://spark-wz.github.io/post/java-xian-cheng">
-        </link>
-        <updated>2020-09-09T09:10:14.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="进程与线程">进程与线程</h1>
-<p>一个程序至少有一个进程，一个进程至少有一个线程。<br>
-线程的划分尺度小于进程，使得多进程程序的并发性高。<br>
-另外，进程在执行过程中拥有独立的内存单元，而多个线程共享内存，从而极大地提高了程序的运行效率。<br>
-线程在执行过程中与进程还是有区别的。每个独立的线程有一个程序运行的入口、顺序执行序列和程序的出口。但是线程不能够独立执行，必须依存在应用程序中，由应用程序提供多个线程执行控制。<br>
-从逻辑角度来看，多线程的意义在于一个应用程序中，有多个执行部分可以同时执行。但操作系统并没有将多个线程看做多个独立的应用，来实现进程的调度和管理以及资源分配。这就是进程和线程的重要区别。<br>
-在java中，每次程序至少启用两个线程，一个是main线程，一个是垃圾回收线程，因为当使用java命令执行一个类的同时，实际上都会启用一个jvm，每一个jvm实际上就是在操作系统中启动了一个进程。</p>
-<h1 id="java线程">java线程</h1>
-<p>java中，线程指两件不同的事情</p>
-<ol>
-<li>java.lang.Thread类的一个实例</li>
-<li>线程的执行</li>
-</ol>
-<h4 id="创建线程">创建线程</h4>
-<ol>
-<li>对Thread类进行派生并覆盖run方法</li>
-<li>通过实现Runnable接口创建。<br>
-使用java.lang.Thread类或者java.lang.Runnable接口编写代码来定义，实例化和启动新线程。<br>
-一个Thread类实例只是一个对象，像Java中的任何其他对象一样，具有变量和方法，生死于堆上。<br>
-Java中，每个线程都有一个调用栈，即使不在程序中创建任何新的线程，线程也在后台运行着。<br>
-一个Java应用总是从main()方法开始运行，main()方法运行在一个线程内，他被称为主线程。<br>
-一旦创建一个新的线程，就产生一个新的调用栈。<br>
-线程总体分两类：用户线程和守候线程。<br>
-当所有线程执行完毕的时候，jvm自动关闭，但是守护线程部不独立于jvm，守护线程一般由操作系统或者用户创建的。</li>
-</ol>
 ]]></content>
     </entry>
 </feed>
