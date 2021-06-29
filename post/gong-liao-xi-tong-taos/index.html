@@ -7,7 +7,7 @@
 <meta name="description" content="">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://spark-wz.github.io/favicon.ico?v=1621660195188">
+<link rel="shortcut icon" href="https://spark-wz.github.io/favicon.ico?v=1624931110455">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -200,7 +200,86 @@ INSERT INTO device15MM01 VALUES ('2021-03-05 18:12:02.000','搅拌电机', '一�
 INSERT INTO device15WM01 VALUES ('2021-03-05 18:12:02.000','搅拌罐称重模块', '一道工序','五号产线',0,0,0);<br>
 INSERT INTO device15PM02 VALUES ('2021-03-05 18:12:02.000','搅拌罐至成品罐泵', '一道工序','五号产线',0,0,0);<br>
 INSERT INTO device15VL03 VALUES ('2021-03-05 18:12:02.000','搅拌罐至成品罐泵', '一道工序','五号产线',0,0,0);<br>
-INSERT INTO device15LT02 VALUES ('2021-03-05 18:12:02.000','成品罐液位计', '一道工序','五号产线',0,0,0);</p>
+INSERT INTO device15LT02 VALUES ('2021-03-05 18:12:02.000','成品罐液位计', '一道工序','五号产线',0,0,0);<br>
+<strong>变频器频率</strong><br>
+CREATE TABLE device11sm01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device11sm02 USING device TAGS ('一道工序');<br>
+CREATE TABLE device11sm03 USING device TAGS ('一道工序');<br>
+<strong>一工序产线状态</strong><br>
+CREATE TABLE device11il01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device12il01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device13il01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device14il01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device15il01 USING device TAGS ('一道工序');<br>
+<strong>原料罐液位</strong><br>
+CREATE TABLE device11lt01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device12lt01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device13lt01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device14lt01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device15lt01 USING device TAGS ('一道工序');<br>
+<strong>纯水阀门开度</strong><br>
+CREATE TABLE device11vl02 USING device TAGS ('一道工序');<br>
+CREATE TABLE device12vl02 USING device TAGS ('一道工序');<br>
+CREATE TABLE device13vl02 USING device TAGS ('一道工序');<br>
+CREATE TABLE device14vl02 USING device TAGS ('一道工序');<br>
+CREATE TABLE device15vl02 USING device TAGS ('一道工序');<br>
+<strong>搅拌罐重量</strong><br>
+CREATE TABLE device11wm01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device12wm01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device13wm01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device14wm01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device15wm01 USING device TAGS ('一道工序');<br>
+<strong>原料罐阀门</strong><br>
+CREATE TABLE device11vl01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device12vl01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device13vl01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device14vl01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device15vl01 USING device TAGS ('一道工序');<br>
+<strong>搅拌电机状态</strong><br>
+CREATE TABLE device11mm01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device12mm01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device13mm01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device14mm01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device15mm01 USING device TAGS ('一道工序');<br>
+<strong>搅拌罐阀门</strong><br>
+CREATE TABLE device11vl03 USING device TAGS ('一道工序');<br>
+CREATE TABLE device12vl03 USING device TAGS ('一道工序');<br>
+CREATE TABLE device13vl03 USING device TAGS ('一道工序');<br>
+CREATE TABLE device14vl03 USING device TAGS ('一道工序');<br>
+CREATE TABLE device15vl03 USING device TAGS ('一道工序');<br>
+<strong>搅拌罐泵</strong><br>
+CREATE TABLE device11pm01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device12pm01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device13pm01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device14pm01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device15pm01 USING device TAGS ('一道工序');<br>
+<strong>成品罐液位</strong><br>
+CREATE TABLE device11lt02 USING device TAGS ('一道工序');<br>
+CREATE TABLE device12lt02 USING device TAGS ('一道工序');<br>
+CREATE TABLE device13lt02 USING device TAGS ('一道工序');<br>
+CREATE TABLE device14lt02 USING device TAGS ('一道工序');<br>
+CREATE TABLE device15lt02 USING device TAGS ('一道工序<br>
+<strong>液体罐泵</strong><br>
+CREATE TABLE device14pm02 USING device TAGS ('一道工序');<br>
+CREATE TABLE device15pm02 USING device TAGS ('一道工序');<br>
+<strong>二工序产线状态</strong><br>
+CREATE TABLE device21il01 USING device TAGS ('二道工序');<br>
+CREATE TABLE device22il01 USING device TAGS ('二道工序');<br>
+CREATE TABLE device23il01 USING device TAGS ('二道工序');<br>
+CREATE TABLE device24il01 USING device TAGS ('二道工序');<br>
+CREATE TABLE device25il01 USING device TAGS ('二道工序');<br>
+<strong>二工序阀门</strong><br>
+CREATE TABLE device21vl01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device22vl01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device23vl01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device24vl01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device25vl01 USING device TAGS ('一道工序');<br>
+二工序泵<br>
+CREATE TABLE device21pm01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device22pm01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device23pm01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device24pm01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device25pm01 USING device TAGS ('一道工序');</p>
 
             </div>
           </article>
@@ -224,7 +303,7 @@ INSERT INTO device15LT02 VALUES ('2021-03-05 18:12:02.000','成品罐液位计',
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://spark-wz.github.io/images/avatar.png?v=1621660195188" class="no-responsive avatar">
+    <img src="https://spark-wz.github.io/images/avatar.png?v=1624931110455" class="no-responsive avatar">
     <div class="text-muted"></div>
     <div class="social-container">
       
@@ -249,62 +328,80 @@ INSERT INTO device15LT02 VALUES ('2021-03-05 18:12:02.000','成品罐液位计',
         
           
             <li>
+              <a href="https://spark-wz.github.io/post/li-shui-wen-dang">溧水文档</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://spark-wz.github.io/post/linux-xiu-gai-shi-qu">Linux修改时区</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://spark-wz.github.io/post/dian-liang-tong-ji">电量统计</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://spark-wz.github.io/post/shu-ju-dan-wei">数据单位</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://spark-wz.github.io/post/sheng-yu-ren-wu">剩余任务</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://spark-wz.github.io/post/zi-xi-tong-biao-ming">子系统表名</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://spark-wz.github.io/post/mes-shu-ju-cai-ji-si-lu">MES数据采集思路</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://spark-wz.github.io/post/si-lu">plc思路</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://spark-wz.github.io/post/navicat-dao-chu-biao-jie-gou">navicat导出表结构</a>
+            </li>
+          
+        
+          
+            <li>
               <a href="https://spark-wz.github.io/post/plc-wen-dang">PLC文档</a>
             </li>
           
         
           
-            <li>
-              <a href="https://spark-wz.github.io/post/nan-jing">南京</a>
-            </li>
+        
           
         
           
-            <li>
-              <a href="https://spark-wz.github.io/post/shi">现场任务</a>
-            </li>
+        
           
         
           
-            <li>
-              <a href="https://spark-wz.github.io/post/shou-dong-fa">mysql根据日期分组填充不存在时间</a>
-            </li>
+        
           
         
           
-            <li>
-              <a href="https://spark-wz.github.io/post/xin-jiang-you-ku-xun-geng-huan-dian-nao">新疆油库巡更换电脑</a>
-            </li>
-          
         
           
-            <li>
-              <a href="https://spark-wz.github.io/post/gong-liao-xi-tong-taos">供料系统taos</a>
-            </li>
-          
         
-          
-            <li>
-              <a href="https://spark-wz.github.io/post/docker-ming-ling">docker命令</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://spark-wz.github.io/post/work">work</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://spark-wz.github.io/post/yin-li-yun-dong-chang">引力运动场</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://spark-wz.github.io/post/aliyunstartservice">aliyunStartService</a>
-            </li>
           
         
           
