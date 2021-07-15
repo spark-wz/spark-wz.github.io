@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8" >
 
-<title>Gridea | Gridea</title>
+<title>干燥工作内容 | Gridea</title>
 <meta name="description" content="">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://spark-wz.github.io/favicon.ico?v=1624931110455">
+<link rel="shortcut icon" href="https://spark-wz.github.io/favicon.ico?v=1626326041054">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -23,6 +23,7 @@
 
   </head>
   <body>
+  
     <nav class="navbar border fixed split-nav">
   <div class="nav-brand">
     <h3><a href="https://spark-wz.github.io">Gridea</a></h3>
@@ -79,45 +80,64 @@
     <div id="top" class="row site">
       <div class="sm-12 md-8 col">
         <div class="paper">
-          <h2 class="current-tag">标签: Gridea</h2>
-          
-  <article class="article">
-    <h2 class="article-title">
-      <a href="https://spark-wz.github.io/post/hello-gridea">Hello Gridea</a>
-    </h2>
-    <p class="article-meta">
-      2018-12-12
-      
-        <a href="https://spark-wz.github.io/tag/U9P-JQ1AK" class="badge secondary">
-          Gridea
-        </a>
-      
-    </p>
-    <p class="text-lead">
-      <p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
-✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
+          <article class="article">
+            <h1>干燥工作内容</h1>
+            <p class="article-meta">
+              2021-06-30
+              
+            </p>
+            
+            <div class="post-content">
+              <h2 id="业务">业务</h2>
+<ul>
+<li>整体急停、恢复，单个设备启停（写入一个接口）</li>
+<li>设备运行状态（将数据存入taos、查询设备运行状态复用之前接口）</li>
+<li>任务列表</li>
+<li>告警（液位高低限、写死）、plc通讯故障</li>
+</ul>
+<h2 id="逻辑控制">逻辑控制</h2>
+<h4 id="进料">进料</h4>
+<ul>
+<li>进料阀门、搅拌电机都为手动控制</li>
+<li>当液位高于设定液位高限时，判定进料阀门状态，关闭阀门状态为开启的阀门</li>
+<li>当液位高于设定液位低限时，且搅拌电机处于工作状态，关闭搅拌电机</li>
+</ul>
+<h4 id="向100l罐送料">向100L罐送料</h4>
+<ul>
+<li>100L罐低于低限（搅拌电机处于开启状态时，停止搅拌电机）、且400L罐高于低限时，开启阀门</li>
+<li>100L罐高于低限、或400L罐低于低限时，停止阀门</li>
+</ul>
+<h2 id="任务">任务</h2>
+<ul>
+<li>料进入400L储料罐</li>
+<li>400L储料罐往3个100L原料罐打料</li>
+<li>反冲水</li>
+<li>400L罐/3个100L罐往离心机打料</li>
+</ul>
 
-    </p>
-    <div class="row">
-      <a href="https://spark-wz.github.io/post/hello-gridea" class="readmore-link">
-        <button>
-          Read More
-        </button>
-      </a>
-    </div>
-  </article>
-
-
+            </div>
+          </article>
         </div>
-        <div class="row flex-edges">
-  
-  
-</div>
-
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://spark-wz.github.io/post/li-shui-wen-dang">
+                <h3 class="post-title">
+                  溧水文档
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
       </div>
+
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://spark-wz.github.io/images/avatar.png?v=1624931110455" class="no-responsive avatar">
+    <img src="https://spark-wz.github.io/images/avatar.png?v=1626326041054" class="no-responsive avatar">
     <div class="text-muted"></div>
     <div class="social-container">
       
@@ -142,6 +162,24 @@
         
           
             <li>
+              <a href="https://spark-wz.github.io/post/springcloud">SpringCloud</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://spark-wz.github.io/post/java-ji-cheng-milo">Java集成milo</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://spark-wz.github.io/post/gan-zao-gong-zuo-nei-rong">干燥工作内容</a>
+            </li>
+          
+        
+          
+            <li>
               <a href="https://spark-wz.github.io/post/li-shui-wen-dang">溧水文档</a>
             </li>
           
@@ -149,42 +187,6 @@
           
             <li>
               <a href="https://spark-wz.github.io/post/linux-xiu-gai-shi-qu">Linux修改时区</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://spark-wz.github.io/post/dian-liang-tong-ji">电量统计</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://spark-wz.github.io/post/shu-ju-dan-wei">数据单位</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://spark-wz.github.io/post/sheng-yu-ren-wu">剩余任务</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://spark-wz.github.io/post/zi-xi-tong-biao-ming">子系统表名</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://spark-wz.github.io/post/mes-shu-ju-cai-ji-si-lu">MES数据采集思路</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://spark-wz.github.io/post/si-lu">plc思路</a>
             </li>
           
         
@@ -201,29 +203,21 @@
           
         
           
-        
+            <li>
+              <a href="https://spark-wz.github.io/post/shou-dong-fa">mysql根据日期分组填充不存在时间</a>
+            </li>
           
         
           
-        
+            <li>
+              <a href="https://spark-wz.github.io/post/gong-liao-xi-tong-taos">供料系统taos</a>
+            </li>
           
         
           
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
+            <li>
+              <a href="https://spark-wz.github.io/post/aliyunstartservice">aliyunStartService</a>
+            </li>
           
         
           
@@ -295,16 +289,13 @@
     </div>
     <div class="row">
       
-        <a href="https://spark-wz.github.io/tag/U9P-JQ1AK" class="badge secondary">
-          Gridea
-        </a>
-      
     </div>
   </div>
   <div class="paper">
     Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://spark-wz.github.io/atom.xml" target="_blank">RSS</a>
   </div>
 </div>
+
 
     </div>
 

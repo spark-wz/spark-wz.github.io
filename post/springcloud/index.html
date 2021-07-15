@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>SpringCloud | Gridea</title>
+<meta name="description" content="">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://spark-wz.github.io/favicon.ico?v=1626326041054">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<link rel="stylesheet" href="https://spark-wz.github.io/styles/main.css">
+
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+  </head>
+  <body>
+  
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://spark-wz.github.io">Gridea</a></h3>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
+        
+          <li>
+            
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/post/about" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <article class="article">
+            <h1>SpringCloud</h1>
+            <p class="article-meta">
+              2021-07-08
+              
+            </p>
+            
+            <div class="post-content">
+              <p><img src="https://spark-wz.github.io/post-images/1625812367244.png" alt=""></p>
+<ul>
+<li>创建一个空项目，配置maven</li>
+</ul>
+<h3 id="创建一个新模块server端">创建一个新模块（server端）</h3>
+<ul>
+<li>file→new→module→maven</li>
+<li>配置SDK,勾选 Create from archetype<br>
+<img src="https://spark-wz.github.io/post-images/1625736910655.png" alt=""></li>
+<li>选择quickstart</li>
+</ul>
+<h3 id="添加依赖">添加依赖</h3>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+ 
+&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+         xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+ 
+  &lt;groupId&gt;com.yun&lt;/groupId&gt;
+  &lt;artifactId&gt;springcloud-eureka-server&lt;/artifactId&gt;
+  &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+ 
+  &lt;name&gt;springcloud-eureka-server&lt;/name&gt;
+  &lt;!-- FIXME change it to the project's website --&gt;
+  &lt;url&gt;http://www.example.com&lt;/url&gt;
+ 
+  &lt;properties&gt;
+    &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+    &lt;maven.compiler.source&gt;1.7&lt;/maven.compiler.source&gt;
+    &lt;maven.compiler.target&gt;1.7&lt;/maven.compiler.target&gt;
+  &lt;/properties&gt;
+ 
+  &lt;!--引入springboot-parent父项目--&gt;
+  &lt;parent&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+    &lt;version&gt;1.5.7.RELEASE&lt;/version&gt;
+  &lt;/parent&gt;
+ 
+  &lt;dependencies&gt;
+    &lt;!--引入springcloud的euekea server依赖--&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-server&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+ 
+  &lt;/dependencies&gt;
+ 
+ 
+  &lt;!--指定下载源和使用springcloud的版本--&gt;
+  &lt;dependencyManagement&gt;
+    &lt;dependencies&gt;
+      &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-cloud-dependencies&lt;/artifactId&gt;
+        &lt;version&gt;Edgware.SR5&lt;/version&gt;
+        &lt;type&gt;pom&lt;/type&gt;
+        &lt;scope&gt;import&lt;/scope&gt;
+      &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+  &lt;/dependencyManagement&gt;
+&lt;/project&gt;
+</code></pre>
+<h3 id="新建yml文件并配置">新建yml文件，并配置</h3>
+<pre><code>server:
+  port: 8700 # 端口自己决定
+  
+# 指定当前eureka客户端的注册地址，也就是eureka服务的提供方，当前配置的服务的注册服务方
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
+    register-with-eureka: false #自身 不在向eureka注册
+    fetch-registry: false  #启动时禁用client的注册
+  instance:
+    hostname: localhost
+ 
+#指定应用名称
+spring:
+  application:
+    name: eureka-server
+</code></pre>
+<h3 id="配置启动类运行启动类就可以访问管理界面了">配置启动类（运行启动类，就可以访问管理界面了）</h3>
+<p><strong>访问路径 localhost:8700</strong></p>
+<pre><code>package com.yun;
+ 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
+ 
+@SpringBootApplication
+@EnableEurekaServer //当前使用eureka的server
+public class EurekaServerApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(EurekaServerApplication.class,args);
+    }
+}
+</code></pre>
+<h3 id="创建新模块client">创建新模块（client）</h3>
+<p><strong>客户端client  提供真正服务的角色的配置， 它提供服务 在 服务注册方server （注册中心）进行注册</strong></p>
+<ul>
+<li>同样新建module，选择quickstart点击下一步</li>
+<li>新建yml文件，并配置</li>
+</ul>
+<pre><code>server:
+  port: 8701 # 服务提供方
+ 
+# 指定当前eureka客户端的注册地址,
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:8700/eureka
+  instance:
+    hostname: localhost
+ 
+#当前服务名称
+spring:
+  application:
+    name: eureka-service
+</code></pre>
+<h3 id="添加依赖-2">添加依赖</h3>
+<pre><code>&lt;!--引入springboot-parent父项目--&gt;
+  &lt;parent&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+    &lt;version&gt;1.5.7.RELEASE&lt;/version&gt;
+  &lt;/parent&gt;
+
+  &lt;dependencies&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;junit&lt;/groupId&gt;
+      &lt;artifactId&gt;junit&lt;/artifactId&gt;
+      &lt;version&gt;4.11&lt;/version&gt;
+      &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
+
+
+    &lt;!--引入springcloud的euekea client依赖--&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-client&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+
+  &lt;/dependencies&gt;
+
+
+  &lt;!--指定下载源和使用springcloud的版本--&gt;
+  &lt;dependencyManagement&gt;
+    &lt;dependencies&gt;
+      &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-cloud-dependencies&lt;/artifactId&gt;
+        &lt;version&gt;Edgware.SR5&lt;/version&gt;
+        &lt;type&gt;pom&lt;/type&gt;
+        &lt;scope&gt;import&lt;/scope&gt;
+      &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+  &lt;/dependencyManagement&gt;
+</code></pre>
+<h3 id="配置启动类">配置启动类</h3>
+<pre><code>package com.yun;
+ 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+ 
+@SpringBootApplication
+@EnableDiscoveryClient//代表自己是一个服务提供方
+public class EurekaServiceApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(EurekaServiceApplication.class,args);
+    }
+}
+</code></pre>
+<h3 id="新建controller写测试接口testcontroller">新建controller，写测试接口（TestController）</h3>
+<pre><code>package com.unicorn.controller;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * @author spark
+ * @date 2021/7/8
+ */
+@RestController
+@RequestMapping(&quot;/Hello&quot;)
+public class TestController {
+    @RequestMapping(&quot;/World&quot;)
+    public String helloWorld(String s){
+        System.out.println(&quot;传入的值为：&quot;+s);
+        return &quot;传入的值为：&quot;+s;
+    }
+}
+</code></pre>
+<ul>
+<li><strong>运行启动类</strong></li>
+<li><strong>此时再进入服务注册的页面 http://localhost:8700/，可以看见服务提供者已被注册进 服务注册者</strong><br>
+<img src="https://spark-wz.github.io/post-images/1625737665960.png" alt=""></li>
+<li><strong>在直接访问一下服务提供者的 网络位置http://localhost:8701/Hello/World?s=小沛打印 可以访问了，证明此微服务可用。</strong></li>
+<li><img src="https://spark-wz.github.io/post-images/1625737735206.png" alt=""></li>
+</ul>
+<h3 id="resttemplateribbon">restTemplate+ribbon</h3>
+<p><strong>ribbon是一种负载均衡的客户端</strong></p>
+<ul>
+<li>同样新建module，选择quickstart点击下一步</li>
+<li>配置yml文件，服务的消费方依旧需要在注册方8700端口去注册。配置当前服务消费方的端口8072，名字为eureka-consumer</li>
+</ul>
+<pre><code>server:
+  port: 8702 # 服务消费方
+ 
+# 指定当前eureka客户端的注册地址,
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:8700/eureka
+  instance:
+    hostname: localhost
+ 
+#当前服务名称
+spring:
+  application:
+    name: eureka-consumer
+</code></pre>
+<h3 id="添加依赖-3">添加依赖</h3>
+<pre><code>&lt;parent&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+        &lt;version&gt;1.5.7.RELEASE&lt;/version&gt;
+    &lt;/parent&gt;
+
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;junit&lt;/groupId&gt;
+            &lt;artifactId&gt;junit&lt;/artifactId&gt;
+            &lt;version&gt;4.11&lt;/version&gt;
+            &lt;scope&gt;test&lt;/scope&gt;
+        &lt;/dependency&gt;
+
+
+        &lt;!--引入bibbon依赖--&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-cloud-starter-netflix-ribbon&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-client&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+
+    &lt;!--指定下载源和使用springcloud的版本--&gt;
+    &lt;dependencyManagement&gt;
+        &lt;dependencies&gt;
+            &lt;dependency&gt;
+                &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+                &lt;artifactId&gt;spring-cloud-dependencies&lt;/artifactId&gt;
+                &lt;version&gt;Edgware.SR5&lt;/version&gt;
+                &lt;type&gt;pom&lt;/type&gt;
+                &lt;scope&gt;import&lt;/scope&gt;
+            &lt;/dependency&gt;
+        &lt;/dependencies&gt;
+    &lt;/dependencyManagement&gt;
+</code></pre>
+<h3 id="配置启动类-2">配置启动类</h3>
+<pre><code>package com.yun;
+ 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+ 
+ 
+@SpringBootApplication
+@EnableDiscoveryClient //当前使用eureka的server
+public class EurekaConsumerApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(EurekaConsumerApplication.class,args);
+    }
+}
+</code></pre>
+<h3 id="新建测试接口">新建测试接口</h3>
+<pre><code>package com.unicorn.controller;
+
+/**
+ * @author spark
+ * @date 2021/7/8
+ */
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+@RestController
+@RequestMapping(&quot;/Hello&quot;)
+class ConsumerController {
+    @Autowired
+    private LoadBalancerClient loadBalancerClient;
+    @Autowired
+    private RestTemplate restTemplate;
+
+    @RequestMapping(&quot;/Consumer&quot;)
+    public String helloWorld(String s){
+        System.out.println(&quot;传入的值为：&quot;+s);
+        //第一种调用方式
+        //String forObject = new RestTemplate().getForObject(&quot;http://localhost:8071/Hello/World?s=&quot; + s, String.class);
+
+        //第二种调用方式
+        //根据服务名 获取服务列表 根据算法选取某个服务 并访问某个服务的网络位置。
+        //ServiceInstance serviceInstance = loadBalancerClient.choose(&quot;EUREKA-SERVICE&quot;);
+        //String forObject = new RestTemplate().getForObject(&quot;http://&quot;+serviceInstance.getHost()+&quot;:&quot;+serviceInstance.getPort()+&quot;/Hello/World?s=&quot;+s,String.class);
+
+        //第三种调用方式 需要restTemplate注入的方式
+        String forObject = restTemplate.getForObject(&quot;http://EUREKA-SERVICE/Hello/World?s=&quot; + s, String.class);
+        return forObject;
+    }
+}
+
+</code></pre>
+<p>我们常用第三种调用方式。</p>
+<p>第一种是直接调用：不经过注册中心那服务列表，直接访问的servicesupport</p>
+<p>第二种：是根据服务名选择调用，如上图需要做如下注入</p>
+<pre><code>@Autowired
+private LoadBalancerClient loadBalancerClient;
+</code></pre>
+<p>如上图代码中第二种调用方法的代码所示。</p>
+<p>用服务名去注册中心获取服务列表，当前客户端底层会做随机算法的选取获得服务并访问。</p>
+<p>第三种需要一个@Bean的注解自动注入并直接调用restTemplate对象调用服务。底层调用模式与第二种调用方式一样。如下：</p>
+<pre><code>package com.yun.beans;
+ 
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
+ 
+@Configuration
+public class Beans {
+    //管理简单对象
+    @Bean
+    @LoadBalanced
+    public RestTemplate getRestTemplate(){
+        return new RestTemplate();
+    }
+}
+</code></pre>
+<p>@Bean注解告诉工厂，这个方法需要自动注入。</p>
+<p>@LoadBalanced，表示需要做负载匀衡。</p>
+<p>然后如controller中一样注入一下restTemplate，并且使用他，区别是可以直接使用服务名访问了</p>
+<h3 id="测试">测试</h3>
+<ul>
+<li>启动server端、client端、consumer端。访问：http://localhost:8702/Hello/Consumer?s=%E5%B0%8F%E6%B2%9B</li>
+<li>返回：传入的值为：小沛</li>
+</ul>
+<h3 id="eureka-server的高可用配置">Eureka server的高可用配置</h3>
+<p><strong>编辑配置</strong><br>
+<img src="https://spark-wz.github.io/post-images/1625738239131.png" alt=""></p>
+<ul>
+<li>点击server启动类，点击复制<br>
+<img src="https://spark-wz.github.io/post-images/1625738303287.png" alt=""></li>
+<li>填写配置<br>
+<img src="https://spark-wz.github.io/post-images/1625738367243.png" alt=""></li>
+<li>复制三个启动类，端口分别为6699、6698、6697</li>
+<li>分别改注册端口号，defaultZone分别启动三个启动项</li>
+<li>打开server的yml配置</li>
+</ul>
+<pre><code># 指定当前eureka客户端的注册地址，也就是eureka服务的提供方，当前配置的服务的注册服务方
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8699/eureka,http://localhost:8698/eureka
+    register-with-eureka: false #自身 不在向eureka注册
+    fetch-registry: false  #启动时禁用client的注册
+  instance:
+    hostname: localhost
+
+#指定应用名称
+spring:
+  application:
+    name: eureka-server
+</code></pre>
+<ul>
+<li>当配置为99、98端口时，启动端口为97的启动类，其他同理，将刚刚复制的三个启动类分别启动</li>
+<li>此时访问localhost:8899或8898或8897就都可以访问管理中心了</li>
+<li>将client端yml配置中注册的端口改为8899，再次访问</li>
+<li>即使服务提供方只注册了一个端口号8699，但是另外两个端口号，也能感知到服务提供方8701的存在了</li>
+<li>向服务消费方中添加服务注册者的端口号，这样在server挂掉任何一个的时候，都能有其他的server也能获取服务列表</li>
+</ul>
+<pre><code>server:
+  port: 8702 # 服务消费方
+
+# 指定当前eureka客户端的注册地址,
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8699/eureka,http://localhost:8698/eureka,http://localhost:8697/eureka
+  instance:
+    hostname: localhost
+
+#当前服务名称
+spring:
+  application:
+    name: eureka-consumer
+</code></pre>
+
+            </div>
+          </article>
+        </div>
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://spark-wz.github.io/post/java-ji-cheng-milo">
+                <h3 class="post-title">
+                  Java集成milo
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
+      </div>
+
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://spark-wz.github.io/images/avatar.png?v=1626326041054" class="no-responsive avatar">
+    <div class="text-muted"></div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://spark-wz.github.io/post/springcloud">SpringCloud</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://spark-wz.github.io/post/java-ji-cheng-milo">Java集成milo</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://spark-wz.github.io/post/gan-zao-gong-zuo-nei-rong">干燥工作内容</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://spark-wz.github.io/post/li-shui-wen-dang">溧水文档</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://spark-wz.github.io/post/linux-xiu-gai-shi-qu">Linux修改时区</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://spark-wz.github.io/post/navicat-dao-chu-biao-jie-gou">navicat导出表结构</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://spark-wz.github.io/post/plc-wen-dang">PLC文档</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://spark-wz.github.io/post/shou-dong-fa">mysql根据日期分组填充不存在时间</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://spark-wz.github.io/post/gong-liao-xi-tong-taos">供料系统taos</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://spark-wz.github.io/post/aliyunstartservice">aliyunStartService</a>
+            </li>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://spark-wz.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+
+
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+</script>
+
+
+
+
+  </body>
+</html>

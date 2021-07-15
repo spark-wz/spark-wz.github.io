@@ -2,13 +2,468 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://spark-wz.github.io</id>
     <title>Gridea</title>
-    <updated>2021-06-29T01:45:29.179Z</updated>
+    <updated>2021-07-15T05:14:06.085Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://spark-wz.github.io"/>
     <link rel="self" href="https://spark-wz.github.io/atom.xml"/>
     <logo>https://spark-wz.github.io/images/avatar.png</logo>
     <icon>https://spark-wz.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[SpringCloud]]></title>
+        <id>https://spark-wz.github.io/post/springcloud</id>
+        <link href="https://spark-wz.github.io/post/springcloud">
+        </link>
+        <updated>2021-07-08T09:28:43.000Z</updated>
+        <content type="html"><![CDATA[<p><img src="https://spark-wz.github.io/post-images/1625812367244.png" alt=""></p>
+<ul>
+<li>创建一个空项目，配置maven</li>
+</ul>
+<h3 id="创建一个新模块server端">创建一个新模块（server端）</h3>
+<ul>
+<li>file→new→module→maven</li>
+<li>配置SDK,勾选 Create from archetype<br>
+<img src="https://spark-wz.github.io/post-images/1625736910655.png" alt=""></li>
+<li>选择quickstart</li>
+</ul>
+<h3 id="添加依赖">添加依赖</h3>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+ 
+&lt;project xmlns=&quot;http://maven.apache.org/POM/4.0.0&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
+         xsi:schemaLocation=&quot;http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd&quot;&gt;
+  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;
+ 
+  &lt;groupId&gt;com.yun&lt;/groupId&gt;
+  &lt;artifactId&gt;springcloud-eureka-server&lt;/artifactId&gt;
+  &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+ 
+  &lt;name&gt;springcloud-eureka-server&lt;/name&gt;
+  &lt;!-- FIXME change it to the project's website --&gt;
+  &lt;url&gt;http://www.example.com&lt;/url&gt;
+ 
+  &lt;properties&gt;
+    &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;
+    &lt;maven.compiler.source&gt;1.7&lt;/maven.compiler.source&gt;
+    &lt;maven.compiler.target&gt;1.7&lt;/maven.compiler.target&gt;
+  &lt;/properties&gt;
+ 
+  &lt;!--引入springboot-parent父项目--&gt;
+  &lt;parent&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+    &lt;version&gt;1.5.7.RELEASE&lt;/version&gt;
+  &lt;/parent&gt;
+ 
+  &lt;dependencies&gt;
+    &lt;!--引入springcloud的euekea server依赖--&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-server&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+ 
+  &lt;/dependencies&gt;
+ 
+ 
+  &lt;!--指定下载源和使用springcloud的版本--&gt;
+  &lt;dependencyManagement&gt;
+    &lt;dependencies&gt;
+      &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-cloud-dependencies&lt;/artifactId&gt;
+        &lt;version&gt;Edgware.SR5&lt;/version&gt;
+        &lt;type&gt;pom&lt;/type&gt;
+        &lt;scope&gt;import&lt;/scope&gt;
+      &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+  &lt;/dependencyManagement&gt;
+&lt;/project&gt;
+</code></pre>
+<h3 id="新建yml文件并配置">新建yml文件，并配置</h3>
+<pre><code>server:
+  port: 8700 # 端口自己决定
+  
+# 指定当前eureka客户端的注册地址，也就是eureka服务的提供方，当前配置的服务的注册服务方
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka
+    register-with-eureka: false #自身 不在向eureka注册
+    fetch-registry: false  #启动时禁用client的注册
+  instance:
+    hostname: localhost
+ 
+#指定应用名称
+spring:
+  application:
+    name: eureka-server
+</code></pre>
+<h3 id="配置启动类运行启动类就可以访问管理界面了">配置启动类（运行启动类，就可以访问管理界面了）</h3>
+<p><strong>访问路径 localhost:8700</strong></p>
+<pre><code>package com.yun;
+ 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
+ 
+@SpringBootApplication
+@EnableEurekaServer //当前使用eureka的server
+public class EurekaServerApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(EurekaServerApplication.class,args);
+    }
+}
+</code></pre>
+<h3 id="创建新模块client">创建新模块（client）</h3>
+<p><strong>客户端client  提供真正服务的角色的配置， 它提供服务 在 服务注册方server （注册中心）进行注册</strong></p>
+<ul>
+<li>同样新建module，选择quickstart点击下一步</li>
+<li>新建yml文件，并配置</li>
+</ul>
+<pre><code>server:
+  port: 8701 # 服务提供方
+ 
+# 指定当前eureka客户端的注册地址,
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:8700/eureka
+  instance:
+    hostname: localhost
+ 
+#当前服务名称
+spring:
+  application:
+    name: eureka-service
+</code></pre>
+<h3 id="添加依赖-2">添加依赖</h3>
+<pre><code>&lt;!--引入springboot-parent父项目--&gt;
+  &lt;parent&gt;
+    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+    &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+    &lt;version&gt;1.5.7.RELEASE&lt;/version&gt;
+  &lt;/parent&gt;
+
+  &lt;dependencies&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;junit&lt;/groupId&gt;
+      &lt;artifactId&gt;junit&lt;/artifactId&gt;
+      &lt;version&gt;4.11&lt;/version&gt;
+      &lt;scope&gt;test&lt;/scope&gt;
+    &lt;/dependency&gt;
+
+
+    &lt;!--引入springcloud的euekea client依赖--&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-client&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+
+  &lt;/dependencies&gt;
+
+
+  &lt;!--指定下载源和使用springcloud的版本--&gt;
+  &lt;dependencyManagement&gt;
+    &lt;dependencies&gt;
+      &lt;dependency&gt;
+        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-cloud-dependencies&lt;/artifactId&gt;
+        &lt;version&gt;Edgware.SR5&lt;/version&gt;
+        &lt;type&gt;pom&lt;/type&gt;
+        &lt;scope&gt;import&lt;/scope&gt;
+      &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+  &lt;/dependencyManagement&gt;
+</code></pre>
+<h3 id="配置启动类">配置启动类</h3>
+<pre><code>package com.yun;
+ 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+ 
+@SpringBootApplication
+@EnableDiscoveryClient//代表自己是一个服务提供方
+public class EurekaServiceApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(EurekaServiceApplication.class,args);
+    }
+}
+</code></pre>
+<h3 id="新建controller写测试接口testcontroller">新建controller，写测试接口（TestController）</h3>
+<pre><code>package com.unicorn.controller;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+/**
+ * @author spark
+ * @date 2021/7/8
+ */
+@RestController
+@RequestMapping(&quot;/Hello&quot;)
+public class TestController {
+    @RequestMapping(&quot;/World&quot;)
+    public String helloWorld(String s){
+        System.out.println(&quot;传入的值为：&quot;+s);
+        return &quot;传入的值为：&quot;+s;
+    }
+}
+</code></pre>
+<ul>
+<li><strong>运行启动类</strong></li>
+<li><strong>此时再进入服务注册的页面 http://localhost:8700/，可以看见服务提供者已被注册进 服务注册者</strong><br>
+<img src="https://spark-wz.github.io/post-images/1625737665960.png" alt=""></li>
+<li><strong>在直接访问一下服务提供者的 网络位置http://localhost:8701/Hello/World?s=小沛打印 可以访问了，证明此微服务可用。</strong></li>
+<li><img src="https://spark-wz.github.io/post-images/1625737735206.png" alt=""></li>
+</ul>
+<h3 id="resttemplateribbon">restTemplate+ribbon</h3>
+<p><strong>ribbon是一种负载均衡的客户端</strong></p>
+<ul>
+<li>同样新建module，选择quickstart点击下一步</li>
+<li>配置yml文件，服务的消费方依旧需要在注册方8700端口去注册。配置当前服务消费方的端口8072，名字为eureka-consumer</li>
+</ul>
+<pre><code>server:
+  port: 8702 # 服务消费方
+ 
+# 指定当前eureka客户端的注册地址,
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:8700/eureka
+  instance:
+    hostname: localhost
+ 
+#当前服务名称
+spring:
+  application:
+    name: eureka-consumer
+</code></pre>
+<h3 id="添加依赖-3">添加依赖</h3>
+<pre><code>&lt;parent&gt;
+        &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+        &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;
+        &lt;version&gt;1.5.7.RELEASE&lt;/version&gt;
+    &lt;/parent&gt;
+
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;junit&lt;/groupId&gt;
+            &lt;artifactId&gt;junit&lt;/artifactId&gt;
+            &lt;version&gt;4.11&lt;/version&gt;
+            &lt;scope&gt;test&lt;/scope&gt;
+        &lt;/dependency&gt;
+
+
+        &lt;!--引入bibbon依赖--&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-cloud-starter-netflix-ribbon&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+            &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-client&lt;/artifactId&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+
+    &lt;!--指定下载源和使用springcloud的版本--&gt;
+    &lt;dependencyManagement&gt;
+        &lt;dependencies&gt;
+            &lt;dependency&gt;
+                &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+                &lt;artifactId&gt;spring-cloud-dependencies&lt;/artifactId&gt;
+                &lt;version&gt;Edgware.SR5&lt;/version&gt;
+                &lt;type&gt;pom&lt;/type&gt;
+                &lt;scope&gt;import&lt;/scope&gt;
+            &lt;/dependency&gt;
+        &lt;/dependencies&gt;
+    &lt;/dependencyManagement&gt;
+</code></pre>
+<h3 id="配置启动类-2">配置启动类</h3>
+<pre><code>package com.yun;
+ 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+ 
+ 
+@SpringBootApplication
+@EnableDiscoveryClient //当前使用eureka的server
+public class EurekaConsumerApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(EurekaConsumerApplication.class,args);
+    }
+}
+</code></pre>
+<h3 id="新建测试接口">新建测试接口</h3>
+<pre><code>package com.unicorn.controller;
+
+/**
+ * @author spark
+ * @date 2021/7/8
+ */
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+@RestController
+@RequestMapping(&quot;/Hello&quot;)
+class ConsumerController {
+    @Autowired
+    private LoadBalancerClient loadBalancerClient;
+    @Autowired
+    private RestTemplate restTemplate;
+
+    @RequestMapping(&quot;/Consumer&quot;)
+    public String helloWorld(String s){
+        System.out.println(&quot;传入的值为：&quot;+s);
+        //第一种调用方式
+        //String forObject = new RestTemplate().getForObject(&quot;http://localhost:8071/Hello/World?s=&quot; + s, String.class);
+
+        //第二种调用方式
+        //根据服务名 获取服务列表 根据算法选取某个服务 并访问某个服务的网络位置。
+        //ServiceInstance serviceInstance = loadBalancerClient.choose(&quot;EUREKA-SERVICE&quot;);
+        //String forObject = new RestTemplate().getForObject(&quot;http://&quot;+serviceInstance.getHost()+&quot;:&quot;+serviceInstance.getPort()+&quot;/Hello/World?s=&quot;+s,String.class);
+
+        //第三种调用方式 需要restTemplate注入的方式
+        String forObject = restTemplate.getForObject(&quot;http://EUREKA-SERVICE/Hello/World?s=&quot; + s, String.class);
+        return forObject;
+    }
+}
+
+</code></pre>
+<p>我们常用第三种调用方式。</p>
+<p>第一种是直接调用：不经过注册中心那服务列表，直接访问的servicesupport</p>
+<p>第二种：是根据服务名选择调用，如上图需要做如下注入</p>
+<pre><code>@Autowired
+private LoadBalancerClient loadBalancerClient;
+</code></pre>
+<p>如上图代码中第二种调用方法的代码所示。</p>
+<p>用服务名去注册中心获取服务列表，当前客户端底层会做随机算法的选取获得服务并访问。</p>
+<p>第三种需要一个@Bean的注解自动注入并直接调用restTemplate对象调用服务。底层调用模式与第二种调用方式一样。如下：</p>
+<pre><code>package com.yun.beans;
+ 
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
+ 
+@Configuration
+public class Beans {
+    //管理简单对象
+    @Bean
+    @LoadBalanced
+    public RestTemplate getRestTemplate(){
+        return new RestTemplate();
+    }
+}
+</code></pre>
+<p>@Bean注解告诉工厂，这个方法需要自动注入。</p>
+<p>@LoadBalanced，表示需要做负载匀衡。</p>
+<p>然后如controller中一样注入一下restTemplate，并且使用他，区别是可以直接使用服务名访问了</p>
+<h3 id="测试">测试</h3>
+<ul>
+<li>启动server端、client端、consumer端。访问：http://localhost:8702/Hello/Consumer?s=%E5%B0%8F%E6%B2%9B</li>
+<li>返回：传入的值为：小沛</li>
+</ul>
+<h3 id="eureka-server的高可用配置">Eureka server的高可用配置</h3>
+<p><strong>编辑配置</strong><br>
+<img src="https://spark-wz.github.io/post-images/1625738239131.png" alt=""></p>
+<ul>
+<li>点击server启动类，点击复制<br>
+<img src="https://spark-wz.github.io/post-images/1625738303287.png" alt=""></li>
+<li>填写配置<br>
+<img src="https://spark-wz.github.io/post-images/1625738367243.png" alt=""></li>
+<li>复制三个启动类，端口分别为6699、6698、6697</li>
+<li>分别改注册端口号，defaultZone分别启动三个启动项</li>
+<li>打开server的yml配置</li>
+</ul>
+<pre><code># 指定当前eureka客户端的注册地址，也就是eureka服务的提供方，当前配置的服务的注册服务方
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8699/eureka,http://localhost:8698/eureka
+    register-with-eureka: false #自身 不在向eureka注册
+    fetch-registry: false  #启动时禁用client的注册
+  instance:
+    hostname: localhost
+
+#指定应用名称
+spring:
+  application:
+    name: eureka-server
+</code></pre>
+<ul>
+<li>当配置为99、98端口时，启动端口为97的启动类，其他同理，将刚刚复制的三个启动类分别启动</li>
+<li>此时访问localhost:8899或8898或8897就都可以访问管理中心了</li>
+<li>将client端yml配置中注册的端口改为8899，再次访问</li>
+<li>即使服务提供方只注册了一个端口号8699，但是另外两个端口号，也能感知到服务提供方8701的存在了</li>
+<li>向服务消费方中添加服务注册者的端口号，这样在server挂掉任何一个的时候，都能有其他的server也能获取服务列表</li>
+</ul>
+<pre><code>server:
+  port: 8702 # 服务消费方
+
+# 指定当前eureka客户端的注册地址,
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8699/eureka,http://localhost:8698/eureka,http://localhost:8697/eureka
+  instance:
+    hostname: localhost
+
+#当前服务名称
+spring:
+  application:
+    name: eureka-consumer
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Java集成milo]]></title>
+        <id>https://spark-wz.github.io/post/java-ji-cheng-milo</id>
+        <link href="https://spark-wz.github.io/post/java-ji-cheng-milo">
+        </link>
+        <updated>2021-07-06T08:19:42.000Z</updated>
+        <content type="html"><![CDATA[<p>引入依赖</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[干燥工作内容]]></title>
+        <id>https://spark-wz.github.io/post/gan-zao-gong-zuo-nei-rong</id>
+        <link href="https://spark-wz.github.io/post/gan-zao-gong-zuo-nei-rong">
+        </link>
+        <updated>2021-06-30T08:49:50.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="业务">业务</h2>
+<ul>
+<li>整体急停、恢复，单个设备启停（写入一个接口）</li>
+<li>设备运行状态（将数据存入taos、查询设备运行状态复用之前接口）</li>
+<li>任务列表</li>
+<li>告警（液位高低限、写死）、plc通讯故障</li>
+</ul>
+<h2 id="逻辑控制">逻辑控制</h2>
+<h4 id="进料">进料</h4>
+<ul>
+<li>进料阀门、搅拌电机都为手动控制</li>
+<li>当液位高于设定液位高限时，判定进料阀门状态，关闭阀门状态为开启的阀门</li>
+<li>当液位高于设定液位低限时，且搅拌电机处于工作状态，关闭搅拌电机</li>
+</ul>
+<h4 id="向100l罐送料">向100L罐送料</h4>
+<ul>
+<li>100L罐低于低限（搅拌电机处于开启状态时，停止搅拌电机）、且400L罐高于低限时，开启阀门</li>
+<li>100L罐高于低限、或400L罐低于低限时，停止阀门</li>
+</ul>
+<h2 id="任务">任务</h2>
+<ul>
+<li>料进入400L储料罐</li>
+<li>400L储料罐往3个100L原料罐打料</li>
+<li>反冲水</li>
+<li>400L罐/3个100L罐往离心机打料</li>
+</ul>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[溧水文档]]></title>
         <id>https://spark-wz.github.io/post/li-shui-wen-dang</id>
@@ -58,110 +513,6 @@ dist位置：/root/supply-controller/dist</p>
         <updated>2021-06-21T00:53:47.000Z</updated>
         <content type="html"><![CDATA[<p>mv /etc/localtime /etc/localtime.bak<br>
 ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/locaktime</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[电量统计]]></title>
-        <id>https://spark-wz.github.io/post/dian-liang-tong-ji</id>
-        <link href="https://spark-wz.github.io/post/dian-liang-tong-ji">
-        </link>
-        <updated>2021-06-20T15:05:23.000Z</updated>
-        <content type="html"><![CDATA[<ul>
-<li>每天0.00获取各子系统实时耗电量，将获得的数据 根据系统获取时间（星期几）、子系统名称存至耗电量统计表（electricity_statistics）；当今天为周一时，删除各子系统周二至周日的耗电量统计。</li>
-<li>每隔30分钟统计各子系统的实时电量，用当前系统实时耗电量   -   0.00系统实时耗电量   =  当日实时耗电量；将得到的数据根据系统获取时间（星期几）、子系统名称存至耗电量统计表（electricity_statistics）</li>
-</ul>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[数据单位]]></title>
-        <id>https://spark-wz.github.io/post/shu-ju-dan-wei</id>
-        <link href="https://spark-wz.github.io/post/shu-ju-dan-wei">
-        </link>
-        <updated>2021-06-19T08:41:58.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="能源动力">能源动力</h2>
-<ul>
-<li>压力值单位MPa</li>
-<li>流量m³/h</li>
-<li>温度℃</li>
-</ul>
-<h2 id="高纯硼">高纯硼</h2>
-<ul>
-<li>流量单位m³/h</li>
-<li>压力值单位MPa</li>
-<li>温度℃</li>
-<li>液位L</li>
-</ul>
-<h2 id="钴基">钴基</h2>
-<ul>
-<li>总进水压力值、气源压力、喷盘压力、气源压力MPa</li>
-<li>其他压力值KPa</li>
-<li>功率KW</li>
-<li>温度℃</li>
-</ul>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[剩余任务]]></title>
-        <id>https://spark-wz.github.io/post/sheng-yu-ren-wu</id>
-        <link href="https://spark-wz.github.io/post/sheng-yu-ren-wu">
-        </link>
-        <updated>2021-06-09T12:03:03.000Z</updated>
-        <content type="html"><![CDATA[<ul>
-<li>各子系统表内设备总数、运行数量、空闲数量、故障数量、物流信息</li>
-<li>各系统实时耗电量统计</li>
-<li>周一到周日的耗电量统计</li>
-<li>工厂整体表的各系统总数量、空闲、运行、故障数量；各系统对应的<strong>运行、空闲、故障状态</strong></li>
-<li>各系统故障信息统计</li>
-</ul>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[子系统表名]]></title>
-        <id>https://spark-wz.github.io/post/zi-xi-tong-biao-ming</id>
-        <link href="https://spark-wz.github.io/post/zi-xi-tong-biao-ming">
-        </link>
-        <updated>2021-06-07T08:54:44.000Z</updated>
-        <content type="html"><![CDATA[<p><strong>batching配料系统</strong><br>
-<strong>compressor氮气压缩机</strong><br>
-<strong>nitrogen氮气</strong><br>
-<strong>reactor反应釜</strong><br>
-<strong>argon氩气<br>
-cooling_water冷却水</strong><br>
-cobalt钴基</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[MES数据采集思路]]></title>
-        <id>https://spark-wz.github.io/post/mes-shu-ju-cai-ji-si-lu</id>
-        <link href="https://spark-wz.github.io/post/mes-shu-ju-cai-ji-si-lu">
-        </link>
-        <updated>2021-06-05T07:33:33.000Z</updated>
-        <content type="html"><![CDATA[<p>现代码最多可一次批量读取125个连续plc点位（例DB100 DB0-DB100 DB125），准备每次批量读取100个点位，再将读取回来的数据处理；</p>
-<ul>
-<li>每个子系统plc建一张设备配置表（配置表包含读取plc配置，处理plc读取数据配置、设备编号、设备名、read_group(此配置为读取plc数据时分组，相同DB块中每一百个点位为一组，其中,1-100为1，101-200为2，以此类推)）</li>
-<li>每个子系统数据采集为一个定时任务</li>
-</ul>
-<h4 id="数据采集流程">数据采集流程</h4>
-<ul>
-<li>在对应子系统配置表中拿到分组后的设备配置，遍历；</li>
-<li>读取每组设备的数据，处理后存入对应山海鲸bean和list；</li>
-<li>将数组存入taos、更新山海经表；</li>
-</ul>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[plc思路]]></title>
-        <id>https://spark-wz.github.io/post/si-lu</id>
-        <link href="https://spark-wz.github.io/post/si-lu">
-        </link>
-        <updated>2021-05-27T14:48:47.000Z</updated>
-        <content type="html"><![CDATA[<p>数据采集：equipment表中有所有设备配置、根据设备读取类型分类、读取数据分别批量插入taos；<br>
-二工序plc下发流程：<br>
-获取二工序所有正在运行的工艺、遍历；读取成品罐、森松搅拌罐液位；当成品罐液位高于成品罐低限、森松搅拌罐液位低于搅拌罐低限、此时符合条件，开始下发。下发时写入森松阀 开阀门指令、等待10秒后读取森松阀门状态、当状态为开启时，准备下发配料系统plc 开启产线指令，下发后等待1秒，读取配料系统plc产线状态、状态为开启时，更新产线表、任务表。</p>
-<p>所有配置写死，根据产线名分别使用不同的配置<br>
-所有数据存入taos、包括产线状态、森松阀门、然后工艺表中存入产线启停所需要的设备编号、根据编号批量去taos读取、读取回来后根据编号匹配</p>
-<h3 id="二工序产线启动故障处理">二工序产线启动故障处理</h3>
-<p>故障可能性：森松阀门开启失败、读取森松液位失败、森松液位读取失败、产线启动下发失败、读取产线状态失败、</p>
 ]]></content>
     </entry>
     <entry>
@@ -242,6 +593,319 @@ s7Client.ConnectTo(&quot;192.168.2.15&quot;, 0, 1);</p>
 		
 `
 </code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[mysql根据日期分组填充不存在时间]]></title>
+        <id>https://spark-wz.github.io/post/shou-dong-fa</id>
+        <link href="https://spark-wz.github.io/post/shou-dong-fa">
+        </link>
+        <updated>2021-03-16T11:15:36.000Z</updated>
+        <content type="html"><![CDATA[<p>SELECT date(downtime) AS dday, count(*) AS num FROM re_device GROUP BY dday<br>
+得到如下结果，如果那天没有数据，那麽就会没有记录<br>
+这里写图片描述<br>
+我们看到，时间不连续，没有2016-3-05这一天的，这样本来不是问题，但是，我拿出来的数据，还要画出图表呀，没有当然不行，我们需要的是下面这个样子的。<br>
+这里写图片描述</p>
+<p>简单的说就是，没有数据，就要补充一个0.</p>
+<p>3、下面我们讲实现</p>
+<p>我们要生成一个日历的表，然后和原来的数据，联合查询，说到这里，大家就知道很low了，但是，限于我水平有限，研究这个问题，半天，这个是我找到的比较好的一种实现方式。如果你又更好的，也请你给我说下。<br>
+执行下面的sql，直接诶生成日历的表（calendar）</p>
+<p>CREATE TABLE num (i int);-- 创建一个表用来储存0-9的数字</p>
+<p>INSERT INTO num (i) VALUES (0), (1), (2), (3), (4), (5), (6), (7), (8), (9);-- 生成0-9的数字，方便以后计算时间</p>
+<p>CREATE TABLE  if not exists calendar(datelist date); -- 生成一个存储日期的表，datalist是字段名</p>
+<p>-- 这里是生成并插入日期数据</p>
+<p>INSERT INTO calendar(datelist) SELECT</p>
+<pre><code>adddate(
+
+    (   -- 这里的起始日期，你可以换成当前日期
+
+        DATE_FORMAT(&quot;2016-1-1&quot;, '%Y-%m-%d') 
+
+    ),
+
+    numlist.id
+
+) AS `date`
+</code></pre>
+<p>FROM</p>
+<pre><code>(
+
+    SELECT
+
+        n1.i + n10.i * 10 + n100.i * 100 + n1000.i * 1000+ n10000.i * 10000 AS id
+    FROM
+
+        num n1
+
+    CROSS JOIN num AS n10
+
+    CROSS JOIN num AS n100
+
+    CROSS JOIN num AS n1000
+
+    CROSS JOIN num AS n10000
+
+) AS numlist;
+</code></pre>
+<p>这里我用了100000条记录，算出来到2289年了，完全够用了，到那个时候，出问题，我也管不了了。</p>
+<p>完成之后，请删除num的零时表<br>
+4、联合查询</p>
+<p>SELECT</p>
+<pre><code>date(dday) ddate,
+
+count(*) - 1 as num
+</code></pre>
+<p>FROM</p>
+<pre><code>(
+
+    SELECT
+
+        datelist as dday
+
+    FROM
+
+        calendar 
+
+        -- 这里是限制返回最近30天的数据
+
+        where  DATE_SUB(CURDATE(), INTERVAL 30 DAY) &lt;= date
+</code></pre>
+<p>(datelist)&amp;&amp;date(datelist)&lt;=CURDATE()</p>
+<pre><code>    UNION ALL
+
+        SELECT
+
+            downtime
+
+        FROM
+
+            re_device
+
+) a
+</code></pre>
+<p>GROUP BY ddate<br>
+好了，到这里，基本就完成了这个查询，出来的数据，我还是比较满意的。</p>
+<p>5、其他解决方法<br>
+当然，应该还有其他的解决方案，但是博主就没有去写了，有时间可以去写一下。<br>
+我用的spring mvc，所以，也还是可以在java代码中补充完整的，因为数据返回的是个map对象，那麽我们要遍历这个对象，直接用calendar对象，生成日期作为key来遍历，如果没有数据，就put进去一个0，然后在限制一下，需要多少天的，就可以了。数据就完整了。<br>
+但是这样也有一个问题，那就是map里的数据顺序会有问题，所以，使用的时候，也必须是生成calendar对象，然后构造出来日期作为key来遍历。或者用Collections.sort（）排序一下。</p>
+<p>我个人觉得，还是上数据直接生成得比较好一点。</p>
+<p>分类: SQL, 工作总结<br>
+标签: java经验集锦, 通用实践, SQL, DB, Mysql<br>
+好文要顶 关注我 收藏该文</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[供料系统taos]]></title>
+        <id>https://spark-wz.github.io/post/gong-liao-xi-tong-taos</id>
+        <link href="https://spark-wz.github.io/post/gong-liao-xi-tong-taos">
+        </link>
+        <updated>2021-03-05T05:42:10.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="供料系统">供料系统</h2>
+<h3 id="创建超级表">创建超级表</h3>
+<p>CREATE TABLE device(ts timestamp,device_name binary(50), procedure_num binary(50),beltline binary(50), lc float,weight float, device_status float) TAGS (procedure  binary(20));<br>
+ts时间<br>
+device_name设备名称<br>
+procedure_num工序号，1代表一道工序<br>
+beltline生产线号，1代表一号生产线<br>
+lc 液位<br>
+weight 重量<br>
+device_status 设备状态<br>
+device_id设备id<br>
+flow 流量</p>
+<h3 id="一道工序一号生产线创建表">一道工序一号生产线创建表</h3>
+<p>CREATE TABLE device11LT01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device11TM01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device11VL01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device11VL02 USING device TAGS ('一道工序');<br>
+CREATE TABLE device11MM01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device11WM01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device11PM01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device11VL03 USING device TAGS ('一道工序');<br>
+CREATE TABLE device11LT02 USING device TAGS ('一道工序');</p>
+<h3 id="一道工序二号生产线创建表">一道工序二号生产线创建表</h3>
+<p>CREATE TABLE device12LT02 USING device TAGS ('一道工序');<br>
+CREATE TABLE device12TM01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device12VL03 USING device TAGS ('一道工序');<br>
+CREATE TABLE device12PM01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device12WM01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device12MM01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device12LT01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device12VL02 USING device TAGS ('一道工序');<br>
+CREATE TABLE device12VL01 USING device TAGS ('一道工序');</p>
+<h3 id="一道工序三号生产线创建表">一道工序三号生产线创建表</h3>
+<p>CREATE TABLE device13LT02 USING device TAGS ('一道工序');<br>
+CREATE TABLE device13VL03 USING device TAGS ('一道工序');<br>
+CREATE TABLE device13PM01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device13WM01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device13MM01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device13VL02 USING device TAGS ('一道工序');<br>
+CREATE TABLE device13VL01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device13TM01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device13LT01 USING device TAGS ('一道工序');</p>
+<h3 id="一道工序四号生产线创建表">一道工序四号生产线创建表</h3>
+<p>CREATE TABLE device14LT02 USING device TAGS ('一道工序');<br>
+CREATE TABLE device14EP01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device14PM02 USING device TAGS ('一道工序');<br>
+CREATE TABLE device14WM01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device14MM01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device14VL02 USING device TAGS ('一道工序');<br>
+CREATE TABLE device14VL01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device14VL03 USING device TAGS ('一道工序');<br>
+CREATE TABLE device14LT01 USING device TAGS ('一道工序');</p>
+<h3 id="一道工序五号生产线创建表">一道工序五号生产线创建表</h3>
+<p>CREATE TABLE device15LT02 USING device TAGS ('一道工序');<br>
+CREATE TABLE device15VL03 USING device TAGS ('一道工序');<br>
+CREATE TABLE device15PM02 USING device TAGS ('一道工序');<br>
+CREATE TABLE device15WM01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device15MM01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device15VL02 USING device TAGS ('一道工序');<br>
+CREATE TABLE device15VL01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device15VL03 USING device TAGS ('一道工序');<br>
+CREATE TABLE device15LT01 USING device TAGS ('一道工序');</p>
+<h3 id="一道工序一号生产线插入数据">一道工序一号生产线插入数据</h3>
+<p>INSERT INTO device11LT01 VALUES ('2021-03-05 18:12:02.000','原料罐液位计', 1,1,0,0,0);<br>
+INSERT INTO device11TM01 VALUES ('2021-03-05 18:12:02.000','固体罐螺杆电机', 1,1,0,0,0);<br>
+INSERT INTO device11VL01 VALUES ('2021-03-05 18:12:02.000','固体罐至搅拌罐阀门', 1,1,0,0,0);<br>
+INSERT INTO device11VL02 VALUES ('2021-03-05 18:12:02.000','纯水阀门', 1,1,0,0,0);<br>
+INSERT INTO device11MM01 VALUES ('2021-03-05 18:12:02.000','搅拌电机', 1,1,0,0,0);<br>
+INSERT INTO device11WM01 VALUES ('2021-03-05 18:12:02.000','搅拌罐称重模块', 1,1,0,0,0);<br>
+INSERT INTO device11PM01 VALUES ('2021-03-05 18:12:02.000','搅拌罐至成品罐泵', 1,1,0,0,0);<br>
+INSERT INTO device11VL03 VALUES ('2021-03-05 18:12:02.000','搅拌罐至成品罐阀门', 1,1,0,0,0);<br>
+INSERT INTO device11LT02 VALUES ('2021-03-05 18:12:02.000','成品罐液位计', 1,1,0,0,0);<br>
+CREATE TABLE ceshi1 USING device TAGS ('一道工序');</p>
+<h3 id="一道工序二号生产线插入数据">一道工序二号生产线插入数据</h3>
+<p>INSERT INTO device12VL01 VALUES ('2021-03-05 18:12:02.000','固体罐至搅拌罐阀门', '一道工序','二号产线',0,0,0);<br>
+INSERT INTO device12VL02 VALUES ('2021-03-05 18:12:02.000','纯水阀门', '一道工序','二号产线',0,0,0);<br>
+INSERT INTO device12LT01 VALUES ('2021-03-05 18:12:02.000','原料罐液位计', '一道工序','二号产线',0,0,0);<br>
+INSERT INTO device12MM01 VALUES ('2021-03-05 18:12:02.000','搅拌电机', '一道工序','二号产线',0,0,0);<br>
+INSERT INTO device12WM01 VALUES ('2021-03-05 18:12:02.000','搅拌罐称重模块', '一道工序','二号产线',0,0,0);<br>
+INSERT INTO device12PM01 VALUES ('2021-03-05 18:12:02.000','搅拌罐至成品罐泵', '一道工序','二号产线',0,0,0);<br>
+INSERT INTO device12VL03 VALUES ('2021-03-05 18:12:02.000','搅拌罐至成品罐阀门', '一道工序','二号产线',0,0,0);<br>
+INSERT INTO device12TM01 VALUES ('2021-03-05 18:12:02.000','固体罐螺杆电机', '一道工序','二号产线',0,0,0);<br>
+INSERT INTO device12LT02 VALUES ('2021-03-05 18:12:02.000','原料罐液位计', '一道工序','二号产线',0,0,0);</p>
+<h3 id="一道工序三号生产线插入数据">一道工序三号生产线插入数据</h3>
+<p>INSERT INTO device13LT01 VALUES ('2021-03-05 18:12:02.000','原料罐液位计', '一道工序','三号产线',0,0,0);<br>
+INSERT INTO device13TM01 VALUES ('2021-03-05 18:12:02.000','固体罐螺杆电机', '一道工序','三号产线',0,0,0);<br>
+INSERT INTO device13VL01 VALUES ('2021-03-05 18:12:02.000','固体罐至搅拌罐阀门', '一道工序','三号产线',0,0,0);<br>
+INSERT INTO device13VL02 VALUES ('2021-03-05 18:12:02.000','纯水阀门', '一道工序','三号产线',0,0,0);<br>
+INSERT INTO device13MM01 VALUES ('2021-03-05 18:12:02.000','搅拌电机', '一道工序','三号产线',0,0,0);<br>
+INSERT INTO device13WM01 VALUES ('2021-03-05 18:12:02.000','搅拌罐称重模块', '一道工序','三号产线',0,0,0);<br>
+INSERT INTO device13PM01 VALUES ('2021-03-05 18:12:02.000','搅拌罐至成品罐泵', '一道工序','三号产线',0,0,0);<br>
+INSERT INTO device13VL03 VALUES ('2021-03-05 18:12:02.000','搅拌罐至成品罐阀门', '一道工序','三号产线',0,0,0);<br>
+INSERT INTO device13LT02 VALUES ('2021-03-05 18:12:02.000','成品罐液位计', '一道工序','三号产线',0,0,0);</p>
+<h3 id="一道工序四号生产线插入数据">一道工序四号生产线插入数据</h3>
+<p>INSERT INTO device14LT01 VALUES ('2021-03-05 18:12:02.000','原料罐液位计', '一道工序','四号产线',0,0,0);<br>
+INSERT INTO device14PM01 VALUES ('2021-03-05 18:12:02.000','原料罐至搅拌罐泵', '一道工序','四号产线',0,0,0);<br>
+INSERT INTO device14VL01 VALUES ('2021-03-05 18:12:02.000','原料罐至搅拌罐阀门', '一道工序','四号产线',0,0,0);<br>
+INSERT INTO device14VL02 VALUES ('2021-03-05 18:12:02.000','纯水阀门', '一道工序','四号产线',0,0,0);<br>
+INSERT INTO device14MM01 VALUES ('2021-03-05 18:12:02.000','搅拌电机', '一道工序','四号产线',0,0,0);<br>
+INSERT INTO device14WM01 VALUES ('2021-03-05 18:12:02.000','搅拌罐称重模块', '一道工序','四号产线',0,0,0);<br>
+INSERT INTO device14PM02 VALUES ('2021-03-05 18:12:02.000','搅拌罐至成品罐泵', '一道工序','四号产线',0,0,0);<br>
+INSERT INTO device14VL03 VALUES ('2021-03-05 18:12:02.000','搅拌罐至成品罐阀门', '一道工序','四号产线',0,0,0);<br>
+INSERT INTO device14LT02 VALUES ('2021-03-05 18:12:02.000','成品罐液位计', '一道工序','四号产线',0,0,0);</p>
+<h3 id="一道工序五号生产线插入数据">一道工序五号生产线插入数据</h3>
+<p>INSERT INTO device15LT01 VALUES ('2021-03-05 18:12:02.000','原料罐液位计', '一道工序','五号产线',0,0,0);<br>
+INSERT INTO device15PM01 VALUES ('2021-03-05 18:12:02.000','原料罐至搅拌罐泵', '一道工序','五号产线',0,0,0);<br>
+INSERT INTO device15VL01 VALUES ('2021-03-05 18:12:02.000','原料罐至搅拌罐阀门', '一道工序','五号产线',0,0,0);<br>
+INSERT INTO device15VL02 VALUES ('2021-03-05 18:12:02.000','纯水阀门', '一道工序','五号产线',0,0,0);<br>
+INSERT INTO device15MM01 VALUES ('2021-03-05 18:12:02.000','搅拌电机', '一道工序','五号产线',0,0,0);<br>
+INSERT INTO device15WM01 VALUES ('2021-03-05 18:12:02.000','搅拌罐称重模块', '一道工序','五号产线',0,0,0);<br>
+INSERT INTO device15PM02 VALUES ('2021-03-05 18:12:02.000','搅拌罐至成品罐泵', '一道工序','五号产线',0,0,0);<br>
+INSERT INTO device15VL03 VALUES ('2021-03-05 18:12:02.000','搅拌罐至成品罐泵', '一道工序','五号产线',0,0,0);<br>
+INSERT INTO device15LT02 VALUES ('2021-03-05 18:12:02.000','成品罐液位计', '一道工序','五号产线',0,0,0);<br>
+<strong>变频器频率</strong><br>
+CREATE TABLE device11sm01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device11sm02 USING device TAGS ('一道工序');<br>
+CREATE TABLE device11sm03 USING device TAGS ('一道工序');<br>
+<strong>一工序产线状态</strong><br>
+CREATE TABLE device11il01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device12il01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device13il01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device14il01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device15il01 USING device TAGS ('一道工序');<br>
+<strong>原料罐液位</strong><br>
+CREATE TABLE device11lt01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device12lt01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device13lt01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device14lt01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device15lt01 USING device TAGS ('一道工序');<br>
+<strong>纯水阀门开度</strong><br>
+CREATE TABLE device11vl02 USING device TAGS ('一道工序');<br>
+CREATE TABLE device12vl02 USING device TAGS ('一道工序');<br>
+CREATE TABLE device13vl02 USING device TAGS ('一道工序');<br>
+CREATE TABLE device14vl02 USING device TAGS ('一道工序');<br>
+CREATE TABLE device15vl02 USING device TAGS ('一道工序');<br>
+<strong>搅拌罐重量</strong><br>
+CREATE TABLE device11wm01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device12wm01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device13wm01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device14wm01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device15wm01 USING device TAGS ('一道工序');<br>
+<strong>原料罐阀门</strong><br>
+CREATE TABLE device11vl01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device12vl01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device13vl01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device14vl01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device15vl01 USING device TAGS ('一道工序');<br>
+<strong>搅拌电机状态</strong><br>
+CREATE TABLE device11mm01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device12mm01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device13mm01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device14mm01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device15mm01 USING device TAGS ('一道工序');<br>
+<strong>搅拌罐阀门</strong><br>
+CREATE TABLE device11vl03 USING device TAGS ('一道工序');<br>
+CREATE TABLE device12vl03 USING device TAGS ('一道工序');<br>
+CREATE TABLE device13vl03 USING device TAGS ('一道工序');<br>
+CREATE TABLE device14vl03 USING device TAGS ('一道工序');<br>
+CREATE TABLE device15vl03 USING device TAGS ('一道工序');<br>
+<strong>搅拌罐泵</strong><br>
+CREATE TABLE device11pm01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device12pm01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device13pm01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device14pm01 USING device TAGS ('一道工序');<br>
+CREATE TABLE device15pm01 USING device TAGS ('一道工序');<br>
+<strong>成品罐液位</strong><br>
+CREATE TABLE device11lt02 USING device TAGS ('一道工序');<br>
+CREATE TABLE device12lt02 USING device TAGS ('一道工序');<br>
+CREATE TABLE device13lt02 USING device TAGS ('一道工序');<br>
+CREATE TABLE device14lt02 USING device TAGS ('一道工序');<br>
+CREATE TABLE device15lt02 USING device TAGS ('一道工序<br>
+<strong>液体罐泵</strong><br>
+CREATE TABLE device14pm02 USING device TAGS ('一道工序');<br>
+CREATE TABLE device15pm02 USING device TAGS ('一道工序');<br>
+<strong>二工序产线状态</strong><br>
+CREATE TABLE device21il01 USING device TAGS ('二道工序');<br>
+CREATE TABLE device22il01 USING device TAGS ('二道工序');<br>
+CREATE TABLE device23il01 USING device TAGS ('二道工序');<br>
+CREATE TABLE device24il01 USING device TAGS ('二道工序');<br>
+CREATE TABLE device25il01 USING device TAGS ('二道工序');<br>
+<strong>二工序阀门</strong><br>
+CREATE TABLE device21vl01 USING device TAGS ('二道工序');<br>
+CREATE TABLE device22vl01 USING device TAGS ('二道工序');<br>
+CREATE TABLE device23vl01 USING device TAGS ('二道工序');<br>
+CREATE TABLE device24vl01 USING device TAGS ('二道工序');<br>
+CREATE TABLE device25vl01 USING device TAGS ('二道工序');<br>
+<strong>二工序泵</strong><br>
+CREATE TABLE device21pm01 USING device TAGS ('二道工序');<br>
+CREATE TABLE device22pm01 USING device TAGS ('二道工序');<br>
+CREATE TABLE device23pm01 USING device TAGS ('二道工序');<br>
+CREATE TABLE device24pm01 USING device TAGS ('二道工序');<br>
+CREATE TABLE device25pm01 USING device TAGS ('二道工序');</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[aliyunStartService]]></title>
+        <id>https://spark-wz.github.io/post/aliyunstartservice</id>
+        <link href="https://spark-wz.github.io/post/aliyunstartservice">
+        </link>
+        <updated>2020-11-03T12:33:07.000Z</updated>
+        <content type="html"><![CDATA[<p><strong>启动nginx</strong><br>
+/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf</p>
+<p><strong>启动redis</strong><br>
+cd到/usr/local/redis/bin<br>
+./redis-server redis.conf</p>
 ]]></content>
     </entry>
 </feed>
