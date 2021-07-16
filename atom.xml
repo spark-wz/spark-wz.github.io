@@ -2,13 +2,71 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://spark-wz.github.io</id>
     <title>Gridea</title>
-    <updated>2021-07-15T09:36:38.927Z</updated>
+    <updated>2021-07-16T06:57:29.910Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://spark-wz.github.io"/>
     <link rel="self" href="https://spark-wz.github.io/atom.xml"/>
     <logo>https://spark-wz.github.io/images/avatar.png</logo>
     <icon>https://spark-wz.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[SpringCloud熔断器]]></title>
+        <id>https://spark-wz.github.io/post/springcloud-rong-duan-qi</id>
+        <link href="https://spark-wz.github.io/post/springcloud-rong-duan-qi">
+        </link>
+        <updated>2021-07-16T06:20:21.000Z</updated>
+        <content type="html"><![CDATA[<p>添加依赖（熔断器）</p>
+<pre><code>  &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-cloud-starter-hystrix&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[二进制运算]]></title>
+        <id>https://spark-wz.github.io/post/er-jin-zhi-yun-suan</id>
+        <link href="https://spark-wz.github.io/post/er-jin-zhi-yun-suan">
+        </link>
+        <updated>2021-07-15T09:37:14.000Z</updated>
+        <content type="html"><![CDATA[<h4 id="1-按位与">1. 按位与（&amp;）</h4>
+<p>按位与运算为：两位全为1，结果为1，即1&amp;1=1，1&amp;0=0，0&amp;1=0，0&amp;0=0。<br>
+例如51 &amp; 5 -&gt; 00110011 &amp; 00000101 = 00000001 -&gt; 51 &amp; 5 = 1<br>
+<strong>特殊用法</strong>：<br>
+（1）与0相与可清零。<br>
+（2）与1相与可保留原值，可从一个数中取某些位。例如需要取10101110中的低四位，10101110 &amp; 00001111 = 00001110，即得到所需结果。</p>
+<h4 id="2-按位或">2. 按位或（|）</h4>
+<p>两位只要有一位为1，结果则为1，即1|1=1，1|0=1，0|1=1，0|0=0。<br>
+<strong>特殊用法</strong>：<br>
+（1）与0相或可保留原值。<br>
+（2）与1相或可将对应位置1。例如，将X=10100000的低四位置1，使X | 00001111 = 10101111即可。</p>
+<h4 id="3-异或运算">3. 异或运算（^）</h4>
+<p>两位为“异”，即一位为1一位为0，则结果为1，否则为0。即1<sup>1=1，1</sup>0=0，0<sup>1=0，0</sup>0=1。<br>
+<strong>特殊用法</strong>：<br>
+（1）使指定位翻转：找一个数，对应X要翻转的各位为1，其余为0，使其与X进行异或运算即可。例如，X=10101110，使低四位翻转，X ^ 00001111 = 10100001。<br>
+（2）与0相异或保留原值。例如X ^ 00000000 = 10101110。<br>
+（3）交换两变量的值。（比借助容器法、加减法效率高）原理：一个数对同一个数连续两次进行异或运算，结果与这个数相等。<br>
+因此，交换方法为：A = A ^ B，B = A ^ B，A = A ^ B。</p>
+<h4 id="4-取反~">4. 取反（~）</h4>
+<p>将一个数按位取反，即~ 0 = 1，~ 1 = 0。</p>
+<h4 id="5-左移">5. 左移（&lt;&lt;）</h4>
+<p>将一个数左移x位，即左边丢弃x位，右边用0补x位。例：11100111 &lt;&lt; 2 = 10011100。<br>
+<strong>拓展</strong>：<br>
+<mark>原码</mark>：一个整数按照绝对值大小转换为二进制即为原码；<br>
+<mark>反码</mark>：将二进制数按位取反，得到的即为反码；<br>
+<mark>补码</mark>：反码加1即为补码。<br>
+<mark>由于计算机底层硬件的限制，负数均使用补码表示。</mark><br>
+若左移时舍弃的高位全为0，则每左移1位，相当于该数十进制时乘一次2。</p>
+<p>例：11(1011) &lt;&lt; 2 = 44（11表示为1011时实际上不完整，若计算机中规定整型的大小为32bit，则11的完整二进制形式为00000000 00000000 0000000 00001011）</p>
+<h4 id="6-右移">6. 右移（&gt;&gt;）</h4>
+<p>将一个数右移若干位，右边舍弃，正数左边补0，负数左边补1。每右移一位，相当于除以一次2。<br>
+例：4 &gt;&gt; 2 = 1，-14 &gt;&gt; 2 = -4。</p>
+<h4 id="7-无符号右移">7. 无符号右移（&gt;&gt;&gt;）</h4>
+<p>将一个数右移若干位，左边补0，右边舍弃。<br>
+例：-14 &gt;&gt;&gt; 2 = (11111111 11111111 11111111 11110010) &gt;&gt;&gt; 2 = (00111111 11111111 11111111 11111100) = 1073741820<br>
+<img src="https://spark-wz.github.io/post-images/1626343682637.png" alt=""></p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[SpringCloud ZUUL网关]]></title>
         <id>https://spark-wz.github.io/post/springcloud-zuul</id>
@@ -629,306 +687,6 @@ s7Client.ConnectTo(&quot;192.168.2.15&quot;, 0, 1);</p>
 		
 `
 </code></pre>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[mysql根据日期分组填充不存在时间]]></title>
-        <id>https://spark-wz.github.io/post/shou-dong-fa</id>
-        <link href="https://spark-wz.github.io/post/shou-dong-fa">
-        </link>
-        <updated>2021-03-16T11:15:36.000Z</updated>
-        <content type="html"><![CDATA[<p>SELECT date(downtime) AS dday, count(*) AS num FROM re_device GROUP BY dday<br>
-得到如下结果，如果那天没有数据，那麽就会没有记录<br>
-这里写图片描述<br>
-我们看到，时间不连续，没有2016-3-05这一天的，这样本来不是问题，但是，我拿出来的数据，还要画出图表呀，没有当然不行，我们需要的是下面这个样子的。<br>
-这里写图片描述</p>
-<p>简单的说就是，没有数据，就要补充一个0.</p>
-<p>3、下面我们讲实现</p>
-<p>我们要生成一个日历的表，然后和原来的数据，联合查询，说到这里，大家就知道很low了，但是，限于我水平有限，研究这个问题，半天，这个是我找到的比较好的一种实现方式。如果你又更好的，也请你给我说下。<br>
-执行下面的sql，直接诶生成日历的表（calendar）</p>
-<p>CREATE TABLE num (i int);-- 创建一个表用来储存0-9的数字</p>
-<p>INSERT INTO num (i) VALUES (0), (1), (2), (3), (4), (5), (6), (7), (8), (9);-- 生成0-9的数字，方便以后计算时间</p>
-<p>CREATE TABLE  if not exists calendar(datelist date); -- 生成一个存储日期的表，datalist是字段名</p>
-<p>-- 这里是生成并插入日期数据</p>
-<p>INSERT INTO calendar(datelist) SELECT</p>
-<pre><code>adddate(
-
-    (   -- 这里的起始日期，你可以换成当前日期
-
-        DATE_FORMAT(&quot;2016-1-1&quot;, '%Y-%m-%d') 
-
-    ),
-
-    numlist.id
-
-) AS `date`
-</code></pre>
-<p>FROM</p>
-<pre><code>(
-
-    SELECT
-
-        n1.i + n10.i * 10 + n100.i * 100 + n1000.i * 1000+ n10000.i * 10000 AS id
-    FROM
-
-        num n1
-
-    CROSS JOIN num AS n10
-
-    CROSS JOIN num AS n100
-
-    CROSS JOIN num AS n1000
-
-    CROSS JOIN num AS n10000
-
-) AS numlist;
-</code></pre>
-<p>这里我用了100000条记录，算出来到2289年了，完全够用了，到那个时候，出问题，我也管不了了。</p>
-<p>完成之后，请删除num的零时表<br>
-4、联合查询</p>
-<p>SELECT</p>
-<pre><code>date(dday) ddate,
-
-count(*) - 1 as num
-</code></pre>
-<p>FROM</p>
-<pre><code>(
-
-    SELECT
-
-        datelist as dday
-
-    FROM
-
-        calendar 
-
-        -- 这里是限制返回最近30天的数据
-
-        where  DATE_SUB(CURDATE(), INTERVAL 30 DAY) &lt;= date
-</code></pre>
-<p>(datelist)&amp;&amp;date(datelist)&lt;=CURDATE()</p>
-<pre><code>    UNION ALL
-
-        SELECT
-
-            downtime
-
-        FROM
-
-            re_device
-
-) a
-</code></pre>
-<p>GROUP BY ddate<br>
-好了，到这里，基本就完成了这个查询，出来的数据，我还是比较满意的。</p>
-<p>5、其他解决方法<br>
-当然，应该还有其他的解决方案，但是博主就没有去写了，有时间可以去写一下。<br>
-我用的spring mvc，所以，也还是可以在java代码中补充完整的，因为数据返回的是个map对象，那麽我们要遍历这个对象，直接用calendar对象，生成日期作为key来遍历，如果没有数据，就put进去一个0，然后在限制一下，需要多少天的，就可以了。数据就完整了。<br>
-但是这样也有一个问题，那就是map里的数据顺序会有问题，所以，使用的时候，也必须是生成calendar对象，然后构造出来日期作为key来遍历。或者用Collections.sort（）排序一下。</p>
-<p>我个人觉得，还是上数据直接生成得比较好一点。</p>
-<p>分类: SQL, 工作总结<br>
-标签: java经验集锦, 通用实践, SQL, DB, Mysql<br>
-好文要顶 关注我 收藏该文</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[供料系统taos]]></title>
-        <id>https://spark-wz.github.io/post/gong-liao-xi-tong-taos</id>
-        <link href="https://spark-wz.github.io/post/gong-liao-xi-tong-taos">
-        </link>
-        <updated>2021-03-05T05:42:10.000Z</updated>
-        <content type="html"><![CDATA[<h2 id="供料系统">供料系统</h2>
-<h3 id="创建超级表">创建超级表</h3>
-<p>CREATE TABLE device(ts timestamp,device_name binary(50), procedure_num binary(50),beltline binary(50), lc float,weight float, device_status float) TAGS (procedure  binary(20));<br>
-ts时间<br>
-device_name设备名称<br>
-procedure_num工序号，1代表一道工序<br>
-beltline生产线号，1代表一号生产线<br>
-lc 液位<br>
-weight 重量<br>
-device_status 设备状态<br>
-device_id设备id<br>
-flow 流量</p>
-<h3 id="一道工序一号生产线创建表">一道工序一号生产线创建表</h3>
-<p>CREATE TABLE device11LT01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device11TM01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device11VL01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device11VL02 USING device TAGS ('一道工序');<br>
-CREATE TABLE device11MM01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device11WM01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device11PM01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device11VL03 USING device TAGS ('一道工序');<br>
-CREATE TABLE device11LT02 USING device TAGS ('一道工序');</p>
-<h3 id="一道工序二号生产线创建表">一道工序二号生产线创建表</h3>
-<p>CREATE TABLE device12LT02 USING device TAGS ('一道工序');<br>
-CREATE TABLE device12TM01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device12VL03 USING device TAGS ('一道工序');<br>
-CREATE TABLE device12PM01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device12WM01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device12MM01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device12LT01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device12VL02 USING device TAGS ('一道工序');<br>
-CREATE TABLE device12VL01 USING device TAGS ('一道工序');</p>
-<h3 id="一道工序三号生产线创建表">一道工序三号生产线创建表</h3>
-<p>CREATE TABLE device13LT02 USING device TAGS ('一道工序');<br>
-CREATE TABLE device13VL03 USING device TAGS ('一道工序');<br>
-CREATE TABLE device13PM01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device13WM01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device13MM01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device13VL02 USING device TAGS ('一道工序');<br>
-CREATE TABLE device13VL01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device13TM01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device13LT01 USING device TAGS ('一道工序');</p>
-<h3 id="一道工序四号生产线创建表">一道工序四号生产线创建表</h3>
-<p>CREATE TABLE device14LT02 USING device TAGS ('一道工序');<br>
-CREATE TABLE device14EP01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device14PM02 USING device TAGS ('一道工序');<br>
-CREATE TABLE device14WM01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device14MM01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device14VL02 USING device TAGS ('一道工序');<br>
-CREATE TABLE device14VL01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device14VL03 USING device TAGS ('一道工序');<br>
-CREATE TABLE device14LT01 USING device TAGS ('一道工序');</p>
-<h3 id="一道工序五号生产线创建表">一道工序五号生产线创建表</h3>
-<p>CREATE TABLE device15LT02 USING device TAGS ('一道工序');<br>
-CREATE TABLE device15VL03 USING device TAGS ('一道工序');<br>
-CREATE TABLE device15PM02 USING device TAGS ('一道工序');<br>
-CREATE TABLE device15WM01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device15MM01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device15VL02 USING device TAGS ('一道工序');<br>
-CREATE TABLE device15VL01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device15VL03 USING device TAGS ('一道工序');<br>
-CREATE TABLE device15LT01 USING device TAGS ('一道工序');</p>
-<h3 id="一道工序一号生产线插入数据">一道工序一号生产线插入数据</h3>
-<p>INSERT INTO device11LT01 VALUES ('2021-03-05 18:12:02.000','原料罐液位计', 1,1,0,0,0);<br>
-INSERT INTO device11TM01 VALUES ('2021-03-05 18:12:02.000','固体罐螺杆电机', 1,1,0,0,0);<br>
-INSERT INTO device11VL01 VALUES ('2021-03-05 18:12:02.000','固体罐至搅拌罐阀门', 1,1,0,0,0);<br>
-INSERT INTO device11VL02 VALUES ('2021-03-05 18:12:02.000','纯水阀门', 1,1,0,0,0);<br>
-INSERT INTO device11MM01 VALUES ('2021-03-05 18:12:02.000','搅拌电机', 1,1,0,0,0);<br>
-INSERT INTO device11WM01 VALUES ('2021-03-05 18:12:02.000','搅拌罐称重模块', 1,1,0,0,0);<br>
-INSERT INTO device11PM01 VALUES ('2021-03-05 18:12:02.000','搅拌罐至成品罐泵', 1,1,0,0,0);<br>
-INSERT INTO device11VL03 VALUES ('2021-03-05 18:12:02.000','搅拌罐至成品罐阀门', 1,1,0,0,0);<br>
-INSERT INTO device11LT02 VALUES ('2021-03-05 18:12:02.000','成品罐液位计', 1,1,0,0,0);<br>
-CREATE TABLE ceshi1 USING device TAGS ('一道工序');</p>
-<h3 id="一道工序二号生产线插入数据">一道工序二号生产线插入数据</h3>
-<p>INSERT INTO device12VL01 VALUES ('2021-03-05 18:12:02.000','固体罐至搅拌罐阀门', '一道工序','二号产线',0,0,0);<br>
-INSERT INTO device12VL02 VALUES ('2021-03-05 18:12:02.000','纯水阀门', '一道工序','二号产线',0,0,0);<br>
-INSERT INTO device12LT01 VALUES ('2021-03-05 18:12:02.000','原料罐液位计', '一道工序','二号产线',0,0,0);<br>
-INSERT INTO device12MM01 VALUES ('2021-03-05 18:12:02.000','搅拌电机', '一道工序','二号产线',0,0,0);<br>
-INSERT INTO device12WM01 VALUES ('2021-03-05 18:12:02.000','搅拌罐称重模块', '一道工序','二号产线',0,0,0);<br>
-INSERT INTO device12PM01 VALUES ('2021-03-05 18:12:02.000','搅拌罐至成品罐泵', '一道工序','二号产线',0,0,0);<br>
-INSERT INTO device12VL03 VALUES ('2021-03-05 18:12:02.000','搅拌罐至成品罐阀门', '一道工序','二号产线',0,0,0);<br>
-INSERT INTO device12TM01 VALUES ('2021-03-05 18:12:02.000','固体罐螺杆电机', '一道工序','二号产线',0,0,0);<br>
-INSERT INTO device12LT02 VALUES ('2021-03-05 18:12:02.000','原料罐液位计', '一道工序','二号产线',0,0,0);</p>
-<h3 id="一道工序三号生产线插入数据">一道工序三号生产线插入数据</h3>
-<p>INSERT INTO device13LT01 VALUES ('2021-03-05 18:12:02.000','原料罐液位计', '一道工序','三号产线',0,0,0);<br>
-INSERT INTO device13TM01 VALUES ('2021-03-05 18:12:02.000','固体罐螺杆电机', '一道工序','三号产线',0,0,0);<br>
-INSERT INTO device13VL01 VALUES ('2021-03-05 18:12:02.000','固体罐至搅拌罐阀门', '一道工序','三号产线',0,0,0);<br>
-INSERT INTO device13VL02 VALUES ('2021-03-05 18:12:02.000','纯水阀门', '一道工序','三号产线',0,0,0);<br>
-INSERT INTO device13MM01 VALUES ('2021-03-05 18:12:02.000','搅拌电机', '一道工序','三号产线',0,0,0);<br>
-INSERT INTO device13WM01 VALUES ('2021-03-05 18:12:02.000','搅拌罐称重模块', '一道工序','三号产线',0,0,0);<br>
-INSERT INTO device13PM01 VALUES ('2021-03-05 18:12:02.000','搅拌罐至成品罐泵', '一道工序','三号产线',0,0,0);<br>
-INSERT INTO device13VL03 VALUES ('2021-03-05 18:12:02.000','搅拌罐至成品罐阀门', '一道工序','三号产线',0,0,0);<br>
-INSERT INTO device13LT02 VALUES ('2021-03-05 18:12:02.000','成品罐液位计', '一道工序','三号产线',0,0,0);</p>
-<h3 id="一道工序四号生产线插入数据">一道工序四号生产线插入数据</h3>
-<p>INSERT INTO device14LT01 VALUES ('2021-03-05 18:12:02.000','原料罐液位计', '一道工序','四号产线',0,0,0);<br>
-INSERT INTO device14PM01 VALUES ('2021-03-05 18:12:02.000','原料罐至搅拌罐泵', '一道工序','四号产线',0,0,0);<br>
-INSERT INTO device14VL01 VALUES ('2021-03-05 18:12:02.000','原料罐至搅拌罐阀门', '一道工序','四号产线',0,0,0);<br>
-INSERT INTO device14VL02 VALUES ('2021-03-05 18:12:02.000','纯水阀门', '一道工序','四号产线',0,0,0);<br>
-INSERT INTO device14MM01 VALUES ('2021-03-05 18:12:02.000','搅拌电机', '一道工序','四号产线',0,0,0);<br>
-INSERT INTO device14WM01 VALUES ('2021-03-05 18:12:02.000','搅拌罐称重模块', '一道工序','四号产线',0,0,0);<br>
-INSERT INTO device14PM02 VALUES ('2021-03-05 18:12:02.000','搅拌罐至成品罐泵', '一道工序','四号产线',0,0,0);<br>
-INSERT INTO device14VL03 VALUES ('2021-03-05 18:12:02.000','搅拌罐至成品罐阀门', '一道工序','四号产线',0,0,0);<br>
-INSERT INTO device14LT02 VALUES ('2021-03-05 18:12:02.000','成品罐液位计', '一道工序','四号产线',0,0,0);</p>
-<h3 id="一道工序五号生产线插入数据">一道工序五号生产线插入数据</h3>
-<p>INSERT INTO device15LT01 VALUES ('2021-03-05 18:12:02.000','原料罐液位计', '一道工序','五号产线',0,0,0);<br>
-INSERT INTO device15PM01 VALUES ('2021-03-05 18:12:02.000','原料罐至搅拌罐泵', '一道工序','五号产线',0,0,0);<br>
-INSERT INTO device15VL01 VALUES ('2021-03-05 18:12:02.000','原料罐至搅拌罐阀门', '一道工序','五号产线',0,0,0);<br>
-INSERT INTO device15VL02 VALUES ('2021-03-05 18:12:02.000','纯水阀门', '一道工序','五号产线',0,0,0);<br>
-INSERT INTO device15MM01 VALUES ('2021-03-05 18:12:02.000','搅拌电机', '一道工序','五号产线',0,0,0);<br>
-INSERT INTO device15WM01 VALUES ('2021-03-05 18:12:02.000','搅拌罐称重模块', '一道工序','五号产线',0,0,0);<br>
-INSERT INTO device15PM02 VALUES ('2021-03-05 18:12:02.000','搅拌罐至成品罐泵', '一道工序','五号产线',0,0,0);<br>
-INSERT INTO device15VL03 VALUES ('2021-03-05 18:12:02.000','搅拌罐至成品罐泵', '一道工序','五号产线',0,0,0);<br>
-INSERT INTO device15LT02 VALUES ('2021-03-05 18:12:02.000','成品罐液位计', '一道工序','五号产线',0,0,0);<br>
-<strong>变频器频率</strong><br>
-CREATE TABLE device11sm01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device11sm02 USING device TAGS ('一道工序');<br>
-CREATE TABLE device11sm03 USING device TAGS ('一道工序');<br>
-<strong>一工序产线状态</strong><br>
-CREATE TABLE device11il01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device12il01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device13il01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device14il01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device15il01 USING device TAGS ('一道工序');<br>
-<strong>原料罐液位</strong><br>
-CREATE TABLE device11lt01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device12lt01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device13lt01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device14lt01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device15lt01 USING device TAGS ('一道工序');<br>
-<strong>纯水阀门开度</strong><br>
-CREATE TABLE device11vl02 USING device TAGS ('一道工序');<br>
-CREATE TABLE device12vl02 USING device TAGS ('一道工序');<br>
-CREATE TABLE device13vl02 USING device TAGS ('一道工序');<br>
-CREATE TABLE device14vl02 USING device TAGS ('一道工序');<br>
-CREATE TABLE device15vl02 USING device TAGS ('一道工序');<br>
-<strong>搅拌罐重量</strong><br>
-CREATE TABLE device11wm01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device12wm01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device13wm01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device14wm01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device15wm01 USING device TAGS ('一道工序');<br>
-<strong>原料罐阀门</strong><br>
-CREATE TABLE device11vl01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device12vl01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device13vl01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device14vl01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device15vl01 USING device TAGS ('一道工序');<br>
-<strong>搅拌电机状态</strong><br>
-CREATE TABLE device11mm01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device12mm01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device13mm01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device14mm01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device15mm01 USING device TAGS ('一道工序');<br>
-<strong>搅拌罐阀门</strong><br>
-CREATE TABLE device11vl03 USING device TAGS ('一道工序');<br>
-CREATE TABLE device12vl03 USING device TAGS ('一道工序');<br>
-CREATE TABLE device13vl03 USING device TAGS ('一道工序');<br>
-CREATE TABLE device14vl03 USING device TAGS ('一道工序');<br>
-CREATE TABLE device15vl03 USING device TAGS ('一道工序');<br>
-<strong>搅拌罐泵</strong><br>
-CREATE TABLE device11pm01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device12pm01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device13pm01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device14pm01 USING device TAGS ('一道工序');<br>
-CREATE TABLE device15pm01 USING device TAGS ('一道工序');<br>
-<strong>成品罐液位</strong><br>
-CREATE TABLE device11lt02 USING device TAGS ('一道工序');<br>
-CREATE TABLE device12lt02 USING device TAGS ('一道工序');<br>
-CREATE TABLE device13lt02 USING device TAGS ('一道工序');<br>
-CREATE TABLE device14lt02 USING device TAGS ('一道工序');<br>
-CREATE TABLE device15lt02 USING device TAGS ('一道工序<br>
-<strong>液体罐泵</strong><br>
-CREATE TABLE device14pm02 USING device TAGS ('一道工序');<br>
-CREATE TABLE device15pm02 USING device TAGS ('一道工序');<br>
-<strong>二工序产线状态</strong><br>
-CREATE TABLE device21il01 USING device TAGS ('二道工序');<br>
-CREATE TABLE device22il01 USING device TAGS ('二道工序');<br>
-CREATE TABLE device23il01 USING device TAGS ('二道工序');<br>
-CREATE TABLE device24il01 USING device TAGS ('二道工序');<br>
-CREATE TABLE device25il01 USING device TAGS ('二道工序');<br>
-<strong>二工序阀门</strong><br>
-CREATE TABLE device21vl01 USING device TAGS ('二道工序');<br>
-CREATE TABLE device22vl01 USING device TAGS ('二道工序');<br>
-CREATE TABLE device23vl01 USING device TAGS ('二道工序');<br>
-CREATE TABLE device24vl01 USING device TAGS ('二道工序');<br>
-CREATE TABLE device25vl01 USING device TAGS ('二道工序');<br>
-<strong>二工序泵</strong><br>
-CREATE TABLE device21pm01 USING device TAGS ('二道工序');<br>
-CREATE TABLE device22pm01 USING device TAGS ('二道工序');<br>
-CREATE TABLE device23pm01 USING device TAGS ('二道工序');<br>
-CREATE TABLE device24pm01 USING device TAGS ('二道工序');<br>
-CREATE TABLE device25pm01 USING device TAGS ('二道工序');</p>
 ]]></content>
     </entry>
 </feed>

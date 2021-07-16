@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>集合常用 | Gridea</title>
+<title>SpringCloud熔断器 | Gridea</title>
 <meta name="description" content="">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -81,58 +81,19 @@
       <div class="sm-12 md-8 col">
         <div class="paper">
           <article class="article">
-            <h1>集合常用</h1>
+            <h1>SpringCloud熔断器</h1>
             <p class="article-meta">
-              2019-12-11
+              2021-07-16
               
             </p>
             
             <div class="post-content">
-              <p><strong>java中将数组转为list</strong><br>
-String[] myArray = {&quot;Apple&quot;,&quot;Banana&quot;,&quot;Orange&quot;};<br>
-List<String> myList = Arrays.asList(myArray);<br>
-但是这个方法将数组转为集合后，集合的底层还是数组<img src="https://spark-wz.github.io/post-images/1576048771521.jpg" alt=""><br>
-2.传递的对象必须是基本对象，不能是包装类<br>
-int[] myArray = { 1, 2, 3 };<br>
-List myList = Arrays.asList(myArray);<br>
-System.out.println(myList.size());//1<br>
-System.out.println(myList.get(0));//数组地址值<br>
-System.out.println(myList.get(1));//报错：ArrayIndexOutOfBoundsException<br>
-当传入原生数据类型是,myList.get(0)拿到的是数组本身，而不是第一个值<br>
-List myList = Arrays.asList(1, 2, 3);<br>
-myList.add(4);//运行时报错：UnsupportedOperationException<br>
-myList.remove(1);//运行时报错：UnsupportedOperationException<br>
-myList.clear();//运行时报错：UnsupportedOperationException<br>
-在使用add(),remove(),clear()会报错<br>
-<em>正确的最简便的方法</em><br>
-String myArray = {&quot;Apple&quot;,&quot;Banana&quot;,&quot;Orange&quot;};<br>
-List list = new ArrayList&lt;&gt;(Arrays.asList(myArray));</p>
-<p><strong>遍历Map</strong></p>
-<p>1.通过map.keySet()</p>
-<p>通过key去获取value<br>
-Set<Integer> set = map.keySet();</p>
-<p>for (Integer integer: set) {</p>
-<p>System.out.println(integer +&quot;的对应值为:&quot; + map.get(integer));</p>
-<p>}<br>
-2.通过map.values遍历所有的value</p>
-<p>Map&lt;Integer,Integer&gt; map = new HashMap&lt;&gt;();<br>
-map.put(1,1);<br>
-map.put(2,2);<br>
-map.put(3,3);<br>
-Collection<Integer> values = map.values();<br>
-for (Integer value : values) {<br>
-System.out.println(&quot;value = &quot; + value);<br>
-}<br>
-3.遍历map.entrySet</p>
-<p>遍历map.entrySet,可同时拿到所有的KEY和VALUE<br>
-Set&lt;Map.Entry&lt;Integer, Integer&gt;&gt; entries = map.entrySet();<br>
-for (Map.Entry&lt;Integer, Integer&gt; entry : entries) {<br>
-System.out.println(&quot;entry.getValue() = &quot; + entry.getValue());<br>
-}</p>
-<p>4.lambda表达式</p>
-<p>map.forEach((key,value) -&gt;{<br>
-System.out.println(&quot;key = &quot; + key+&quot;value = &quot;+value);<br>
-});</p>
+              <p>添加依赖（熔断器）</p>
+<pre><code>  &lt;dependency&gt;
+      &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
+      &lt;artifactId&gt;spring-cloud-starter-hystrix&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+</code></pre>
 
             </div>
           </article>
@@ -143,9 +104,9 @@ System.out.println(&quot;key = &quot; + key+&quot;value = &quot;+value);<br>
               <div class="next">
                 下一篇
               </div>
-              <a href="https://spark-wz.github.io/post/tong-ling-xiang-mu-dai-ma-xue-xi">
+              <a href="https://spark-wz.github.io/post/er-jin-zhi-yun-suan">
                 <h3 class="post-title">
-                  铜陵项目代码学习
+                  二进制运算
                 </h3>
               </a>
             </div>
