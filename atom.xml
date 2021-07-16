@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://spark-wz.github.io</id>
     <title>Gridea</title>
-    <updated>2021-07-16T06:57:29.910Z</updated>
+    <updated>2021-07-16T09:06:43.432Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://spark-wz.github.io"/>
     <link rel="self" href="https://spark-wz.github.io/atom.xml"/>
@@ -15,12 +15,28 @@
         <link href="https://spark-wz.github.io/post/springcloud-rong-duan-qi">
         </link>
         <updated>2021-07-16T06:20:21.000Z</updated>
-        <content type="html"><![CDATA[<p>添加依赖（熔断器）</p>
+        <content type="html"><![CDATA[<p><strong>添加依赖（熔断器）</strong></p>
 <pre><code>  &lt;dependency&gt;
       &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;
       &lt;artifactId&gt;spring-cloud-starter-hystrix&lt;/artifactId&gt;
     &lt;/dependency&gt;
 </code></pre>
+<pre><code>&lt;dependency&gt;
+ &lt;groupId&gt;com.netflix.hystrix&lt;/groupId&gt;
+  &lt;artifactId&gt;hystrix-javanica&lt;/artifactId&gt;
+  &lt;version&gt;RELEASE&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+<p><strong>在启动类添加@EnableHystrix注解</strong><br>
+<strong>新建熔断回调方法注释及熔断回调</strong></p>
+<pre><code> private String getDefaultUser() {
+        System.out.println(&quot;熔断，默认回调函数&quot;);
+        return &quot;进程已熔断&quot;;
+    }
+//熔断回调方法返回值应与使用熔断接口返回类型一致
+</code></pre>
+<p><strong>使用熔断的接口添加注解</strong><br>
+<code>@HystrixCommand(fallbackMethod = &quot;getDefaultUser&quot;) fallbackMethod为熔断回调方法方法名</code></p>
 ]]></content>
     </entry>
     <entry>
