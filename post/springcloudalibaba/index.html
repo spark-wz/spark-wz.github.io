@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>nodejs | Gridea</title>
+<title>SpringCloud（Alibaba） | Gridea</title>
 <meta name="description" content="">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -81,104 +81,24 @@
       <div class="sm-12 md-8 col">
         <div class="paper">
           <article class="article">
-            <h1>nodejs</h1>
+            <h1>SpringCloud（Alibaba）</h1>
             <p class="article-meta">
-              2020-07-01
+              2021-07-19
               
             </p>
             
             <div class="post-content">
-              <p>//person对象<br>
-function Person(id, year, project, importance,pp,funds,funds_allocated,software_or_hardware,competition_and_selection,domestic_part,research_unit,is_private) {<br>
-this.id = id;<br>
-this.year = year;<br>
-this.project = project;<br>
-this.importance = importance;<br>
-this.pp = pp;<br>
-this.funds = funds;<br>
-this.funds_allocated = funds_allocated;<br>
-this.software_or_hardware = software_or_hardware;<br>
-this.competition_and_selection = competition_and_selection;<br>
-this.domestic_part = domestic_part;<br>
-this.research_unit = research_unit;<br>
-this.is_private = is_private;<br>
-}<br>
-function Person(id, year, project, importance,pp,funds,funds_allocated,software_or_hardware,competition_and_selection,domestic_part,research_unit,is_private) {<br>
-}<br>
-//set方法<br>
-Person.prototype.setId=function (id) {<br>
-this.id = id;<br>
-}<br>
-Person.prototype.setYear=function (year) {<br>
-this.year = year;<br>
-}<br>
-Person.prototype.setProject=function (project) {<br>
-this.project = project;<br>
-}<br>
-Person.prototype.setImportance=function (importance) {<br>
-this.importance = importance;<br>
-}<br>
-Person.prototype.setPp=function (pp) {<br>
-this.pp = pp;<br>
-}<br>
-Person.prototype.setFunds=function (funds) {<br>
-this.funds = funds;<br>
-}<br>
-Person.prototype.setAllocated=function (funds_allocated) {<br>
-this.funds_allocated = funds_allocated;<br>
-}<br>
-Person.prototype.setSoftware=function (software_or_hardware) {<br>
-this.software_or_hardware = software_or_hardware;<br>
-}<br>
-Person.prototype.setCompetition=function (competition_and_selection) {<br>
-this.competition_and_selection = competition_and_selection;<br>
-}<br>
-Person.prototype.setDomestic=function (domestic_part) {<br>
-this.domestic_part = domestic_part;<br>
-}<br>
-Person.prototype.setResearch=function (research_unit) {<br>
-this.research_unit = research_unit;<br>
-}<br>
-Person.prototype.setPrivate=function (is_private) {<br>
-this.is_private = is_private;<br>
-}<br>
-//get方法<br>
-Person.prototype.getId=function () {<br>
-return this.id ;<br>
-}<br>
-Person.prototype.getYear=function () {<br>
-return this.year;<br>
-}<br>
-Person.prototype.getProject=function () {<br>
-return this.project ;<br>
-}<br>
-Person.prototype.getImportance=function () {<br>
-return this.importance;<br>
-}<br>
-Person.prototype.getPp=function () {<br>
-return this.pp ;<br>
-}<br>
-Person.prototype.getFunds=function () {<br>
-return this.funds;<br>
-}<br>
-Person.prototype.getAllocated=function () {<br>
-return this.funds_allocated ;<br>
-}<br>
-Person.prototype.getSoftware=function () {<br>
-return this.software_or_hardware;<br>
-}<br>
-Person.prototype.getCompetition=function () {<br>
-return this.competition_and_selection;<br>
-}<br>
-Person.prototype.getDomestic=function () {<br>
-return this.domestic_part ;<br>
-}<br>
-Person.prototype.getResearch=function () {<br>
-return this.research_unit;<br>
-}<br>
-Person.prototype.getPrivate=function () {<br>
-return this.is_private;<br>
-}</p>
+              <p>组件版本关系<br>
+<img src="https://spark-wz.github.io/post-images/1626670117467.png" alt=""></p>
+<h3 id="nacos安装">nacos安装</h3>
+<ul>
+<li>解压安装包（tar -zxvf nacos-server-1.1.4.tar.gz）</li>
+<li>移动目录（mv nacos /usr/local）</li>
+<li>切换到bin目录（cd nacos/bin）</li>
+<li>单机模式启动（sh startup.sh -m standalone）</li>
+<li>访问nacos页面（http://47.93.51.187:8848/nacos/index.html）</li>
+<li>初始用户名、密码都为nacos</li>
+</ul>
 
             </div>
           </article>
@@ -189,9 +109,9 @@ return this.is_private;<br>
               <div class="next">
                 下一篇
               </div>
-              <a href="https://spark-wz.github.io/post/628">
+              <a href="https://spark-wz.github.io/post/springcloud-rong-duan-qi">
                 <h3 class="post-title">
-                  6.28
+                  SpringCloud熔断器
                 </h3>
               </a>
             </div>

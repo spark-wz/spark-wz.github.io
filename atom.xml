@@ -2,13 +2,101 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://spark-wz.github.io</id>
     <title>Gridea</title>
-    <updated>2021-07-16T09:06:43.432Z</updated>
+    <updated>2021-07-21T07:53:23.488Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://spark-wz.github.io"/>
     <link rel="self" href="https://spark-wz.github.io/atom.xml"/>
     <logo>https://spark-wz.github.io/images/avatar.png</logo>
     <icon>https://spark-wz.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[SpringCloud（Ribbon轮询算法实现）]]></title>
+        <id>https://spark-wz.github.io/post/springcloudribbon-lun-xun-suan-fa-shi-xian</id>
+        <link href="https://spark-wz.github.io/post/springcloudribbon-lun-xun-suan-fa-shi-xian">
+        </link>
+        <updated>2021-07-20T08:00:01.000Z</updated>
+        <content type="html"><![CDATA[<pre><code>因为后端可以获取所有服务名相同的实例（根据服务名查询）返回结果为list&lt;实例&gt;
+所以新建接口，参数为list&lt;实例&gt;,返回结果为当前应调用的服务实例，返回结果为单个实例
+根据返回的实例获取uri，使用restTemplate的方式调用接口
+dao层	
+</code></pre>
+<p><img src="https://spark-wz.github.io/post-images/1626768414694.png" alt=""></p>
+<pre><code>//传入具体实例的集合，返回选中的实例
+    ServiceInstance instances(List&lt;ServiceInstance&gt; serviceInstance);
+</code></pre>
+<p><strong>service层</strong><br>
+<img src="https://spark-wz.github.io/post-images/1626768516857.png" alt=""></p>
+<pre><code>@Component  //加入容器
+public class MyLB implements ILoadBalancer {
+
+    //新建一个原子整形类
+    private AtomicInteger atomicInteger = new AtomicInteger(0);
+
+    public final int getAndIncrement(){
+        int current;
+        int next;
+        do{
+            current = this.atomicInteger.get();
+            //如果current是最大值，重新计算，否则加1（防止越界）
+            next = current &gt;= Integer.MAX_VALUE ? 0 : current + 1;
+
+        //进行CAS判断，如果不为true，进行自旋
+        }while (!this.atomicInteger.compareAndSet(current, next));
+        System.out.println(&quot;****第几次访问，次数next：&quot; + next);
+
+        return next;
+    }
+    @Override
+    public ServiceInstance instances(List&lt;ServiceInstance&gt; serviceInstance) {
+        //非空判断
+        if(serviceInstance.size() &lt;= 0){
+            return null;
+        }
+        //进行取余
+        int index = getAndIncrement() % serviceInstance.size();
+        //返回选中的服务实例
+        return serviceInstance.get(index);
+    }
+}
+</code></pre>
+<p><strong>controller层</strong><br>
+<img src="https://spark-wz.github.io/post-images/1626768566330.png" alt=""></p>
+<pre><code>@GetMapping(&quot;/consumer/payment/lb&quot;)
+    public String getPaymentLB(){
+        //获取CLOUD-PAYMENT-SERVICE服务的所有具体实例
+        List&lt;ServiceInstance&gt; instances = discoveryClient.getInstances(&quot;CLOUD-PAYMENT-SERVICE&quot;);
+        if(instances == null || instances.size() &lt;= 0){
+            return null;
+        }
+
+        ServiceInstance serviceInstance = iLoadBalancer.instances(instances);
+        URI uri = serviceInstance.getUri();
+        System.out.println(uri);
+
+        return restTemplate.getForObject(uri + &quot;/payment/lb&quot;, String.class);
+    }
+</code></pre>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[SpringCloud（Alibaba）]]></title>
+        <id>https://spark-wz.github.io/post/springcloudalibaba</id>
+        <link href="https://spark-wz.github.io/post/springcloudalibaba">
+        </link>
+        <updated>2021-07-19T04:47:58.000Z</updated>
+        <content type="html"><![CDATA[<p>组件版本关系<br>
+<img src="https://spark-wz.github.io/post-images/1626670117467.png" alt=""></p>
+<h3 id="nacos安装">nacos安装</h3>
+<ul>
+<li>解压安装包（tar -zxvf nacos-server-1.1.4.tar.gz）</li>
+<li>移动目录（mv nacos /usr/local）</li>
+<li>切换到bin目录（cd nacos/bin）</li>
+<li>单机模式启动（sh startup.sh -m standalone）</li>
+<li>访问nacos页面（http://47.93.51.187:8848/nacos/index.html）</li>
+<li>初始用户名、密码都为nacos</li>
+</ul>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[SpringCloud熔断器]]></title>
         <id>https://spark-wz.github.io/post/springcloud-rong-duan-qi</id>
@@ -117,6 +205,16 @@ serviceId: eureka-service//application name<br>
 <h1 id="route2">route2:</h1>
 <h1 id="path-test02">path: /test02/**</h1>
 <h1 id="serviceid-eureka-service2">serviceId: eureka-service2</h1>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[个人发展计划]]></title>
+        <id>https://spark-wz.github.io/post/ge-ren-fa-zhan-ji-hua</id>
+        <link href="https://spark-wz.github.io/post/ge-ren-fa-zhan-ji-hua">
+        </link>
+        <updated>2021-07-11T16:47:24.000Z</updated>
+        <content type="html"><![CDATA[<p>我决定考研，参加2022年研究生考试。专业目前还是倾向于计算机科学与技术，或者大数据。目标暂定计算机专业TOP10-TOP20的院校。<br>
+这两天看着网上的考研课程跟学了一下，发现还是可以静下心去学习的，目前已经买了一部分考研资料。然后等确定好专业和学校后，再买一些学长的复习笔记。在工作之余，复习专业课知识。</p>
 ]]></content>
     </entry>
     <entry>
@@ -613,96 +711,6 @@ dist位置：/root/mes/dist</p>
 <p>jar包位置： /root/supply-controller<br>
 启jar包命令：nohup java -jar jeecg-boot-module-system-2.1.4.jar --spring.profiles.active=prod &gt;&gt;catalina.out 2&gt;&amp;1 &amp;<br>
 dist位置：/root/supply-controller/dist</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Linux修改时区]]></title>
-        <id>https://spark-wz.github.io/post/linux-xiu-gai-shi-qu</id>
-        <link href="https://spark-wz.github.io/post/linux-xiu-gai-shi-qu">
-        </link>
-        <updated>2021-06-21T00:53:47.000Z</updated>
-        <content type="html"><![CDATA[<p>mv /etc/localtime /etc/localtime.bak<br>
-ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/locaktime</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[navicat导出表结构]]></title>
-        <id>https://spark-wz.github.io/post/navicat-dao-chu-biao-jie-gou</id>
-        <link href="https://spark-wz.github.io/post/navicat-dao-chu-biao-jie-gou">
-        </link>
-        <updated>2021-05-22T06:44:36.000Z</updated>
-        <content type="html"><![CDATA[<p>SELECT<br>
-COLUMN_NAME 列名,<br>
-COLUMN_TYPE 数据类型,<br>
-DATA_TYPE 字段类型,<br>
-CHARACTER_MAXIMUM_LENGTH 长度,<br>
-IS_NULLABLE 是否为空,<br>
--- COLUMN_DEFAULT 默认值,<br>
-COLUMN_COMMENT 备注<br>
-FROM<br>
-INFORMATION_SCHEMA. COLUMNS<br>
-WHERE<br>
--- sxepp为数据库名称，到时候只需要修改成你要导出表结构的数据库即可<br>
-table_schema = 'industrial_intelligence'<br>
-AND -- sx_jc_car为表名，到时候换成你要导出的表的名称<br>
--- 如果不写的话，默认会查询出所有表中的数据，这样可能就分不清到底哪些字段是哪张表中的了，所以还是建议写上要导出的名名称<br>
-table_name = 'cobalt'</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[PLC文档]]></title>
-        <id>https://spark-wz.github.io/post/plc-wen-dang</id>
-        <link href="https://spark-wz.github.io/post/plc-wen-dang">
-        </link>
-        <updated>2021-05-16T02:00:23.000Z</updated>
-        <content type="html"><![CDATA[<p><strong>准备连接</strong><br>
-S7Client s7Client = new S7Client();<br>
-<strong>连接参数  机器的ip,机器的机架号 ,插槽号</strong><br>
-s7Client.ConnectTo(&quot;192.168.2.15&quot;, 0, 1);</p>
-<h2 id="plc批量写入">PLC批量写入</h2>
-<p>批量写入plc<br>
-写入plc的第一条数据为byte数组中的第0位，byte数组写入位置间隔为plc各数据之间的偏移量间隔，若想间隔插入、必须在byte数据中留出与plc各数据之间的偏移量间隔</p>
-<pre><code>		`
-    byte[] bytes = new byte[64];
-    //short对应plc中的int，每一个数据占两位，pos为数组中的位置、value为写入值
-    S7.SetShortAt(bytes,0,56);
-    S7.SetShortAt(bytes,2,54);
-    S7.SetShortAt(bytes,4,58);
-    //float对应plc中的real，每一个数据占4位，pos为数组中的位置、value为写入值
-    S7.SetFloatAt(bytes,6,(float) 10.5);
-    S7.SetFloatAt(bytes,10,(float) 10.5);
-    S7.SetFloatAt(bytes,14,(float) 10.5);
-    //bit对应plc中的bool，每一个数据占1位，pos为数组中的位置、bit为当前字节的位数，因为一个bool对应一个字节中的一位、value为写入值
-    S7.SetBitAt(bytes,18,0,true);
-    S7.SetShortAt(bytes,20,61);
-    //参数第一个为读写区域，DB为S7.S7AreaDB=132、读写区域AO、DO 为130、读写区域AI、DI 为129
-    //DBNumber第二个参数为DB号、读取区域为130、129时，第二个参数无作用
-    //start第三个参数为写入数据的起始位、为写入plc第一条数据的偏移量
-    //amount第四个参数为写入数据的位数、目前测定最大为22位
-    //bytes第5个参数为要写入的byte数组
-    int i = s7Client.WriteArea(S7.S7AreaDB, 25, 2, 22, bytes);
-				`
-</code></pre>
-<h2 id="plc批量读取">PLC批量读取</h2>
-<pre><code>			`
-    S7Client s7Client = new S7Client();
-    //连接参数  机器的ip,机器的机架号 ,插槽号
-    s7Client.ConnectTo(&quot;192.168.2.15&quot;, 0, 1);
-    System.out.println(&quot;s7Client.Connected = &quot; + s7Client.Connected);
-    byte[] bytes = new byte[64];
-    int i = s7Client.ReadArea(S7.S7AreaDB,25,2,22,bytes);
-    System.out.println(&quot;i = &quot; + i);
-    System.out.println(&quot;S7.GetShortAt(bytes,0) = &quot; + S7.GetShortAt(bytes,0));
-    System.out.println(&quot;S7.GetShortAt(bytes,2) = &quot; + S7.GetShortAt(bytes,2));
-    System.out.println(&quot;bytes = &quot; + S7.GetShortAt(bytes,4));
-    System.out.println(&quot;S7.GetFloatAt(bytes,6) = &quot; + S7.GetFloatAt(bytes,6));
-    System.out.println(&quot;S7.GetFloatAt(bytes,10) = &quot; + S7.GetFloatAt(bytes,10));
-    System.out.println(&quot;S7.GetFloatAt(bytes,14) = &quot; + S7.GetFloatAt(bytes,14));
-    System.out.println(&quot;S7.GetBitAt(bytes,18,0) = &quot; + S7.GetBitAt(bytes,18,0));
-    System.out.println(&quot;S7.GetShortAt(bytes,20) = &quot; + S7.GetShortAt(bytes,20));
-		
-`
-</code></pre>
 ]]></content>
     </entry>
 </feed>

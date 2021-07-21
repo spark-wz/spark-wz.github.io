@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>nodejs | Gridea</title>
+<title>SpringCloud（Ribbon轮询算法实现） | Gridea</title>
 <meta name="description" content="">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -81,104 +81,74 @@
       <div class="sm-12 md-8 col">
         <div class="paper">
           <article class="article">
-            <h1>nodejs</h1>
+            <h1>SpringCloud（Ribbon轮询算法实现）</h1>
             <p class="article-meta">
-              2020-07-01
+              2021-07-20
               
             </p>
             
             <div class="post-content">
-              <p>//person对象<br>
-function Person(id, year, project, importance,pp,funds,funds_allocated,software_or_hardware,competition_and_selection,domestic_part,research_unit,is_private) {<br>
-this.id = id;<br>
-this.year = year;<br>
-this.project = project;<br>
-this.importance = importance;<br>
-this.pp = pp;<br>
-this.funds = funds;<br>
-this.funds_allocated = funds_allocated;<br>
-this.software_or_hardware = software_or_hardware;<br>
-this.competition_and_selection = competition_and_selection;<br>
-this.domestic_part = domestic_part;<br>
-this.research_unit = research_unit;<br>
-this.is_private = is_private;<br>
-}<br>
-function Person(id, year, project, importance,pp,funds,funds_allocated,software_or_hardware,competition_and_selection,domestic_part,research_unit,is_private) {<br>
-}<br>
-//set方法<br>
-Person.prototype.setId=function (id) {<br>
-this.id = id;<br>
-}<br>
-Person.prototype.setYear=function (year) {<br>
-this.year = year;<br>
-}<br>
-Person.prototype.setProject=function (project) {<br>
-this.project = project;<br>
-}<br>
-Person.prototype.setImportance=function (importance) {<br>
-this.importance = importance;<br>
-}<br>
-Person.prototype.setPp=function (pp) {<br>
-this.pp = pp;<br>
-}<br>
-Person.prototype.setFunds=function (funds) {<br>
-this.funds = funds;<br>
-}<br>
-Person.prototype.setAllocated=function (funds_allocated) {<br>
-this.funds_allocated = funds_allocated;<br>
-}<br>
-Person.prototype.setSoftware=function (software_or_hardware) {<br>
-this.software_or_hardware = software_or_hardware;<br>
-}<br>
-Person.prototype.setCompetition=function (competition_and_selection) {<br>
-this.competition_and_selection = competition_and_selection;<br>
-}<br>
-Person.prototype.setDomestic=function (domestic_part) {<br>
-this.domestic_part = domestic_part;<br>
-}<br>
-Person.prototype.setResearch=function (research_unit) {<br>
-this.research_unit = research_unit;<br>
-}<br>
-Person.prototype.setPrivate=function (is_private) {<br>
-this.is_private = is_private;<br>
-}<br>
-//get方法<br>
-Person.prototype.getId=function () {<br>
-return this.id ;<br>
-}<br>
-Person.prototype.getYear=function () {<br>
-return this.year;<br>
-}<br>
-Person.prototype.getProject=function () {<br>
-return this.project ;<br>
-}<br>
-Person.prototype.getImportance=function () {<br>
-return this.importance;<br>
-}<br>
-Person.prototype.getPp=function () {<br>
-return this.pp ;<br>
-}<br>
-Person.prototype.getFunds=function () {<br>
-return this.funds;<br>
-}<br>
-Person.prototype.getAllocated=function () {<br>
-return this.funds_allocated ;<br>
-}<br>
-Person.prototype.getSoftware=function () {<br>
-return this.software_or_hardware;<br>
-}<br>
-Person.prototype.getCompetition=function () {<br>
-return this.competition_and_selection;<br>
-}<br>
-Person.prototype.getDomestic=function () {<br>
-return this.domestic_part ;<br>
-}<br>
-Person.prototype.getResearch=function () {<br>
-return this.research_unit;<br>
-}<br>
-Person.prototype.getPrivate=function () {<br>
-return this.is_private;<br>
-}</p>
+              <pre><code>因为后端可以获取所有服务名相同的实例（根据服务名查询）返回结果为list&lt;实例&gt;
+所以新建接口，参数为list&lt;实例&gt;,返回结果为当前应调用的服务实例，返回结果为单个实例
+根据返回的实例获取uri，使用restTemplate的方式调用接口
+dao层	
+</code></pre>
+<p><img src="https://spark-wz.github.io/post-images/1626768414694.png" alt=""></p>
+<pre><code>//传入具体实例的集合，返回选中的实例
+    ServiceInstance instances(List&lt;ServiceInstance&gt; serviceInstance);
+</code></pre>
+<p><strong>service层</strong><br>
+<img src="https://spark-wz.github.io/post-images/1626768516857.png" alt=""></p>
+<pre><code>@Component  //加入容器
+public class MyLB implements ILoadBalancer {
+
+    //新建一个原子整形类
+    private AtomicInteger atomicInteger = new AtomicInteger(0);
+
+    public final int getAndIncrement(){
+        int current;
+        int next;
+        do{
+            current = this.atomicInteger.get();
+            //如果current是最大值，重新计算，否则加1（防止越界）
+            next = current &gt;= Integer.MAX_VALUE ? 0 : current + 1;
+
+        //进行CAS判断，如果不为true，进行自旋
+        }while (!this.atomicInteger.compareAndSet(current, next));
+        System.out.println(&quot;****第几次访问，次数next：&quot; + next);
+
+        return next;
+    }
+    @Override
+    public ServiceInstance instances(List&lt;ServiceInstance&gt; serviceInstance) {
+        //非空判断
+        if(serviceInstance.size() &lt;= 0){
+            return null;
+        }
+        //进行取余
+        int index = getAndIncrement() % serviceInstance.size();
+        //返回选中的服务实例
+        return serviceInstance.get(index);
+    }
+}
+</code></pre>
+<p><strong>controller层</strong><br>
+<img src="https://spark-wz.github.io/post-images/1626768566330.png" alt=""></p>
+<pre><code>@GetMapping(&quot;/consumer/payment/lb&quot;)
+    public String getPaymentLB(){
+        //获取CLOUD-PAYMENT-SERVICE服务的所有具体实例
+        List&lt;ServiceInstance&gt; instances = discoveryClient.getInstances(&quot;CLOUD-PAYMENT-SERVICE&quot;);
+        if(instances == null || instances.size() &lt;= 0){
+            return null;
+        }
+
+        ServiceInstance serviceInstance = iLoadBalancer.instances(instances);
+        URI uri = serviceInstance.getUri();
+        System.out.println(uri);
+
+        return restTemplate.getForObject(uri + &quot;/payment/lb&quot;, String.class);
+    }
+</code></pre>
 
             </div>
           </article>
@@ -189,9 +159,9 @@ return this.is_private;<br>
               <div class="next">
                 下一篇
               </div>
-              <a href="https://spark-wz.github.io/post/628">
+              <a href="https://spark-wz.github.io/post/springcloudalibaba">
                 <h3 class="post-title">
-                  6.28
+                  SpringCloud（Alibaba）
                 </h3>
               </a>
             </div>
